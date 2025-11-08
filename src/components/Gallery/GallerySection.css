@@ -1,0 +1,205 @@
+/* ===== GALLERY SECTION ===== */
+.gallery-section {
+  position: relative;
+  background-image: url("../../assets/Bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  font-family: "Cinzel Decorative", serif;
+  overflow: hidden;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh 2vw;
+  box-sizing: border-box;
+}
+
+/* ===== LAYER 2 BACKGROUND ===== */
+.gallery-layer2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(800px, 90vw, 1500px);
+  height: clamp(800px, 90vw, 1500px);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===== NEON HEADING ===== */
+.gallery-heading {
+  font-size: clamp(60px, 8vw, 150px);
+  font-weight: 500;
+  color: #1a1818;
+  -webkit-text-stroke: 3px #c11c1c;
+  text-shadow:
+    0 0 4px #c11c1c,
+    0 0 10px #c11c1c,
+    0 0 20px #c11c1c,
+    0 0 30px #c11c1c;
+  margin-bottom: 5px;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ===== UNDERLINES ===== */
+.gallery-heading::after,
+.gallery-heading::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #c11c1c;
+  box-shadow: 0 0 6px #c11c1c, 0 0 12px #c11c1c;
+  width: clamp(200px, 45vw, 450px);
+  height: 5px;
+  border-radius: 3px;
+}
+
+.gallery-heading::after {
+  bottom: -20px;
+}
+
+.gallery-heading::before {
+  bottom: -10px;
+}
+
+/* ===== FRAMES CONTAINER ===== */
+.frames-container {
+  position: relative;
+  width: 100%;
+  max-width: 1406px;
+  height: 1000px;
+  margin-top: 5vw;
+  z-index: 2;
+}
+
+/* ===== POLAROID FRAME ===== */
+.polaroid-frame {
+  position: absolute;
+  width: clamp(220px, 20vw, 300px);
+  height: clamp(270px, 25vw, 360px);
+  cursor: grab;
+  transition: transform 0.1s ease, filter 0.3s ease;
+  transform-origin: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.polaroid-frame.center-frame {
+  z-index: 1;
+}
+
+.polaroid-frame:active {
+  cursor: grabbing;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7));
+  z-index: 10 !important;
+}
+
+.polaroid-frame:hover {
+  filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.6));
+}
+
+/* ===== FRAME IMAGE ===== */
+.frame-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .gallery-section {
+    min-height: 90vh;
+    padding: 1.5vh 2vw;
+  }
+  .gallery-heading {
+    font-size: clamp(50px, 7vw, 100px);
+  }
+  .gallery-heading::after,
+  .gallery-heading::before {
+    width: clamp(150px, 30vw, 400px);
+  }
+  .gallery-layer2 {
+    width: clamp(400px, 55vw, 700px);
+    height: clamp(400px, 55vw, 700px);
+  }
+  .frames-container {
+    height: 500px;
+    margin-top: 4vw;
+  }
+  .polaroid-frame {
+    width: clamp(180px, 22vw, 300px);
+    height: clamp(230px, 27vw, 370px);
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-section {
+    min-height: 80vh;
+    padding: 1vh 2vw;
+  }
+  .gallery-heading {
+    font-size: clamp(40px, 6vw, 80px);
+    -webkit-text-stroke: 2px #c11c1c;
+  }
+  .gallery-heading::after,
+  .gallery-heading::before {
+    width: clamp(100px, 25vw, 300px);
+  }
+  .gallery-layer2 {
+    width: clamp(350px, 70vw, 600px);
+    height: clamp(350px, 70vw, 600px);
+  }
+  .frames-container {
+    height: 400px;
+    margin-top: 2.5vw;
+  }
+  .polaroid-frame {
+    width: clamp(154px, 14vw, 210px);
+    height: clamp(189px, 17.5vw, 252px);
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-section {
+    min-height: 70vh;
+    padding: 0.5vh 1vw;
+  }
+  .gallery-heading {
+    font-size: clamp(30px, 5vw, 60px);
+    -webkit-text-stroke: 1px #c11c1c;
+  }
+  .gallery-heading::after,
+  .gallery-heading::before {
+    width: clamp(80px, 20vw, 200px);
+    height: 3px;
+  }
+  .gallery-layer2 {
+    width: clamp(300px, 80vw, 500px);
+    height: clamp(300px, 80vw, 500px);
+  }
+  .frames-container {
+    height: 300px;
+    margin-top: 1.5vw;
+  }
+  .polaroid-frame {
+    width: clamp(91px, 12.6vw, 140px);
+    height: clamp(112px, 15.75vw, 182px);
+  }
+}

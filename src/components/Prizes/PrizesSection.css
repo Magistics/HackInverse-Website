@@ -9,12 +9,8 @@
   text-align: center;
   font-family: "Cinzel Decorative", serif;
   overflow: hidden; 
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 2vw; 
+  min-height: auto;
+  padding: 2vh 2vw; 
   box-sizing: border-box;
 }
 
@@ -65,7 +61,7 @@
   align-items: center;
   flex-wrap: nowrap; 
   gap: 3vw; 
-  margin-top: 5vw; 
+  margin-top: 2vw; 
   max-width: 100%; 
   box-sizing: border-box;
 }
@@ -179,7 +175,7 @@
   }
   .prizes-container {
     gap: 2vw;
-    margin-top: 4vw;
+    margin-top: 2vw;
   }
   .prize-img-wrapper {
     width: clamp(150px, 18vw, 300px);
@@ -209,7 +205,7 @@
   }
   .prizes-container {
     gap: 1.5vw;
-    margin-top: 3vw;
+    margin-top: 1.5vw;
   }
   .prize-img-wrapper {
     width: clamp(120px, 15vw, 250px);
@@ -231,7 +227,7 @@
 
 @media (max-width: 576px) { 
   .prizes-section {
-    padding: 0 1vw; 
+    padding: 1vh 1vw; 
   }
   .prizes-heading {
     font-size: clamp(30px, 5vw, 60px);
@@ -245,7 +241,7 @@
   }
   .prizes-container {
     gap: 1vw;
-    margin-top: 2vw;
+    margin-top: 1vw;
   }
   .prize-img-wrapper {
     width: clamp(90px, 12vw, 200px);
