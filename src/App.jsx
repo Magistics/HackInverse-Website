@@ -1,6 +1,6 @@
-import "./App.css";
+import "./index.css";
 import PrizesSection from "./components/Prizes/PrizesSection";
-import Description from "./components/Description/Description"; // ✅ import your Description component
+import Description from "./components/Description/Description";
 import TracksSection from "./components/Tracks/TracksSection";
 import ElevatorAnimation from "./components/Elevator/ElevatorAnimation";
 import Venue from "./components/Venue/VenueSection";
