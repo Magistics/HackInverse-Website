@@ -115,7 +115,7 @@ function Parallax() {
 
     return (
         <div className="parallax-outer">
-            <div ref={parallaxRef} style={{ background: `linear-gradient(#0F2B9C, #673D7D ${background}%, #A74A67, #EDFC54 )` }} className='parallax'>
+            <div ref={parallaxRef} style={{ background: `linear-gradient(#111220, #282A57 ${background}%, #162D3D)` }} className='parallax'>
                 <img ref={mountain3} className='mountain-3' src="/parallax/mountain3.svg" />
                 <img ref={mountain2} className='mountain-2' src="/parallax/mountain-2.svg" />
                 <img ref={mountain1} className='mountain-1' src="/parallax/mountain-1.svg" />
