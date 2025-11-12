@@ -7,7 +7,8 @@ const TracksSection = () => {
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#9E1C1E] text-center font-['Cinzel_Decorative'] text-white">
       
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1522px] h-[2px] bg-black"></div>
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-black z-30"></div>
+
       <div
         className="relative flex flex-col items-center justify-center w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 pt-[52vh] pb-[10vh] z-10" 
         style={{
@@ -18,10 +19,10 @@ const TracksSection = () => {
         }}
       >
         {/* Heading */}
-        <h1 className="relative z-10 mb-[8vh] text-[clamp(3rem,8vw,7rem)] font-semibold uppercase tracking-[0.3vw] text-transparent [-webkit-text-stroke:3px_#f4e9e9]">
+        <h1 className="relative z-10 mb-[8vh] text-[clamp(3rem,8vw,7rem)] font-semibold uppercase tracking-[0.12em] text-transparent [-webkit-text-stroke:3px_#f4e9e9]"style={{ fontFamily: 'StrangerThingsOutlined' }}>
           TRACKS
-          <span className="absolute bottom-[2vh] left-1/2 h-[3.7px] w-[29vw] -translate-x-1/2 rounded-md bg-[#f4e9e9]"></span>
-          <span className="absolute bottom-[1.2vh] left-1/2 h-[3.7px] w-[29vw] -translate-x-1/2 rounded-md bg-[#f4e9e9]"></span>
+          <div className="relative bottom-[1.5vh] left-1/2 h-[3.7px] w-[38vw] -translate-x-1/2 bg-[#f4e9e9]"></div>
+          <div className="relative bottom-[0.5vh] left-1/2 h-[3.7px] w-[38vw] -translate-x-1/2 bg-[#f4e9e9]"></div>
         </h1>
 
         {/* Tracks Content */}

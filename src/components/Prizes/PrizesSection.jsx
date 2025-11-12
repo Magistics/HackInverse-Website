@@ -21,13 +21,32 @@ const PrizesSection = () => {
         backgroundSize: "auto",
       }}
     >
-      <h1 className="prizes-heading relative mb-6 inline-block text-[clamp(60px,8vw,150px)] font-medium leading-none text-[#1a1818] [text-shadow:0_0_4px_#c11c1c,0_0_10px_#c11c1c,0_0_20px_#c11c1c,0_0_30px_#c11c1c] [-webkit-text-stroke:3px_#c11c1c] lg:[-webkit-text-stroke:3px_#c11c1c] sm:[-webkit-text-stroke:2px_#c11c1c] xs:[-webkit-text-stroke:1px_#c11c1c]">
+      {/* ===== HEADING ===== */}
+      <h1
+        className="prizes-heading top-5 relative mb-6 inline-block text-[clamp(50px,7vw,140px)] font-medium uppercase leading-none tracking-[0.15em] text-[#1a1818]
+        [text-shadow:0_0_5px_#c11c1c,0_0_10px_#c11c1c,0_0_20px_#c11c1c,0_0_40px_#c11c1c,0_0_60px_#c11c1c,0_0_80px_#c11c1c]
+        [-webkit-text-stroke:3px_#c11c1c] lg:[-webkit-text-stroke:3px_#c11c1c] sm:[-webkit-text-stroke:2px_#c11c1c] xs:[-webkit-text-stroke:1px_#c11c1c]"
+        style={{ fontFamily: "StrangerThingsOutlined" }}
+      >
         PRIZES
-        <span className="block mt-[1.2vw] h-1.5 w-[clamp(200px,45vw,450px)] rounded-[3px] bg-[#c11c1c]"></span>
-        <span className="block mt-[0.8vw] h-1.5 w-[clamp(200px,45vw,450px)] rounded-[3px] bg-[#c11c1c]"></span>
+        {/* ===== UNDERLINES===== */}
+        <span
+          className="block mt-[1.2vw] h-[0.5vh] w-[clamp(210px,35vw,580px)]  bg-[#C83639]"
+          style={{
+            boxShadow:
+              "0 0 5px #c11c1c, 0 0 10px #c11c1c, 0 0 20px #c11c1c, 0 0 40px #c11c1c, 0 0 60px #c11c1c, 0 0 80px #c11c1c",
+          }}
+        ></span>
+        <span
+          className="block mt-[0.8vw] h-[0.5vh] w-[clamp(210px,35vw,580px)] bg-[#C83639]"
+          style={{
+            boxShadow:
+              "0 0 5px #c11c1c, 0 0 10px #c11c1c, 0 0 20px #c11c1c, 0 0 40px #c11c1c, 0 0 60px #c11c1c, 0 0 80px #c11c1c",
+          }}
+        ></span>
       </h1>
 
-      {/* PRIZE CARDS */}
+      {/* ===== PRIZE CARDS ===== */}
       <div className="mt-[5vw] flex max-w-[95vw] flex-wrap items-center justify-center gap-[8vw] lg:gap-[6vw] md:gap-[5vw] sm:gap-[4vw] xs:gap-[3vw]">
         {prizes.map((p, index) => (
           <div
@@ -39,8 +58,7 @@ const PrizesSection = () => {
             {/* Prize Image Wrapper */}
             <div
               className={`relative flex items-center justify-center rounded-full border-[3px] border-[#1a1a1a] bg-[rgba(0,0,0,0.3)] z-10 flex-shrink-0 overflow-hidden
-                ${index === 1 ? "prize-card-first" : ""}
-              `}
+                ${index === 1 ? "prize-card-first" : ""}`}
               style={{
                 width:
                   index === 1

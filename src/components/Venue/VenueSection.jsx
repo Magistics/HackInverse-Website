@@ -29,13 +29,13 @@ const Venue = () => {
         <div className="flex flex-col gap-8 text-white text-center lg:text-left lg:w-1/2">
           {/* Header */}
           <div className="flex flex-col items-center lg:items-start gap-4">
-            <h1 className="text-[clamp(4rem,9vw,7rem)] font-extrabold tracking-wide uppercase leading-none [color:transparent] [-webkit-text-stroke:4px_#fff] font-cinzel-decorative md:[-webkit-text-stroke:2px_#fff]">
+            <h1 className="text-[clamp(4rem,9vw,7rem)] font-extrabold tracking-[0.15em] uppercase leading-none [color:transparent] [-webkit-text-stroke:4px_#fff] font-cinzel-decorative md:[-webkit-text-stroke:2px_#fff]" style={{ fontFamily: 'StrangerThingsOutlined' }}>
               VENUE
             </h1>
 
             {/* Underlines */}
-            <div className="relative w-[405px] h-1 bg-white mx-auto lg:mx-0">
-              <div className="absolute bottom-[-10px] left-0 w-[405px] h-1 bg-white"></div>
+            <div className="relative w-[460px] h-1 bg-white mx-auto lg:mx-0">
+              <div className="absolute bottom-[-10px] left-0 w-[460px] h-1 bg-white"></div>
             </div>
           </div>
 

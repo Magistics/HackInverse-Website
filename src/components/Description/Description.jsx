@@ -6,7 +6,7 @@ import cyclistsImage from "../../assets/cyclists.png";
 export default function Description() {
   return (
     <div className="relative min-h-screen w-full bg-[#1a1a1a] overflow-hidden text-white font-inter flex flex-col items-center justify-start px-4 md:px-8 lg:px-16 pt-[8vh] md:pt-[10vh] lg:pt-[12vh]">
-      <div className="absolute bottom-0 left-0 w-[1522px] h-[6px] bg-black mx-auto right-0"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-[6px] bg-black"></div>
       {/* TEXT SECTION */}
       <div className="text-center z-20 mb-[12vh] md:mb-[14vh] lg:mb-[16vh]">
         <h1 className="text-[#b30000] font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
