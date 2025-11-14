@@ -6,9 +6,14 @@ import './index.css'
 import App from './App.jsx'
 
 AOS.init({
-  duration: 1000,
+  duration: 1200,
   once: false,
-  offset: 100,
+  offset: 120,
+  delay: 0,
+  easing: 'ease-out-back',
+  disable: false,
+  mirror: true,
+  anchorPlacement: 'top-bottom',
 })
 
 createRoot(document.getElementById('root')).render(

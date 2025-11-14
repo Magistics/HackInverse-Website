@@ -11,12 +11,12 @@ import frame6 from "../../assets/image/frame6.png";
 const GallerySection = () => {
   // Circular layout: frame4 in center (behind), 5 frames circling around
   const frames = [
-    { id: 1, img: frame1, initialLeft: 50, initialTop: 15, initialRotate: -5 }, // Top
-    { id: 2, img: frame2, initialLeft: 75, initialTop: 30, initialRotate: 8 }, // Top-right
-    { id: 3, img: frame3, initialLeft: 75, initialTop: 70, initialRotate: -3 }, // Bottom-right
-    { id: 4, img: frame4, initialLeft: 50, initialTop: 50, initialRotate: 0, isCenter: true }, // Center frame (back layer)
-    { id: 5, img: frame5, initialLeft: 25, initialTop: 70, initialRotate: 10 }, // Bottom-left
-    { id: 6, img: frame6, initialLeft: 25, initialTop: 30, initialRotate: -8 }, // Top-left
+    { id: 1, img: frame1, initialLeft: 50, initialTop: 15, initialRotate: -5, animation: "fade-down" }, // Top
+    { id: 2, img: frame2, initialLeft: 75, initialTop: 30, initialRotate: 8, animation: "fade-left" }, // Top-right
+    { id: 3, img: frame3, initialLeft: 75, initialTop: 70, initialRotate: -3, animation: "fade-left" }, // Bottom-right
+    { id: 4, img: frame4, initialLeft: 50, initialTop: 50, initialRotate: 0, isCenter: true, animation: "zoom-in" }, // Center frame (back layer)
+    { id: 5, img: frame5, initialLeft: 25, initialTop: 70, initialRotate: 10, animation: "fade-right" }, // Bottom-left
+    { id: 6, img: frame6, initialLeft: 25, initialTop: 30, initialRotate: -8, animation: "fade-right" }, // Top-left
   ];
 
   const [positions, setPositions] = useState(
@@ -99,14 +99,21 @@ const GallerySection = () => {
               transform: `translate(-50%, -50%) rotate(${positions[frame.id].rotate}deg)`,
               zIndex: frame.isCenter ? 1 : 3,
               filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))',
-              transition: 'transform 0.1s ease, filter 0.3s ease',
+              transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               userSelect: 'none',
               WebkitUserSelect: 'none',
-              touchAction: 'none'
+              touchAction: 'none',
+              willChange: 'transform, filter',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              perspective: 1000
             }}
-            data-aos={frame.isCenter ? "zoom-in" : "fade-in"}
-            data-aos-delay={frame.isCenter ? 0 : index * 100}
-            data-aos-duration="800"
+            data-aos={frame.animation}
+            data-aos-delay={frame.isCenter ? 0 : index * 150}
+            data-aos-duration="1200"
+            data-aos-offset="200"
+            data-aos-easing="ease-out-back"
+            data-aos-anchor-placement="top-bottom"
             onMouseDown={(e) => handleStart(e, frame.id)}
             onMouseMove={(e) => handleMove(e, frame.id)}
             onMouseUp={() => handleEnd(frame.id)}
