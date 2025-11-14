@@ -6,3 +6,11 @@
     font-weight: normal;
     font-style: normal;
   }
+.logo-card {
+    @apply w-[180px] h-[70px] bg-black text-white flex justify-center items-center text-xl font-semibold rounded-md;
+  }
+ 
+html, body, #root {
+  background: #222222;
+}
+  
