@@ -11,14 +11,14 @@ import {
 const AboutSection = () => {
   return (
     <div>
-      {/* <h2 className="text-[#222222] text-2xl sm:text-3xl md:text-4xl text-center font-serif mt-10 sm:mt-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
+      <h2 className="text-[#222222] text-2xl sm:text-3xl md:text-6xl text-center font-serif mt-10 sm:mt-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
       <span className="text-white mr-3 md:mr-5">About</span>
       <span className="inline-block">HACKINVERSE</span>
     </h2>
 <div
-        className="after:content-[''] after:block after:h-[1.5px] after:w-full after:bg-red-600 after:mt-1 before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-red-600 mx-4 sm:mx-8 md:mx-20 lg:mx-40"
-      ></div>   */}
-      <img src="./src/assets/About.png" className=" mx-auto w-150" />
+        className="after:content-[''] after:block after:h-[1.5px] after:w-full after:bg-red-600 after:mt-1 before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-red-600 mx-4 sm:mx-8 md:mx-20 lg:mx-100"
+      ></div>  
+
       <p className="flex items-center text-white justify-center mt-6 sm:text-lg md:text-base font-mono max-w-3xl mx-auto text-center md:text-left">
         HackInverse is the flagship hackathon by Magistics, built to bring
         together students, developers, designers and innovators from all walks
