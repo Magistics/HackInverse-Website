@@ -8,6 +8,8 @@ import Venue from "./components/Venue/VenueSection";
 import SponsorsSection from "./components/Sponsors/SponsorsSection";
 import Calender from "./components/Calender.jsx";
 import AboutSection from "./components/AboutSection.jsx";
+import Footer from "./components/Footer.jsx";
+import FAQ from "./components/FAQ.jsx";
 
 function App() {
     return (
@@ -22,6 +24,8 @@ function App() {
                 <TracksSection />
                 <ElevatorAnimation />
                 <Venue />
+                <FAQ />
+                <Footer />
             </div>
         </>
     );

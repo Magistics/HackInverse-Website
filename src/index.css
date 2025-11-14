@@ -1,16 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'StrangerThingsOutlined';
-    src: url('./assets/fonts/Stranger Things Outlined.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-.logo-card {
-    @apply w-[180px] h-[70px] bg-black text-white flex justify-center items-center text-xl font-semibold rounded-md;
-  }
- 
-html, body, #root {
+  font-family: 'StrangerThingsOutlined';
+  src: url('./assets/fonts/Stranger Things Outlined.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body,
+#root {
   background: #222222;
 }
-  
+
+:root {
+  --font-merriweather: "Merriweather", sans-serif;
+  --font-alata: "Alata", sans-serif;
+  --font-spline-mono: "Spline Sans Mono", monospace;
+  --font-albert-sans: "Albert Sans", sans-serif;
+  --redColor: #FF0505;
+}
+
+.merriweather {
+  font-family: var(--font-merriweather);
+}
+
+.alata {
+  font-family: var(--font-alata);
+}
+
+.spline-mono {
+  font-family: var(--font-spline-mono);
+}
+
+.albert-sans {
+  font-family: var(--font-albert-sans);
+}
+
+.stranger-things {
+  font-family: "StrangerThings", sans-serif;
+}
+
+.font-red {
+  color: var(--redColor);
+}
+
+.background-red {
+  background-color: var(--redColor);
+}
+
+.background-dark {
+  background-color: #222222;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 0.5px var(--redColor);
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 768px) {
+  .text-stroke {
+    -webkit-text-stroke: 3px var(--redColor);
+  }
+}
+
+.logo-card {
+  @apply w-[180px] h-[70px] bg-black text-white flex justify-center items-center text-xl font-semibold rounded-md;
+}
+
