@@ -25,8 +25,8 @@ const AboutSection = () => {
         collaboration
       </p>
 
-      
-  <img className="h-50 w-95 mx-auto md:ml-10 mt-6 md:mt-20" src="./img/monster.png" alt="monster" />
+
+  <img className="h-50 w-95 mx-auto md:ml-10 mt-6 md:mt-20" src="./src/assets/monster.png" alt="monster" />
 
       <p className="text-center md:text-right mx-4 md:mx-20 -mt-6 md:-mt-60 font-mono text-sm md:text-base leading-relaxed">
         From brainstorming to building,
