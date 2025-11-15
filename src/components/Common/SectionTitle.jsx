@@ -20,7 +20,7 @@ export default function SectionTitle({
 
             {/* Title */}
             <h2
-                className="text-5xl md:text-6xl font-bold merriweather text-stroke text-center px-4"
+                className="text-5xl md:text-6xl font-bold text-stroke text-center px-4"
                 style={{
                     WebkitTextStrokeColor: strokeColor,
                     WebkitTextStrokeWidth: strokeWidth,

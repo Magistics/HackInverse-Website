@@ -12,6 +12,7 @@ import Footer from "./components/Footer.jsx";
 import FAQ from "./components/FAQ.jsx";
 import { useRef } from "react";
 import Navbar from "./components/Navbar.jsx";
+import HeroSection from "./components/HeroSection.jsx";
 
 function App() {
     const scrollToView = (ref) => {
@@ -31,7 +32,11 @@ function App() {
                     <Navbar scrollToView={scrollToView} refs={{}} />
                 </header>
 
-                <main className="pt-20">
+                <main className="">
+                    <section>
+                        <HeroSection />
+                    </section>
+
                     <section>
                         <Calender />
                     </section>
