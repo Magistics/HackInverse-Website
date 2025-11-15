@@ -5,8 +5,8 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'StrangerThingsOutlined';
-  src: url('./assets/fonts/Stranger Things Outlined.ttf') format('truetype');
+  font-family: 'StrangerThings';
+  src: url('./assets/fonts/Stranger-Things-Outlined.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
