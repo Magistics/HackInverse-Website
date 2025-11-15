@@ -1,4 +1,5 @@
 import React from "react";
+import MainTitle from "./Common/MainTitle";
 
 export default function HeroSection() {
     return (
@@ -53,24 +54,7 @@ export default function HeroSection() {
 
                     {/* Title Block */}
                     <div className="relative z-30 md:-translate-y-30">
-                        {/* Top border */}
-                        <div className="h-2 md:h-4 flex flex-col gap-1">
-                            <div className="h-0.5 md:h-1.5 background-red"></div>
-                            <div className="h-0.5 md:h-1 background-red md:mt-1.5"></div>
-                        </div>
-
-                        {/* Title text */}
-                        <div className="relative">
-                            <h1 className="font-bold text-4xl md:text-7xl lg:text-[7rem] xl:text-[8rem] tracking-wider text-transparent bg-clip-text background-red relative stranger-things">
-                                HACKINVERSE
-                            </h1>
-                        </div>
-
-                        {/* Bottom border */}
-                        <div className="h-2 md:h-4 flex flex-col gap-1">
-                            <div className="h-0.5 md:h-1 background-red md:mb-1.5"></div>
-                            <div className="h-0.5 md:h-1.5 background-red"></div>
-                        </div>
+                        <MainTitle />
                     </div>
                 </div>
             </div>
