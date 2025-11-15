@@ -52,7 +52,7 @@ export default function Navbar({ scrollToView, refs }) {
         <motion.nav
             variants={navbarVariants}
             animate={showNav ? "visible" : "hidden"}
-            className="sticky top-0 w-full py-4 z-50"
+            className="sticky top-0 w-full py-4 z-50 sofia-sans-extra-condensed"
         >
             <div className="container mx-auto px-4 md:max-w-4xl">
                 <div className="relative flex items-center justify-between bg-black rounded-[61px] py-1 md:py-3 px-5">

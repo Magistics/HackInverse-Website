@@ -13,6 +13,7 @@ import FAQ from "./components/FAQ.jsx";
 import { useRef } from "react";
 import Navbar from "./components/Navbar.jsx";
 import HeroSection from "./components/HeroSection.jsx";
+import DetailsSection from "./components/DetailsSection.jsx";
 
 function App() {
     const scrollToView = (ref) => {
@@ -35,6 +36,10 @@ function App() {
                 <main className="">
                     <section>
                         <HeroSection />
+                    </section>
+
+                    <section>
+                        <DetailsSection />
                     </section>
 
                     <section>
