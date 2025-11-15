@@ -34,24 +34,18 @@ const GallerySection = () => {
 
   // Prevent default touch behaviors when dragging
   useEffect(() => {
-    const preventDefault = (e) => {
+    const preventDocumentTouchMove = (e) => {
+      // Only prevent scrolling if we're actively dragging frames
       if (Object.keys(dragState.current).length > 0) {
         e.preventDefault();
       }
     };
 
-    const handleTouchMove = (e) => {
-      if (Object.keys(dragState.current).length > 0) {
-        e.preventDefault();
-      }
-    };
-
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
-    document.addEventListener('touchstart', preventDefault, { passive: false });
+    // Only add the document listener when needed, not always
+    document.addEventListener('touchmove', preventDocumentTouchMove, { passive: false });
 
     return () => {
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchstart', preventDefault);
+      document.removeEventListener('touchmove', preventDocumentTouchMove);
     };
   }, []);
 
@@ -61,7 +55,12 @@ const GallerySection = () => {
     const clientX = e.type === "mousedown" ? e.clientX : e.touches?.[0]?.clientX;
     const clientY = e.type === "mousedown" ? e.clientY : e.touches?.[0]?.clientY;
 
-    if (clientX === undefined || clientY === undefined) return;
+    if (clientX === undefined || clientY === undefined) {
+      console.log('Invalid touch coordinates:', { clientX, clientY, touches: e.touches });
+      return;
+    }
+
+    console.log(`Starting drag for frame ${id}:`, { clientX, clientY, initialLeft: positions[id].left, initialTop: positions[id].top });
 
     dragState.current[id] = {
       startX: clientX,
@@ -69,6 +68,9 @@ const GallerySection = () => {
       initialLeft: positions[id].left,
       initialTop: positions[id].top,
     };
+
+    // Disable transitions during drag to prevent conflicts
+    e.currentTarget.style.transition = 'none';
   };
 
   const handleMove = (e, id) => {
@@ -84,18 +86,43 @@ const GallerySection = () => {
     const deltaX = clientX - dragState.current[id].startX;
     const deltaY = clientY - dragState.current[id].startY;
 
+    // Increase movement sensitivity for better mobile experience
+    const moveFactor = 0.1; // Increased from 0.05 for better responsiveness
+
+    // Calculate new positions
+    let newLeft = dragState.current[id].initialLeft + deltaX * moveFactor;
+    let newTop = dragState.current[id].initialTop + deltaY * moveFactor;
+
+    // Constrain movement within reasonable bounds (prevent frames from going too far)
+    // Container is roughly 1000px tall, frames are ~200-300px wide/tall
+    const constrainedLeft = Math.max(-10, Math.min(110, newLeft));
+    const constrainedTop = Math.max(-10, Math.min(110, newTop));
+
+    console.log(`Moving frame ${id}:`, {
+      deltaX, deltaY,
+      newLeft, newTop,
+      constrainedLeft, constrainedTop,
+      wasConstrained: constrainedLeft !== newLeft || constrainedTop !== newTop
+    });
+
     setPositions((prev) => ({
       ...prev,
       [id]: {
         ...prev[id],
-        left: dragState.current[id].initialLeft + deltaX * 0.05,
-        top: dragState.current[id].initialTop + deltaY * 0.05,
+        left: constrainedLeft,
+        top: constrainedTop,
       },
     }));
   };
 
   const handleEnd = (id) => {
+    console.log(`Ending drag for frame ${id}`);
     delete dragState.current[id];
+  };
+
+  // Function to restore transitions
+  const restoreTransitions = (element) => {
+    element.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   };
 
   return (
@@ -123,6 +150,7 @@ const GallerySection = () => {
         {frames.map((frame, index) => (
           <div
             key={frame.id}
+            data-draggable="true"
             className="absolute w-[clamp(220px,20vw,300px)] h-[clamp(270px,25vw,360px)] cursor-grab select-none origin-center max-[992px]:w-[clamp(180px,22vw,300px)] max-[992px]:h-[clamp(230px,27vw,370px)] max-[768px]:w-[clamp(154px,14vw,210px)] max-[768px]:h-[clamp(189px,17.5vw,252px)] max-[576px]:w-[clamp(91px,12.6vw,140px)] max-[576px]:h-[clamp(112px,15.75vw,182px)]"
             style={{
               left: `${positions[frame.id].left}%`,
@@ -147,10 +175,16 @@ const GallerySection = () => {
             data-aos-anchor-placement="top-bottom"
             onMouseDown={(e) => handleStart(e, frame.id)}
             onMouseMove={(e) => handleMove(e, frame.id)}
-            onMouseUp={() => handleEnd(frame.id)}
+            onMouseUp={(e) => {
+              handleEnd(frame.id);
+              restoreTransitions(e.currentTarget);
+            }}
             onTouchStart={(e) => handleStart(e, frame.id)}
             onTouchMove={(e) => handleMove(e, frame.id)}
-            onTouchEnd={() => handleEnd(frame.id)}
+            onTouchEnd={(e) => {
+              handleEnd(frame.id);
+              restoreTransitions(e.currentTarget);
+            }}
             onMouseEnter={(e) => {
               e.currentTarget.style.filter = 'drop-shadow(0 12px 25px rgba(0, 0, 0, 0.6))';
             }}
@@ -167,6 +201,7 @@ const GallerySection = () => {
             onTouchEndCapture={(e) => {
               e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
               e.currentTarget.style.zIndex = frame.isCenter ? '1' : '3';
+              restoreTransitions(e.currentTarget);
             }}
             onMouseDownCapture={(e) => {
               e.currentTarget.style.cursor = 'grabbing';
@@ -177,6 +212,7 @@ const GallerySection = () => {
               e.currentTarget.style.cursor = 'grab';
               e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
               e.currentTarget.style.zIndex = frame.isCenter ? '1' : '3';
+              restoreTransitions(e.currentTarget);
             }}
           >
             <img
