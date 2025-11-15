@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Bg from "../../assets/Bg.png";
 import layer2back from "../../assets/image/layer2back.png";
 import frame1 from "../../assets/image/frame1.png";
@@ -32,9 +32,36 @@ const GallerySection = () => {
 
   const dragState = useRef({});
 
+  // Prevent default touch behaviors when dragging
+  useEffect(() => {
+    const preventDefault = (e) => {
+      if (Object.keys(dragState.current).length > 0) {
+        e.preventDefault();
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      if (Object.keys(dragState.current).length > 0) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('touchstart', preventDefault, { passive: false });
+
+    return () => {
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchstart', preventDefault);
+    };
+  }, []);
+
   const handleStart = (e, id) => {
-    const clientX = e.type === "mousedown" ? e.clientX : e.touches[0].clientX;
-    const clientY = e.type === "mousedown" ? e.clientY : e.touches[0].clientY;
+    e.preventDefault();
+
+    const clientX = e.type === "mousedown" ? e.clientX : e.touches?.[0]?.clientX;
+    const clientY = e.type === "mousedown" ? e.clientY : e.touches?.[0]?.clientY;
+
+    if (clientX === undefined || clientY === undefined) return;
 
     dragState.current[id] = {
       startX: clientX,
@@ -47,8 +74,12 @@ const GallerySection = () => {
   const handleMove = (e, id) => {
     if (!dragState.current[id]) return;
 
-    const clientX = e.type === "mousemove" ? e.clientX : e.touches[0].clientX;
-    const clientY = e.type === "mousemove" ? e.clientY : e.touches[0].clientY;
+    e.preventDefault();
+
+    const clientX = e.type === "mousemove" ? e.clientX : e.touches?.[0]?.clientX;
+    const clientY = e.type === "mousemove" ? e.clientY : e.touches?.[0]?.clientY;
+
+    if (clientX === undefined || clientY === undefined) return;
 
     const deltaX = clientX - dragState.current[id].startX;
     const deltaY = clientY - dragState.current[id].startY;
@@ -128,6 +159,14 @@ const GallerySection = () => {
               if (!dragState.current[frame.id]) {
                 e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
               }
+            }}
+            onTouchStartCapture={(e) => {
+              e.currentTarget.style.filter = 'drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7))';
+              e.currentTarget.style.zIndex = '10';
+            }}
+            onTouchEndCapture={(e) => {
+              e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
+              e.currentTarget.style.zIndex = frame.isCenter ? '1' : '3';
             }}
             onMouseDownCapture={(e) => {
               e.currentTarget.style.cursor = 'grabbing';
