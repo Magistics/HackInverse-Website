@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Bg from "../../assets/Bg.png";
 import layer2back from "../../assets/image/layer2back.png";
 import frame1 from "../../assets/image/frame1.png";
@@ -32,9 +32,40 @@ const GallerySection = () => {
 
   const dragState = useRef({});
 
+  // Prevent default touch behaviors when dragging
+  useEffect(() => {
+    const preventTouchStart = (e) => {
+      // Check if the touch started on a draggable frame
+      const target = e.target.closest('[data-draggable="true"]');
+      if (target) {
+        e.preventDefault();
+      }
+    };
+
+    const preventTouchMove = (e) => {
+      // Prevent scrolling when any frame is being dragged
+      if (Object.keys(dragState.current).length > 0) {
+        e.preventDefault();
+      }
+    };
+
+    // Add passive: false to allow preventDefault
+    document.addEventListener('touchstart', preventTouchStart, { passive: false });
+    document.addEventListener('touchmove', preventTouchMove, { passive: false });
+
+    return () => {
+      document.removeEventListener('touchstart', preventTouchStart);
+      document.removeEventListener('touchmove', preventTouchMove);
+    };
+  }, []);
+
   const handleStart = (e, id) => {
-    const clientX = e.type === "mousedown" ? e.clientX : e.touches[0].clientX;
-    const clientY = e.type === "mousedown" ? e.clientY : e.touches[0].clientY;
+    e.preventDefault();
+
+    const clientX = e.type === "mousedown" ? e.clientX : e.touches?.[0]?.clientX;
+    const clientY = e.type === "mousedown" ? e.clientY : e.touches?.[0]?.clientY;
+
+    if (clientX === undefined || clientY === undefined) return;
 
     dragState.current[id] = {
       startX: clientX,
@@ -42,13 +73,20 @@ const GallerySection = () => {
       initialLeft: positions[id].left,
       initialTop: positions[id].top,
     };
+
+    // Disable transitions during drag to prevent conflicts
+    e.currentTarget.style.transition = 'none';
   };
 
   const handleMove = (e, id) => {
     if (!dragState.current[id]) return;
 
-    const clientX = e.type === "mousemove" ? e.clientX : e.touches[0].clientX;
-    const clientY = e.type === "mousemove" ? e.clientY : e.touches[0].clientY;
+    e.preventDefault();
+
+    const clientX = e.type === "mousemove" ? e.clientX : e.touches?.[0]?.clientX;
+    const clientY = e.type === "mousemove" ? e.clientY : e.touches?.[0]?.clientY;
+
+    if (clientX === undefined || clientY === undefined) return;
 
     const deltaX = clientX - dragState.current[id].startX;
     const deltaY = clientY - dragState.current[id].startY;
@@ -65,6 +103,11 @@ const GallerySection = () => {
 
   const handleEnd = (id) => {
     delete dragState.current[id];
+  };
+
+  // Function to restore transitions
+  const restoreTransitions = (element) => {
+    element.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   };
 
   return (
@@ -92,6 +135,7 @@ const GallerySection = () => {
         {frames.map((frame, index) => (
           <div
             key={frame.id}
+            data-draggable="true"
             className="absolute w-[clamp(220px,20vw,300px)] h-[clamp(270px,25vw,360px)] cursor-grab select-none origin-center max-[992px]:w-[clamp(180px,22vw,300px)] max-[992px]:h-[clamp(230px,27vw,370px)] max-[768px]:w-[clamp(154px,14vw,210px)] max-[768px]:h-[clamp(189px,17.5vw,252px)] max-[576px]:w-[clamp(91px,12.6vw,140px)] max-[576px]:h-[clamp(112px,15.75vw,182px)]"
             style={{
               left: `${positions[frame.id].left}%`,
@@ -116,10 +160,16 @@ const GallerySection = () => {
             data-aos-anchor-placement="top-bottom"
             onMouseDown={(e) => handleStart(e, frame.id)}
             onMouseMove={(e) => handleMove(e, frame.id)}
-            onMouseUp={() => handleEnd(frame.id)}
+            onMouseUp={(e) => {
+              handleEnd(frame.id);
+              restoreTransitions(e.currentTarget);
+            }}
             onTouchStart={(e) => handleStart(e, frame.id)}
             onTouchMove={(e) => handleMove(e, frame.id)}
-            onTouchEnd={() => handleEnd(frame.id)}
+            onTouchEnd={(e) => {
+              handleEnd(frame.id);
+              restoreTransitions(e.currentTarget);
+            }}
             onMouseEnter={(e) => {
               e.currentTarget.style.filter = 'drop-shadow(0 12px 25px rgba(0, 0, 0, 0.6))';
             }}
@@ -128,6 +178,15 @@ const GallerySection = () => {
               if (!dragState.current[frame.id]) {
                 e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
               }
+            }}
+            onTouchStartCapture={(e) => {
+              e.currentTarget.style.filter = 'drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7))';
+              e.currentTarget.style.zIndex = '10';
+            }}
+            onTouchEndCapture={(e) => {
+              e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
+              e.currentTarget.style.zIndex = frame.isCenter ? '1' : '3';
+              restoreTransitions(e.currentTarget);
             }}
             onMouseDownCapture={(e) => {
               e.currentTarget.style.cursor = 'grabbing';
@@ -138,6 +197,7 @@ const GallerySection = () => {
               e.currentTarget.style.cursor = 'grab';
               e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
               e.currentTarget.style.zIndex = frame.isCenter ? '1' : '3';
+              restoreTransitions(e.currentTarget);
             }}
           >
             <img
