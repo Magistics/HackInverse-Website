@@ -43,7 +43,7 @@ export default function FAQ() {
     return (
         <section className="py-16 px-4 background-dark flex flex-col items-center overflow-hidden">
             <div className="mb-12">
-                <SectionTitle title="FAQ'S" strokeColor="#C83639" lineColor="#C83639" lineHeight="h-[3px]" className="merriweather"/>
+                <SectionTitle title="FAQ'S" strokeColor="#C83639" lineColor="#C83639" lineHeight="h-[3px]" className="merriweather" />
             </div>
 
             <div className="space-y-4 min-w-3/5 w-full md:max-w-3/5">
@@ -52,7 +52,8 @@ export default function FAQ() {
                         key={item.id}
                         className="overflow-hidden flex flex-col items-center relative"
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         transition={{ delay: item.id * 0.1 }}
                     >
                         <button

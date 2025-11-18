@@ -2,10 +2,27 @@ import React from "react";
 import bottomLeftTreeImage from "../../assets/toplefttree.png";
 import bottomRightTreeImage from "../../assets/toprighttree.png";
 import cyclistsImage from "../../assets/cyclists.png";
+import { useRef } from "react";
+import { useScroll, motion, useTransform, useSpring } from "framer-motion";
 
 export default function Description() {
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+      target: sectionRef,
+      offset: ["start end", "end start"],
+  });
+
+  const cyclistsXRaw = useTransform(scrollYProgress, [0.4, 1], ["100vw", "-70vw"]);
+
+  const cyclistsX = useSpring(cyclistsXRaw, {
+    stiffness: 100,
+    damping: 40,
+    mass: 1,
+  })
   return (
     <div
+      ref={sectionRef}
       className="
         relative min-h-screen w-full bg-[#222222] overflow-hidden text-white font-inter 
         flex flex-col items-center justify-start px-4 sm:px-6 md:px-8 lg:px-16
@@ -39,10 +56,9 @@ export default function Description() {
           And Many More...
         </h1>
 
-        <p className="text-[#9a9a9a] text-base sm:text-lg md:text-2xl lg:text-2xl leading-snug max-w-xl mx-auto mt-3 sm:mt-4 lg:mt-5 font-light">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s.
+        <p className="italic text-[#9a9a9a] text-base sm:text-lg md:text-2xl lg:text-2xl leading-snug max-w-xl mx-auto mt-3 sm:mt-4 lg:mt-5 font-light">
+          Build, pitch, and launch — prizes, mentorship, and startup support await.
+
         </p>
       </div>
 
@@ -88,7 +104,7 @@ export default function Description() {
       ></div>
 
       {/* CYCLISTS */}
-      <div
+      <motion.div
         className="
           absolute bottom-0 left-1/2 -translate-x-1/2
 
@@ -105,8 +121,9 @@ export default function Description() {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center bottom",
           backgroundSize: "contain",
+          x: cyclistsX,
         }}
-      ></div>
+      ></motion.div>
     </div>
   );
 }

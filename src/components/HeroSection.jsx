@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import MainTitle from "./Common/MainTitle";
 
 export default function HeroSection() {
     return (
@@ -12,66 +14,69 @@ export default function HeroSection() {
                     }}
                 >
                     {/* Mountains */}
-                    <img
+                    <motion.img
+                        initial={{ y: 100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.2 }}
                         className="absolute -bottom-10 w-full z-30"
                         src="/parallax/mountain3.svg"
                     />
-                    <img
+                    <motion.img
+                        initial={{ y: 100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.4 }}
                         className="absolute -bottom-5 w-full z-20"
                         src="/parallax/mountain-2.svg"
                     />
-                    <img
+                    <motion.img
+                        initial={{ y: 100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.6 }}
                         className="absolute bottom-0 w-full z-10"
                         src="/parallax/mountain-1.svg"
                     />
 
-                    {/* Sun */}
-                    {/* <img
-                        className="absolute top-[70%] left-1/2 w-[40%] -translate-x-1/2 -translate-y-1/2"
-                        src="/parallax/sun.svg"
-                    /> */}
-
                     {/* Clouds */}
-                    <img
+                    <motion.img
+                        initial={{ x: -100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 1.5, delay: 0.5 }}
                         className="absolute left-0 top-30 md:top-0 w-[30%] md:w-[13%]"
                         src="/parallax/clouds-left.svg"
                     />
-                    <img
+                    <motion.img
+                        initial={{ x: 100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 1.5, delay: 0.5 }}
                         className="absolute right-0 top-30 md:top-0 w-[30%] md:w-[13%]"
                         src="/parallax/clouds-right.svg"
                     />
-                    <img
+                    <motion.img
+                        initial={{ y: 50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.8 }}
                         className="absolute bottom-0 w-full"
                         src="/parallax/cloud-bottom.svg"
                     />
 
                     {/* Stars */}
-                    <img
+                    <motion.img
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 2, delay: 1 }}
                         className="absolute top-0 left-0 w-full"
                         src="/parallax/stars.svg"
                     />
 
                     {/* Title Block */}
-                    <div className="relative z-30 md:-translate-y-30">
-                        {/* Top border */}
-                        <div className="h-2 md:h-4 flex flex-col gap-1">
-                            <div className="h-0.5 md:h-1.5 background-red"></div>
-                            <div className="h-0.5 md:h-1 background-red md:mt-1.5"></div>
-                        </div>
-
-                        {/* Title text */}
-                        <div className="relative">
-                            <h1 className="font-bold text-4xl md:text-7xl lg:text-[7rem] xl:text-[8rem] tracking-wider text-transparent bg-clip-text background-red relative stranger-things">
-                                HACKINVERSE
-                            </h1>
-                        </div>
-
-                        {/* Bottom border */}
-                        <div className="h-2 md:h-4 flex flex-col gap-1">
-                            <div className="h-0.5 md:h-1 background-red md:mb-1.5"></div>
-                            <div className="h-0.5 md:h-1.5 background-red"></div>
-                        </div>
-                    </div>
+                    <motion.div
+                        initial={{ y: -50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1, delay: 1.2 }}
+                        className="relative z-30 md:-translate-y-30"
+                    >
+                        <MainTitle />
+                    </motion.div>
                 </div>
             </div>
         </>

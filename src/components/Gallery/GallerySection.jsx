@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import Bg from "../../assets/Bg.png";
 import layer2back from "../../assets/image/layer2back.png";
 import frame1 from "../../assets/image/frame1.png";
@@ -34,18 +35,28 @@ const GallerySection = () => {
 
   // Prevent default touch behaviors when dragging
   useEffect(() => {
-    const preventDocumentTouchMove = (e) => {
-      // Only prevent scrolling if we're actively dragging frames
+    const preventTouchStart = (e) => {
+      // Check if the touch started on a draggable frame
+      const target = e.target.closest('[data-draggable="true"]');
+      if (target) {
+        e.preventDefault();
+      }
+    };
+
+    const preventTouchMove = (e) => {
+      // Prevent scrolling when any frame is being dragged
       if (Object.keys(dragState.current).length > 0) {
         e.preventDefault();
       }
     };
 
-    // Only add the document listener when needed, not always
-    document.addEventListener('touchmove', preventDocumentTouchMove, { passive: false });
+    // Add passive: false to allow preventDefault
+    document.addEventListener('touchstart', preventTouchStart, { passive: false });
+    document.addEventListener('touchmove', preventTouchMove, { passive: false });
 
     return () => {
-      document.removeEventListener('touchmove', preventDocumentTouchMove);
+      document.removeEventListener('touchstart', preventTouchStart);
+      document.removeEventListener('touchmove', preventTouchMove);
     };
   }, []);
 
@@ -126,9 +137,9 @@ const GallerySection = () => {
   };
 
   return (
-    <section 
+    <section
       className="relative min-h-[85vh] flex flex-col justify-center items-center px-[2vw] py-[1vh] text-center text-black overflow-hidden box-border max-[992px]:min-h-[90vh] max-[992px]:py-[1.5vh] max-[768px]:min-h-[80vh] max-[768px]:py-[1vh] max-[576px]:min-h-[70vh] max-[576px]:px-[1vw] max-[576px]:py-[0.5vh]"
-      style={{ 
+      style={{
         backgroundImage: `url(${Bg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -138,7 +149,7 @@ const GallerySection = () => {
     >
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[clamp(800px,90vw,1500px)] h-[clamp(800px,90vw,1500px)] opacity-100 pointer-events-none z-[1] max-[992px]:w-[clamp(400px,55vw,700px)] max-[992px]:h-[clamp(400px,55vw,700px)] max-[768px]:w-[clamp(350px,70vw,600px)] max-[768px]:h-[clamp(350px,70vw,600px)] max-[576px]:w-[clamp(300px,80vw,500px)] max-[576px]:h-[clamp(300px,80vw,500px)]"
-        style={{ 
+        style={{
           backgroundImage: `url(${layer2back})`,
           backgroundSize: 'contain',
           backgroundPosition: 'center',
@@ -148,31 +159,35 @@ const GallerySection = () => {
 
       <div className="relative w-full max-w-[1406px] h-[1000px] mt-[5vw] z-[2] max-[992px]:h-[500px] max-[992px]:mt-[4vw] max-[768px]:h-[400px] max-[768px]:mt-[2.5vw] max-[576px]:h-[300px] max-[576px]:mt-[1.5vw]">
         {frames.map((frame, index) => (
-          <div
+          <motion.div
             key={frame.id}
             data-draggable="true"
             className="absolute w-[clamp(220px,20vw,300px)] h-[clamp(270px,25vw,360px)] cursor-grab select-none origin-center max-[992px]:w-[clamp(180px,22vw,300px)] max-[992px]:h-[clamp(230px,27vw,370px)] max-[768px]:w-[clamp(154px,14vw,210px)] max-[768px]:h-[clamp(189px,17.5vw,252px)] max-[576px]:w-[clamp(91px,12.6vw,140px)] max-[576px]:h-[clamp(112px,15.75vw,182px)]"
             style={{
               left: `${positions[frame.id].left}%`,
               top: `${positions[frame.id].top}%`,
-              transform: `translate(-50%, -50%) rotate(${positions[frame.id].rotate}deg)`,
               zIndex: frame.isCenter ? 1 : 3,
               filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))',
-              transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               userSelect: 'none',
               WebkitUserSelect: 'none',
               touchAction: 'none',
-              willChange: 'transform, filter',
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
               perspective: 1000
             }}
-            data-aos={frame.animation}
-            data-aos-delay={frame.isCenter ? 0 : index * 150}
-            data-aos-duration="1200"
-            data-aos-offset="200"
-            data-aos-easing="ease-out-back"
-            data-aos-anchor-placement="top-bottom"
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.8,
+              delay: frame.isCenter ? 0 : index * 0.1,
+              ease: "easeOut"
+            }}
+            animate={{
+              rotate: positions[frame.id].rotate,
+              x: "-50%",
+              y: "-50%"
+            }}
             onMouseDown={(e) => handleStart(e, frame.id)}
             onMouseMove={(e) => handleMove(e, frame.id)}
             onMouseUp={(e) => {
@@ -221,7 +236,7 @@ const GallerySection = () => {
               className="w-full h-full object-contain block pointer-events-none"
               draggable="false"
             />
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

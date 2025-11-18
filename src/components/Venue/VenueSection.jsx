@@ -42,17 +42,16 @@ const Venue = () => {
           {/* Venue Info */}
           <div className="flex flex-col gap-2">
             <h2 className="text-[clamp(1.75rem,5vw,3.5rem)] font-bold leading-tight text-white">
-              Vedic Village
+              <i>Reveal Soon....</i>
             </h2>
-            <address className="text-[clamp(1rem,3.3vw,1.8rem)] not-italic leading-relaxed opacity-95">
-              Shikharpur P.O, Bagu, Sikharpur,<br />
-              Kolkata, West Bengal 700135
+            <address className="text-[clamp(1rem,3.3vw,1.8rem)] not-italic leading-relaxed opacity-45">
+              The stage is hidden. Stay tuned for the big reveal!!
             </address>
           </div>
 
           {/* Button */}
           <button className="bg-white text-black text-xl md:text-2xl font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg self-center lg:self-start transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
-            Get Directions
+             Request the Map
           </button>
         </div>
 
