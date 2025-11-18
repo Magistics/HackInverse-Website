@@ -83,3 +83,25 @@ body,
   @apply w-[180px] h-[70px] bg-black text-white flex justify-center items-center text-xl font-semibold rounded-md;
 }
 
+
+.neon-glow {
+  text-shadow: 0 0 5px #FF0505, 0 0 10px #FF0505, 0 0 20px #FF0505;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--redColor);
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import ScrollReveal from "../Common/ScrollReveal";
+import GlitchText from "../Common/GlitchText";
 
 import prize1Inner from "../../assets/1st-inner.png";
 import prize1Border from "../../assets/PrizeBorder.png";
@@ -48,7 +49,9 @@ const PrizesSection = () => {
       <ScrollReveal>
         <div>
           <h2 className="text-[#222222] text-3xl sm:text-5xl md:text-8xl text-center font-serif mt-10 sm:mt-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
-            <span className="inline-block">Prizes</span>
+            <span className="inline-block">
+              <GlitchText text="Prizes" />
+            </span>
           </h2>
         </div>
       </ScrollReveal>

@@ -1,6 +1,7 @@
 import React from 'react';
 import tvCornerImage from '../../assets/TvCorner.png';
 import tvDisplayImage from '../../assets/TvDisplay.png';
+import MagneticButton from '../Common/MagneticButton';
 
 const Venue = () => {
   return (
@@ -50,9 +51,9 @@ const Venue = () => {
           </div>
 
           {/* Button */}
-          <button className="bg-white text-black text-xl md:text-2xl font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg self-center lg:self-start transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+          <MagneticButton className="bg-white text-black text-xl md:text-2xl font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg self-center lg:self-start transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
             Request the Map
-          </button>
+          </MagneticButton>
         </div>
 
         {/* TV Section */}

@@ -5,6 +5,8 @@ import shadowsImage from "../../assets/shadows.png";
 import { useRef } from "react";
 import { useScroll, motion, useTransform, useSpring } from "framer-motion";
 import ScrollReveal from "../Common/ScrollReveal";
+import SpotlightCard from "../Common/SpotlightCard";
+import GlitchText from "../Common/GlitchText";
 
 const TracksSection = () => {
   const sectionRef = useRef(null);
@@ -78,52 +80,17 @@ const TracksSection = () => {
         <div className="relative z-10 flex w-full max-w-[1600px] flex-wrap justify-center gap-[4vw] px-4 md:flex-nowrap">
 
           <ScrollReveal delay={0.2} width="auto">
-            <div className="flex min-h-[360px] flex-1 flex-col items-center justify-start p-2">
-              <h2 className="mb-3 text-[clamp(1.5rem,3vw,3rem)] font-bold uppercase">
-                TRACK - 1
-              </h2>
-              <h3 className="mb-5 inline-block bg-transparent text-[clamp(1.7rem,2.7vw,2.7rem)] font-bold text-black font-['Roboto_Condensed']">
-                Artificial Intelligence
-              </h3>
-              <p className="text-[clamp(1.5rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
-                Building models for prediction, classification, natural language
-                processing, or computer vision.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.4} width="auto">
-            <div className="relative flex min-h-[360px] flex-1 flex-col items-center justify-start p-6 md:border-x-4 md:border-white">
-              <h2 className="mb-3 text-[clamp(1.5rem,3vw,3rem)] font-bold uppercase">
-                TRACK - 2
-              </h2>
-              <h3 className="mb-5 inline-block bg-transparent text-[clamp(1.7rem,2.7vw,2.7rem)] font-bold text-black font-['Roboto_Condensed']">
-                Web Development
-              </h3>
-              <p className="text-[clamp(1.5rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
-                Creating responsive, scalable, and interactive web applications.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.6} width="auto">
-            <div className="flex min-h-[360px] flex-1 flex-col items-center justify-start p-6">
-              <h2 className="mb-3 text-[clamp(1.5rem,3vw,3rem)] font-bold uppercase">
-                TRACK - 3
-              </h2>
-              <h3 className="mb-5 inline-block bg-transparent text-[clamp(1.7rem,2.7vw,2.7rem)] font-bold text-black font-['Roboto_Condensed']">
-                Cybersecurity
-              </h3>
-              <p className="text-[clamp(1.5rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
-                Protecting systems and networks through innovative security
-                strategies and tools.
-              </p>
-            </div>
-          </ScrollReveal>
-
+          </h3>
+          <p className="text-[clamp(1.5rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
+            Protecting systems and networks through innovative security
+            strategies and tools.
+          </p>
         </div>
-      </div>
+      </ScrollReveal>
+
     </div>
+      </div >
+    </div >
   );
 };
 

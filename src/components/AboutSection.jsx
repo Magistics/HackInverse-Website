@@ -1,4 +1,6 @@
 import React from "react";
+import ScrollReveal from "./Common/ScrollReveal";
+import GlitchText from "./Common/GlitchText";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -33,6 +35,15 @@ const AboutSection = () => {
         <br />
         innovations.
       </p>
+
+      {/* New GlitchText heading added as per instruction */}
+      <div className="flex flex-col items-center justify-center text-center z-10 px-4 md:px-0">
+        <ScrollReveal>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 md:mb-8 tracking-wider">
+            <GlitchText text="ABOUT THE HACKATHON" />
+          </h2>
+        </ScrollReveal>
+      </div>
 
       <div className="flex gap-4 mt-6 justify-center md:justify-start md:ml-20">
         <Link
