@@ -1,0 +1,189 @@
+* {
+  box-sizing: border-box;
+}
+
+.allGroupsContainer {
+  position: relative;
+  width: 1406px;
+  height: 1406px;
+  overflow: hidden;
+}
+
+/* Group 199 - Large background */
+.group199 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 1406px;
+  height: 1406px;
+  z-index: 1;
+
+  .image51 {
+    opacity: 0.17;
+    width: 1406px;
+    height: 1406px;
+  }
+}
+
+/* Group 150 */
+.group150 {
+  position: absolute;
+  top: 200px;
+  left: 100px;
+  width: 266px;
+  height: 321px;
+  rotate: -8deg;
+  z-index: 2;
+
+  .image35 {
+    position: absolute;
+    top: 30px;
+    left: 1px;
+    width: 237px;
+    height: 232px;
+  }
+
+  .image36 {
+    position: absolute;
+    top: -16px;
+    left: -20px;
+    width: 266px;
+    height: 321px;
+  }
+}
+
+/* Group 147 */
+.group147 {
+  position: absolute;
+  top: 300px;
+  left: 400px;
+  width: 266px;
+  height: 321px;
+  z-index: 2;
+
+  .image44 {
+    position: absolute;
+    top: 19px;
+    left: 16px;
+    width: 229px;
+    height: 250px;
+  }
+
+  .image33 {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 266px;
+    height: 321px;
+  }
+}
+
+/* Group 152 */
+.group152 {
+  position: absolute;
+  top: 150px;
+  left: 700px;
+  width: 266px;
+  height: 321px;
+  rotate: -2deg;
+  z-index: 2;
+
+  .image34 {
+    position: absolute;
+    top: 29px;
+    left: 7px;
+    width: 242px;
+    height: 255px;
+  }
+
+  .image342 {
+    position: absolute;
+    top: -4px;
+    left: -5px;
+    width: 266px;
+    height: 321px;
+  }
+}
+
+/* Group 149 */
+.group149 {
+  position: absolute;
+  top: 500px;
+  left: 200px;
+  width: 266px;
+  height: 321px;
+  rotate: 1deg;
+  z-index: 2;
+
+  .image37 {
+    position: absolute;
+    top: 32px;
+    left: 12px;
+    width: 237px;
+    height: 251px;
+  }
+
+  .image38 {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 266px;
+    height: 321px;
+  }
+}
+
+/* Group 148 */
+.group148 {
+  position: absolute;
+  top: 400px;
+  left: 600px;
+  width: 266px;
+  height: 321px;
+  rotate: -2deg;
+  z-index: 2;
+
+  .image39 {
+    position: absolute;
+    top: 32px;
+    left: 14px;
+    width: 231px;
+    height: 250px;
+  }
+
+  .image40 {
+    position: absolute;
+    top: -3px;
+    left: -4px;
+    width: 266px;
+    height: 321px;
+  }
+}
+
+/* Group 151 */
+.group151 {
+  position: absolute;
+  top: 600px;
+  left: 500px;
+  width: 266px;
+  height: 321px;
+  rotate: 9deg;
+  z-index: 2;
+
+  .image41 {
+    position: absolute;
+    top: 18px;
+    left: 2px;
+    width: 225px;
+    height: 252px;
+  }
+
+  .image42 {
+    position: absolute;
+    top: -19px;
+    left: -24px;
+    width: 266px;
+    height: 321px;
+  }
+}
