@@ -1,4 +1,3 @@
-import React from "react";
 import MainTitle from "./Common/MainTitle";
 import GroupImage from "../assets/Group-133.svg"
 

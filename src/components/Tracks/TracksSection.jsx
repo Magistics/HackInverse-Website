@@ -2,10 +2,26 @@ import React from "react";
 import topLeftTreeImage from "../../assets/bottomlefttree.png";
 import topRightTreeImage from "../../assets/bottomrighttree.png";
 import shadowsImage from "../../assets/shadows.png";
+import { useRef } from "react";
+import { useScroll, motion, useTransform, useSpring } from "framer-motion";
 
 const TracksSection = () => {
+  const sectionRef = useRef(null);
+  
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+  
+    const shadowsXRaw = useTransform(scrollYProgress, [0, 0.4], ["-70vw", "80vw"]);
+  
+    const shadowsX = useSpring(shadowsXRaw, {
+      stiffness: 100,
+      damping: 40,
+      mass: 1,
+    })
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#9E1C1E] text-center font-['Cinzel_Decorative'] text-white">
+    <div ref={sectionRef} className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#9E1C1E] text-center font-['Cinzel_Decorative'] text-white">
 
       {/* Top Bar */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-black z-30"></div>
@@ -21,13 +37,31 @@ const TracksSection = () => {
           max-sm:bg-[left_top,right_top,center_top]
         "
         style={{
-          backgroundImage: `url(${topLeftTreeImage}), url(${topRightTreeImage}), url(${shadowsImage})`,
-          backgroundRepeat: "no-repeat, no-repeat, no-repeat",
+          backgroundImage: `url(${topLeftTreeImage}), url(${topRightTreeImage})`,
+          backgroundRepeat: "no-repeat, no-repeat",
 
           /* Desktop positions */
-          backgroundPosition: "left top, right top, center top",
+          backgroundPosition: "left top, right top",
         }}
       >
+        {/* SHADOWS */}
+        <motion.div
+          className="absolute top-0 max-sm:w-[35vw] max-sm:h-[12vh]
+
+          w-[80vw] h-[18vh]
+          sm:w-[60vw] sm:h-[22vh]
+          md:w-[55vw] md:h-[28vh]
+
+          z-10"
+          style={{
+            backgroundImage: `url(${shadowsImage})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center top",
+            backgroundSize: "contain",
+            x: shadowsX,
+          }}
+        ></motion.div>
+
 
         {/* Heading */}
         <h1
@@ -49,7 +83,7 @@ const TracksSection = () => {
             <h3 className="mb-5 inline-block bg-transparent text-[clamp(1.7rem,2.7vw,2.7rem)] font-bold text-black font-['Roboto_Condensed']">
               Artificial Intelligence
             </h3>
-            <p className="text-[clamp(2rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
+            <p className="text-[clamp(1.5rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
               Building models for prediction, classification, natural language
               processing, or computer vision.
             </p>
@@ -62,7 +96,7 @@ const TracksSection = () => {
             <h3 className="mb-5 inline-block bg-transparent text-[clamp(1.7rem,2.7vw,2.7rem)] font-bold text-black font-['Roboto_Condensed']">
               Web Development
             </h3>
-            <p className="text-[clamp(2rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
+            <p className="text-[clamp(1.5rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
               Creating responsive, scalable, and interactive web applications.
             </p>
           </div>
@@ -74,7 +108,7 @@ const TracksSection = () => {
             <h3 className="mb-5 inline-block bg-transparent text-[clamp(1.7rem,2.7vw,2.7rem)] font-bold text-black font-['Roboto_Condensed']">
               Cybersecurity
             </h3>
-            <p className="text-[clamp(2rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
+            <p className="text-[clamp(1.5rem,2.2vw,2.3rem)] font-['Roboto_Condensed']">
               Protecting systems and networks through innovative security
               strategies and tools.
             </p>

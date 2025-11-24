@@ -34,19 +34,19 @@ function App() {
                 </header>
 
                 <main className="">
-                    <section>
+                    <section className=" md:mb-40">
                         <HeroSection />
                     </section>
 
-                    <section>
+                    <section className="">
                         <DetailsSection />
                     </section>
 
-                    <section>
+                    <section className="my-32 md:my-44 mx-6 md:mx-0">
                         <Calender />
                     </section>
 
-                    <section>
+                    <section className="mb-10 md:mb-20 mx-6 md:mx-0">
                         <AboutSection />
                     </section>
 

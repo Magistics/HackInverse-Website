@@ -10,14 +10,12 @@ import {
 
 const AboutSection = () => {
   return (
-    <div className="sm:mt-15 md:mt-30">
-      <h2 className="text-[#222222] text-2xl sm:text-3xl md:text-7xl text-center font-serif mt-10 sm:mt-10 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
-      <span className="text-white mr-3 md:mr-5">About</span>
-      <span className="inline-block">HACKINVERSE</span>
-    </h2>
-<div
-        className="after:content-[''] after:block after:h-[1.5px] after:w-full after:bg-red-600 after:mt-1 before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-red-600 mx-4 sm:mx-8 md:mx-20 lg:mx-100"
-      ></div>  
+    <div>
+      <h2 className="text-[#222222] text-2xl sm:text-3xl md:text-6xl text-center font-serif mt-10 sm:mt-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
+        <span className="text-white mr-3 md:mr-5">About</span>
+        <span className="inline-block">HACKINVERSE</span>
+      </h2>
+      <div className="after:content-[''] after:block after:h-[1.5px] after:w-full after:bg-red-600 after:mt-1 before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-red-600 mx-4 sm:mx-8 md:mx-20 lg:mx-100"></div>
 
       <p className="flex items-center text-white justify-center mt-13 sm:text-xs md:text-xl font-mono max-w-3xl mx-auto text-center md:text-left">
         HackInverse is the flagship hackathon by Magistics, built to bring
@@ -34,12 +32,12 @@ const AboutSection = () => {
             <img
               src="./src/assets/monster.png"
               alt="monster"
-              className="max-w-sm md:max-w-md "
+              className="max-w-[18rem] md:max-w-md "
             />
           </div>
 
           <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-right">
-            <p className="sm:text-xs md:text-xl text-white leading-relaxed max-w-md font-mono">
+            <p className="sm:text-lg text-white leading-relaxed max-w-md font-mono">
               From brainstorming to building,
               <br />
               HackInverse inspires
