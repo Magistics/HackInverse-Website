@@ -60,9 +60,9 @@ export default function Navbar({ scrollToView, refs }) {
                     {/* Logo and brand */}
                     <div className="flex items-center md:w-auto w-full md:justify-start justify-between">
                         <img
-                            src="/icon.svg"
+                            src="/logo_dark.png"
                             alt="HackInverse Logo"
-                            className="h-12 w-auto rounded-full"
+                            className=" h-8 w-auto rounded-full"
                         />
 
                         <div className="flex items-center md:hidden">
