@@ -16,7 +16,7 @@ export default function Description() {
   const cyclistsXRaw = useTransform(scrollYProgress, [0.4, 1], ["100vw", "-70vw"]);
 
   const cyclistsX = useSpring(cyclistsXRaw, {
-    stiffness: 100,
+    stiffness: 30,
     damping: 40,
     mass: 1,
   })
@@ -33,34 +33,6 @@ export default function Description() {
       "
     >
       <div className="absolute bottom-0 left-0 right-0 h-[6px] bg-black z-30"></div>
-
-      {/* TEXT SECTION */}
-      <div
-        className="
-          text-center z-20 
-          mb-[4vh] 
-          sm:mb-[12vh] md:mb-[14vh] lg:mb-[16vh]
-
-          mt-4 sm:mt-6
-        "
-      >
-        <h1
-          className="
-            text-[#b30000] font-bold 
-            text-[2.2rem]
-
-            sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 
-            leading-tight
-          "
-        >
-          And Many More...
-        </h1>
-
-        <p className="italic text-[#9a9a9a] text-base sm:text-lg md:text-2xl lg:text-2xl leading-snug max-w-xl mx-auto mt-3 sm:mt-4 lg:mt-5 font-light">
-          Build, pitch, and launch — prizes, mentorship, and startup support await.
-
-        </p>
-      </div>
 
       {/* LEFT TREE */}
       <div

@@ -16,7 +16,7 @@ const TracksSection = () => {
     const shadowsXRaw = useTransform(scrollYProgress, [0, 0.4], ["-70vw", "80vw"]);
   
     const shadowsX = useSpring(shadowsXRaw, {
-      stiffness: 100,
+      stiffness: 30,
       damping: 40,
       mass: 1,
     })
