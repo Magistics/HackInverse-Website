@@ -10,6 +10,7 @@ import prize3Inner from "../../assets/3rd-inner.png";
 import prize3Border from "../../assets/PrizeBorder.png";
 
 import patternBg from "../../assets/BgPattern.png";
+import SectionTitle from "../Common/SectionTitle";
 
 const PrizesSection = () => {
   const prizes = [
@@ -45,9 +46,13 @@ const PrizesSection = () => {
     >
       {/* ===== HEADING ===== */}
       <div>
-        <h2 className="text-[#222222] text-3xl sm:text-5xl md:text-8xl text-center font-serif mt-10 sm:mt-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
-        <span className="inline-block">Prizes</span>
-      </h2>
+        <SectionTitle
+                    title="Prize"
+                    strokeColor="rgba(255,0,0,0.8)"
+                    lineColor="rgba(255,0,0,0.8)"
+                    lineHeight="h-[3px]"
+                    className="merriweather"
+                  />
 
 
       

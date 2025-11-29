@@ -3,6 +3,7 @@ import Bg from "../../assets/Bg.png";
 import spontext from "../../assets/sponsors/spontext.png";
 import spon1 from "../../assets/sponsors/spon1.png";
 import spon2 from "../../assets/sponsors/spon2.png";
+import SectionTitle from "../Common/SectionTitle";
 
 const SponsorsSection = () => {
   const sponsors = [
@@ -31,10 +32,19 @@ const SponsorsSection = () => {
           alt="Our Sponsors" 
           className="w-full max-w-[500px] h-auto object-contain" 
         /> */}
-        <h2 className="text-[#222222] text-3xl sm:text-5xl md:text-8xl text-center font-serif mt-10 sm:mt-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
+        {/* <h2 className="text-[#222222] text-3xl sm:text-5xl md:text-8xl text-center font-serif mt-10 sm:mt-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
           <span className="inline-block">Sponsors</span>
-        </h2>
-        
+        </h2> */}
+
+        <div>
+          <SectionTitle
+            title="Sponsors"
+            strokeColor="rgba(255,0,0,0.8)"
+            lineColor="rgba(255,0,0,0.8)"
+            lineHeight="h-[3px]"
+            className="merriweather"
+          />
+        </div>
       </div>
 
       <div className="mt-8 md:mt-16 flex flex-col gap-[3vh] justify-center items-center max-w-[1400px] mx-auto max-[992px]:gap-[2.5vh] max-[768px]:gap-[2vh] max-[576px]:gap-[1.5vh]">

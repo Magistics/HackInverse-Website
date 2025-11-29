@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SectionTitle({
   title,
-  strokeColor = "#b91c1c",
+  strokeColor = "#FF0505",
   strokeWidth = "1.5px",
   lineColor = "rgba(255, 0, 0)",
   className = "",
@@ -25,16 +25,12 @@ export default function SectionTitle({
 
       {/* Title */}
       <h2
-        className=" mb-3 text-transparent text-5xl md:text-6xl font-bold text-stroke text-center px-4
-                 [text-shadow:
-                 1px_1px_0_red,
-                 -1px_-1px_0_red,
-                 1px_-1px_0_red,
-                 -1px_1px_0_red]
-                  drop-shadow-[0_0_8px_#b91c1c] 
-                  "
+        className="text-xl sm:text-4xl md:text-7xl text-center tracking-wider uppercase mb-3 px-2"
         style={{
-          WebkitTextStroke: `${strokeWidth} ${strokeColor}`,
+          fontFamily: "'StrangerHeader', serif",
+          WebkitTextStroke: "1px #FF0505",
+          color: "transparent",
+          textShadow: "0 0 20px rgba(255, 0, 0)"
         }}
       >
         {title}
@@ -42,26 +38,8 @@ export default function SectionTitle({
 
       {/* Bottom double lines */}
       <div className="w-full">
-        
-        <div
-          className={`h-px mb-1 w-full bg-[#b91c1c]`}
-          style={{
-            boxShadow: `
-              0 0 8px rgba(185, 28, 28, 0.8),
-              0 0 16px rgba(185, 28, 28, 0.5)
-            `,
-          }}
-        />
-        
-        <div
-          className="h-px w-full bg-[#b91c1c]"
-          style={{
-            boxShadow: `
-              0 0 5px rgba(185, 28, 28, 0.8),
-              0 0 16px rgba(185, 28, 28, 0.5)
-            `,
-          }}
-        />
+        <div className="w-full h-px bg-red-500 shadow-[0_0_8px_red]"></div>
+        <div className="w-full h-px bg-red-500 mt-1.5 shadow-[0_0_8px_red]"></div>
       </div>
     </div>
   );

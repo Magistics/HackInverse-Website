@@ -1,12 +1,13 @@
 import React from "react";
 import calendarBg from "../assets/calendar.png";
 import customFont from "../assets/fonts/Stranger-Things-Outlined.ttf";
+import SectionTitle from "./Common/SectionTitle";
 
 const Calender = () => {
   const timeData = {
     days: "21",
     hours: "04",
-    mins: "42"
+    mins: "42",
   };
 
   return (
@@ -38,25 +39,33 @@ const Calender = () => {
           }
         `}
       </style>
-      <h2
+      {/* <h2
         className="text-xl sm:text-4xl md:text-7xl text-center tracking-wider uppercase -mt-6 mb-3 px-2"
         style={{
           fontFamily: "'StrangerHeader', serif",
           WebkitTextStroke: "1px #FF0505",
           color: "transparent",
-          textShadow: "0 0 10px rgba(255, 0, 0, 0.6)"
+          textShadow: "0 0 20px rgba(255, 0, 0)"
         }}
       >
         Mark Your Calender
       </h2>
 
       <div className="w-full max-w-4xl mb-12 md:mb-24 px-4">
-        <div className="w-full h-[2px] bg-red-500 shadow-[0_0_8px_red]"></div>
-        <div className="w-full h-[2px] bg-red-500 mt-1.5 shadow-[0_0_8px_red]"></div>
+        <div className="w-full h-px bg-red-500 shadow-[0_0_8px_red]"></div>
+        <div className="w-full h-px bg-red-500 mt-1.5 shadow-[0_0_8px_red]"></div>
+      </div> */}
+      <div className="mb-5">
+        <SectionTitle
+          title="Mark Your Calender"
+          strokeColor="rgba(255,0,0,0.8)"
+          lineColor="rgba(255,0,0,0.8)"
+          lineHeight="h-[3px]"
+          className="merriweather"
+        />
       </div>
 
       <div className="relative w-full max-w-5xl mx-auto">
-
         <img
           src={calendarBg}
           alt="Arcade Machines"
@@ -64,7 +73,6 @@ const Calender = () => {
         />
 
         <div className="absolute inset-0 grid grid-cols-3 text-center">
-
           <div className="relative w-full h-full flex justify-center">
             <p className="absolute top-[30%] left-[48%] md:left-[47%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]">
               {timeData.days}
@@ -84,7 +92,6 @@ const Calender = () => {
               {timeData.mins}
             </p>
           </div>
-
         </div>
       </div>
     </div>

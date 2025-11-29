@@ -7,6 +7,7 @@ import {
   FaTwitter,
   FaDiscord,
 } from "react-icons/fa";
+import SectionTitle from "./Common/SectionTitle";
 
 const AboutSection = () => {
   return (
@@ -27,16 +28,17 @@ const AboutSection = () => {
 
 
           <div className="max-w-9xl md:w-1/2 flex flex-col items-start md: mt-30 md:ml-30">
-            <div className="md:mb-10 mb-15 -mt-10">
+            <div className="md:mb-10 mb-15 -mt-10 flex flex-col items-end">
             <h2 className="text-white text-3xl md:text-5xl font-bold md:ml-50 text-center">
               ABOUT
             </h2>
-            <h1 className="text-white text-3xl md:text-5xl font-bold md:ml-15 ">
+            {/* <h1 className="text-white text-3xl md:text-5xl font-bold md:ml-15 ">
               HACKINVERSE
-            </h1>
+            </h1> */}
+            <SectionTitle title="HACKINVERSE" strokeColor="rgba(255,0,0,0.8)" lineColor="rgba(255,0,0,0.8)" lineHeight="h-[3px]" className="merriweather"/>
+
             </div>
             
-
             <p className="sm:text-lg md:text-xl text-white md:text-right leading-relaxed text-center max-w-md">
               HackInverse is the flagship hackathon by
               <br />
