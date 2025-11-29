@@ -76,7 +76,7 @@ export default function Footer() {
                     </div>
                     <div className="flex items-center">
                         <a
-                            href="https://gdg.community.dev/events/details/google-gdg-kolkata-presents-devfest-kolkata-2024/"
+                            href="#"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="mr-2"
