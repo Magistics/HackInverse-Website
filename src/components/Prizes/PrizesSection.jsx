@@ -47,18 +47,13 @@ const PrizesSection = () => {
       {/* ===== HEADING ===== */}
       <div>
         <SectionTitle
-                    title="Prize"
-                    strokeColor="rgba(255,0,0,0.8)"
-                    lineColor="rgba(255,0,0,0.8)"
-                    lineHeight="h-[3px]"
-                    className="merriweather"
-                  />
-
-
-      
-      
+          title="Prize"
+          strokeColor="rgba(255,0,0,0.8)"
+          lineColor="rgba(255,0,0,0.8)"
+          lineHeight="h-[3px]"
+          className="merriweather"
+        />
       </div>
-      
 
       {/* <h1
         className="prizes-heading mx-auto mt-15 mb-6 inline-block text-[clamp(30px,5vw,100px)] font-medium uppercase leading-none tracking-[0.10em] font-bold [-webkit-text-stroke:2px_#C83639]"
@@ -69,22 +64,21 @@ const PrizesSection = () => {
         }}
       >
         PRIZES */}
-        {/* FIRST underline */}
-        {/* <span
+      {/* FIRST underline */}
+      {/* <span
           className="block mx-auto mt-2 h-[3px] w-[95%] sm:mt-[0.5vw] sm:h-[0.4vh] sm:w-[60%] sm:max-w-[450px] sm:min-w-[350px] bg-[#C83639]"
           style={{
             boxShadow: "0 4px 10px #A31212, 0 8px 20px #A31212, 0 12px 40px #A31212",
           }}
         /> */}
-        {/* SECOND underline */}
-        {/* <span
+      {/* SECOND underline */}
+      {/* <span
           className="block mx-auto mt-1 h-[3px] w-[95%] sm:mt-[0.4vw] sm:h-[0.4vh] sm:w-[60%] sm:max-w-[450px] sm:min-w-[350px] bg-[#C83639]"
           style={{
             boxShadow: "0 4px 10px #A31212, 0 8px 20px #A31212, 0 12px 40px #A31212",
           }}
         /> */}
       {/* </h1> */}
-
 
       {/* ===== PRIZE CARDS ===== */}
       <div className="mt-[5vw] flex max-w-[95vw] flex-wrap items-center justify-center gap-[8vw] lg:gap-[6vw] md:gap-[5vw] sm:gap-[4vw] xs:gap-[3vw]">
@@ -120,7 +114,7 @@ const PrizesSection = () => {
             >
               <img
                 src={p.border}
-                className="absolute inset-0 h-full w-full object-contain z-[1]"
+                className="animate-[spin_10s_linear_infinite] absolute inset-0 h-full w-full object-contain z-[1]"
                 alt="prize-border"
               />
               <img
