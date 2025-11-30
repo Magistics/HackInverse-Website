@@ -1,42 +1,101 @@
 import React from "react";
+import calendarBg from "../assets/calendar.png";
+import customFont from "../assets/fonts/Stranger-Things-Outlined.ttf";
+import SectionTitle from "./Common/SectionTitle";
 
 const Calender = () => {
+  const timeData = {
+    days: "21",
+    hours: "04",
+    mins: "42",
+  };
+
   return (
-    <div>
-      <h2 className="text-[#222222] text-2xl sm:text-3xl md:text-6xl text-center font-serif mt-10 sm:mt-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] [text-shadow:1px_1px_0_red,-1px_-1px_0_red,1px_-1px_0_red,-1px_1px_0_red]">
+    <div className="w-full bg-[#222222] flex flex-col items-center py-6 px-2 sm:px-4 font-sans overflow-hidden">
+      <style>
+        {`
+          /* 2. Define the Custom Font Face */
+          @font-face {
+            font-family: 'StrangerHeader';
+            src: url(${customFont}) format('truetype');
+            font-weight: normal;
+            font-style: normal;
+          }
+
+          @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@700&display=swap');
+          
+          .arcade-text {
+            font-family: 'Albert Sans', sans-serif;
+            font-weight: 700; 
+            color: #222222; 
+            paint-order: stroke fill; 
+            line-height: 1;
+            -webkit-text-stroke: 2px #FFFFFF; 
+          }
+          @media (min-width: 768px) {
+            .arcade-text {
+              -webkit-text-stroke: 4.7px #FFFFFF;
+            }
+          }
+        `}
+      </style>
+      {/* <h2
+        className="text-xl sm:text-4xl md:text-7xl text-center tracking-wider uppercase -mt-6 mb-3 px-2"
+        style={{
+          fontFamily: "'StrangerHeader', serif",
+          WebkitTextStroke: "1px #FF0505",
+          color: "transparent",
+          textShadow: "0 0 20px rgba(255, 0, 0)"
+        }}
+      >
         Mark Your Calender
       </h2>
-      <div
-        className="after:content-[''] after:block after:h-[1.5px] after:w-full after:bg-red-600 after:mt-1 before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-red-600 mx-4 sm:mx-8 md:mx-20 lg:mx-100"
-      ></div>    
-      <div className="flex items-center justify-center mt-10 md:mt-16 text-white overflow-x-auto px-4">
-        <div className="overflow-x-hidden flex flex-nowrap items-center justify-center gap-5 md:space-x-8 lg:space-x-10">
-          <Timebox value="63" label="Days" />
-          <div className="text-red-500 text-xl md:text-5xl font-bold flex flex-col justify-center -mt-2 md:-mt-8">
-            :
+
+      <div className="w-full max-w-4xl mb-12 md:mb-24 px-4">
+        <div className="w-full h-px bg-red-500 shadow-[0_0_8px_red]"></div>
+        <div className="w-full h-px bg-red-500 mt-1.5 shadow-[0_0_8px_red]"></div>
+      </div> */}
+      <div className="mb-5">
+        <SectionTitle
+          title="Mark Your Calender"
+          strokeColor="rgba(255,0,0,0.8)"
+          lineColor="rgba(255,0,0,0.8)"
+          lineHeight="h-[3px]"
+          className="merriweather"
+        />
+      </div>
+
+      <div className="relative w-full max-w-5xl mx-auto">
+        <img
+          src={calendarBg}
+          alt="Arcade Machines"
+          className="w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(255,0,0,0.2)]"
+        />
+
+        <div className="absolute inset-0 grid grid-cols-3 text-center">
+          <div className="relative w-full h-full flex justify-center">
+            <p className="absolute top-[30%] left-[48%] md:left-[47%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]">
+              {timeData.days}
+            </p>
           </div>
-          <Timebox value="14" label="Hrs" />
-          <div className="text-red-500 text-xl md:text-5xl lg:text-5xl font-bold flex flex-col justify-center -mt-2 md:-mt-8">
-            :
+
+          {/* Machine 2: HOURS */}
+          <div className="relative w-full h-full flex justify-center">
+            <p className="absolute top-[30%] left-[38%] md:left-[36%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]">
+              {timeData.hours}
+            </p>
           </div>
-          <Timebox value="42" label="Mins" />
+
+          {/* Machine 3: MINS */}
+          <div className="relative w-full h-full flex justify-center">
+            <p className="absolute top-[30%] left-[31%] md:left-[27%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]">
+              {timeData.mins}
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
-function Timebox(props) {
-  return (
-    <div className="flex flex-col items-center">
-      <div className="bg-gray-200 text-black rounded-md shadow-[0_0_15px_#ff0000aa] w-12 h-18 md:w-24 md:h-28 lg:w-28 lg:h-34 flex items-center justify-center text-xl md:text-5xl font-bold hover:scale-90 hover:shadow-[0_0_30px_#ff0000dd] cursor-pointer">
-        {props.value}
-      </div>
-      <span className="mt-2 text-red-500 font-mono text-xs md:text-3xl">
-        {props.label}
-      </span>
-    </div>
-  );
-}
 
 export default Calender;

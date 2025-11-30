@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar({ scrollToView, refs }) {
+    const [hoveredItem, setHoveredItem] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     // States for scroll animation
@@ -59,9 +60,9 @@ export default function Navbar({ scrollToView, refs }) {
                     {/* Logo and brand */}
                     <div className="flex items-center md:w-auto w-full md:justify-start justify-between">
                         <img
-                            src="/icon.svg"
+                            src="/logo_dark.png"
                             alt="HackInverse Logo"
-                            className="h-12 w-auto rounded-full"
+                            className=" h-8 w-auto rounded-full"
                         />
 
                         <div className="flex items-center md:hidden">
@@ -140,34 +141,41 @@ export default function Navbar({ scrollToView, refs }) {
                     </div>
 
                     {/* Navigation links - Desktop */}
-                    <div className="hidden md:flex items-center justify-evenly w-[70%] space-x-8">
-                        <span className="text-white hover:text-gray-300 text-xl font-medium albert_sans cursor-pointer">
-                            Home
-                        </span>
-                        <a
-                            href="#"
-                            className="text-white hover:text-gray-300 text-xl font-medium albert_sans"
-                        >
-                            About
-                        </a>
-                        <a
-                            href="#"
-                            className="text-white hover:text-gray-300 text-xl font-medium albert_sans"
-                        >
-                            Sponsors
-                        </a>
-                        <a
-                            href="#"
-                            className="text-white hover:text-gray-300 text-xl font-medium albert_sans"
-                        >
-                            Venue
-                        </a>
-                        <span className="text-white hover:text-gray-300 text-xl font-medium albert_sans cursor-pointer">
-                            Agenda
-                        </span>
-                        <span className="text-white hover:text-gray-300 text-xl font-medium albert_sans cursor-pointer">
-                            Teams
-                        </span>
+                    <div
+                        className="hidden md:flex items-center justify-evenly w-[70%] space-x-1"
+                        onMouseLeave={() => setHoveredItem(null)}
+                    >
+                        {[
+                            { name: "Home", href: "#" },
+                            { name: "About", href: "#about" },
+                            { name: "Sponsors", href: "#sponsors" },
+                            { name: "Venue", href: "#venue" },
+                            { name: "Agenda", href: "#agenda" },
+                            { name: "Teams", href: "#teams" },
+                        ].map((item) => (
+                            <motion.a
+                                key={item.name}
+                                href={item.href}
+                                onMouseEnter={() => setHoveredItem(item.name)}
+                                className="relative px-4 py-2 text-xl font-medium albert_sans cursor-pointer"
+                                animate={{ color: hoveredItem === item.name ? "#FFFFFF" : "#D1D5DB" }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                {hoveredItem === item.name && (
+                                    <motion.div
+                                        layoutId="active-pill"
+                                        className="absolute inset-0 bg-red-500/80"
+                                        style={{
+                                            borderRadius: "15px",
+                                        }}
+                                        transition={{ type: "spring", stiffness: 150, damping: 20 }}
+                                    />
+                                )}
+                                <span className="relative z-10">
+                                    {item.name}
+                                </span>
+                            </motion.a>
+                        ))}
                     </div>
                 </div>
 
