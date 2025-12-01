@@ -114,13 +114,13 @@ export default function Navbar({ scrollToView, refs }) {
         {/* Left navigation items */}
         <div className="flex items-center space-x-5">
           {[
-            { name: "Home", href: "#" },
-            { name: "About", href: "#about" },
-            { name: "Sponsors", href: "#sponsors" },
+            { name: "Home", ref: refs.home },
+            { name: "About", ref: refs.about },
+            { name: "Sponsors", ref: refs.sponsors },
           ].map((item) => (
             <motion.a
               key={item.name}
-              href={item.href}
+              onClick={() => scrollToView(item.ref)}
               onMouseEnter={() => setHoveredItem(item.name)}
               className="relative px-4 py-2 text-xl font-medium albert_sans cursor-pointer"
               animate={{ color: hoveredItem === item.name ? "#FFFFFF" : "#D1D5DB" }}
@@ -153,13 +153,13 @@ export default function Navbar({ scrollToView, refs }) {
         {/* Right navigation items */}
         <div className="flex items-center space-x-5">
           {[
-            { name: "Venue", href: "#venue" },
-            { name: "Agenda", href: "#agenda" },
-            { name: "Teams", href: "#teams" },
+            { name: "Venue", ref: refs.venue },
+            { name: "Agenda", ref: refs.agenda },
+            { name: "Teams", ref: refs.teams },
           ].map((item) => (
             <motion.a
               key={item.name}
-              href={item.href}
+              onClick={() => scrollToView(item.ref)}
               onMouseEnter={() => setHoveredItem(item.name)}
               className="relative px-4 py-2 text-xl font-medium albert_sans cursor-pointer"
               animate={{ color: hoveredItem === item.name ? "#FFFFFF" : "#D1D5DB" }}
@@ -216,38 +216,46 @@ export default function Navbar({ scrollToView, refs }) {
                   },
                 }}
               >
-                {["Home", "About", "Sponsors", "Venue", "Agenda", "Teams"].map(
-                  (item, index) => (
-                    <motion.div
-                      key={item}
-                      variants={{
-                        open: {
-                          opacity: 1,
-                          y: 0,
-                          transition: {
-                            type: "spring",
-                            stiffness: 100,
-                            damping: 15,
-                          },
+                {[
+                  { name: "Home", ref: refs.home },
+                  { name: "About", ref: refs.about },
+                  { name: "Sponsors", ref: refs.sponsors },
+                  { name: "Venue", ref: refs.venue },
+                  { name: "Agenda", ref: refs.agenda },
+                  { name: "Teams", ref: refs.teams },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    variants={{
+                      open: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 15,
                         },
-                        closed: {
-                          opacity: 0,
-                          y: -20,
-                          transition: {
-                            duration: 0.2,
-                          },
+                      },
+                      closed: {
+                        opacity: 0,
+                        y: -20,
+                        transition: {
+                          duration: 0.2,
                         },
+                      },
+                    }}
+                  >
+                    <a
+                      onClick={() => {
+                        scrollToView(item.ref);
+                        toggleMenu(); // Close menu after clicking
                       }}
+                      className="text-white hover:text-gray-300 text-xl albert_sans cursor-pointer"
                     >
-                      <a
-                        href="#"
-                        className="text-white hover:text-gray-300 text-xl albert_sans"
-                      >
-                        {item}
-                      </a>
-                    </motion.div>
-                  )
-                )}
+                      {item.name}
+                    </a>
+                  </motion.div>
+                ))}
               </motion.div>
             </motion.div>
           )}
