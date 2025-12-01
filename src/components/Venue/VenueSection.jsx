@@ -1,6 +1,6 @@
 import React from 'react';
 import tvCornerImage from '../../assets/TvCorner.png';
-import tvDisplayImage from '../../assets/TvDisplay.png';
+import tvDisplayImage from '../../assets/tvDisplay.png';
 
 const Venue = () => {
   return (
