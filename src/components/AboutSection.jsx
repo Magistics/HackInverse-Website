@@ -8,87 +8,136 @@ import {
   FaDiscord,
 } from "react-icons/fa";
 import SectionTitle from "./Common/SectionTitle";
+import { motion } from "framer-motion"
+import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react"
 
 const AboutSection = () => {
   return (
-    <div>
+     <section id="about" className="relative min-h-screen overflow-hidden">
+      {/* Monster Image - Left Side */}
+      <div className="absolute left-0 top-0 bottom-0 w-full md:w-1/2 lg:w-[45%] pointer-events-none">
+        <img
+          src="/red-demonic-monster-creature-dark-horror.jpg"
+          alt="HackInverse Monster"
+          className="absolute inset-0 w-full h-full object-cover object-left opacity-30 md:opacity-100"
+        />
+        {/* Gradient overlay for text readability on mobile */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2a2a2a]/50 to-[#2a2a2a] md:from-transparent md:via-transparent md:to-[#2a2a2a]" />
+      </div>
 
-      <div className=" py-16 px-15">
-        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between ">
-
-
-          {/*Monster Img*/}
-          <div className="md:w-1/2 flex justify-center">
-            <img
-              src="./src/assets/monster.png"
-              alt="monster"
-              className="max-w-[18rem] md:max-w-150"
-            />
-          </div>
-
-
-          <div className="max-w-9xl md:w-1/2 flex flex-col items-start md: mt-30 md:ml-30">
-            <div className="md:mb-10 mb-15 -mt-10 flex flex-col items-end">
-            <h2 className="text-white text-3xl md:text-5xl font-bold md:ml-50 text-center">
+      {/* Content - Right Side */}
+      <div className="relative z-10 min-h-screen flex items-center">
+        <div className="container mx-auto px-6 py-16 md:py-20">
+          <div className="ml-auto w-full md:w-[55%] lg:w-[50%] text-center md:text-right">
+            {/* About Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-white text-3xl sm:text-4xl md:text-5xl font-bold tracking-wider mb-2"
+            >
               ABOUT
-            </h2>
-            {/* <h1 className="text-white text-3xl md:text-5xl font-bold md:ml-15 ">
+            </motion.h2>
+
+            {/* HackInverse Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 tracking-wide"
+              style={{
+                color: "transparent",
+                WebkitTextStroke: "2px #dc2626",
+                textShadow: "0 0 20px rgba(220, 38, 38, 0.3)",
+              }}
+            >
               HACKINVERSE
-            </h1> */}
-            <SectionTitle title="HACKINVERSE" strokeColor="rgba(255,0,0,0.8)" lineColor="rgba(255,0,0,0.8)" lineHeight="h-[3px]" className="merriweather"/>
+            </motion.h1>
 
-            </div>
-            
-            <p className="sm:text-lg md:text-xl text-white md:text-right leading-relaxed text-center max-w-md">
-              HackInverse is the flagship hackathon by
-              <br />
-              Magistics, built to bring together students,
-              <br />
-              developers, designers and innovators from
-              <br />
-              all walks of life. It's a community-driven
-              <br/>
-              space where creativity meets collaboration
-              </p>
-            
-            <p className="sm:text-lg md:text-xl text-white leading-relaxed md:text-right max-w-md text-center md:mt-10 md:ml-9">
-              From brainstorming to building,
-              <br />
-              HackInverse inspires participants to
-              <br />
-              learn, connect, and grow while turning
-              <br />
-               bold ideas into impactful innovations.
-              </p>
+            {/* Description Paragraphs */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 md:mb-6"
+            >
+              HackInverse is the flagship hackathon by Magistics, built to bring together students, developers,
+              designers, and innovators from all walks of life. It's a community-driven space where creativity meets
+              collaboration
+            </motion.p>
 
-            <div className="flex gap-4 mt-6 justify-center md:justify-start md:ml-37 md:mt-10">
-              <Link
-                ahref="https://www.facebook.com/share/1DBsk7vayo/"
-                value={<FaFacebookF />}
-              />
-              <Link
-                ahref="https://www.linkedin.com/showcase/hackinverse/"
-                value={<FaLinkedinIn />}
-              />
-              <Link ahref="https://discord.gg/QrpFxmAA" value={<FaDiscord />} />
-              <Link
-                ahref="https://www.instagram.com/hackinverse"
-                value={<FaInstagram />}
-              />
-              <Link
-                ahref="https://www.instagram.com/hackinverse"
-                value={<FaTwitter />}
-              />
-            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 md:mb-8"
+            >
+              From brainstorming to building, HackInverse inspires participants to learn, connect, and grow while
+              turning bold ideas into impactful innovations.
+            </motion.p>
 
-            <button className="flex items-center self-center space-x-2 mt-6 md:mt-10 md:ml-58 cursor-pointer bg-red-600 hover:bg-red-700 text-white font-mono px-4 py-2 rounded-full shadow-lg transition hover:scale-110 hover:shadow-[0_0_30px_#ff0000dd]">
-              <span>Learn More</span>
-              <span className="text-xl">→</span>
-            </button>
+            {/* Social Media Icons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-center md:justify-end gap-3 sm:gap-4 mb-6 md:mb-8"
+            >
+              {[
+                { icon: Facebook, href: "#" },
+                {
+                  icon: () => (
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6 fill-current">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  ),
+                  href: "#",
+                },
+                { icon: Linkedin, href: "#" },
+                { icon: Instagram, href: "#" },
+                { icon: Youtube, href: "#" },
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  className="text-white hover:text-red-500 transition-colors duration-300"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                </motion.a>
+              ))}
+            </motion.div>
+
+            {/* Learn More Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="flex justify-center md:justify-end"
+            >
+              <motion.a
+                href="#"
+                className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Learn More
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </motion.a>
+            </motion.div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
