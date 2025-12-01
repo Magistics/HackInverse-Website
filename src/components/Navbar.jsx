@@ -55,7 +55,7 @@ export default function Navbar({ scrollToView, refs }) {
       animate={showNav ? "visible" : "hidden"}
       className="sticky top-0 w-full py-4 z-50 sofia-sans-extra-condensed"
     >
-      <div className="container mx-auto px-4 md:max-w-[60rem]">
+      <div className="container mx-auto px-4 md:max-w-240">
         <div className="relative flex items-center justify-between bg-white/5 border border-white/10 rounded-[61px] py-1 md:py-3 px-5 mt-5">
       {/* Mobile: Logo and menu button */}
       <div className="flex items-center md:hidden w-full justify-between">
@@ -122,7 +122,7 @@ export default function Navbar({ scrollToView, refs }) {
               key={item.name}
               onClick={() => scrollToView(item.ref)}
               onMouseEnter={() => setHoveredItem(item.name)}
-              className="relative px-4 py-2 text-xl font-medium albert_sans cursor-pointer"
+              className="relative px-4 py-2 text-xl font-medium cursor-pointer"
               animate={{ color: hoveredItem === item.name ? "#FFFFFF" : "#D1D5DB" }}
               transition={{ duration: 0.3 }}
             >

@@ -61,7 +61,7 @@ export default function HeroSection() {
 
               {/* actual interactive button — inline-flex so width matches content */}
               <button
-                className="border-white/30 albert-sans cursor-pointer text-white shadow-red-500/80  relative inline-flex items-center px-6 md:px-8 py-2 md:py-3 rounded-full bg-slate-900/80 border border-slate-700/50 shadow-[0_0_30px_rgba(220,38,38,0.22)] text-sm md:text-base whitespace-nowrap"
+                className="border-slate-700/50 cursor-pointer text-white shadow-red-500/80  relative inline-flex items-center px-6 md:px-8 py-2 md:py-3 rounded-full bg-slate-900/80 border shadow-[0_0_30px_rgba(220,38,38,0.22)] text-sm md:text-base whitespace-nowrap sofia-sans-extra-condensed font-bold"
                 type="button"
               >
                 Register Now

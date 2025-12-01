@@ -1,6 +1,5 @@
-import React from 'react';
 import tvCornerImage from '../../assets/TvCorner.png';
-import tvDisplayImage from '../../assets/tvDisplay.png';
+import tvDisplayImage from '../../assets/TvDisplay.png';
 
 const Venue = () => {
   return (
@@ -29,13 +28,13 @@ const Venue = () => {
         <div className="flex flex-col gap-8 text-white text-center lg:text-left lg:w-1/2">
           {/* Header */}
           <div className="flex flex-col items-center lg:items-start gap-4">
-            <h1 className="text-[clamp(3rem,9vw,7rem)] sm:text-[clamp(4rem,9vw,7rem)] font-extrabold tracking-[9px] uppercase leading-none [color:transparent] [-webkit-text-stroke:2px_#fff] md:[-webkit-text-stroke:4px_#fff] font-cinzel-decorative" style={{fontFamily: '"Merriweather", sans-serif'}}>
+            <h1 className="text-[clamp(3rem,9vw,7rem)] sm:text-[clamp(4rem,9vw,7rem)] font-extrabold tracking-[9px] uppercase leading-none text-transparent [-webkit-text-stroke:2px_#fff] md:[-webkit-text-stroke:4px_#fff] font-cinzel-decorative" style={{fontFamily: '"Merriweather", sans-serif'}}>
               VENUE
             </h1>
 
             {/* Underlines */}
             <div className="relative w-full max-w-[300px] sm:max-w-[460px] h-1 bg-white mx-auto lg:mx-0">
-              <div className="absolute bottom-[-10px] left-0 w-full h-1 bg-white"></div>
+              <div className="absolute -bottom-2.5 left-0 w-full h-1 bg-white"></div>
             </div>
           </div>
 
@@ -51,7 +50,7 @@ const Venue = () => {
 
           {/* Button */}
           <button className="bg-white text-black text-xl md:text-2xl font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg self-center lg:self-start transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
-             Request the Map
+              Request the Map
           </button>
         </div>
 
