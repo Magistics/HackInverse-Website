@@ -59,7 +59,7 @@ export default function Navbar({ scrollToView, refs }) {
         <div className="relative flex items-center justify-between bg-white/5 border border-white/10 rounded-[61px] py-1 md:py-3 px-5 mt-5">
       {/* Mobile: Logo and menu button */}
       <div className="flex items-center md:hidden w-full justify-between">
-        <img src="/logo_light.png" alt="HackInverse Logo" className="h-8 w-auto rounded-full" />
+        <img src="/logo_light.png" alt="HackInverse Logo" className="h-3 w-auto rounded-full" />
         {/* Mobile menu button with animation */}
         <motion.button
           onClick={toggleMenu}
@@ -129,7 +129,7 @@ export default function Navbar({ scrollToView, refs }) {
               {hoveredItem === item.name && (
                 <motion.div
                   layoutId="active-pill"
-                  className="absolute inset-0 bg-red-500/80"
+                  className="absolute inset-0 bg-red-500/60"
                   style={{ borderRadius: "15px" }}
                   transition={{ type: "spring", stiffness: 150, damping: 20 }}
                 />
@@ -144,8 +144,8 @@ export default function Navbar({ scrollToView, refs }) {
             {/* Glow effect layer */}
             <div className="absolute -inset-1 bg-red-500/65 rounded-full blur-[10px]" />
             {/* Logo container */}
-            <div className="relative bg-slate-900/65 rounded-full px-8 py-3 border border-slate-700/50 shadow-[0_0_30px_rgba(220,38,38,0.3)]">
-              <img src="/logo_light.png" alt="HackInverse Logo" className="h-8 w-auto" />
+            <div className="relative bg-slate-900/65 rounded-full px-5 py-4  border border-slate-700/50 shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+              <img src="/logo_light.png" alt="HackInverse Logo" className="h-3  w-auto" />
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function Navbar({ scrollToView, refs }) {
               {hoveredItem === item.name && (
                 <motion.div
                   layoutId="active-pill"
-                  className="absolute inset-0 bg-red-500/80"
+                  className="absolute inset-0 bg-red-500/60"
                   style={{ borderRadius: "15px" }}
                   transition={{ type: "spring", stiffness: 150, damping: 20 }}
                 />
