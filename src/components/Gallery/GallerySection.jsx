@@ -2,22 +2,26 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Bg from "../../assets/Bg.png";
 import layer2back from "../../assets/image/layer2back.png";
-import frame1 from "../../assets/image/frame1.png";
-import frame2 from "../../assets/image/frame2.png";
-import frame3 from "../../assets/image/frame3.png";
-import frame4 from "../../assets/image/frame4.png";
-import frame5 from "../../assets/image/frame5.png";
-import frame6 from "../../assets/image/frame6.png";
+import frame1 from "../../assets/image/frame1.jpg";
+import frame2 from "../../assets/image/frame2.jpg";
+import frame3 from "../../assets/image/frame3.jpg";
+import frame4 from "../../assets/image/frame4.jpg";
+import frame5 from "../../assets/image/frame5.jpg";
+import frame6 from "../../assets/image/frame6.jpg";
+import frame7 from "../../assets/image/frame7.jpg";
+import frame8 from "../../assets/image/frame8.png";
 
 const GallerySection = () => {
   // Circular layout: frame4 in center (behind), 5 frames circling around
   const frames = [
     { id: 1, img: frame1, initialLeft: 50, initialTop: 15, initialRotate: -5, animation: "fade-down" }, // Top
-    { id: 2, img: frame2, initialLeft: 75, initialTop: 30, initialRotate: 8, animation: "fade-left" }, // Top-right
-    { id: 3, img: frame3, initialLeft: 75, initialTop: 70, initialRotate: -3, animation: "fade-left" }, // Bottom-right
-    { id: 4, img: frame4, initialLeft: 50, initialTop: 50, initialRotate: 0, isCenter: true, animation: "zoom-in" }, // Center frame (back layer)
+    { id: 2, img: frame2, initialLeft: 75, initialTop: 20, initialRotate: 8, animation: "fade-left" }, // Top-right
+    { id: 3, img: frame3, initialLeft: 30, initialTop: 0, initialRotate: -3, animation: "fade-left" }, // Bottom-right
+    { id: 4, img: frame4, initialLeft: 50, initialTop: 50, initialRotate: 0,  animation: "zoom-in" }, // Center frame (back layer)
     { id: 5, img: frame5, initialLeft: 25, initialTop: 70, initialRotate: 10, animation: "fade-right" }, // Bottom-left
     { id: 6, img: frame6, initialLeft: 25, initialTop: 30, initialRotate: -8, animation: "fade-right" }, // Top-left
+    { id: 7, img: frame7, initialLeft: 75, initialTop: 60, initialRotate: 5, animation: "fade-right" }, // Top-left
+    { id: 8, img: frame8, initialLeft: 60, initialTop: -15, initialRotate: 5, animation: "fade-right" }, // Top-left
   ];
 
   const [positions, setPositions] = useState(
