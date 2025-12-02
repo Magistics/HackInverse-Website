@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { BsDiscord } from "react-icons/bs";
 
 export default function Footer() {
   return (
@@ -48,9 +49,9 @@ export default function Footer() {
                   ),
                   href: "#",
                 },
-                { icon: Linkedin, href: "#" },
-                { icon: Instagram, href: "#" },
-                { icon: Youtube, href: "#" },
+                { icon: Linkedin, href: "https://www.linkedin.com/showcase/hackinverse" },
+                { icon: Instagram, href: "https://www.instagram.com/hackinverse" },
+                { icon: BsDiscord, href: "https://discord.gg/QrpFxmAA" },
               ].map((social, index) => (
                 <motion.a
                   key={index}

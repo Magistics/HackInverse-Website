@@ -10,6 +10,7 @@ import {
 import SectionTitle from "./Common/SectionTitle";
 import { motion } from "framer-motion";
 import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { BsDiscord } from "react-icons/bs";
 
 const AboutSection = () => {
   return (
@@ -110,7 +111,7 @@ const AboutSection = () => {
             },
             { icon: Linkedin, href: "#" },
             { icon: Instagram, href: "#" },
-            { icon: Youtube, href: "#" },
+            { icon: BsDiscord, href: "https://discord.gg/QrpFxmAA" },
           ].map((social, index) => (
             <motion.a
               key={index}
