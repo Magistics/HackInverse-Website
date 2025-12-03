@@ -1,14 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import calendarBg from "../assets/calendar.png";
 import customFont from "../assets/fonts/Stranger-Things-Outlined.ttf";
 import SectionTitle from "./Common/SectionTitle";
 
 const Calender = () => {
-  const timeData = {
-    days: "21",
-    hours: "04",
-    mins: "42",
+  // Set your hackathon's end date and time here
+  const targetDate = new Date("2026-01-31T00:00:00");
+
+  const calculateTimeLeft = () => {
+    const difference = +targetDate - +new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        mins: Math.floor((difference / 1000 / 60) % 60),
+      };
+    }
+
+    // Add leading zeros if the number is less than 10
+    for (const key in timeLeft) {
+      timeLeft[key] = timeLeft[key].toString().padStart(2, "0");
+    }
+
+    return timeLeft;
   };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="w-full bg-[#222222] flex flex-col items-center py-6 px-2 sm:px-4 font-sans overflow-hidden">
@@ -65,7 +90,7 @@ const Calender = () => {
         />
       </div>
 
-      <div className="relative w-full max-w-5xl mx-auto">
+      <div className="relative sm:mt-5 md:mt-15 w-full max-w-5xl mx-auto">
         <img
           src={calendarBg}
           alt="Arcade Machines"
@@ -74,23 +99,50 @@ const Calender = () => {
 
         <div className="absolute inset-0 grid grid-cols-3 text-center">
           <div className="relative w-full h-full flex justify-center">
-            <p className="absolute top-[30%] left-[48%] md:left-[47%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]">
-              {timeData.days}
-            </p>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={timeLeft.days || "00"}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute top-[30%] left-[48%] md:left-[47%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
+              >
+                {timeLeft.days || "00"}
+              </motion.p>
+            </AnimatePresence>
           </div>
 
           {/* Machine 2: HOURS */}
           <div className="relative w-full h-full flex justify-center">
-            <p className="absolute top-[30%] left-[38%] md:left-[36%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]">
-              {timeData.hours}
-            </p>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={timeLeft.hours || "00"}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute top-[30%] left-[38%] md:left-[36%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
+              >
+                {timeLeft.hours || "00"}
+              </motion.p>
+            </AnimatePresence>
           </div>
 
           {/* Machine 3: MINS */}
           <div className="relative w-full h-full flex justify-center">
-            <p className="absolute top-[30%] left-[31%] md:left-[27%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]">
-              {timeData.mins}
-            </p>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={timeLeft.mins || "00"}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute top-[30%] left-[31%] md:left-[27%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
+              >
+                {timeLeft.mins || "00"}
+              </motion.p>
+            </AnimatePresence>
           </div>
         </div>
       </div>

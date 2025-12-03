@@ -16,6 +16,13 @@ import HeroSection from "./components/HeroSection.jsx";
 import DetailsSection from "./components/DetailsSection.jsx";
 
 function App() {
+    const homeRef = useRef(null);
+    const aboutRef = useRef(null);
+    const sponsorsRef = useRef(null);
+    const venueRef = useRef(null);
+    const agendaRef = useRef(null);
+    const teamsRef = useRef(null); 
+
     const scrollToView = (ref) => {
         if (ref.current) {
             ref.current.scrollIntoView({
@@ -30,11 +37,21 @@ function App() {
             <div className="min-h-screen background-dark overflow-x-hidden">
                 {/* Navbar */}
                 <header className="fixed top-0 left-0 right-0 z-50">
-                    <Navbar scrollToView={scrollToView} refs={{}} />
+                    <Navbar
+                        scrollToView={scrollToView}
+                        refs={{
+                            home: homeRef,
+                            about: aboutRef,
+                            sponsors: sponsorsRef,
+                            venue: venueRef,
+                            agenda: agendaRef,
+                            teams: teamsRef,
+                        }}
+                    />
                 </header>
 
                 <main className="">
-                    <section className=" md:mb-40">
+                    <section ref={homeRef} className=" md:mb-40">
                         <HeroSection />
                     </section>
 
@@ -42,19 +59,19 @@ function App() {
                         <DetailsSection />
                     </section>
 
-                    <section className="my-32 md:my-44 mx-6 md:mx-0">
+                    <section ref={agendaRef} className="my-32 md:my-44 mx-6 md:mx-0">
                         <Calender />
                     </section>
 
-                    <section className="mb-10 md:mb-20 mx-6 md:mx-0">
+                    <section ref={aboutRef} className="mb-10 md:mb-20 mx-6 md:mx-0">
                         <AboutSection />
                     </section>
 
-                    <section>
+                    <section ref={sponsorsRef}>
                         <SponsorsSection />
                     </section>
                     
-                    <section>
+                    <section ref={teamsRef}>
                         <GallerySection />
                     </section>
 
@@ -74,7 +91,7 @@ function App() {
                         <ElevatorAnimation />
                     </section>
 
-                    <section>
+                    <section ref={venueRef}>
                         <Venue />
                     </section>
 

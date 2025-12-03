@@ -1,22 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import Bg from "../../assets/Bg.png";
 import layer2back from "../../assets/image/layer2back.png";
-import frame1 from "../../assets/image/frame1.png";
-import frame2 from "../../assets/image/frame2.png";
-import frame3 from "../../assets/image/frame3.png";
-import frame4 from "../../assets/image/frame4.png";
-import frame5 from "../../assets/image/frame5.png";
-import frame6 from "../../assets/image/frame6.png";
+import frame1 from "../../assets/image/frame1.jpg";
+import frame2 from "../../assets/image/frame2.jpg";
+import frame3 from "../../assets/image/frame3.jpg";
+import frame4 from "../../assets/image/frame4.jpg";
+import frame5 from "../../assets/image/frame5.jpg";
+import frame6 from "../../assets/image/frame6.jpg";
+import frame7 from "../../assets/image/frame7.jpg";
+import frame8 from "../../assets/image/frame8.png";
 
 const GallerySection = () => {
   // Circular layout: frame4 in center (behind), 5 frames circling around
   const frames = [
     { id: 1, img: frame1, initialLeft: 50, initialTop: 15, initialRotate: -5, animation: "fade-down" }, // Top
-    { id: 2, img: frame2, initialLeft: 75, initialTop: 30, initialRotate: 8, animation: "fade-left" }, // Top-right
-    { id: 3, img: frame3, initialLeft: 75, initialTop: 70, initialRotate: -3, animation: "fade-left" }, // Bottom-right
-    { id: 4, img: frame4, initialLeft: 50, initialTop: 50, initialRotate: 0, isCenter: true, animation: "zoom-in" }, // Center frame (back layer)
+    { id: 2, img: frame2, initialLeft: 75, initialTop: 20, initialRotate: 8, animation: "fade-left" }, // Top-right
+    { id: 3, img: frame3, initialLeft: 30, initialTop: 0, initialRotate: -3, animation: "fade-left" }, // Bottom-right
+    { id: 4, img: frame4, initialLeft: 50, initialTop: 50, initialRotate: 0,  animation: "zoom-in" }, // Center frame (back layer)
     { id: 5, img: frame5, initialLeft: 25, initialTop: 70, initialRotate: 10, animation: "fade-right" }, // Bottom-left
     { id: 6, img: frame6, initialLeft: 25, initialTop: 30, initialRotate: -8, animation: "fade-right" }, // Top-left
+    { id: 7, img: frame7, initialLeft: 75, initialTop: 60, initialRotate: 5, animation: "fade-right" }, // Top-left
+    { id: 8, img: frame8, initialLeft: 60, initialTop: -15, initialRotate: 5, animation: "fade-right" }, // Top-left
   ];
 
   const [positions, setPositions] = useState(
@@ -65,7 +70,12 @@ const GallerySection = () => {
     const clientX = e.type === "mousedown" ? e.clientX : e.touches?.[0]?.clientX;
     const clientY = e.type === "mousedown" ? e.clientY : e.touches?.[0]?.clientY;
 
-    if (clientX === undefined || clientY === undefined) return;
+    if (clientX === undefined || clientY === undefined) {
+      console.log('Invalid touch coordinates:', { clientX, clientY, touches: e.touches });
+      return;
+    }
+
+    console.log(`Starting drag for frame ${id}:`, { clientX, clientY, initialLeft: positions[id].left, initialTop: positions[id].top });
 
     dragState.current[id] = {
       startX: clientX,
@@ -91,17 +101,37 @@ const GallerySection = () => {
     const deltaX = clientX - dragState.current[id].startX;
     const deltaY = clientY - dragState.current[id].startY;
 
+    // Increase movement sensitivity for better mobile experience
+    const moveFactor = 0.1; // Increased from 0.05 for better responsiveness
+
+    // Calculate new positions
+    let newLeft = dragState.current[id].initialLeft + deltaX * moveFactor;
+    let newTop = dragState.current[id].initialTop + deltaY * moveFactor;
+
+    // Constrain movement within reasonable bounds (prevent frames from going too far)
+    // Container is roughly 1000px tall, frames are ~200-300px wide/tall
+    const constrainedLeft = Math.max(-10, Math.min(110, newLeft));
+    const constrainedTop = Math.max(-10, Math.min(110, newTop));
+
+    console.log(`Moving frame ${id}:`, {
+      deltaX, deltaY,
+      newLeft, newTop,
+      constrainedLeft, constrainedTop,
+      wasConstrained: constrainedLeft !== newLeft || constrainedTop !== newTop
+    });
+
     setPositions((prev) => ({
       ...prev,
       [id]: {
         ...prev[id],
-        left: dragState.current[id].initialLeft + deltaX * 0.05,
-        top: dragState.current[id].initialTop + deltaY * 0.05,
+        left: constrainedLeft,
+        top: constrainedTop,
       },
     }));
   };
 
   const handleEnd = (id) => {
+    console.log(`Ending drag for frame ${id}`);
     delete dragState.current[id];
   };
 
@@ -111,9 +141,9 @@ const GallerySection = () => {
   };
 
   return (
-    <section 
+    <section
       className="relative min-h-[85vh] flex flex-col justify-center items-center px-[2vw] py-[1vh] text-center text-black overflow-hidden box-border max-[992px]:min-h-[90vh] max-[992px]:py-[1.5vh] max-[768px]:min-h-[80vh] max-[768px]:py-[1vh] max-[576px]:min-h-[70vh] max-[576px]:px-[1vw] max-[576px]:py-[0.5vh]"
-      style={{ 
+      style={{
         backgroundImage: `url(${Bg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -123,7 +153,7 @@ const GallerySection = () => {
     >
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[clamp(800px,90vw,1500px)] h-[clamp(800px,90vw,1500px)] opacity-100 pointer-events-none z-[1] max-[992px]:w-[clamp(400px,55vw,700px)] max-[992px]:h-[clamp(400px,55vw,700px)] max-[768px]:w-[clamp(350px,70vw,600px)] max-[768px]:h-[clamp(350px,70vw,600px)] max-[576px]:w-[clamp(300px,80vw,500px)] max-[576px]:h-[clamp(300px,80vw,500px)]"
-        style={{ 
+        style={{
           backgroundImage: `url(${layer2back})`,
           backgroundSize: 'contain',
           backgroundPosition: 'center',
@@ -133,31 +163,35 @@ const GallerySection = () => {
 
       <div className="relative w-full max-w-[1406px] h-[1000px] mt-[5vw] z-[2] max-[992px]:h-[500px] max-[992px]:mt-[4vw] max-[768px]:h-[400px] max-[768px]:mt-[2.5vw] max-[576px]:h-[300px] max-[576px]:mt-[1.5vw]">
         {frames.map((frame, index) => (
-          <div
+          <motion.div
             key={frame.id}
             data-draggable="true"
             className="absolute w-[clamp(220px,20vw,300px)] h-[clamp(270px,25vw,360px)] cursor-grab select-none origin-center max-[992px]:w-[clamp(180px,22vw,300px)] max-[992px]:h-[clamp(230px,27vw,370px)] max-[768px]:w-[clamp(154px,14vw,210px)] max-[768px]:h-[clamp(189px,17.5vw,252px)] max-[576px]:w-[clamp(91px,12.6vw,140px)] max-[576px]:h-[clamp(112px,15.75vw,182px)]"
             style={{
               left: `${positions[frame.id].left}%`,
               top: `${positions[frame.id].top}%`,
-              transform: `translate(-50%, -50%) rotate(${positions[frame.id].rotate}deg)`,
               zIndex: frame.isCenter ? 1 : 3,
               filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))',
-              transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               userSelect: 'none',
               WebkitUserSelect: 'none',
               touchAction: 'none',
-              willChange: 'transform, filter',
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
               perspective: 1000
             }}
-            data-aos={frame.animation}
-            data-aos-delay={frame.isCenter ? 0 : index * 150}
-            data-aos-duration="1200"
-            data-aos-offset="200"
-            data-aos-easing="ease-out-back"
-            data-aos-anchor-placement="top-bottom"
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{
+              duration: 0.8,
+              delay: frame.isCenter ? 0 : index * 0.1,
+              ease: "easeOut"
+            }}
+            animate={{
+              rotate: positions[frame.id].rotate,
+              x: "-50%",
+              y: "-50%"
+            }}
             onMouseDown={(e) => handleStart(e, frame.id)}
             onMouseMove={(e) => handleMove(e, frame.id)}
             onMouseUp={(e) => {
@@ -206,7 +240,7 @@ const GallerySection = () => {
               className="w-full h-full object-contain block pointer-events-none"
               draggable="false"
             />
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

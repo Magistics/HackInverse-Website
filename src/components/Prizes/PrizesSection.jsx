@@ -45,7 +45,7 @@ const PrizesSection = () => {
       }}
     >
       {/* ===== HEADING ===== */}
-      <div>
+      <div className="mt-15">
         <SectionTitle
           title="Prize"
           strokeColor="rgba(255,0,0,0.8)"

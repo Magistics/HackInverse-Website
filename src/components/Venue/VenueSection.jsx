@@ -1,6 +1,6 @@
-import React from 'react';
 import tvCornerImage from '../../assets/TvCorner.png';
 import tvDisplayImage from '../../assets/TvDisplay.png';
+import { motion } from 'framer-motion';
 
 const Venue = () => {
   return (
@@ -29,20 +29,38 @@ const Venue = () => {
         <div className="flex flex-col gap-8 text-white text-center lg:text-left lg:w-1/2">
           {/* Header */}
           <div className="flex flex-col items-center lg:items-start gap-4">
-            <h1 className="text-[clamp(3rem,9vw,7rem)] sm:text-[clamp(4rem,9vw,7rem)] font-extrabold tracking-[9px] uppercase leading-none [color:transparent] [-webkit-text-stroke:2px_#fff] md:[-webkit-text-stroke:4px_#fff] font-cinzel-decorative" style={{fontFamily: '"Merriweather", sans-serif'}}>
+            <h1 className="text-[clamp(3rem,9vw,7rem)] sm:text-[clamp(4rem,9vw,7rem)] font-extrabold tracking-[9px] uppercase leading-none text-transparent [-webkit-text-stroke:2px_#fff] md:[-webkit-text-stroke:4px_#fff] font-cinzel-decorative" style={{fontFamily: '"Merriweather", sans-serif'}}>
               VENUE
             </h1>
 
             {/* Underlines */}
             <div className="relative w-full max-w-[300px] sm:max-w-[460px] h-1 bg-white mx-auto lg:mx-0">
-              <div className="absolute bottom-[-10px] left-0 w-full h-1 bg-white"></div>
+              <div className="absolute -bottom-2.5 left-0 w-full h-1 bg-white"></div>
             </div>
           </div>
 
           {/* Venue Info */}
           <div className="flex flex-col gap-2">
-            <h2 className="text-[clamp(1.75rem,5vw,3.5rem)] font-bold leading-tight text-white">
-              <i>Reveal Soon....</i>
+            <h2 className="text-[clamp(1.75rem,5vw,3.5rem)] font-bold leading-tight text-white italic">
+              Reveal Soon
+              <motion.span
+                animate={{
+                  transition: {
+                    staggerChildren: 0.4,
+                    repeat: Infinity,
+                    repeatDelay: 0.8,
+                  },
+                }}
+              >
+                {['.', '.', '.'].map((dot, index) => (
+                  <motion.span
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{ duration: 1.2, repeat: Infinity }}
+                  >{dot}</motion.span>
+                ))}
+              </motion.span>
             </h2>
             <address className="text-[clamp(1rem,3.3vw,1.8rem)] not-italic leading-relaxed opacity-45">
               The stage is hidden. Stay tuned for the big reveal!!
@@ -50,9 +68,28 @@ const Venue = () => {
           </div>
 
           {/* Button */}
-          <button className="bg-white text-black text-xl md:text-2xl font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg self-center lg:self-start transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
-             Request the Map
-          </button>
+          <div className="self-center lg:self-start relative">
+            {/* Subtle red glow animation */}
+            <motion.div
+              className="absolute -inset-1.5 bg-red-500/40 rounded-full blur-lg"
+              animate={{
+                opacity: [0.6, 1, 0.6],
+                scale: [1, 1.03, 1],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+            <motion.button
+              className="relative cursor-pointer bg-white text-black text-xl md:text-2xl font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+              whileHover={{ scale: 1.05, boxShadow: "0px 10px 25px rgba(0,0,0,0.3)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Request the Map
+            </motion.button>
+          </div>
         </div>
 
         {/* TV Section */}
