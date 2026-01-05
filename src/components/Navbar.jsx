@@ -122,6 +122,7 @@ export default function Navbar({ scrollToView, refs }) {
               key={item.name}
               onClick={() => scrollToView(item.ref)}
               onMouseEnter={() => setHoveredItem(item.name)}
+              whileHover={{ scale: 1.1 }}
               className="relative px-4 py-2 text-xl font-medium cursor-pointer"
               animate={{ color: hoveredItem === item.name ? "#FFFFFF" : "#D1D5DB" }}
               transition={{ duration: 0.3 }}
@@ -161,6 +162,7 @@ export default function Navbar({ scrollToView, refs }) {
               key={item.name}
               onClick={() => scrollToView(item.ref)}
               onMouseEnter={() => setHoveredItem(item.name)}
+              whileHover={{ scale: 1.1 }}
               className="relative px-4 py-2 text-xl font-medium albert_sans cursor-pointer"
               animate={{ color: hoveredItem === item.name ? "#FFFFFF" : "#D1D5DB" }}
               transition={{ duration: 0.3 }}

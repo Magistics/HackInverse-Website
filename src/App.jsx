@@ -14,6 +14,8 @@ import { useRef } from "react";
 import Navbar from "./components/Navbar.jsx";
 import HeroSection from "./components/HeroSection.jsx";
 import DetailsSection from "./components/DetailsSection.jsx";
+import CustomCursor from "./components/CustomCursor.jsx";
+import { OnlineVenueSection } from "./components/Venue/OnlineVenueSection.jsx";
 
 function App() {
     const homeRef = useRef(null);
@@ -34,7 +36,8 @@ function App() {
 
     return (
         <>
-            <div className="min-h-screen background-dark overflow-x-hidden">
+            <CustomCursor />
+            <div className="min-h-screen background-dark overflow-x-hidden cursor-none">
                 {/* Navbar */}
                 <header className="fixed top-0 left-0 right-0 z-50">
                     <Navbar
@@ -71,9 +74,9 @@ function App() {
                         <SponsorsSection />
                     </section>
                     
-                    <section ref={teamsRef}>
+                    {/* <section ref={teamsRef}>
                         <GallerySection />
-                    </section>
+                    </section> */}
 
                     <section>
                         <PrizesSection />
@@ -92,7 +95,8 @@ function App() {
                     </section>
 
                     <section ref={venueRef}>
-                        <Venue />
+                        {/* <Venue /> */}
+                        <OnlineVenueSection/>
                     </section>
 
                     <section>
