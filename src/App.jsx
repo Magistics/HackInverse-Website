@@ -15,6 +15,7 @@ import Navbar from "./components/Navbar.jsx";
 import HeroSection from "./components/HeroSection.jsx";
 import DetailsSection from "./components/DetailsSection.jsx";
 import CustomCursor from "./components/CustomCursor.jsx";
+import { OnlineVenueSection } from "./components/Venue/OnlineVenueSection.jsx";
 
 function App() {
     const homeRef = useRef(null);
@@ -73,9 +74,9 @@ function App() {
                         <SponsorsSection />
                     </section>
                     
-                    <section ref={teamsRef}>
+                    {/* <section ref={teamsRef}>
                         <GallerySection />
-                    </section>
+                    </section> */}
 
                     <section>
                         <PrizesSection />
@@ -94,7 +95,8 @@ function App() {
                     </section>
 
                     <section ref={venueRef}>
-                        <Venue />
+                        {/* <Venue /> */}
+                        <OnlineVenueSection/>
                     </section>
 
                     <section>
