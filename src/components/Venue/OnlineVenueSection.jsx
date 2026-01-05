@@ -98,20 +98,20 @@ export function OnlineVenueSection() {
           viewport={{ once: true, amount: 0.3 }}
         >
           {/* Left Content */}
-          <motion.div className="space-y-8" variants={itemVariants}>
-            <div className="space-y-4">
+          <motion.div className="space-y-8  flex flex-col justify-center items-center lg:items-start" variants={itemVariants}>
+            <div className="space-y-4 flex flex-col justify-center items-center lg:items-start">
               <motion.div variants={itemVariants}>
-                <h1 className="text-3xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+                <h1 className="text-3xl lg:text-5xl font-bold text-white leading-tight tracking-tight text-center lg:text-left">
                   CODE FROM ANYWHERE, IMPACT EVERYWHERE
                 </h1>
-                <div className="h-[1px] w-[80%] bg-red-400 mt-4" />
+                <div className="h-[1px] m-auto lg:ml-[1px] w-[80%] bg-red-400 mt-4" />
               </motion.div>
 
-              <motion.div variants={itemVariants} className="space-y-4">
-                <h2 className="text-3xl lg:text-4xl font-italic text-white/90">
+              <motion.div variants={itemVariants} className="space-y-4 flex flex-col justify-center items-center lg:items-start">
+                <h2 className="text-3xl lg:text-4xl font-italic text-white/90 text-center lg:text-left">
                   <i>Join Us Virtually</i>{" "}
                 </h2>
-                <p className="text-lg text-white/80 leading-relaxed max-w-md">
+                <p className="text-lg text-white/80 leading-relaxed max-w-md text-center lg:text-left">
                   The future of hackathons is decentralized. No flights
                   required—just your talent and a Wi-Fi connection.
                 </p>
@@ -121,14 +121,16 @@ export function OnlineVenueSection() {
             <motion.div variants={itemVariants} className="pt-4">
 
             
-              <motion.button
+              <motion.a
+               href="https://unstop.com/p/hackinverse-05-magistics-1605003?lb=PEEcRdx6&utm_medium=Share&utm_source=magistic85391&utm_campaign=Online_coding_challenge"
+                target="_blank"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="border-slate-700/50 cursor-pointer text-red-500 shadow-red-500/80  relative inline-flex items-center px-6 md:px-8 py-2 md:py-3 rounded-full bg-white border shadow-[0_0_30px_rgba(220,38,38,0.22)] text-sm md:text-base whitespace-nowrap  font-bold"
                 type="button"
               >
                 Claim Your Spot
-              </motion.button>
+              </motion.a>
             
             </motion.div>
           </motion.div>

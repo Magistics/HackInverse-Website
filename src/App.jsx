@@ -58,7 +58,7 @@ function App() {
                         <HeroSection />
                     </section>
 
-                    <section className="">
+                    <section className="hidden md:block" >
                         <DetailsSection />
                     </section>
 
