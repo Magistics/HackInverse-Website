@@ -16,6 +16,7 @@ import HeroSection from "./components/HeroSection.jsx";
 import DetailsSection from "./components/DetailsSection.jsx";
 import CustomCursor from "./components/CustomCursor.jsx";
 import { OnlineVenueSection } from "./components/Venue/OnlineVenueSection.jsx";
+import PerksSection from "./components/Perks/PerksSection.jsx";
 
 function App() {
     const homeRef = useRef(null);
@@ -68,6 +69,10 @@ function App() {
 
                     <section ref={aboutRef} className="mb-10 md:mb-20 mx-6 md:mx-0">
                         <AboutSection />
+                    </section>
+
+                    <section className="">
+                        <PerksSection/>
                     </section>
 
                     <section ref={sponsorsRef}>
