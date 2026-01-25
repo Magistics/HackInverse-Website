@@ -6,13 +6,116 @@ import spon2 from "../../assets/sponsors/spon2.png";
 import SectionTitle from "../Common/SectionTitle";
 import { motion } from "framer-motion"
 
+const Heart = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+  </svg>
+);
+
 const SponsorsSection = () => {
-  // const sponsors = [
-  //   { id: 1, img: spon1, alt: "Sponsors Top Row" },
-  //   { id: 2, img: spon2, alt: "Sponsors Bottom Row" },
-  // ];
+  const sponsors = [];
+
+  
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+}
+
+const pulseVariants = {
+  animate: {
+    scale: [1, 1.05, 1],
+    transition: {
+      duration: 3,
+      repeat: Number.POSITIVE_INFINITY,
+      ease: "easeInOut",
+    },
+  },
+}
+
+const floatVariants = {
+  animate: {
+    y: [0, -8, 0],
+    transition: {
+      duration: 4,
+      repeat: Number.POSITIVE_INFINITY,
+      ease: "easeInOut",
+    },
+  },
+}
+
+function SponsorCard({ sponsor }) {
+  return (
+    <motion.div
+      variants={itemVariants}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3 }}
+      className="group relative"
+    >
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-red-700 rounded-lg opacity-0 group-hover:opacity-100 blur transition duration-300" />
+      
+      <a
+        href={sponsor.website || "#"}
+        target={sponsor.website ? "_blank" : "_self"}
+        rel={sponsor.website ? "noopener noreferrer" : ""}
+        className="relative block bg-neutral-900 rounded-lg p-8 backdrop-blur-sm border border-neutral-800 group-hover:border-red-500/50 transition duration-300"
+      >
+        <div className="flex items-center justify-center min-h-[180px]">
+          <div className="text-center">
+            <img
+              src={sponsor.logo || "/placeholder.svg"}
+              alt={sponsor.name}
+              className="h-16 w-auto mx-auto mb-4 object-contain filter grayscale group-hover:grayscale-0 transition duration-300"
+            />
+            <h3 className="text-lg font-semibold text-white mb-2">{sponsor.name}</h3>
+            <p className="text-sm text-gray-400">{sponsor.category}</p>
+          </div>
+        </div>
+
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition duration-300">
+          <motion.div
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+            className="text-red-500"
+          >
+            <Heart className="w-5 h-5 fill-red-500" />
+          </motion.div>
+        </div>
+      </a>
+    </motion.div>
+  )
+}
 
   return (
+    <> 
     <section
       className="relative px-[2vw] py-[4vh] text-center text-black overflow-hidden box-border max-[992px]:py-[3vh] max-[768px]:py-[2vh] max-[576px]:py-[1.5vh] max-[576px]:px-[1vw]"
       style={{
@@ -46,7 +149,11 @@ const SponsorsSection = () => {
             className="merriweather"
           />
         </div>
+        
       </div>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-6">
+            Meet the amazing organizations making HackInverse possible
+          </p>
 
       {/* <div className="mt-8 md:mt-16 flex flex-col gap-[3vh] justify-center items-center max-w-[1400px] mx-auto max-[992px]:gap-[2.5vh] max-[768px]:gap-[2vh] max-[576px]:gap-[1.5vh]">
         {sponsors.map((sponsor, index) => (
@@ -173,7 +280,32 @@ const SponsorsSection = () => {
             </div>
           </div>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center border-t border-neutral-800 pt-12"
+        >
+          <h3 className="text-2xl font-semibold text-white mb-4">Become a Sponsor</h3>
+          <p className="text-gray-400 mb-6 max-w-xl mx-auto">
+            Join us in supporting innovation and creativity. Reach thousands of talented developers and makers.
+          </p>
+          <motion.a
+            href="mailto:sponsors@hackinverse.com"
+            className="inline-block px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition duration-300 hover:shadow-lg hover:shadow-red-600/50"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Get in Touch
+          </motion.a>
+        </motion.div>
+
+        
     </section>
+
+    </>
   );
 };
 
