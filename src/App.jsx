@@ -73,6 +73,10 @@ function App() {
                         <Calender />
                     </section>
 
+                    <section>
+                        <TracksSection />
+                    </section>
+
                     <section ref={aboutRef} className="mb-10 md:mb-20 mx-6 md:mx-0">
                         <AboutSection />
                     </section>
@@ -97,9 +101,6 @@ function App() {
                         <Description />
                     </section>
 
-                    <section>
-                        <TracksSection />
-                    </section>
 
                     <section>
                         <ElevatorAnimation />
