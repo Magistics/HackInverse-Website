@@ -42,12 +42,12 @@ export default function Footer() {
         })}
       </div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-10 md:px-16">
         {/* Main footer content */}
 
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <div className="md:-mt-10">
-            <div className="text-2xl md:text-3xl font-extrabold text-center md:text-left tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
+            <div className="text-2xl md:text-3xl font-extrabold  text-center md:text-left tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
               {" "}
               HACKINVERSE
             </div>
