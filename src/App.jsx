@@ -17,6 +17,8 @@ import DetailsSection from "./components/DetailsSection.jsx";
 import CustomCursor from "./components/CustomCursor.jsx";
 import { OnlineVenueSection } from "./components/Venue/OnlineVenueSection.jsx";
 import PerksSection from "./components/Perks/PerksSection.jsx";
+import Duration from "./components/Duration.jsx";
+import Footer2 from "./components/Footer2.jsx";
 
 function App() {
     const homeRef = useRef(null);
@@ -57,6 +59,10 @@ function App() {
                 <main className="">
                     <section ref={homeRef} className=" md:mb-40">
                         <HeroSection />
+                    </section>
+
+                    <section>
+                        <Duration/>
                     </section>
 
                     <section className="hidden md:block" >
@@ -110,7 +116,9 @@ function App() {
                 </main>
 
                 {/* Footer */}
+                <Footer2/>
                 <Footer />
+
             </div>
         </>
     );
