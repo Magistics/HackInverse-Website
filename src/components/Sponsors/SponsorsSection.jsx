@@ -1,34 +1,33 @@
-import React from 'react'
-import SponsorsCategory from './SponsorsCategory'
-import {sponsorsData} from "./SponsorsData"
+import React from "react";
+import SponsorsCategory from "./SponsorsCategory";
+import { sponsorsData } from "./SponsorsData";
 const SponsorsSection = () => {
   return (
-    <div className='min-h-screen flex flex-col items-center py-20 px-6 text-white'>
+    <div className="min-h-screen flex flex-col items-center py-20 px-6 text-white">
       <h1 className="text-6xl md:text-7xl font-bold tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
-           SPONSORS
-        </h1>
-        <div className="w-full max-w-5xl space-y-14 text-center md:mt-10 mt-6">
-
-          <SponsorsCategory
+        SPONSORS
+      </h1>
+      <div className="w-full max-w-5xl space-y-14 text-center md:mt-10 mt-6">
+        <SponsorsCategory
           title="PERKS SPONSOR"
           sponsors={sponsorsData.perks}
           columns={1}
         />
-
-          <SponsorsCategory
+        <div className="h-0.5 w-full bg-red-500"></div>
+        <SponsorsCategory
           title="TITLE SPONSOR"
           sponsors={sponsorsData.title}
           columns={1}
         />
 
-      
+        <div className="h-0.5 w-full bg-red-500"></div>
 
         <SponsorsCategory
           title="GOLD SPONSOR"
           sponsors={sponsorsData.gold}
           columns={3}
         />
-
+        <div className="h-0.5 w-full bg-red-500"></div>
 
         <SponsorsCategory
           title="SILVER SPONSOR"
@@ -36,10 +35,17 @@ const SponsorsSection = () => {
           columns={3}
         />
 
+        <div className="h-0.5 w-full bg-red-500"></div>
 
+        <a
+          href="#"
+          className="border border-red-600 rounded-xl p-4 shadow-[0_0_20px_rgba(255,0,0,0.2)] transition hover:scale-110 
+      hover:shadow-[0_0_30px_#ff0000dd] font-mono font-bold"
+        >
+          BECOME A SPONSOR →
+        </a>
 
-
-            {/* Title Sponsor */}
+        {/* Title Sponsor */}
         {/* <SponsorsCategory
           title="TITLE SPONSOR"
           columns={1}
@@ -48,7 +54,6 @@ const SponsorsSection = () => {
           ]}
         /> */}
 
-        
         {/* <SponsorsCategory
           title="GOLD SPONSOR"
           columns={3}
@@ -71,63 +76,12 @@ const SponsorsSection = () => {
             { src: "/CodeCrafters.io full logo (Dark text).png", alt: "codecrafters" },
           ]}
         /> */}
-
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default SponsorsSection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default SponsorsSection;
 
 // import React from 'react'
 
