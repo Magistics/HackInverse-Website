@@ -1,28 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import calendarBg from "../assets/calendar.png";
+import countdownBg from "../assets/countdown-bg.png";
 import customFont from "../assets/fonts/Stranger-Things-Outlined.ttf";
-import SectionTitle from "./Common/SectionTitle";
+
+const lineVariants = {
+  hidden: { scaleX: 0 },
+  visible: { scaleX: 1, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.3 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+};
 
 const Calender = () => {
-  // Set your hackathon's end date and time here
   const targetDate = new Date("2026-01-31T00:00:00");
 
   const calculateTimeLeft = () => {
     const difference = +targetDate - +new Date();
-    let timeLeft = {};
+    let timeLeft = {
+      days: "00",
+      hours: "00",
+      mins: "00",
+    };
 
     if (difference > 0) {
       timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        mins: Math.floor((difference / 1000 / 60) % 60),
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)).toString().padStart(2, "0"),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24).toString().padStart(2, "0"),
+        mins: Math.floor((difference / 1000 / 60) % 60).toString().padStart(2, "0"),
       };
-    }
-
-    // Add leading zeros if the number is less than 10
-    for (const key in timeLeft) {
-      timeLeft[key] = timeLeft[key].toString().padStart(2, "0");
     }
 
     return timeLeft;
@@ -35,11 +50,43 @@ const Calender = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const DigitBox = ({ value, index }) => {
+    const digits = value.split("");
+    return (
+      <div className="flex gap-1 md:gap-4">
+        {digits.map((digit, idx) => (
+          <div 
+            key={idx} 
+            className="relative w-[45px] h-[75px] sm:w-[60px] sm:h-[100px] md:w-[111px] md:h-[209px] bg-[#171815] rounded-[6px] sm:rounded-[10px] md:rounded-[20px] flex items-center justify-center overflow-hidden"
+          >
+            {/* Horizontal flip line */}
+            <div className="absolute top-1/2 left-0 w-full h-[1px] md:h-[3px] bg-black z-10 shadow-[0_5px_30px_rgba(0,0,0,1)] md:shadow-[0_10px_60px_rgba(0,0,0,1)]"></div>
+            
+            <span className="arcade-text text-[35px] sm:text-[50px] md:text-[100px] leading-none">
+              {digit}
+            </span>
+
+            {/* Side tabs */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[1.5px] h-[6px] sm:w-[2px] sm:h-[8px] md:w-[5px] md:h-[15px] bg-white border border-black z-20"></div>
+            <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[1.5px] h-[6px] sm:w-[2px] sm:h-[8px] md:w-[5px] md:h-[15px] bg-white border border-black z-20"></div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
-    <div className="w-full bg-[#222222] flex flex-col items-center py-6 px-2 sm:px-4 font-sans overflow-hidden">
+    <div 
+      className="w-full min-h-[350px] md:min-h-[591px] flex flex-col items-center justify-center py-8 md:py-12 px-2 sm:px-4 overflow-hidden"
+      style={{
+        backgroundImage: `url(${countdownBg})`,
+        backgroundSize: '300px 300px',
+        backgroundRepeat: 'repeat',
+        backgroundColor: '#f2f2f2'
+      }}
+    >
       <style>
         {`
-          /* 2. Define the Custom Font Face */
           @font-face {
             font-family: 'StrangerHeader';
             src: url(${customFont}) format('truetype');
@@ -47,105 +94,100 @@ const Calender = () => {
             font-style: normal;
           }
 
-          @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@700&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@700&family=Spline+Sans+Mono:wght@500&display=swap');
           
           .arcade-text {
             font-family: 'Albert Sans', sans-serif;
             font-weight: 700; 
             color: #222222; 
             paint-order: stroke fill; 
-            line-height: 1;
-            -webkit-text-stroke: 2px #FFFFFF; 
+            -webkit-text-stroke: 1px #FFFFFF; 
+          }
+          @media (min-width: 640px) {
+            .arcade-text {
+              -webkit-text-stroke: 1.5px #FFFFFF;
+            }
           }
           @media (min-width: 768px) {
             .arcade-text {
-              -webkit-text-stroke: 4.7px #FFFFFF;
+              -webkit-text-stroke: 3px #FFFFFF;
             }
+          }
+
+          .stranger-title {
+            font-family: 'StrangerHeader', serif;
+            letter-spacing: 0.05em;
           }
         `}
       </style>
-      {/* <h2
-        className="text-xl sm:text-4xl md:text-7xl text-center tracking-wider uppercase -mt-6 mb-3 px-2"
-        style={{
-          fontFamily: "'StrangerHeader', serif",
-          WebkitTextStroke: "1px #FF0505",
-          color: "transparent",
-          textShadow: "0 0 20px rgba(255, 0, 0)"
-        }}
+
+      {/* Title Section */}
+      <motion.div 
+        className="relative flex flex-col items-center mb-6 md:mb-12 w-full"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
       >
-        Mark Your Calender
-      </h2>
-
-      <div className="w-full max-w-4xl mb-12 md:mb-24 px-4">
-        <div className="w-full h-px bg-red-500 shadow-[0_0_8px_red]"></div>
-        <div className="w-full h-px bg-red-500 mt-1.5 shadow-[0_0_8px_red]"></div>
-      </div> */}
-      <div className="mb-5">
-        <SectionTitle
-          title="Mark Your Calender"
-          strokeColor="rgba(255,0,0,0.8)"
-          lineColor="rgba(255,0,0,0.8)"
-          lineHeight="h-[3px]"
-          className="merriweather"
-        />
-      </div>
-
-      <div className="relative sm:mt-5 md:mt-15 w-full max-w-5xl mx-auto">
-        <img
-          src={calendarBg}
-          alt="Arcade Machines"
-          className="w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(255,0,0,0.2)]"
-        />
-
-        <div className="absolute inset-0 grid grid-cols-3 text-center">
-          <div className="relative w-full h-full flex justify-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={timeLeft.days || "00"}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute top-[30%] left-[48%] md:left-[47%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
-              >
-                {timeLeft.days || "00"}
-              </motion.p>
-            </AnimatePresence>
-          </div>
-
-          {/* Machine 2: HOURS */}
-          <div className="relative w-full h-full flex justify-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={timeLeft.hours || "00"}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute top-[30%] left-[38%] md:left-[36%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
-              >
-                {timeLeft.hours || "00"}
-              </motion.p>
-            </AnimatePresence>
-          </div>
-
-          {/* Machine 3: MINS */}
-          <div className="relative w-full h-full flex justify-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={timeLeft.mins || "00"}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute top-[30%] left-[31%] md:left-[27%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
-              >
-                {timeLeft.mins || "00"}
-              </motion.p>
-            </AnimatePresence>
-          </div>
+        <motion.h2 
+          className="stranger-title text-[28px] sm:text-[40px] md:text-[100px] text-[#FF0505] leading-tight text-center px-4"
+          animate={{ 
+            textShadow: [
+              "0 0 10px rgba(255,0,0,0.5)",
+              "0 0 30px rgba(255,0,0,0.8)",
+              "0 0 10px rgba(255,0,0,0.5)",
+            ]
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          MARK YOUR CALENDAR
+        </motion.h2>
+        <div className="w-full flex flex-col items-center gap-1 md:gap-2 -mt-1 md:-mt-4">
+          <motion.div 
+            className="w-[85%] md:w-[938px] h-[1px] md:h-[3px] bg-[#FF0505]"
+            variants={lineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            style={{ originX: 0 }}
+          />
+          <motion.div 
+            className="w-[85%] md:w-[938px] h-[1px] md:h-[3px] bg-[#FF0505]"
+            variants={lineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            style={{ originX: 1 }}
+          />
         </div>
-      </div>
+      </motion.div>
+
+      {/* Countdown Section */}
+      <motion.div 
+        className="flex flex-col items-center w-full max-w-5xl"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {/* Labels */}
+        <motion.div 
+          className="grid grid-cols-3 w-full mb-3 md:mb-6 text-[#FF0505] font-['Spline_Sans_Mono'] font-medium text-[10px] sm:text-[14px] md:text-[30px] text-center"
+          variants={itemVariants}
+        >
+          <motion.p whileHover={{ scale: 1.1 }}>DAYS</motion.p>
+          <motion.p whileHover={{ scale: 1.1 }}>HOURS</motion.p>
+          <motion.p whileHover={{ scale: 1.1 }}>MINUTES</motion.p>
+        </motion.div>
+
+        {/* Digits */}
+        <div className="flex justify-center md:justify-between w-full gap-2 sm:gap-4 md:gap-20">
+          <div className="flex-1 flex justify-center"><DigitBox value={timeLeft.days} index={0} /></div>
+          <div className="flex-1 flex justify-center"><DigitBox value={timeLeft.hours} index={1} /></div>
+          <div className="flex-1 flex justify-center"><DigitBox value={timeLeft.mins} index={2} /></div>
+        </div>
+      </motion.div>
     </div>
   );
 };

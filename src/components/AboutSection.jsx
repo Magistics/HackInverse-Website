@@ -1,16 +1,8 @@
 import React from "react";
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-  FaYoutube,
-  FaTwitter,
-  FaDiscord,
-} from "react-icons/fa";
-import SectionTitle from "./Common/SectionTitle";
 import { motion } from "framer-motion";
-import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Facebook, Linkedin, Instagram } from "lucide-react";
 import { BsDiscord } from "react-icons/bs";
+import ScrollReveal from "./Common/ScrollReveal";
 
 const AboutSection = () => {
   return (
@@ -46,12 +38,7 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
-          className="text-4xl my-4  sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 tracking-wide"
-          // style={{
-          //   color: "transparent",
-          //   WebkitTextStroke: "2px #dc2626",
-          //   textShadow: "0 0 20px rgba(220, 38, 38, 0.3)",
-          // }}
+          className="text-4xl my-4 sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 tracking-wide"
           style={{
             fontFamily: "'StrangerHeader', serif",
             WebkitTextStroke: "1px #FF0505",
@@ -62,31 +49,28 @@ const AboutSection = () => {
           HACKINVERSE
         </motion.h1>
 
-        {/* Description Paragraphs */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 md:mb-6"
+        {/* Description Paragraphs with ScrollReveal */}
+        <ScrollReveal
+          baseOpacity={0.1}
+          enableBlur={true}
+          blurStrength={3}
+          baseRotation={2}
+          containerClassName="mb-4 md:mb-6"
+          textClassName="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed font-normal"
         >
-          HackInverse is the flagship hackathon by Magistics, built to bring
-          together students, developers, designers, and innovators from all
-          walks of life. It's a community-driven space where creativity meets
-          collaboration
-        </motion.p>
+          HackInverse is the flagship hackathon by Magistics, built to bring together students, developers, designers, and innovators from all walks of life. It's a community-driven space where creativity meets collaboration
+        </ScrollReveal>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 md:mb-8"
+        <ScrollReveal
+          baseOpacity={0.1}
+          enableBlur={true}
+          blurStrength={3}
+          baseRotation={2}
+          containerClassName="mb-6 md:mb-8"
+          textClassName="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed font-normal"
         >
-          From brainstorming to building, HackInverse inspires participants to
-          learn, connect, and grow while turning bold ideas into impactful
-          innovations.
-        </motion.p>
+          From brainstorming to building, HackInverse inspires participants to learn, connect, and grow while turning bold ideas into impactful innovations.
+        </ScrollReveal>
 
         {/* Social Media Icons */}
         <motion.div
