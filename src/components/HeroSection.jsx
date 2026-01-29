@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import MainTitle from "./Common/MainTitle";
 import "../../src/index.css"
+import SectionTitle from "./Common/SectionTitle";
 
 export default function HeroSection() {
   const ref = useRef(null);
@@ -100,6 +101,7 @@ export default function HeroSection() {
             className="relative z-30"
           >
             <MainTitle />
+          
           </motion.div>
 
           <motion.div 

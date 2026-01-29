@@ -11,7 +11,7 @@ export default function MainTitle() {
 
         {/* Title text */}
         <div className="relative">
-          <h1 className="font-bold text-4xl md:text-7xl lg:text-[7rem] xl:text-[8rem] tracking-wider text-transparent bg-clip-text background-red relative stranger-things uppercase">
+          <h1 className="font-bold text-4xl md:text-7xl xl:text-[8rem] tracking-wider text-transparent bg-clip-text background-red relative stranger-things-filled uppercase">
             HACKINVERSE
           </h1>
         </div>
