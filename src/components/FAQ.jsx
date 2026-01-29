@@ -50,7 +50,9 @@ export default function FAQ() {
                 {faqData.map((item) => (
                     <motion.div
                         key={item.id}
-                        className="overflow-hidden flex flex-col items-center relative"
+                        className={`overflow-hidden flex flex-col items-center relative border-2 rounded-md shadow-lg ${
+                            openItems === item.id ? 'border-[#FF0000]' : 'border-[#555555]'
+                        }`}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: item.id * 0.1 }}
@@ -69,7 +71,7 @@ export default function FAQ() {
                                 transition={{ duration: 0.2 }}
                                 className="shrink-0"
                             >
-                                <ChevronDown className="w-6 h-6 text-gray-400" />
+                                <ChevronDown strokeWidth={3} className="w-10 h-10 text-[#FF0000]" />
                             </motion.div>
                         </button>
 
@@ -93,8 +95,6 @@ export default function FAQ() {
                                 </motion.div>
                             )}
                         </AnimatePresence>
-
-                        <div className="w-[94%] xl:w-[95%] border-t border-[#C83639]"></div>
                     </motion.div>
                 ))}
             </div>
