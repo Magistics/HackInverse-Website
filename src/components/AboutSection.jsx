@@ -16,19 +16,22 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative flex justify-center items-center min-h-screen overflow-hidden"
+      className=" relative flex justify-center items-center min-h-screen overflow-hidden"
     >
       {/* Monster Image - Left Side */}
       <div className="absolute left-0 top-0 bottom-0 w-full md:w-1/2">
         <img
-          src="/monster.png"
+          src="/aboutUs.png"
           alt="HackInverse Monster"
-          className="w-[450px] opacity-30 md:opacity-100"
+          className="w-full h-full object-cover opacity-30 md:opacity-100"
         />
+        <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-[#222222] to-transparent" />
       </div>
 
       {/* Content - Right Side */}
-      <div className="md:absolute md:right-[10%] w-full md:w-[55%] lg:w-[50%] text-center md:text-right">
+      <div className=" md:absolute md:right-[10%] w-full md:w-[55%] lg:w-[50%] text-center md:text-right">
+        <div className=" flex flex-col md:items-end ">
+
         {/* About Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -41,26 +44,13 @@ const AboutSection = () => {
         </motion.h2>
 
         {/* HackInverse Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="text-4xl my-4  sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 tracking-wide"
-          // style={{
-          //   color: "transparent",
-          //   WebkitTextStroke: "2px #dc2626",
-          //   textShadow: "0 0 20px rgba(220, 38, 38, 0.3)",
-          // }}
-          style={{
-            fontFamily: "'StrangerHeader', serif",
-            WebkitTextStroke: "1px #FF0505",
-            color: "transparent",
-            textShadow: "0 0 15px rgba(255, 0, 0)",
-          }}
-        >
-          HACKINVERSE
-        </motion.h1>
+
+        <SectionTitle
+          title="HACKINVERSE"
+          lineHeight="h-[3px]"
+          titleSize="text-3xl md:text-4xl lg:text-6xl xl:text-7xl"
+        />
+        </div>
 
         {/* Description Paragraphs */}
         <motion.p
@@ -68,7 +58,7 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 md:mb-6"
+          className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 mx-10 sm:mx-0 md:mb-6"
         >
           HackInverse is the flagship hackathon by Magistics, built to bring
           together students, developers, designers, and innovators from all
@@ -81,7 +71,7 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 md:mb-8"
+          className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 mx-10 sm:mx-0 md:mb-8"
         >
           From brainstorming to building, HackInverse inspires participants to
           learn, connect, and grow while turning bold ideas into impactful

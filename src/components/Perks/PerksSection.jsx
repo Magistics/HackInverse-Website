@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout as Layout2, BarChart3, Clock } from 'lucide-react';
+import SectionTitle from '../Common/SectionTitle';
 
 export default function PerksSection() {
   const perks = [
@@ -30,16 +31,22 @@ export default function PerksSection() {
     <section className="w-full py-12 md:py-20 px-16 md:px-20 lg:px-32 mb-20">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
-        
+        <SectionTitle
+                  title="PERKS"
+                  strokeColor="rgba(255,0,0,0.8)"
+                  lineColor="rgba(255,0,0,0.8)"
+                  lineHeight="h-[3px]"
+                  titleSize="text-5xl lg:text-6xl xl:text-7xl mb-16"
+                />
 
         {/* Cards Grid */}
-        <div className=" grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
           {perks.map((perk) => {
             const IconComponent = perk.icon;
             return (
               <div
                 key={perk.id}
-                className="relative max-w-[20rem] rounded-[10px] border border-red-600 overflow-hidden group hover:shadow-lg hover:shadow-red-600/50 transition-all duration-300"
+                className="relative w-full max-w-[20rem] rounded-[10px] border border-red-600 overflow-hidden group hover:shadow-lg hover:shadow-red-600/50 transition-all duration-300"
               >
                 {/* Card Content */}
                 <div className="p-4 md:p-6 h-full flex flex-col">
