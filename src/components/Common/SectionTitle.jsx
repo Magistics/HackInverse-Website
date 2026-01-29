@@ -7,6 +7,7 @@ export default function SectionTitle({
   lineColor = "#FF0505",
   className = "",
   isTopLine = false,
+  titleSize = "",
 }) {
   // Split title into first, middle, and last characters
   const firstChar = title.charAt(0);
@@ -30,7 +31,7 @@ export default function SectionTitle({
 
       {/* Title */}
       <h2
-        className="text-3xl sm:text-4xl md:text-7xl uppercase mb-3 px-2 stranger-things-filled flex items-center tracking-tighter drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]"
+        className={`uppercase mb-3 px-2 stranger-things-filled flex items-center tracking-tighter drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] ${titleSize}`}
         style={{
           color: strokeColor,
         }}

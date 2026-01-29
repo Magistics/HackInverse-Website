@@ -4,14 +4,13 @@ import track2 from "../../assets/track2.png"
 import track3 from "../../assets/track3.png"
 import track4 from "../../assets/track4.png"
 import track5 from "../../assets/track5.png"
+import SectionTitle from "../Common/SectionTitle";
 
 const TracksSection = () => {
   return (
     <div className="min-h-screen w-full flex items-center justify-center text-white font-mono -mt-10 md:-mt-50">
       <div className="max-w-6xl w-full px-6 text-center">
-        <h1 className="text-6xl md:text-7xl font-extrabold tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
-          TRACKS
-        </h1>
+        <SectionTitle title="TRACKS" titleSize="text-3xl sm:text-4xl md:text-7xl"/>
         <p className="text-xl md:text-4xl">Select Your Domain</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 md:text-left max-w-4xl mx-auto">

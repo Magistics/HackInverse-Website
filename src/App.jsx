@@ -19,6 +19,7 @@ import { OnlineVenueSection } from "./components/Venue/OnlineVenueSection.jsx";
 import PerksSection from "./components/Perks/PerksSection.jsx";
 import Duration from "./components/Duration.jsx";
 import Footer2 from "./components/Footer2.jsx";
+import ShadowSection from "./components/ShadowSection.jsx";
 
 function App() {
     const homeRef = useRef(null);
@@ -100,7 +101,10 @@ function App() {
                     <section>
                         <Description />
                     </section>
-
+                    
+                    <section>
+                        <ShadowSection/>
+                    </section>
 
                     <section>
                         <ElevatorAnimation />

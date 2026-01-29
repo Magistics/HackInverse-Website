@@ -3,7 +3,7 @@ import ElevatorImage from "../../assets/Elevator.png";
 
 export default function ElevatorAnimation() {
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#9E1C1E] py-[5vh] sm:py-[8vh] md:py-[10vh]"> 
+    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#9E1C1E]"> 
       {/* Elevator Image */}
       <img
         src={ElevatorImage}

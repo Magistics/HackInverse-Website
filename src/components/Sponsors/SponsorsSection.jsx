@@ -8,7 +8,7 @@ const SponsorsSection = () => {
       {/* <h1 className="text-6xl md:text-7xl font-bold tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
         SPONSORS
       </h1> */}
-      <SectionTitle title="SPONSORS" />
+      <SectionTitle title="SPONSORS" titleSize="text-3xl sm:text-4xl md:text-7xl"/>
       <div className="w-full max-w-5xl space-y-14 text-center md:mt-10 mt-6 flex flex-col items-center">
         <SponsorsCategory
           title="PERKS SPONSOR"

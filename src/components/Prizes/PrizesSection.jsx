@@ -51,7 +51,7 @@ const PrizesSection = () => {
           strokeColor="rgba(255,0,0,0.8)"
           lineColor="rgba(255,0,0,0.8)"
           lineHeight="h-[3px]"
-          className="merriweather"
+          titleSize="text-3xl sm:text-4xl md:text-7xl"
         />
       </div>
 

@@ -13,7 +13,7 @@ export default function Description() {
       offset: ["start end", "end start"],
   });
 
-  const cyclistsXRaw = useTransform(scrollYProgress, [0.4, 1], ["100vw", "-70vw"]);
+  const cyclistsXRaw = useTransform(scrollYProgress, [0, 1], ["100vw", "-80vw"]);
 
   const cyclistsX = useSpring(cyclistsXRaw, {
     stiffness: 30,
@@ -24,15 +24,18 @@ export default function Description() {
     <div
       ref={sectionRef}
       className="
-        relative min-h-screen w-full bg-[#222222] overflow-hidden text-white font-inter 
+        relative w-full bg-[#222222] overflow-hidden text-white font-inter 
         flex flex-col items-center justify-start px-4 sm:px-6 md:px-8 lg:px-16
-
+        lg:min-h-screen
         /* MOBILE: less top gap */
         pt-[30vh]     
-        sm:pt-[12vh] md:pt-[14vh] lg:pt-[16vh]
+        /* DESKTOP: more top gap */
+        md:pt-[60vh]
+        lg:pt-[100vh]
+        z-10
       "
     >
-      <div className="absolute bottom-0 left-0 right-0 h-[6px] bg-black z-30"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black z-30"></div>
 
       {/* LEFT TREE */}
       <div
