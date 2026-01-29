@@ -109,8 +109,8 @@ const AboutSection = () => {
               ),
               href: "#",
             },
-            { icon: Linkedin, href: "#" },
-            { icon: Instagram, href: "#" },
+            { icon: Linkedin, href: "https://www.linkedin.com/company/magistics/" },
+            { icon: Instagram, href: "https://www.instagram.com/hackinverse" },
             { icon: BsDiscord, href: "https://discord.gg/QrpFxmAA" },
           ].map((social, index) => (
             <motion.a

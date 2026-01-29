@@ -12,6 +12,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'StrangerThingsFilled';
+  src: url('./assets/fonts/Stranger-Things-Filled.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body,
 #root {
@@ -25,6 +32,7 @@ body,
   --font-albert-sans: "Albert Sans", sans-serif;
   --font-sofia-sans-extra-condensed: "Sofia Sans Extra Condensed", sans-serif;
   --font-stranger-things: "StrangerThings", sans-serif;
+  --font-stranger-things-filled: "StrangerThingsFilled", sans-serif;
   --redColor: #FF0505;
 }
 
@@ -54,6 +62,10 @@ body,
 
 .stranger-things {
   font-family: "StrangerThings", sans-serif;
+}
+
+.stranger-things-filled {
+  font-family: "StrangerThingsFilled", sans-serif;
 }
 
 .font-red {

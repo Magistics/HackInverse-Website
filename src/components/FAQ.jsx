@@ -43,7 +43,7 @@ export default function FAQ() {
     return (
         <section className="py-16 px-4 background-dark flex flex-col items-center overflow-hidden">
             <div className="mb-12">
-                <SectionTitle title="FAQ'S" strokeColor="#C83639" lineColor="#C83639" lineHeight="h-[3px]" className="merriweather"/>
+                <SectionTitle title="FAQ'S" titleSize="text-3xl sm:text-4xl md:text-7xl"/>
             </div>
 
             <div className="space-y-4 min-w-3/5 w-full md:max-w-3/5">

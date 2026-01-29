@@ -16,6 +16,10 @@ import HeroSection from "./components/HeroSection.jsx";
 import DetailsSection from "./components/DetailsSection.jsx";
 import CustomCursor from "./components/CustomCursor.jsx";
 import { OnlineVenueSection } from "./components/Venue/OnlineVenueSection.jsx";
+import PerksSection from "./components/Perks/PerksSection.jsx";
+import Duration from "./components/Duration.jsx";
+import Footer2 from "./components/Footer2.jsx";
+import ShadowSection from "./components/ShadowSection.jsx";
 
 function App() {
     const homeRef = useRef(null);
@@ -58,6 +62,10 @@ function App() {
                         <HeroSection />
                     </section>
 
+                    <section>
+                        <Duration/>
+                    </section>
+
                     <section className="hidden md:block" >
                         <DetailsSection />
                     </section>
@@ -66,8 +74,16 @@ function App() {
                         <Calender />
                     </section>
 
+                    <section>
+                        <TracksSection />
+                    </section>
+
                     <section ref={aboutRef} className="mb-10 md:mb-20 mx-6 md:mx-0">
                         <AboutSection />
+                    </section>
+
+                    <section className="">
+                        <PerksSection/>
                     </section>
 
                     <section ref={sponsorsRef}>
@@ -85,9 +101,9 @@ function App() {
                     <section>
                         <Description />
                     </section>
-
+                    
                     <section>
-                        <TracksSection />
+                        <ShadowSection/>
                     </section>
 
                     <section>
@@ -105,7 +121,9 @@ function App() {
                 </main>
 
                 {/* Footer */}
+                <Footer2/>
                 <Footer />
+
             </div>
         </>
     );

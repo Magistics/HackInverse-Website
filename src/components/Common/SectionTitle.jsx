@@ -4,10 +4,16 @@ export default function SectionTitle({
   title,
   strokeColor = "#FF0505",
   strokeWidth = "1.5px",
-  lineColor = "rgba(255, 0, 0)",
+  lineColor = "#FF0505",
   className = "",
   isTopLine = false,
+  titleSize = "",
 }) {
+  // Split title into first, middle, and last characters
+  const firstChar = title.charAt(0);
+  const middleChars = title.slice(1, -1);
+  const lastChar = title.charAt(title.length - 1);
+
   return (
     <div className={`flex flex-col items-center ${className}`}>
       {/* Top double lines */}
@@ -25,22 +31,25 @@ export default function SectionTitle({
 
       {/* Title */}
       <h2
-        className="text-xl sm:text-4xl md:text-7xl text-center tracking-wider uppercase mb-3 px-2"
+        className={`uppercase mb-3 px-2 stranger-things-filled flex items-center tracking-tighter drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] ${titleSize}`}
         style={{
-          fontFamily: "'StrangerHeader', serif",
-          WebkitTextStroke: "1px #FF0505",
-          color: "transparent",
-          textShadow: "0 0 20px rgba(255, 0, 0)"
+          color: strokeColor,
         }}
       >
-        {title}
+        <span className="text-[1.5em] mt-3 md:mt-5">{firstChar}</span>
+        <span className="inline-block relative">
+          {middleChars}
+          <span className="absolute -bottom-0.5 md:-bottom-2 left-0 right-0 h-0.5" style={{ backgroundColor: strokeColor }}></span>
+          <span className="absolute -bottom-2 md:-bottom-3.5 left-0 right-0 h-0.5" style={{ backgroundColor: strokeColor }}></span>
+        </span>
+        <span className="text-[1.5em] mt-3 md:mt-5">{lastChar}</span>
       </h2>
 
-      {/* Bottom double lines */}
+      {/* Bottom double lines
       <div className="w-full">
-        <div className="w-full h-px bg-red-500 shadow-[0_0_8px_red]"></div>
-        <div className="w-full h-px bg-red-500 mt-1.5 shadow-[0_0_8px_red]"></div>
-      </div>
+        <div className="w-full h-0.5 bg-red-500"></div>
+        <div className="w-full h-0.5 bg-red-500 mt-1.5"></div>
+      </div> */}
     </div>
   );
 }
