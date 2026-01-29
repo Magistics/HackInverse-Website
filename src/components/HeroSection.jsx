@@ -124,7 +124,7 @@ export default function HeroSection() {
               whileTap={{ scale: 0.95 }}
               className="border-slate-700/50 cursor-pointer text-white shadow-red-500/80  relative inline-flex items-center px-6 md:px-8 py-2 md:py-3 rounded-full bg-slate-900/80 border shadow-[0_0_30px_rgba(220,38,38,0.22)] text-sm md:text-base whitespace-nowrap sofia-sans-extra-condensed font-bold"
             >
-              Register Now
+              Apply With Devfolio
             </motion.a>
           </motion.div>
         </motion.div>

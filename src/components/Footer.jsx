@@ -13,9 +13,71 @@ import { BsDiscord } from "react-icons/bs";
 
 export default function Footer() {
   return (
-    <footer className="text-white py-6 alata bg-linear-to-t from-[#480B0D] to-[#222222]">
-      <div className="container mx-auto px-4">
+    <footer className="relative w-full text-white py-6 alata overflow-hidden bg-gradient-to-b from-[#040E3A] via-[#0A0B10] to-[#0B0B0B]">
+  
+      <style>{`
+        @keyframes starFloat {
+          0% { transform: translate(0, 0); opacity: 0.4; }
+          50% { transform: translate(8px, -8px); opacity: 0.8; }
+          100% { transform: translate(0, 0); opacity: 0.4; }
+        }
+      `}</style>
+
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(40)].map((_, i) => {
+          const delay = Math.random() * 5;
+          const duration = Math.random() * 20 + 20;
+          return (
+            <span
+              key={i}
+              className="absolute w-[2px] h-[2px] bg-white/40 rounded-full"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animation: `starFloat ${duration}s ease-in-out infinite`,
+                animationDelay: `${delay}s`,
+              }}
+            />
+          );
+        })}
+      </div>
+
+      <div className="container mx-auto px-10 md:px-16">
         {/* Main footer content */}
+
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+          <div className="md:-mt-10">
+            <div className="text-2xl md:text-3xl font-extrabold  text-center md:text-left tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
+              {" "}
+              HACKINVERSE
+            </div>
+            <div className="text-white text-sm md:text-xl font-mono">
+              An Offline Hackathon Experience In Kolkata,
+              <br />
+              Inspired By The Unknown, Built For The Future
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-10 font-mono md:text-xl text:sm mt-6">
+            <div>
+              <h3 className="underline">COORDINATES</h3>
+              <ul>
+                <li className="hover:text-red-500 cursor-pointer">About</li>
+                <li className="hover:text-red-500 cursor-pointer">Sponsors</li>
+                <li className="hover:text-red-500 cursor-pointer">Teams</li>
+                <li className="hover:text-red-500 cursor-pointer">FAQs</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="underline">PROTOCOLS</h3>
+              <ul>
+                <li className="hover:text-red-500 cursor-pointer">Terms</li>
+                <li className="hover:text-red-500 cursor-pointer">Rules</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           {/* Left side - Logo and text */}
           <div className="flex flex-col items-baseline mb-4 md:mb-0">
@@ -49,8 +111,14 @@ export default function Footer() {
                   ),
                   href: "#",
                 },
-                { icon: Linkedin, href: "https://www.linkedin.com/showcase/hackinverse" },
-                { icon: Instagram, href: "https://www.instagram.com/hackinverse" },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/showcase/hackinverse",
+                },
+                {
+                  icon: Instagram,
+                  href: "https://www.instagram.com/hackinverse",
+                },
                 { icon: BsDiscord, href: "https://discord.gg/QrpFxmAA" },
               ].map((social, index) => (
                 <motion.a
