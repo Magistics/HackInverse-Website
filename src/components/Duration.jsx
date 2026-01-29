@@ -2,15 +2,15 @@ import React from 'react'
 
 const Duration = () => {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center text-white font-mono">
-      <div className="max-w-6xl w-full px-6 text-center">
+    <div className="min-h-screen pt-10 pb-24 lg:min-h-auto w-full flex  justify-center text-white font-mono">
+      <div className="max-w-6xl w-full text-center">
 
-        <h1 className="text-6xl md:text-7xl font-extrabold tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
+        {/* <h1 className="text-6xl md:text-7xl font-extrabold tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
           HACKINVERSE
-        </h1>
-        <div className="w-72 h-[3px] bg-red-600 mx-auto mt-2" />
+        </h1> */}
+        {/* <div className="w-72 h-[3px] bg-red-600 mx-auto mt-2" /> */}
 
-        <p className="mt-8 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+        <p className=" text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
           Enter the Unknown. A 24-hour online coding saga where developers
           breach the portal to solve problems from another dimension
         </p>
