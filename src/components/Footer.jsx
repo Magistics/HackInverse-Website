@@ -13,29 +13,41 @@ import { BsDiscord } from "react-icons/bs";
 
 export default function Footer() {
   return (
-    <footer className="relative w-full text-white py-6 alata overflow-hidden bg-gradient-to-b from-[#040E3A] via-[#0A0B10] to-[#0B0B0B]">
-  
-      <style>{`
-        @keyframes starFloat {
-          0% { transform: translate(0, 0); opacity: 0.4; }
-          50% { transform: translate(8px, -8px); opacity: 0.8; }
-          100% { transform: translate(0, 0); opacity: 0.4; }
-        }
-      `}</style>
-
+    <footer className="relative w-full text-white py-6 alata overflow-hidden bg-linear-to-b from-[#040E3A] via-[#0A0B10] to-[#0B0B0B]">
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(40)].map((_, i) => {
-          const delay = Math.random() * 5;
-          const duration = Math.random() * 20 + 20;
+          const delay = Math.random() * 2;
+          const duration = Math.random() * 3 + 2;
+          const scale = Math.random() * 0.5 + 0.5;
+          const startX = Math.random() * 100;
+          const startY = Math.random() * 100;
+          const endX = Math.random() * 100;
+          const endY = Math.random() * 100;
           return (
-            <span
+            <motion.span
               key={i}
-              className="absolute w-[2px] h-[2px] bg-white/40 rounded-full"
+              className="absolute bg-white rounded-full"
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animation: `starFloat ${duration}s ease-in-out infinite`,
-                animationDelay: `${delay}s`,
+                width: `${scale * 2}px`,
+                height: `${scale * 2}px`,
+              }}
+              initial={{ 
+                opacity: 0, 
+                scale: 0, 
+                top: `${startY}%`, 
+                left: `${startX}%` 
+              }}
+              animate={{
+                opacity: [0.2, 1, 0.2],
+                scale: [scale * 0.8, scale * 1.5, scale * 0.8],
+                top: [`${startY}%`, `${endY}%`, `${startY}%`],
+                left: [`${startX}%`, `${endX}%`, `${startX}%`],
+              }}
+              transition={{
+                duration: duration,
+                repeat: Infinity,
+                delay: delay,
+                ease: "easeInOut",
               }}
             />
           );

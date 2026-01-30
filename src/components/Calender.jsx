@@ -36,7 +36,7 @@ const Calender = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[#222222] flex flex-col items-center py-6 px-2 sm:px-4 font-sans overflow-hidden">
+    <div className="w-full bg-[#222222] flex flex-col items-center pb-6 px-2 sm:px-4 font-sans overflow-hidden">
       <style>
         {`
           /* 2. Define the Custom Font Face */

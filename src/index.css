@@ -19,6 +19,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Altron';
+  src: url('./assets/fonts/altron.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body,
 #root {
@@ -33,6 +40,7 @@ body,
   --font-sofia-sans-extra-condensed: "Sofia Sans Extra Condensed", sans-serif;
   --font-stranger-things: "StrangerThings", sans-serif;
   --font-stranger-things-filled: "StrangerThingsFilled", sans-serif;
+  --font-altron: "Altron", sans-serif;
   --redColor: #FF0505;
 }
 
@@ -66,6 +74,10 @@ body,
 
 .stranger-things-filled {
   font-family: "StrangerThingsFilled", sans-serif;
+}
+
+.altron {
+  font-family: "Altron", sans-serif;
 }
 
 .font-red {
