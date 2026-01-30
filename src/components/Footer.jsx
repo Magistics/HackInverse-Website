@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(40)].map((_, i) => {
           const delay = Math.random() * 2;
-          const duration = Math.random() * 3 + 2;
+          const duration = Math.random() * 30 + 2;
           const scale = Math.random() * 0.5 + 0.5;
           const startX = Math.random() * 100;
           const startY = Math.random() * 100;
@@ -111,7 +111,6 @@ export default function Footer() {
               className="flex items-center justify-center md:justify-end gap-3 sm:gap-4 mb-6 md:mb-8"
             >
               {[
-                { icon: Facebook, href: "#" },
                 {
                   icon: () => (
                     <svg
@@ -121,7 +120,7 @@ export default function Footer() {
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                   ),
-                  href: "#",
+                  href: "https://x.com/Magistics_main",
                 },
                 {
                   icon: Linkedin,
@@ -194,7 +193,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center">
             <a
-              href="#"
+              href="https://linktr.ee/Magistics_official"
               target="_blank"
               rel="noopener noreferrer"
               className="mr-2"

@@ -19,6 +19,7 @@ export default function DetailsSection() {
                     </div>
                 </div>
                 <img src={GroupImage} alt="GroupImage" className="absolute left-0 right-0 w-full bottom-3 md:-bottom-30"/>
+                <div className="absolute bottom-0 w-full h-24 md:h-48 bg-gradient-to-t from-[#222222] to-transparent"></div>
             </div> 
         </>
     );

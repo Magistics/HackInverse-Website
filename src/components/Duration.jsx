@@ -37,7 +37,7 @@ const Duration = () => {
 
         
         <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-          <a href = "#" target = "blank" className="px-6 py-3 border border-red-600 rounded-lg text-white hover:bg-red-600 transition-all duration-300 shadow-[0_0_15px_rgba(255,0,0,0.5)] cursor-pointer">
+          <a href = "https://linktr.ee/Magistics_official" target = "blank" className="px-6 py-3 border border-red-600 rounded-lg text-white hover:bg-red-600 transition-all duration-300 shadow-[0_0_15px_rgba(255,0,0,0.5)] cursor-pointer">
             Learn More →
           </a>
           <a href = "https://discord.gg/WxbySH72Z" target = "blank" className="px-6 py-3 rounded-lg bg-[#2E306D] hover:bg-indigo-700 transition-all duration-300 cursor-pointer altron text-xl">

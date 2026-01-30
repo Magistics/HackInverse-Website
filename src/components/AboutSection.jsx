@@ -31,25 +31,24 @@ const AboutSection = () => {
       {/* Content - Right Side */}
       <div className=" md:absolute md:right-[10%] w-full md:w-[55%] lg:w-[50%] text-center md:text-right">
         <div className=" flex flex-col md:items-end ">
+          {/* About Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-white text-3xl sm:text-4xl md:text-5xl font-bold tracking-wider mb-2"
+          >
+            ABOUT
+          </motion.h2>
 
-        {/* About Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-white text-3xl sm:text-4xl md:text-5xl font-bold tracking-wider mb-2"
-        >
-          ABOUT
-        </motion.h2>
+          {/* HackInverse Title */}
 
-        {/* HackInverse Title */}
-
-        <SectionTitle
-          title="HACKINVERSE"
-          lineHeight="h-[3px]"
-          titleSize="text-3xl md:text-4xl lg:text-6xl xl:text-7xl"
-        />
+          <SectionTitle
+            title="HACKINVERSE"
+            lineHeight="h-[3px]"
+            titleSize="text-3xl md:text-4xl lg:text-6xl xl:text-7xl"
+          />
         </div>
 
         {/* Description Paragraphs */}
@@ -87,7 +86,7 @@ const AboutSection = () => {
           className="flex items-center justify-center md:justify-end gap-3 sm:gap-4 mb-6 md:mb-8"
         >
           {[
-            { icon: Facebook, href: "#" },
+            
             {
               icon: () => (
                 <svg
@@ -97,9 +96,12 @@ const AboutSection = () => {
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               ),
-              href: "#",
+              href: "https://x.com/Magistics_main",
             },
-            { icon: Linkedin, href: "https://www.linkedin.com/company/magistics/" },
+            {
+              icon: Linkedin,
+              href: "https://www.linkedin.com/company/magistics/",
+            },
             { icon: Instagram, href: "https://www.instagram.com/hackinverse" },
             { icon: BsDiscord, href: "https://discord.gg/QrpFxmAA" },
           ].map((social, index) => (
@@ -124,7 +126,7 @@ const AboutSection = () => {
           className="flex justify-center md:justify-end"
         >
           <motion.a
-            href="#"
+            href="https://linktr.ee/Magistics_official"
             className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-colors duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
