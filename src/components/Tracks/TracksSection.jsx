@@ -8,12 +8,12 @@ import SectionTitle from "../Common/SectionTitle";
 
 const TracksSection = () => {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center text-white font-mono -mt-10 md:-mt-50">
-      <div className="max-w-6xl w-full px-6 text-center">
-        <SectionTitle title="TRACKS" titleSize="text-3xl sm:text-4xl md:text-7xl"/>
-        <p className="text-xl md:text-4xl">Select Your Domain</p>
+    <div className=" min-h-screen w-full flex items-center justify-center text-white font-mono -mt-10 md:-mt-50">
+      <div className="sm:mt-20 lg:mt-32 mb-32 max-w-6xl w-full px-6 text-center">
+        <SectionTitle title="TRACKS" titleSize=" text-5xl  md:text-7xl"/>
+        <p className="mt-2 md:mt-10  text-xl md:text-4xl">Select Your Domain</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 md:text-left max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 px-14 md:px-0 md:grid-cols-3 gap-4 mt-10 md:text-left max-w-4xl mx-auto">
           <Tracks
           img = {track1}
             heading="OPEN INNOVATION"

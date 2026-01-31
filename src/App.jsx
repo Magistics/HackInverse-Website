@@ -18,7 +18,6 @@ import CustomCursor from "./components/CustomCursor.jsx";
 import { OnlineVenueSection } from "./components/Venue/OnlineVenueSection.jsx";
 import PerksSection from "./components/Perks/PerksSection.jsx";
 import Duration from "./components/Duration.jsx";
-import Footer2 from "./components/Footer2.jsx";
 import ShadowSection from "./components/ShadowSection.jsx";
 
 function App() {
@@ -62,7 +61,7 @@ function App() {
                         <HeroSection />
                     </section>
 
-                    <section>
+                    <section className="pt-30 md:pt-0 pb-0 md:pb-20">
                         <Duration/>
                     </section>
 
@@ -70,7 +69,7 @@ function App() {
                         <DetailsSection />
                     </section>
 
-                    <section ref={agendaRef} className="my-32 md:my-44 mx-6 md:mx-0">
+                    <section ref={agendaRef} className="mb-32 md:my-44 mx-6 md:mx-0">
                         <Calender />
                     </section>
 
@@ -78,7 +77,7 @@ function App() {
                         <TracksSection />
                     </section>
 
-                    <section ref={aboutRef} className="mb-10 md:mb-20 mx-6 md:mx-0">
+                    <section ref={aboutRef} className="mb-10 md:mb-20 md:mx-0">
                         <AboutSection />
                     </section>
 
@@ -121,9 +120,7 @@ function App() {
                 </main>
 
                 {/* Footer */}
-                <Footer2/>
                 <Footer />
-
             </div>
         </>
     );

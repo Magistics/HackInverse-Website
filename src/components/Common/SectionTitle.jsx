@@ -18,7 +18,7 @@ export default function SectionTitle({
     <div className={`flex flex-col items-center ${className}`}>
       {/* Top double lines */}
       {isTopLine && (
-        <div className="w-full mb-3">
+        <div className="w-full mb-3 drop-shadow-[0_5px_5px_rgba(0,0,0,1)]">
           <div
             className="h-1 mb-1.5"
             style={{ 
@@ -31,7 +31,7 @@ export default function SectionTitle({
 
       {/* Title */}
       <h2
-        className={`uppercase mb-3 px-2 stranger-things-filled flex items-center tracking-tighter drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] ${titleSize}`}
+        className={`uppercase mb-3 px-2 stranger-things-filled flex items-center tracking-tighter drop-shadow-[0_5px_5px_rgba(0,0,0,1)] ${titleSize}`}
         style={{
           color: strokeColor,
         }}

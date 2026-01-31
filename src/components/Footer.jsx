@@ -13,29 +13,41 @@ import { BsDiscord } from "react-icons/bs";
 
 export default function Footer() {
   return (
-    <footer className="relative w-full text-white py-6 alata overflow-hidden bg-gradient-to-b from-[#040E3A] via-[#0A0B10] to-[#0B0B0B]">
-  
-      <style>{`
-        @keyframes starFloat {
-          0% { transform: translate(0, 0); opacity: 0.4; }
-          50% { transform: translate(8px, -8px); opacity: 0.8; }
-          100% { transform: translate(0, 0); opacity: 0.4; }
-        }
-      `}</style>
-
+    <footer className="relative w-full text-white py-6 alata overflow-hidden bg-linear-to-b from-[#040E3A] via-[#0A0B10] to-[#0B0B0B]">
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(40)].map((_, i) => {
-          const delay = Math.random() * 5;
-          const duration = Math.random() * 20 + 20;
+          const delay = Math.random() * 2;
+          const duration = Math.random() * 30 + 2;
+          const scale = Math.random() * 0.5 + 0.5;
+          const startX = Math.random() * 100;
+          const startY = Math.random() * 100;
+          const endX = Math.random() * 100;
+          const endY = Math.random() * 100;
           return (
-            <span
+            <motion.span
               key={i}
-              className="absolute w-[2px] h-[2px] bg-white/40 rounded-full"
+              className="absolute bg-white rounded-full"
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animation: `starFloat ${duration}s ease-in-out infinite`,
-                animationDelay: `${delay}s`,
+                width: `${scale * 2}px`,
+                height: `${scale * 2}px`,
+              }}
+              initial={{ 
+                opacity: 0, 
+                scale: 0, 
+                top: `${startY}%`, 
+                left: `${startX}%` 
+              }}
+              animate={{
+                opacity: [0.2, 1, 0.2],
+                scale: [scale * 0.8, scale * 1.5, scale * 0.8],
+                top: [`${startY}%`, `${endY}%`, `${startY}%`],
+                left: [`${startX}%`, `${endX}%`, `${startX}%`],
+              }}
+              transition={{
+                duration: duration,
+                repeat: Infinity,
+                delay: delay,
+                ease: "easeInOut",
               }}
             />
           );
@@ -99,7 +111,6 @@ export default function Footer() {
               className="flex items-center justify-center md:justify-end gap-3 sm:gap-4 mb-6 md:mb-8"
             >
               {[
-                { icon: Facebook, href: "#" },
                 {
                   icon: () => (
                     <svg
@@ -109,7 +120,7 @@ export default function Footer() {
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                   ),
-                  href: "#",
+                  href: "https://x.com/Magistics_main",
                 },
                 {
                   icon: Linkedin,
@@ -182,7 +193,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center">
             <a
-              href="#"
+              href="https://linktr.ee/Magistics_official"
               target="_blank"
               rel="noopener noreferrer"
               className="mr-2"
