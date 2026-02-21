@@ -7,7 +7,7 @@ const SponsorsLogo = ({ src, alt }) => {
                     hover:scale-110 transition-transform duration-300
                     shadow-md hover:shadow-[0_0_15px_rgba(255,0,0,0.5)]"
     >
-      <img src={src} alt={alt} className="h-14 object-contain" />
+      <img src={src} alt={alt} className="h-18 object-contain" />
     </div>
   );
 };

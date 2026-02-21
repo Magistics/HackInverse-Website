@@ -17,8 +17,8 @@ const SponsorsSection = () => {
         />
         <div className="h-px w-[80%] bg-red-500"></div>
         <SponsorsCategory
-          title="TITLE SPONSOR"
-          sponsors={sponsorsData.title}
+          title="ONLINE PLATFORM SPONSOR"
+          sponsors={sponsorsData.onlinePlatform}
           columns={1}
         />
 

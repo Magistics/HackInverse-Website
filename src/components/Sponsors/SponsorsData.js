@@ -3,6 +3,10 @@ export const sponsorsData = {
     { src: "/CodeCrafters.io full logo (Dark text).png", alt: "codecrafters" },
   ],
 
+  onlinePlatform: [
+    { src: "/Unstop.png", alt: "Unstop" },
+  ],
+
   title: [{ src: null, alt: "Coming Soon" }],
 
   gold: [
