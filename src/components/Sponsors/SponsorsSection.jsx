@@ -11,13 +11,13 @@ const SponsorsSection = () => {
       <SectionTitle title="SPONSORS" titleSize="text-3xl sm:text-4xl md:text-7xl"/>
       <div className="w-full max-w-5xl space-y-14 text-center md:mt-10 mt-6 flex flex-col items-center">
         <SponsorsCategory
-          title="PERKS SPONSOR"
+          title="Previous PERKS SPONSOR"
           sponsors={sponsorsData.perks}
           columns={1}
         />
         <div className="h-px w-[80%] bg-red-500"></div>
         <SponsorsCategory
-          title="ONLINE PLATFORM SPONSOR"
+          title="Previous ONLINE PLATFORM SPONSOR"
           sponsors={sponsorsData.onlinePlatform}
           columns={1}
         />

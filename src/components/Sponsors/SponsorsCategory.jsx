@@ -5,7 +5,7 @@ import BlurCard from './BlurCard'
 const SponsorsCategory = ({ title, sponsors, columns = 3 }) => {
   return (
     <div className="w-full text-center">
-        <h2 className="text-2xl font-bold mb-6 md:mb-10">{title}</h2>
+        <h2 className="text-2xl font-bold mb-6 md:mb-10 uppercase">{title}</h2>
 
       <div
         className={`grid gap-8 justify-items-center 

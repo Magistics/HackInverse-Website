@@ -1,9 +1,5 @@
 import React from "react";
-import track1 from "../../assets/track1.png" 
-import track2 from "../../assets/track2.png"
-import track3 from "../../assets/track3.png"
-import track4 from "../../assets/track4.png"
-import track5 from "../../assets/track5.png"
+import { Gamepad2, Code, Brain, Palette, Zap } from "lucide-react";
 import SectionTitle from "../Common/SectionTitle";
 
 const TracksSection = () => {
@@ -15,31 +11,31 @@ const TracksSection = () => {
 
         <div className="grid grid-cols-1 px-14 md:px-0 md:grid-cols-3 gap-4 mt-10 md:text-left max-w-4xl mx-auto">
           <Tracks
-          img = {track1}
-            heading="OPEN INNOVATION"
-            detail="Solve problems that don't exist yet using unconventional methods"
+          icon = {Gamepad2}
+            heading="Game Development"
+            detail="Design immersive worlds and interactive experiences that push the boundaries of gameplay and creativity"
           />
 
           <Tracks
-          img = {track2}
+          icon = {Code}
             heading="WEB APP"
             detail="Build portals that bridge the gap between users and mainframe"
           />
 
           <Tracks
-            img = {track3}
+            icon = {Brain}
             heading="AI & ML"
             detail="Harness Machine Intelligence to predict and shape the future"
           />
 
           <Tracks
-          img = {track4}
+          icon = {Palette}
             heading="DESIGN & CREATIVITY"
             detail="Craft designs that defy logic and captivate every senses"
           />
           <div className="md:col-span-2">
           <Tracks
-          img = {track5}
+          icon = {Zap}
             heading="ANYTHING YOU WANT"
             detail="Wildcard Protocol. No rules applied. If you can dream it, you can build it. This track is for mad scientists and reality benders."
           />
@@ -50,11 +46,11 @@ const TracksSection = () => {
   );
 };
 
-function Tracks({ heading, detail,img }) {
+function Tracks({ heading, detail, icon: Icon }) {
   return (
     <div className="border border-red-600 rounded-xl p-4 shadow-[0_0_20px_rgba(255,0,0,0.2)]">
-      <img src = {img} className="h-15 w-15 border border-red-600 rounded-xl p-4 shadow-[0_0_20px_rgba(255,0,0,0.2)]"></img>
-      <h3 className="text-red-500 font-bold tracking-wider mb-2">{heading}</h3>
+      <Icon className="h-12 w-12 mb-3 text-red-500 shadow-[0_0_20px_rgba(255,0,0,0.2)]" strokeWidth={1.5} />
+      <h3 className="text-red-500 font-bold tracking-wider my-2 uppercase">{heading}</h3>
       <p className="text-sm md:text-base leading-relaxed text-gray-200">
         {detail}
       </p>
