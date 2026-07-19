@@ -34,6 +34,7 @@ const SponsorsCategory = ({
               key={index}
               src={item.src}
               alt={item.alt}
+              href={item.href}
               className={logoClassName}
               imgClassName={logoImageClassName}
               style={logoStyle}

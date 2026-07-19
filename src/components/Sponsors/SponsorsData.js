@@ -10,7 +10,7 @@ export const sponsorsData = {
   title: [{ src: null, alt: "Coming Soon" }],
 
   gold: [
-    { src: "/devfolio_logo-colored.svg", alt: "Devfolio" },
+    { src: "/devfolio_logo-colored.svg", alt: "DEVFOLIO LOGO", href: "https://devfolio.co/" },
   ],
 
   silver: [

@@ -3,12 +3,13 @@ import React from "react";
 const SponsorsLogo = ({
   src,
   alt,
+  href,
   className = "",
   imgClassName = "",
   style = {},
   imgStyle = {},
 }) => {
-  return (
+  const logo = (
     <div
       className={`bg-white p-3 rounded flex items-center justify-center
                     hover:scale-110 transition-transform duration-300
@@ -22,6 +23,14 @@ const SponsorsLogo = ({
         style={imgStyle}
       />
     </div>
+  );
+
+  return href ? (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {logo}
+    </a>
+  ) : (
+    logo
   );
 };
 
