@@ -34,7 +34,7 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    if (!devfolioReady) return;
+    // if (!devfolioReady) return;
     const script = document.createElement("script");
     script.src = "https://apply.devfolio.co/v2/sdk.js";
     script.async = true;
@@ -43,7 +43,7 @@ export default function HeroSection() {
     return () => {
       document.body.removeChild(script);
     };
-  }, [devfolioReady]);
+  }, []);
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
