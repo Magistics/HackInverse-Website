@@ -2,10 +2,25 @@ import React from 'react'
 import SponsorsLogo from './SponsorsLogo'
 import BlurCard from './BlurCard'
 
-const SponsorsCategory = ({ title, sponsors, columns = 3 }) => {
+const SponsorsCategory = ({
+  title,
+  sponsors,
+  columns = 3,
+  titleClassName = '',
+  titleStyle = {},
+  logoClassName = '',
+  logoImageClassName = '',
+  logoStyle = {},
+  logoImageStyle = {},
+}) => {
   return (
     <div className="w-full text-center">
-        <h2 className="text-2xl font-bold mb-6 md:mb-10 uppercase">{title}</h2>
+      <h2
+        className={`text-2xl font-bold mb-6 md:mb-10 uppercase ${titleClassName}`}
+        style={titleStyle}
+      >
+        {title}
+      </h2>
 
       <div
         className={`grid gap-8 justify-items-center 
@@ -15,13 +30,21 @@ const SponsorsCategory = ({ title, sponsors, columns = 3 }) => {
       >
         {sponsors.map((item, index) =>
           item?.src ? (
-            <SponsorsLogo key={index} src={item.src} alt={item.alt} />
+            <SponsorsLogo
+              key={index}
+              src={item.src}
+              alt={item.alt}
+              className={logoClassName}
+              imgClassName={logoImageClassName}
+              style={logoStyle}
+              imgStyle={logoImageStyle}
+            />
           ) : (
             <BlurCard key={index} />
           )
         )}
       </div>
-      
+
     </div>
   )
 }

@@ -149,7 +149,7 @@ export default function HeroSection() {
 
             {/* actual interactive button — inline-flex so width matches content */}
             <motion.a
-              href="https://unstop.com/p/hackinverse-05-magistics-1605003?lb=PEEcRdx6&utm_medium=Share&utm_source=magistic85391&utm_campaign=Online_coding_challenge"
+              href="https://hackinverse-s1.devfolio.co/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}

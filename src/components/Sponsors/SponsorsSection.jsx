@@ -9,7 +9,20 @@ const SponsorsSection = () => {
         SPONSORS
       </h1> */}
       <SectionTitle title="SPONSORS" titleSize="text-3xl sm:text-4xl md:text-7xl"/>
-      <div className="w-full max-w-5xl space-y-14 text-center md:mt-10 mt-6 flex flex-col items-center">
+      <div className="w-full max-w-5xl space-y-14 text-center md:mt-14 mt-6 flex flex-col items-center">
+        <SponsorsCategory
+          title="Hackinverse Gold SPONSOR"
+          sponsors={sponsorsData.gold}
+          columns={1}
+          titleClassName="text-3xl sm:text-4xl bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(255,215,0,0.95)] md:mb-16"
+          titleStyle={{
+            backgroundImage:
+              'linear-gradient(to bottom, #fff8d0 0%, #f9e076 22%, #d4a017 45%, #a97400 55%, #e8c452 72%, #fff2ae 100%)',
+          }}
+          logoImageClassName="h-28"
+          logoClassName="p-4 sm:p-4"
+        />
+        <div className="h-px w-[80%] bg-red-500"></div>
         <SponsorsCategory
           title="Hackinverse 0.5 PERKS SPONSOR"
           sponsors={sponsorsData.perks}

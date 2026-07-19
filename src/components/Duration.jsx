@@ -25,7 +25,7 @@ const Duration = () => {
          
           <div className="border border-red-600 rounded-xl p-4 shadow-[0_0_20px_rgba(255,0,0,0.2)]">
             <p className="text-red-500 text-xl tracking-widest">MODE</p>
-            <h2 className="text-4xl font-bold mt-2">Online</h2>
+            <h2 className="text-4xl font-bold mt-2">Offline</h2>
           </div>
 
          

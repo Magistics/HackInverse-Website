@@ -10,9 +10,7 @@ export const sponsorsData = {
   title: [{ src: null, alt: "Coming Soon" }],
 
   gold: [
-    { src: null, alt: "Coming Soon" },
-    { src: null, alt: "Coming Soon" },
-    { src: null, alt: "Coming Soon" },
+    { src: "/devfolio_logo-colored.svg", alt: "Devfolio" },
   ],
 
   silver: [
