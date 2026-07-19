@@ -143,7 +143,7 @@ export default function HeroSection() {
             {/* decorative glow - absolutely positioned so it doesn't affect layout */}
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute rounded-full bg-red-500 blur-[18px] w-fit h-fit"
+              className="pointer-events-none absolute rounded-full bg-[#3770FF] blur-[18px] w-fit h-fit"
               style={{ padding: "24px" }}
             />
 
@@ -154,16 +154,16 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-slate-700/50 cursor-pointer text-white shadow-red-500/80  relative inline-flex items-center px-6 md:px-8 py-2 md:py-3 rounded-full bg-slate-900/80 border shadow-[0_0_30px_rgba(220,38,38,0.22)] text-sm md:text-base whitespace-nowrap albert-sans font-bold"
+              className="cursor-pointer text-white relative inline-flex items-center px-6 md:px-8 py-2 md:py-3 rounded-lg bg-[#3770FF] shadow-[0_0_30px_rgba(55,112,255,0.45)] text-sm md:text-base whitespace-nowrap albert-sans font-bold"
             >
               <svg className="w-5 h-5 md:w-6 md:h-6 mr-2" viewBox="0 0 60.3 66.2" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#3770FF" d="M60.3,36.4C60.3,52,48.6,64.7,33.8,66c0,0-19.1,0.5-25.4-0.1c-2.4-0.3-4.4-1.8-5.3-4c0.9,0.4,1.8,0.7,2.8,0.8
+                <path fill="#FFFFFF" d="M60.3,36.4C60.3,52,48.6,64.7,33.8,66c0,0-19.1,0.5-25.4-0.1c-2.4-0.3-4.4-1.8-5.3-4c0.9,0.4,1.8,0.7,2.8,0.8
                   C8,62.9,11.5,63,16.4,63c7.2,0,15.1-0.2,15.1-0.2h0.1c7.9-0.7,15.2-4.3,20.4-10.2c4.5-5,7.4-11.3,8.2-17.9
                   C60.3,35.2,60.3,35.8,60.3,36.4z"/>
-                <path fill="#3770FF" d="M58,30c0,15.6-11.7,28.3-26.6,29.5c0,0-19.1,0.5-25.4-0.1c-3.4-0.3-5.9-3.5-6-7.1l0.1-45
+                <path fill="#FFFFFF" d="M58,30c0,15.6-11.7,28.3-26.6,29.5c0,0-19.1,0.5-25.4-0.1c-3.4-0.3-5.9-3.5-6-7.1l0.1-45
                   c0.1-3.6,2.7-6.8,6.1-7.1c6.3-0.5,25.4,0.1,25.4,0.1C46.4,1.6,58,14.4,58,30z"/>
               </svg>
-              Apply With Devfolio
+              Apply with Devfolio
             </motion.a>
           </motion.div>
         </motion.div>
