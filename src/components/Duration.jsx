@@ -11,7 +11,7 @@ const Duration = () => {
         {/* <div className="w-72 h-[3px] bg-red-600 mx-auto mt-2" /> */}
 
         <p className=" text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-          Enter the Unknown. A 24-hour online coding saga where developers
+          Enter the Unknown. A 24-hour Offline coding saga where developers
           breach the portal to solve problems from another dimension
         </p>
 
