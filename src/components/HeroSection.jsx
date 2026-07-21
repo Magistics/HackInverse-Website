@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import MainTitle from "./Common/MainTitle";
 import "../../src/index.css"
@@ -13,28 +13,7 @@ export default function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  // The official Devfolio button stays invisible unless the SDK can fetch the
-  // hackathon from Devfolio's API (hackathon verified + domain allowed for CORS).
-  // Probe the same endpoint: if it answers, render the SDK button; otherwise
-  // keep a plain link so visitors always see an apply button.
-  const [devfolioReady, setDevfolioReady] = useState(false);
-
-  // useEffect(() => {
-  //   let cancelled = false;
-  //   fetch(`https://api.devfolio.co/api/hackathons/${DEVFOLIO_SLUG}`, {
-  //     mode: "cors",
-  //   })
-  //     .then((res) => {
-  //       if (!cancelled && res.ok) setDevfolioReady(true);
-  //     })
-  //     .catch(() => {});
-  //   return () => {
-  //     cancelled = true;
-  //   };
-  // }, []);
-
   useEffect(() => {
-    // if (!devfolioReady) return;
     const script = document.createElement("script");
     script.src = "https://apply.devfolio.co/v2/sdk.js";
     script.async = true;
