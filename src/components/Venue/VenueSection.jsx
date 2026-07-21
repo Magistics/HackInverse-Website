@@ -1,6 +1,7 @@
 import tvCornerImage from '../../assets/TvCorner.png';
 import tvDisplayImage from '../../assets/TvDisplay2.png';
 import { motion } from 'framer-motion';
+import SectionTitle from '../Common/SectionTitle';
 
 const Venue = () => {
   return (
@@ -29,14 +30,23 @@ const Venue = () => {
         <div className="flex flex-col gap-8 text-white text-center lg:text-left lg:w-1/2">
           {/* Header */}
           <div className="flex flex-col items-center lg:items-start gap-4">
-            <h1 className="text-[clamp(3rem,9vw,7rem)] sm:text-[clamp(4rem,9vw,7rem)] font-extrabold tracking-[9px] uppercase leading-none text-transparent [-webkit-text-stroke:2px_#fff] md:[-webkit-text-stroke:4px_#fff] font-cinzel-decorative" style={{fontFamily: '"Merriweather", sans-serif'}}>
+            {/* <h1 className="text-[clamp(3rem,9vw,7rem)] sm:text-[clamp(4rem,9vw,7rem)] font-extrabold tracking-[9px] uppercase leading-none text-transparent [-webkit-text-stroke:2px_#fff] md:[-webkit-text-stroke:4px_#fff] font-cinzel-decorative" style={{fontFamily: '"Merriweather", sans-serif'}}>
               VENUE
-            </h1>
+            </h1> */}
 
             {/* Underlines */}
-            <div className="relative w-full max-w-[300px] sm:max-w-[460px] h-1 bg-white mx-auto lg:mx-0">
+            {/* <div className="relative w-full max-w-[300px] sm:max-w-[460px] h-1 bg-white mx-auto lg:mx-0">
               <div className="absolute -bottom-2.5 left-0 w-full h-1 bg-white"></div>
-            </div>
+            </div> */}
+            <SectionTitle
+              title="Venue"
+              // strokeColor="rgba(255,0,0,0.8)"
+              // lineColor="rgba(255,0,0,0.8)"
+              strokeColor="rgba(248, 243, 235, 0.95)"
+              lineColor="rgba(248, 243, 235, 0.85)"
+              lineHeight="h-[3px]"
+              titleSize="text-3xl sm:text-4xl md:text-7xl"
+            />
           </div>
 
           {/* Venue Info */}
