@@ -1,5 +1,5 @@
 import tvCornerImage from '../../assets/TvCorner.png';
-import tvDisplayImage from '../../assets/TvDisplay.png';
+import tvDisplayImage from '../../assets/TvDisplay2.png';
 import { motion } from 'framer-motion';
 
 const Venue = () => {
@@ -42,28 +42,10 @@ const Venue = () => {
           {/* Venue Info */}
           <div className="flex flex-col gap-2">
             <h2 className="text-[clamp(1.75rem,5vw,3.5rem)] font-bold leading-tight text-white italic">
-              Reveal Soon
-              <motion.span
-                animate={{
-                  transition: {
-                    staggerChildren: 0.4,
-                    repeat: Infinity,
-                    repeatDelay: 0.8,
-                  },
-                }}
-              >
-                {['.', '.', '.'].map((dot, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ duration: 1.2, repeat: Infinity }}
-                  >{dot}</motion.span>
-                ))}
-              </motion.span>
+              Agarpara, Kolkata
             </h2>
             <address className="text-[clamp(1rem,3.3vw,1.8rem)] not-italic leading-relaxed opacity-45">
-              The stage is hidden. Stay tuned for the big reveal!!
+              Map and travel information will be available soon.
             </address>
           </div>
 
@@ -87,7 +69,7 @@ const Venue = () => {
               whileHover={{ scale: 1.05, boxShadow: "0px 10px 25px rgba(0,0,0,0.3)" }}
               whileTap={{ scale: 0.95 }}
             >
-              Request the Map
+              Map & Travel Info (soon)
             </motion.button>
           </div>
         </div>

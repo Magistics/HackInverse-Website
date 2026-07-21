@@ -6,7 +6,7 @@ import SectionTitle from "./Common/SectionTitle";
 
 const Calender = () => {
   // Set your hackathon's end date and time here
-  const targetDate = new Date("2026-01-31T00:00:00");
+  const targetDate = new Date("2026-08-29T09:30:00");
 
   const calculateTimeLeft = () => {
     const difference = +targetDate - +new Date();

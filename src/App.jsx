@@ -110,8 +110,8 @@ function App() {
                     </section>
 
                     <section ref={venueRef}>
-                        {/* <Venue /> */}
-                        <OnlineVenueSection/>
+                        <Venue />
+                        {/* <OnlineVenueSection/> */}
                     </section>
 
                     <section>
