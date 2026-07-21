@@ -35,7 +35,7 @@ const SponsorsSection = () => {
           columns={1}
         />
 
-        <div className="h-px w-[80%] bg-red-500"></div>
+        {/* <div className="h-px w-[80%] bg-red-500"></div> */}
 
         {/* <SponsorsCategory
           title="GOLD SPONSOR"
