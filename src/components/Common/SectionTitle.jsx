@@ -31,7 +31,7 @@ export default function SectionTitle({
 
       {/* Title */}
       <h2
-        className={`uppercase mb-3 px-2 stranger-things-filled flex items-center tracking-tighter drop-shadow-[0_5px_5px_rgba(0,0,0,1)] ${titleSize}`}
+        className={`uppercase mb-3 px-2 stranger-things-filled flex items-center whitespace-nowrap tracking-tighter drop-shadow-[0_5px_5px_rgba(0,0,0,1)] ${titleSize}`}
         style={{
           color: strokeColor,
         }}

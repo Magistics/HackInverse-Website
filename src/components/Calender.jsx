@@ -86,7 +86,7 @@ const Calender = () => {
           strokeColor="rgba(255,0,0,0.8)"
           lineColor="rgba(255,0,0,0.8)"
           lineHeight="h-[3px]"
-          titleSize="text-xl sm:text-2xl md:text-3xl lg:text-6xl xl:text-7xl"
+          titleSize="text-[clamp(0.875rem,4.5vw,1.875rem)] lg:text-6xl xl:text-7xl"
         />
       </div>
 
