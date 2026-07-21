@@ -17,38 +17,42 @@ import SectionTitle from "../Common/SectionTitle";
 /*  TEAM DATA — replace the placeholder images/names with the real members.   */
 /* -------------------------------------------------------------------------- */
 const organizers = [
-  { name: "Abhirup Dutta Khan", role: "Lead / Organizer", img: frame1 },
-  { name: "Rupsha Das", role: "Co. / Organizer", img: frame2 },
-  { name: "Subhodeep", role: "Co. / Organizer", img: frame3 },
+  { name: "Abhirup Dutta Khan", role: "Lead / Organizer", img: "/team/abhirup.jpg" },
+  { name: "Rupsha Das", role: "Co. / Organizer", img: "/team/rupsha.jpg" },
 ];
 
 const teams = [
   {
     title: "Tech Team",
     members: [
-      { name: "Tarun Binay Das", role: "Tech Team", img: frame4 },
-      { name: "Tarun Binay Das", role: "Tech Team", img: frame5 },
-      { name: "Tarun Binay Das", role: "Tech Team", img: frame6 },
-      { name: "Tarun Binay Das", role: "Tech Team", img: frame7 },
-      { name: "Tarun Binay Das", role: "Tech Team", img: frame8 },
+      { name: "Atrika Show", role: "Tech Team", img: "/team/atrika.jpg" },
+      { name: "Rahul Pal", role: "Tech Team", img: "/team/rahul.jpg" },
+      { name: "Hiya Sarkar", role: "Tech Team", img: "/team/hiya.jpg" },
+      { name: "Srijani Pal Chaudhuri", role: "Tech Team", img: "/team/srijani.jpg" },
+      { name: "Karan rajput", role: "Tech Team", img: "" },
     ],
   },
   {
     title: "Design Team",
     members: [
-      { name: "Tarun Binay Das", role: "Graphics Team", img: frame3 },
-      { name: "Tarun Binay Das", role: "Graphics Team", img: frame2 },
-      { name: "Tarun Binay Das", role: "Graphics Team", img: frame1 },
-      { name: "Tarun Binay Das", role: "Graphics Team", img: frame6 },
-      { name: "Tarun Binay Das", role: "Graphics Team", img: frame5 },
+      { name: "Tarun Binay Das", role: "Graphics Team", img: "/team/tarun.jpg" },
+      { name: "Adrija Karmakar", role: "Graphics Team", img: "/team/adrija.png" },
+      { name: "Aishik Mondal", role: "Graphics Team", img: "/team/aishik.jpg" },
+      { name: "ANUSREE GHOSH", role: "Graphics Team", img: "/team/anusree.jpg" },
+      { name: "Debosmita Paul", role: "Graphics Team", img: "/team/debosmita.jpeg" },
+      { name: "Meraj Hussain", role: "Graphics Team", img: "/team/meraj.jpg" },
+      { name: "Riya Pathak", role: "Graphics Team", img: "/team/riya.jpg" },
+      { name: "Sagnika Sinha", role: "Graphics Team", img: "/team/sagnika.jpeg" },
+      { name: "Tamajit Pal", role: "Graphics Team", img: "/team/tamajit.jpeg" },
+      { name: "TAMALI KHAN ", role: "Graphics Team", img: "/team/tamali.jpg" },
     ],
   },
   {
     title: "Marketing Team",
     members: [
-      { name: "Tarun Binay Das", role: "Marketing", img: frame7 },
-      { name: "Tarun Binay Das", role: "Marketing", img: frame8 },
-      { name: "Tarun Binay Das", role: "Marketing", img: frame4 },
+      { name: "Archita Mitra", role: "Marketing", img: "/team/archita.jpg" },
+      { name: "Chandan Ghosh", role: "Marketing", img: "/team/chandan.jpg" },
+      { name: "Nandini Pandey", role: "Marketing", img: "/team/nandini.jpg" },
       { name: "Tarun Binay Das", role: "Marketing", img: frame2 },
       { name: "Tarun Binay Das", role: "Marketing", img: frame3 },
     ],
