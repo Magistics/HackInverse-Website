@@ -29,7 +29,7 @@ const teams = [
       { name: "Rahul Pal", role: "Tech Team", img: "/team/rahul.jpg" },
       { name: "Hiya Sarkar", role: "Tech Team", img: "/team/hiya.jpg" },
       { name: "Srijani Pal Chaudhuri", role: "Tech Team", img: "/team/srijani.jpg" },
-      { name: "Karan rajput", role: "Tech Team", img: "" },
+      // { name: "Karan rajput", role: "Tech Team", img: "" },
     ],
   },
   {
@@ -38,13 +38,13 @@ const teams = [
       { name: "Tarun Binay Das", role: "Graphics Team", img: "/team/tarun.jpg" },
       { name: "Adrija Karmakar", role: "Graphics Team", img: "/team/adrija.png" },
       { name: "Aishik Mondal", role: "Graphics Team", img: "/team/aishik.jpg" },
-      { name: "ANUSREE GHOSH", role: "Graphics Team", img: "/team/anusree.jpg" },
+      { name: "Anusree Ghosh", role: "Graphics Team", img: "/team/anusree.jpg" },
       { name: "Debosmita Paul", role: "Graphics Team", img: "/team/debosmita.jpeg" },
       { name: "Meraj Hussain", role: "Graphics Team", img: "/team/meraj.jpg" },
       { name: "Riya Pathak", role: "Graphics Team", img: "/team/riya.jpg" },
       { name: "Sagnika Sinha", role: "Graphics Team", img: "/team/sagnika.jpeg" },
       { name: "Tamajit Pal", role: "Graphics Team", img: "/team/tamajit.jpeg" },
-      { name: "TAMALI KHAN ", role: "Graphics Team", img: "/team/tamali.jpg" },
+      { name: "Tamali Khan ", role: "Graphics Team", img: "/team/tamali.jpg" },
     ],
   },
   {
@@ -53,9 +53,28 @@ const teams = [
       { name: "Archita Mitra", role: "Marketing", img: "/team/archita.jpg" },
       { name: "Chandan Ghosh", role: "Marketing", img: "/team/chandan.jpg" },
       { name: "Nandini Pandey", role: "Marketing", img: "/team/nandini.jpg" },
-      { name: "Tarun Binay Das", role: "Marketing", img: frame2 },
-      { name: "Tarun Binay Das", role: "Marketing", img: frame3 },
+      { name: "Sneha Sarkar", role: "Marketing", img: "/team/sneha.jpg" },
+      { name: "Tirthankar Das", role: "Marketing", img: "/team/tirthankar.jpeg" },
+      { name: "Asmit Biswas", role: "Marketing", img: "/team/asmit.jpg" },
+      { name: "Satavisa Kesh", role: "Marketing", img: "/team/satavisa.jpg" },
+      { name: "Sania Anjum", role: "Marketing", img: "/team/sania.jpg" },
     ],
+  },
+  {
+    title: "Media & Videography",
+    members: [
+      { name: "Pritam sardar", role: "Media & Videography", img: "/team/pritam.jpg" },
+      { name: "Sudeb Rana", role: "Media & Videography", img: "/team/sudev.jpg" },
+      { name: "Karishma Gupta", role: "Video Editing", img: "/team/karishma.jpg" },
+      { name: "Priyanshu Ghosh", role: "Video Editing", img: "/team/priyanshu.jpg" },
+    ]
+  },
+  {
+    title: "Sponsors",
+    members: [
+      { name: "Raunak Biswas", role: "Sponsors", img: "/team/raunak.jpg" },
+      { name: "Saptorsi Ghose Dastidar", role: "Sponsors", img: "/team/saptorsi.jpg" },
+    ]
   },
 ];
 
@@ -74,7 +93,7 @@ const SubTitle = ({ children }) => (
 /* -------------------------------------------------------------------------- */
 /*  Polaroid-style member card                                                 */
 /* -------------------------------------------------------------------------- */
-const PolaroidCard = ({ img, name, role, className = "" }) => (
+const PolaroidCard = ({ img, name, role, className = "", colored = false }) => (
   <div
     className={`group/card relative shrink-0 select-none transition-transform duration-300 ease-out hover:z-20 hover:scale-105 ${className}`}
   >
@@ -84,11 +103,13 @@ const PolaroidCard = ({ img, name, role, className = "" }) => (
           src={img}
           alt={name}
           draggable="false"
-          className="aspect-4/5 w-full object-cover grayscale transition-all duration-500 group-hover/card:scale-105 group-hover/card:grayscale-0"
+          className={`aspect-4/5 w-full object-cover transition-all duration-500 group-hover/card:scale-105 ${
+            colored ? "grayscale-0" : "grayscale group-hover/card:grayscale-0"
+          }`}
         />
       </div>
       <div className="pb-1 pt-2 text-center">
-        <p className="stranger-things-filled leading-tight text-[clamp(12px,1vw,16px)] text-[#e00505] [text-shadow:0_0_6px_rgba(255,0,0,0.5)]">
+        <p className="stranger-things-filled flex min-h-[2.5em] items-center justify-center leading-tight text-[clamp(12px,1vw,16px)] text-[#e00505] [text-shadow:0_0_6px_rgba(255,0,0,0.5)]">
           {name}
         </p>
         <p className="poppins uppercase tracking-wide text-[clamp(8px,0.7vw,11px)] text-neutral-600">
@@ -171,6 +192,7 @@ const TeamCarousel = ({ members }) => {
                   img={m.img}
                   name={m.name}
                   role={m.role}
+                  colored={index === selectedIndex}
                   className="w-[clamp(150px,18vw,200px)]"
                 />
               </div>
@@ -181,6 +203,32 @@ const TeamCarousel = ({ members }) => {
     </div>
   );
 };
+
+/* -------------------------------------------------------------------------- */
+/*  Static team row — used when a team has three or fewer members (like the     */
+/*  organizers) instead of the auto-moving carousel.                            */
+/* -------------------------------------------------------------------------- */
+const StaticTeamRow = ({ members }) => (
+  <div className="mt-10 flex flex-wrap items-start justify-center gap-8 px-4 md:gap-14">
+    {members.map((m, i) => (
+      <motion.div
+        key={i}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5, delay: i * 0.12, ease: "easeOut" }}
+      >
+        <PolaroidCard
+          img={m.img}
+          name={m.name}
+          role={m.role}
+          colored
+          className="w-[clamp(160px,20vw,230px)]"
+        />
+      </motion.div>
+    ))}
+  </div>
+);
 
 /* -------------------------------------------------------------------------- */
 /*  Main section                                                               */
@@ -217,6 +265,7 @@ const GallerySection = () => {
                 img={o.img}
                 name={o.name}
                 role={o.role}
+                colored
                 className="w-[clamp(160px,20vw,230px)]"
               />
             </motion.div>
@@ -228,7 +277,11 @@ const GallerySection = () => {
       {teams.map((team) => (
         <div key={team.title} className="mb-14 md:mb-20">
           <SubTitle>{team.title}</SubTitle>
-          <TeamCarousel members={team.members} />
+          {team.members.length <= 3 ? (
+            <StaticTeamRow members={team.members} />
+          ) : (
+            <TeamCarousel members={team.members} />
+          )}
         </div>
       ))}
     </section>
