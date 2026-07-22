@@ -1,252 +1,314 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import Bg from "../../assets/Bg.png";
-import layer2back from "../../assets/image/layer2back.png";
-import frame1 from "../../assets/image/frame1.jpg";
-import frame2 from "../../assets/image/frame2.jpg";
-import frame3 from "../../assets/image/frame3.jpg";
-import frame4 from "../../assets/image/frame4.jpg";
-import frame5 from "../../assets/image/frame5.jpg";
-import frame6 from "../../assets/image/frame6.jpg";
-import frame7 from "../../assets/image/frame7.jpg";
-import frame8 from "../../assets/image/frame8.png";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import SectionTitle from "../Common/SectionTitle";
 
-const GallerySection = () => {
-  // Circular layout: frame4 in center (behind), 5 frames circling around
-  const frames = [
-    { id: 1, img: frame1, initialLeft: 50, initialTop: 15, initialRotate: -5, animation: "fade-down" }, // Top
-    { id: 2, img: frame2, initialLeft: 75, initialTop: 20, initialRotate: 8, animation: "fade-left" }, // Top-right
-    { id: 3, img: frame3, initialLeft: 30, initialTop: 0, initialRotate: -3, animation: "fade-left" }, // Bottom-right
-    { id: 4, img: frame4, initialLeft: 50, initialTop: 50, initialRotate: 0,  animation: "zoom-in" }, // Center frame (back layer)
-    { id: 5, img: frame5, initialLeft: 25, initialTop: 70, initialRotate: 10, animation: "fade-right" }, // Bottom-left
-    { id: 6, img: frame6, initialLeft: 25, initialTop: 30, initialRotate: -8, animation: "fade-right" }, // Top-left
-    { id: 7, img: frame7, initialLeft: 75, initialTop: 60, initialRotate: 5, animation: "fade-right" }, // Top-left
-    { id: 8, img: frame8, initialLeft: 60, initialTop: -15, initialRotate: 5, animation: "fade-right" }, // Top-left
-  ];
+/* -------------------------------------------------------------------------- */
+/*  TEAM DATA — replace the placeholder images/names with the real members.   */
+/* -------------------------------------------------------------------------- */
+const organizers = [
+  { name: "Abhirup Dutta Khan", role: "Lead / Organizer", img: "/team/abhirup.jpg" },
+  { name: "Rupsha Das", role: "Co. / Organizer", img: "/team/rupsha.jpg" },
+];
 
-  const [positions, setPositions] = useState(
-    frames.reduce((acc, frame) => {
-      acc[frame.id] = {
-        left: frame.initialLeft,
-        top: frame.initialTop,
-        rotate: frame.initialRotate,
-      };
-      return acc;
-    }, {})
+const teams = [
+  {
+    title: "Tech Team",
+    members: [
+      { name: "Atrika Show", role: "Tech Team", img: "/team/atrika.jpg" },
+      { name: "Rahul Pal", role: "Tech Team", img: "/team/rahul.jpg" },
+      { name: "Hiya Sarkar", role: "Tech Team", img: "/team/hiya.jpg" },
+      { name: "Srijani Pal Chaudhuri", role: "Tech Team", img: "/team/srijani.jpg" },
+      // { name: "Karan rajput", role: "Tech Team", img: "" },
+    ],
+  },
+  {
+    title: "Design Team",
+    members: [
+      { name: "Tarun Binay Das", role: "Graphics Team", img: "/team/tarun.jpg" },
+      { name: "Adrija Karmakar", role: "Graphics Team", img: "/team/adrija.png" },
+      { name: "Aishik Mondal", role: "Graphics Team", img: "/team/aishik.jpg" },
+      { name: "Anusree Ghosh", role: "Graphics Team", img: "/team/anusree.jpg" },
+      { name: "Debosmita Paul", role: "Graphics Team", img: "/team/debosmita.jpeg" },
+      { name: "Meraj Hussain", role: "Graphics Team", img: "/team/meraj.jpg" },
+      { name: "Riya Pathak", role: "Graphics Team", img: "/team/riya.jpg" },
+      { name: "Sagnika Sinha", role: "Graphics Team", img: "/team/sagnika.jpeg" },
+      { name: "Tamajit Pal", role: "Graphics Team", img: "/team/tamajit.jpeg" },
+      { name: "Tamali Khan ", role: "Graphics Team", img: "/team/tamali.jpg" },
+    ],
+  },
+  {
+    title: "Marketing Team",
+    members: [
+      { name: "Archita Mitra", role: "Marketing", img: "/team/archita.jpg" },
+      { name: "Chandan Ghosh", role: "Marketing", img: "/team/chandan.jpg" },
+      { name: "Nandini Pandey", role: "Marketing", img: "/team/nandini.jpg" },
+      { name: "Sneha Sarkar", role: "Marketing", img: "/team/sneha.jpg" },
+      { name: "Tirthankar Das", role: "Marketing", img: "/team/tirthankar.jpeg" },
+      { name: "Asmit Biswas", role: "Marketing", img: "/team/asmit.jpg" },
+      { name: "Satavisa Kesh", role: "Marketing", img: "/team/satavisa.jpg" },
+      { name: "Sania Anjum", role: "Marketing", img: "/team/sania.jpg" },
+    ],
+  },
+  {
+    title: "Media & Videography",
+    members: [
+      { name: "Pritam sardar", role: "Media & Videography", img: "/team/pritam.jpg" },
+      { name: "Sudeb Rana", role: "Media & Videography", img: "/team/sudev.jpg" },
+      { name: "Karishma Gupta", role: "Video Editing", img: "/team/karishma.jpg" },
+      { name: "Priyanshu Ghosh", role: "Video Editing", img: "/team/priyanshu.jpg" },
+    ]
+  },
+  {
+    title: "Sponsors",
+    members: [
+      { name: "Raunak Biswas", role: "Sponsors", img: "/team/raunak.jpg" },
+      { name: "Saptorsi Ghose Dastidar", role: "Sponsors", img: "/team/saptorsi.jpg" },
+    ]
+  },
+];
+
+/* -------------------------------------------------------------------------- */
+/*  Section sub-title (red Stranger Things text + underline)                   */
+/* -------------------------------------------------------------------------- */
+const SubTitle = ({ children }) => (
+  <div className="flex flex-col items-center">
+    <h3 className="stranger-things-filled uppercase tracking-wide text-[clamp(20px,3.2vw,38px)] text-[#FF3B3B] [text-shadow:0_0_10px_rgba(255,0,0,0.6),0_3px_4px_rgba(0,0,0,0.9)]">
+      {children}
+    </h3>
+    <span className="mt-2 h-[3px] w-[clamp(120px,18vw,230px)] background-red drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" />
+  </div>
+);
+
+/* -------------------------------------------------------------------------- */
+/*  Polaroid-style member card                                                 */
+/* -------------------------------------------------------------------------- */
+const PolaroidCard = ({ img, name, role, className = "", colored = false }) => (
+  <div
+    className={`group/card relative shrink-0 select-none transition-transform duration-300 ease-out hover:z-20 hover:scale-105 ${className}`}
+  >
+    <div className="rounded-[3px] bg-[#e9e6dc] p-2.5 pb-2 shadow-[0_10px_25px_rgba(0,0,0,0.55)] ring-1 ring-black/20 transition-shadow duration-300 group-hover/card:shadow-[0_16px_38px_rgba(255,5,5,0.35)]">
+      <div className="overflow-hidden bg-black">
+        <img
+          src={img}
+          alt={name}
+          draggable="false"
+          className={`aspect-4/5 w-full object-cover transition-all duration-500 group-hover/card:scale-105 ${
+            colored ? "grayscale-0" : "grayscale group-hover/card:grayscale-0"
+          }`}
+        />
+      </div>
+      <div className="pb-1 pt-2 text-center">
+        <p className="stranger-things-filled flex min-h-[2.5em] items-center justify-center leading-tight text-[clamp(12px,1vw,16px)] text-[#e00505] [text-shadow:0_0_6px_rgba(255,0,0,0.5)]">
+          {name}
+        </p>
+        <p className="poppins uppercase tracking-wide text-[clamp(8px,0.7vw,11px)] text-neutral-600">
+          {role}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+/* -------------------------------------------------------------------------- */
+/*  Team carousel — center-aligned, looping Embla carousel that auto-moves     */
+/*  and pauses while the mouse is over it. Center card is emphasised.          */
+/* -------------------------------------------------------------------------- */
+const TeamCarousel = ({ members }) => {
+  const autoplay = useRef(
+    Autoplay({ delay: 2500, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
-  const dragState = useRef({});
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "center", skipSnaps: false, dragFree: false },
+    [autoplay.current]
+  );
 
-  // Prevent default touch behaviors when dragging
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
   useEffect(() => {
-    const preventTouchStart = (e) => {
-      // Check if the touch started on a draggable frame
-      const target = e.target.closest('[data-draggable="true"]');
-      if (target) {
-        e.preventDefault();
-      }
-    };
-
-    const preventTouchMove = (e) => {
-      // Prevent scrolling when any frame is being dragged
-      if (Object.keys(dragState.current).length > 0) {
-        e.preventDefault();
-      }
-    };
-
-    // Add passive: false to allow preventDefault
-    document.addEventListener('touchstart', preventTouchStart, { passive: false });
-    document.addEventListener('touchmove', preventTouchMove, { passive: false });
-
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    onSelect();
+    emblaApi.on("select", onSelect).on("reInit", onSelect);
     return () => {
-      document.removeEventListener('touchstart', preventTouchStart);
-      document.removeEventListener('touchmove', preventTouchMove);
+      emblaApi.off("select", onSelect);
     };
-  }, []);
+  }, [emblaApi, onSelect]);
 
-  const handleStart = (e, id) => {
-    e.preventDefault();
-
-    const clientX = e.type === "mousedown" ? e.clientX : e.touches?.[0]?.clientX;
-    const clientY = e.type === "mousedown" ? e.clientY : e.touches?.[0]?.clientY;
-
-    if (clientX === undefined || clientY === undefined) {
-      console.log('Invalid touch coordinates:', { clientX, clientY, touches: e.touches });
-      return;
-    }
-
-    console.log(`Starting drag for frame ${id}:`, { clientX, clientY, initialLeft: positions[id].left, initialTop: positions[id].top });
-
-    dragState.current[id] = {
-      startX: clientX,
-      startY: clientY,
-      initialLeft: positions[id].left,
-      initialTop: positions[id].top,
-    };
-
-    // Disable transitions during drag to prevent conflicts
-    e.currentTarget.style.transition = 'none';
-  };
-
-  const handleMove = (e, id) => {
-    if (!dragState.current[id]) return;
-
-    e.preventDefault();
-
-    const clientX = e.type === "mousemove" ? e.clientX : e.touches?.[0]?.clientX;
-    const clientY = e.type === "mousemove" ? e.clientY : e.touches?.[0]?.clientY;
-
-    if (clientX === undefined || clientY === undefined) return;
-
-    const deltaX = clientX - dragState.current[id].startX;
-    const deltaY = clientY - dragState.current[id].startY;
-
-    // Increase movement sensitivity for better mobile experience
-    const moveFactor = 0.1; // Increased from 0.05 for better responsiveness
-
-    // Calculate new positions
-    let newLeft = dragState.current[id].initialLeft + deltaX * moveFactor;
-    let newTop = dragState.current[id].initialTop + deltaY * moveFactor;
-
-    // Constrain movement within reasonable bounds (prevent frames from going too far)
-    // Container is roughly 1000px tall, frames are ~200-300px wide/tall
-    const constrainedLeft = Math.max(-10, Math.min(110, newLeft));
-    const constrainedTop = Math.max(-10, Math.min(110, newTop));
-
-    console.log(`Moving frame ${id}:`, {
-      deltaX, deltaY,
-      newLeft, newTop,
-      constrainedLeft, constrainedTop,
-      wasConstrained: constrainedLeft !== newLeft || constrainedTop !== newTop
-    });
-
-    setPositions((prev) => ({
-      ...prev,
-      [id]: {
-        ...prev[id],
-        left: constrainedLeft,
-        top: constrainedTop,
-      },
-    }));
-  };
-
-  const handleEnd = (id) => {
-    console.log(`Ending drag for frame ${id}`);
-    delete dragState.current[id];
-  };
-
-  // Function to restore transitions
-  const restoreTransitions = (element) => {
-    element.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-  };
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback((i) => emblaApi && emblaApi.scrollTo(i), [emblaApi]);
 
   return (
-    <section
-      className="relative min-h-[85vh] flex flex-col justify-center items-center px-[2vw] py-[1vh] text-center text-black overflow-hidden box-border max-[992px]:min-h-[90vh] max-[992px]:py-[1.5vh] max-[768px]:min-h-[80vh] max-[768px]:py-[1vh] max-[576px]:min-h-[70vh] max-[576px]:px-[1vw] max-[576px]:py-[0.5vh]"
-      style={{
-        backgroundImage: `url(${Bg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        fontFamily: '"Cinzel Decorative", serif'
-      }}
-    >
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[clamp(800px,90vw,1500px)] h-[clamp(800px,90vw,1500px)] opacity-100 pointer-events-none z-[1] max-[992px]:w-[clamp(400px,55vw,700px)] max-[992px]:h-[clamp(400px,55vw,700px)] max-[768px]:w-[clamp(350px,70vw,600px)] max-[768px]:h-[clamp(350px,70vw,600px)] max-[576px]:w-[clamp(300px,80vw,500px)] max-[576px]:h-[clamp(300px,80vw,500px)]"
-        style={{
-          backgroundImage: `url(${layer2back})`,
-          backgroundSize: 'contain',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      />
-
-      <div className="relative w-full max-w-[1406px] h-[1000px] mt-[5vw] z-[2] max-[992px]:h-[500px] max-[992px]:mt-[4vw] max-[768px]:h-[400px] max-[768px]:mt-[2.5vw] max-[576px]:h-[300px] max-[576px]:mt-[1.5vw]">
-        {frames.map((frame, index) => (
-          <motion.div
-            key={frame.id}
-            data-draggable="true"
-            className="absolute w-[clamp(220px,20vw,300px)] h-[clamp(270px,25vw,360px)] cursor-grab select-none origin-center max-[992px]:w-[clamp(180px,22vw,300px)] max-[992px]:h-[clamp(230px,27vw,370px)] max-[768px]:w-[clamp(154px,14vw,210px)] max-[768px]:h-[clamp(189px,17.5vw,252px)] max-[576px]:w-[clamp(91px,12.6vw,140px)] max-[576px]:h-[clamp(112px,15.75vw,182px)]"
-            style={{
-              left: `${positions[frame.id].left}%`,
-              top: `${positions[frame.id].top}%`,
-              zIndex: frame.isCenter ? 1 : 3,
-              filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))',
-              userSelect: 'none',
-              WebkitUserSelect: 'none',
-              touchAction: 'none',
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden',
-              perspective: 1000
-            }}
-            initial={{ opacity: 0, scale: 0.8, y: 50 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{
-              duration: 0.8,
-              delay: frame.isCenter ? 0 : index * 0.1,
-              ease: "easeOut"
-            }}
-            animate={{
-              rotate: positions[frame.id].rotate,
-              x: "-50%",
-              y: "-50%"
-            }}
-            onMouseDown={(e) => handleStart(e, frame.id)}
-            onMouseMove={(e) => handleMove(e, frame.id)}
-            onMouseUp={(e) => {
-              handleEnd(frame.id);
-              restoreTransitions(e.currentTarget);
-            }}
-            onTouchStart={(e) => handleStart(e, frame.id)}
-            onTouchMove={(e) => handleMove(e, frame.id)}
-            onTouchEnd={(e) => {
-              handleEnd(frame.id);
-              restoreTransitions(e.currentTarget);
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.filter = 'drop-shadow(0 12px 25px rgba(0, 0, 0, 0.6))';
-            }}
-            onMouseLeave={(e) => {
-              handleEnd(frame.id);
-              if (!dragState.current[frame.id]) {
-                e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
-              }
-            }}
-            onTouchStartCapture={(e) => {
-              e.currentTarget.style.filter = 'drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7))';
-              e.currentTarget.style.zIndex = '10';
-            }}
-            onTouchEndCapture={(e) => {
-              e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
-              e.currentTarget.style.zIndex = frame.isCenter ? '1' : '3';
-              restoreTransitions(e.currentTarget);
-            }}
-            onMouseDownCapture={(e) => {
-              e.currentTarget.style.cursor = 'grabbing';
-              e.currentTarget.style.filter = 'drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7))';
-              e.currentTarget.style.zIndex = '10';
-            }}
-            onMouseUpCapture={(e) => {
-              e.currentTarget.style.cursor = 'grab';
-              e.currentTarget.style.filter = 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))';
-              e.currentTarget.style.zIndex = frame.isCenter ? '1' : '3';
-              restoreTransitions(e.currentTarget);
-            }}
-          >
-            <img
-              src={frame.img}
-              alt={`Frame ${frame.id}`}
-              className="w-full h-full object-contain block pointer-events-none"
-              draggable="false"
-            />
-          </motion.div>
-        ))}
+    <div className="relative mx-auto mt-6 w-full max-w-5xl px-4">
+      {/* Embla viewport — cards are bottom-aligned; side cards lose top height */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex items-end">
+          {members.map((m, index) => (
+            <div
+              key={index}
+              className="min-w-0 flex-[0_0_100%] px-2 pt-12 pb-4 sm:flex-[0_0_33.333%]"
+            >
+              <div
+                className={`flex origin-bottom justify-center transition-all duration-500 ease-out ${
+                  index === selectedIndex
+                    ? "scale-110 opacity-100"
+                    : "scale-90 opacity-50"
+                }`}
+              >
+                <PolaroidCard
+                  img={m.img}
+                  name={m.name}
+                  role={m.role}
+                  colored={index === selectedIndex}
+                  className="w-[clamp(150px,18vw,200px)]"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* Controls — arrows with pagination dots between them, below the cards */}
+      <div className="mt-4 flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={scrollPrev}
+          aria-label="Previous"
+          className="rounded-full bg-[#D9D9D933] p-2 text-white transition-colors hover:bg-[#D9D9D950] sm:p-3"
+        >
+          <img
+            src="/left-arrow.svg"
+            alt=""
+            aria-hidden="true"
+            className="h-4 w-auto sm:h-5"
+          />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {scrollSnaps.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => scrollTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === selectedIndex
+                  ? "w-5 bg-[#e00505]"
+                  : "w-2 bg-white/40 hover:bg-white/70"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={scrollNext}
+          aria-label="Next"
+          className="rounded-full bg-[#D9D9D933] p-2 text-white transition-colors hover:bg-[#D9D9D950] sm:p-3"
+        >
+          <img
+            src="/right-arrow.svg"
+            alt=""
+            aria-hidden="true"
+            className="h-4 w-auto sm:h-5"
+          />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*  Static team row — used when a team has three or fewer members (like the     */
+/*  organizers) instead of the auto-moving carousel.                            */
+/* -------------------------------------------------------------------------- */
+const StaticTeamRow = ({ members }) => (
+  <div className="mt-10 flex flex-wrap items-start justify-center gap-8 px-4 md:gap-14">
+    {members.map((m, i) => (
+      <motion.div
+        key={i}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5, delay: i * 0.12, ease: "easeOut" }}
+      >
+        <PolaroidCard
+          img={m.img}
+          name={m.name}
+          role={m.role}
+          colored
+          className="w-[clamp(160px,20vw,230px)]"
+        />
+      </motion.div>
+    ))}
+  </div>
+);
+
+/* -------------------------------------------------------------------------- */
+/*  Main section                                                               */
+/* -------------------------------------------------------------------------- */
+const GallerySection = () => {
+  return (
+    <section
+      className="relative w-full overflow-hidden bg-[#222222] py-16 text-center md:py-24"
+      style={{ fontFamily: '"Cinzel Decorative", serif' }}
+    >
+      <div className="mb-10">
+        <SectionTitle
+          title="Meet the Team"
+          strokeColor="rgba(255,0,0,0.8)"
+          lineColor="rgba(255,0,0,0.8)"
+          lineHeight="h-[3px]"
+          titleSize="text-[clamp(0.875rem,4.5vw,1.875rem)] lg:text-6xl xl:text-7xl"
+        />
+      </div>
+
+      {/* ===== ORGANIZERS (static row) ===== */}
+      <div className="mb-16 md:mb-24">
+        <SubTitle>Organizers</SubTitle>
+        <div className="mt-10 flex flex-wrap items-start justify-center gap-8 px-4 md:gap-14">
+          {organizers.map((o, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.12, ease: "easeOut" }}
+            >
+              <PolaroidCard
+                img={o.img}
+                name={o.name}
+                role={o.role}
+                colored
+                className="w-[clamp(160px,20vw,230px)]"
+              />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* ===== TEAM CAROUSELS (auto-move, pause on hover) ===== */}
+      {teams.map((team) => (
+        <div key={team.title} className="mb-14 md:mb-20">
+          <SubTitle>{team.title}</SubTitle>
+          {team.members.length <= 3 ? (
+            <StaticTeamRow members={team.members} />
+          ) : (
+            <TeamCarousel members={team.members} />
+          )}
+        </div>
+      ))}
     </section>
   );
 };
 
 export default GallerySection;
-
-

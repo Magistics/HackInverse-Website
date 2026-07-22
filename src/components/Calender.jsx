@@ -64,22 +64,6 @@ const Calender = () => {
           }
         `}
       </style>
-      {/* <h2
-        className="text-xl sm:text-4xl md:text-7xl text-center tracking-wider uppercase -mt-6 mb-3 px-2"
-        style={{
-          fontFamily: "'StrangerHeader', serif",
-          WebkitTextStroke: "1px #FF0505",
-          color: "transparent",
-          textShadow: "0 0 20px rgba(255, 0, 0)"
-        }}
-      >
-        Mark Your Calender
-      </h2>
-
-      <div className="w-full max-w-4xl mb-12 md:mb-24 px-4">
-        <div className="w-full h-px bg-red-500 shadow-[0_0_8px_red]"></div>
-        <div className="w-full h-px bg-red-500 mt-1.5 shadow-[0_0_8px_red]"></div>
-      </div> */}
       <div className="mb-5">
         <SectionTitle
           title="Mark Your Calender"
