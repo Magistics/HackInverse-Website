@@ -2,15 +2,6 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import frame1 from "../../assets/image/frame1.jpg";
-import frame2 from "../../assets/image/frame2.jpg";
-import frame3 from "../../assets/image/frame3.jpg";
-import frame4 from "../../assets/image/frame4.jpg";
-import frame5 from "../../assets/image/frame5.jpg";
-import frame6 from "../../assets/image/frame6.jpg";
-import frame7 from "../../assets/image/frame7.jpg";
-import frame8 from "../../assets/image/frame8.png";
 import SectionTitle from "../Common/SectionTitle";
 
 /* -------------------------------------------------------------------------- */
@@ -135,6 +126,7 @@ const TeamCarousel = ({ members }) => {
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -143,6 +135,7 @@ const TeamCarousel = ({ members }) => {
 
   useEffect(() => {
     if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
     onSelect();
     emblaApi.on("select", onSelect).on("reInit", onSelect);
     return () => {
@@ -152,37 +145,20 @@ const TeamCarousel = ({ members }) => {
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback((i) => emblaApi && emblaApi.scrollTo(i), [emblaApi]);
 
   return (
-    <div className="relative mx-auto mt-6 w-full max-w-5xl px-10 sm:px-14">
-      {/* Prev / Next arrows */}
-      <button
-        type="button"
-        onClick={scrollPrev}
-        aria-label="Previous"
-        className="absolute left-1 top-1/2 z-20 -translate-y-1/2 rounded-full bg-[#D9D9D933] p-2 text-white transition-colors hover:bg-[#D9D9D950] sm:p-3"
-      >
-        <FaChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
-      </button>
-      <button
-        type="button"
-        onClick={scrollNext}
-        aria-label="Next"
-        className="absolute right-1 top-1/2 z-20 -translate-y-1/2 rounded-full bg-[#D9D9D933] p-2 text-white transition-colors hover:bg-[#D9D9D950] sm:p-3"
-      >
-        <FaChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
-      </button>
-
-      {/* Embla viewport */}
+    <div className="relative mx-auto mt-6 w-full max-w-5xl px-4">
+      {/* Embla viewport — cards are bottom-aligned; side cards lose top height */}
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex items-center">
+        <div className="flex items-end">
           {members.map((m, index) => (
             <div
               key={index}
-              className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_33.333%]"
+              className="min-w-0 flex-[0_0_100%] px-2 pt-12 pb-4 sm:flex-[0_0_33.333%]"
             >
               <div
-                className={`flex justify-center py-8 transition-all duration-500 ease-out ${
+                className={`flex origin-bottom justify-center transition-all duration-500 ease-out ${
                   index === selectedIndex
                     ? "scale-110 opacity-100"
                     : "scale-90 opacity-50"
@@ -199,6 +175,53 @@ const TeamCarousel = ({ members }) => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Controls — arrows with pagination dots between them, below the cards */}
+      <div className="mt-4 flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={scrollPrev}
+          aria-label="Previous"
+          className="rounded-full bg-[#D9D9D933] p-2 text-white transition-colors hover:bg-[#D9D9D950] sm:p-3"
+        >
+          <img
+            src="/left-arrow.svg"
+            alt=""
+            aria-hidden="true"
+            className="h-4 w-auto sm:h-5"
+          />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {scrollSnaps.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => scrollTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === selectedIndex
+                  ? "w-5 bg-[#e00505]"
+                  : "w-2 bg-white/40 hover:bg-white/70"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={scrollNext}
+          aria-label="Next"
+          className="rounded-full bg-[#D9D9D933] p-2 text-white transition-colors hover:bg-[#D9D9D950] sm:p-3"
+        >
+          <img
+            src="/right-arrow.svg"
+            alt=""
+            aria-hidden="true"
+            className="h-4 w-auto sm:h-5"
+          />
+        </button>
       </div>
     </div>
   );
