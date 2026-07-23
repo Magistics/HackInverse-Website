@@ -8,7 +8,7 @@ import SectionTitle from "../Common/SectionTitle";
 /*  TEAM DATA — replace the placeholder images/names with the real members.   */
 /* -------------------------------------------------------------------------- */
 const organizers = [
-  { name: "Abhirup Dutta Khan", role: "Lead / Organizer", img: "/team/abhirup.jpg" },
+  { name: "Abhirup Datta Khan", role: "Lead / Organizer", img: "/team/abhirup.jpg" },
   { name: "Rupsha Das", role: "Co. / Organizer", img: "/team/rupsha.jpg" },
 ];
 
