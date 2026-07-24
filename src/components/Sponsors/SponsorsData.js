@@ -1,8 +1,4 @@
 export const sponsorsData = {
-  perks: [
-    { src: "/CodeCrafters.io full logo (Dark text).png", alt: "codecrafters" },
-  ],
-
   onlinePlatform: [
     { src: "/Unstop.png", alt: "Unstop" },
   ],
@@ -14,11 +10,10 @@ export const sponsorsData = {
   ],
 
   silver: [
-    { src: null, alt: "Coming Soon" },
-    { src: null, alt: "Coming Soon" },
-    { src: null, alt: "Coming Soon" },
-    { src: null, alt: "Coming Soon" },
-    { src: null, alt: "Coming Soon" },
-    { src: null, alt: "Coming Soon" },
+    {
+      src: "/codecrafters-horizontal-dark.svg",
+      alt: "CodeCrafters",
+      href: "https://codecrafters.io/",
+    },
   ],
 };

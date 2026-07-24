@@ -130,7 +130,7 @@ export default function Footer() {
                   icon: Instagram,
                   href: "https://www.instagram.com/hackinverse",
                 },
-                { icon: BsDiscord, href: "https://discord.gg/QrpFxmAA" },
+                { icon: BsDiscord, href: "https://discord.gg/HBabqw2UG" },
               ].map((social, index) => (
                 <motion.a
                   key={index}
@@ -172,7 +172,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://discord.gg/QrpFxmAA"
+                href="https://discord.gg/HBabqw2UG"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300 transition-colors"
