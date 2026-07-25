@@ -18,19 +18,19 @@ const PrizesSection = () => {
       inner: prize2Inner,
       border: prize2Border,
       title: "2nd Prize",
-      text: "coming soon",
+      text: "1-year CodeCrafters VIP membership",
     },
     {
       inner: prize1Inner,
       border: prize1Border,
       title: "1st Prize",
-      text: "coming soon",
+      text: "2-year CodeCrafters VIP membership",
     },
     {
       inner: prize3Inner,
       border: prize3Border,
       title: "3rd Prize",
-      text: "coming soon",
+      text: "6-month CodeCrafters VIP membership",
     },
   ];
 
@@ -128,7 +128,7 @@ const PrizesSection = () => {
               />
             </div>
 
-            <p className="mt-[2vw] text-[clamp(20px,1.9vw,30px)] text-[#b3b3b3]">
+            <p className="mt-[2vw] max-w-[18rem] text-[clamp(16px,1.45vw,24px)] leading-snug text-[#d0d0d0]">
               {p.text}
             </p>
 

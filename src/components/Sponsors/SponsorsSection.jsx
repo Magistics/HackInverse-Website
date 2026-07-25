@@ -24,9 +24,12 @@ const SponsorsSection = () => {
         />
         <div className="h-px w-[80%] bg-red-500"></div>
         <SponsorsCategory
-          title="Hackinverse 0.5 PERKS SPONSOR"
-          sponsors={sponsorsData.perks}
+          title="Hackinverse Silver Sponsor"
+          sponsors={sponsorsData.silver}
           columns={1}
+          titleClassName="text-3xl sm:text-4xl text-[#d1d1d1]"
+          logoImageClassName="h-auto w-full max-w-[28rem]"
+          logoClassName="w-full max-w-[32rem] px-6 py-5"
         />
         <div className="h-px w-[80%] bg-red-500"></div>
         <SponsorsCategory
