@@ -1,5 +1,5 @@
 import tvCornerImage from '../../assets/TvCorner.png';
-import tvDisplayImage from '../../assets/TvDisplay2.png';
+import tvDisplayImage from '../../assets/VenueTvDisplay.png';
 import { motion } from 'framer-motion';
 import SectionTitle from '../Common/SectionTitle';
 
@@ -25,7 +25,7 @@ const Venue = () => {
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl w-full flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-8 lg:gap-8 xl:gap-16">
-        
+
         {/* Text Section */}
         <div className="flex flex-col gap-8 text-white text-center lg:text-left lg:w-1/2">
           {/* Header */}
@@ -52,7 +52,8 @@ const Venue = () => {
           {/* Venue Info */}
           <div className="flex flex-col gap-2">
             <h2 className="text-[clamp(1.75rem,5vw,3.5rem)] font-bold leading-tight text-white italic">
-              Agarpara, Kolkata
+              {/* Agarpara, Kolkata */}
+              Will be Revealed soon
             </h2>
             <address className="text-[clamp(1rem,3.3vw,1.8rem)] not-italic leading-relaxed opacity-45">
               Map and travel information will be available soon.
