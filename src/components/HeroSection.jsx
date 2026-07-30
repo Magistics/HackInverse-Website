@@ -69,6 +69,33 @@ export default function HeroSection() {
         })}
       </div>
 
+        <motion.div
+          className="absolute top-0 right-[10%] z-40 flex flex-col items-center pointer-events-none md:right-[14%]"
+          style={{ transformOrigin: "50% 0%" }}
+          initial={{ opacity: 0, y: -16, rotate: -10 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            rotate: [-20, 20, -20],
+          }}
+          transition={{
+            opacity: { duration: 0.6, delay: 1 },
+            y: { duration: 1, delay: 1, ease: "easeOut" },
+            rotate: {
+              duration: 2.4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            },
+          }}
+        >
+          <span className="h-16 w-0.5 bg-white/90 shadow-[0_0_8px_rgba(255,255,255,0.65)] md:h-36" />
+          <img
+            className="-mt-10 w-16 sm:-mt-12 sm:w-20 md:-mt-20 md:w-28 lg:w-34 drop-shadow-[0_0_18px_rgba(255,5,5,0.45)]"
+            src="/stranger-things-tag.svg"
+            alt="Stranger Things tag"
+          />
+        </motion.div>
+
         {/* Clouds */}
         <motion.img
           initial={{ x: -100, opacity: 0 }}
@@ -124,7 +151,7 @@ export default function HeroSection() {
 
         <motion.div 
           style={{ y: textY }}
-          className="mt-[22%] md:mt-[18%] lg:[15%]"
+          className="mt-[40%] md:mt-[18%] lg:[15%]"
         >
           {/* Title Block */}
           <motion.div 
