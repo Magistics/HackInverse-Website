@@ -7,6 +7,7 @@ export const sponsorsData = {
 
   gold: [
     { src: "/devfolio_logo-colored.svg", alt: "DEVFOLIO LOGO", href: "https://devfolio.co/" },
+    { src: "/miro-logo.jpg", alt: "MIRO LOGO", href: "https://miro.com/" },
   ],
 
   silver: [
