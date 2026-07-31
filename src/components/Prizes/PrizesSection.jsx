@@ -1,13 +1,8 @@
 import React from "react";
 
 import prize1Inner from "../../assets/1st-inner.png";
-import prize1Border from "../../assets/PrizeBorder.png";
-
 import prize2Inner from "../../assets/2nd-inner.png";
-import prize2Border from "../../assets/PrizeBorder.png";
-
 import prize3Inner from "../../assets/3rd-inner.png";
-import prize3Border from "../../assets/PrizeBorder.png";
 
 import patternBg from "../../assets/BgPattern.png";
 import SectionTitle from "../Common/SectionTitle";
@@ -16,27 +11,45 @@ const PrizesSection = () => {
   const prizes = [
     {
       inner: prize2Inner,
-      border: prize2Border,
-      title: "2nd Prize",
-      text: "1-year CodeCrafters VIP membership",
+      title: "Runner up",
+      duration: "1-year",
+      text: "CodeCrafters VIP membership",
+      status: "Target Locking...",
+      progress: 60,
+      accent: "#D6D6D6",
+      glow: "rgba(214,214,214,0.45)",
+      pillBg: "rgba(214,214,214,0.06)",
+      featured: false,
     },
     {
       inner: prize1Inner,
-      border: prize1Border,
-      title: "1st Prize",
-      text: "2-year CodeCrafters VIP membership",
+      title: "Grand Champion",
+      duration: "2-years",
+      text: "CodeCrafters VIP membership",
+      status: "Target Locked",
+      progress: 100,
+      accent: "#FF2A2A",
+      glow: "rgba(255,42,42,0.6)",
+      pillBg: "rgba(255,42,42,0.14)",
+      featured: true,
     },
     {
       inner: prize3Inner,
-      border: prize3Border,
-      title: "3rd Prize",
-      text: "6-month CodeCrafters VIP membership",
+      title: "Second Runner up",
+      duration: "6-months",
+      text: "CodeCrafters VIP membership",
+      status: "Target Locking...",
+      progress: 55,
+      accent: "#E2A312",
+      glow: "rgba(226,163,18,0.45)",
+      pillBg: "rgba(226,163,18,0.08)",
+      featured: false,
     },
   ];
 
   return (
     <section
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#222222] px-2 text-center text-white font-cinzel-decorative"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#222222] px-4 py-16 text-center text-white"
       style={{
         backgroundImage: `url(${patternBg})`,
         backgroundRepeat: "no-repeat",
@@ -55,86 +68,90 @@ const PrizesSection = () => {
         />
       </div>
 
-      {/* <h1
-        className="prizes-heading mx-auto mt-15 mb-6 inline-block text-[clamp(30px,5vw,100px)] font-medium uppercase leading-none tracking-[0.10em] font-bold [-webkit-text-stroke:2px_#C83639]"
-        style={{
-          fontFamily: '"Merriweather", sans-serif',
-          color: "#222222",
-          textShadow: "0 0 10px #c11c1c, 0 0 20px #c11c1c",
-        }}
-      >
-        PRIZES */}
-      {/* FIRST underline */}
-      {/* <span
-          className="block mx-auto mt-2 h-[3px] w-[95%] sm:mt-[0.5vw] sm:h-[0.4vh] sm:w-[60%] sm:max-w-[450px] sm:min-w-[350px] bg-[#C83639]"
-          style={{
-            boxShadow: "0 4px 10px #A31212, 0 8px 20px #A31212, 0 12px 40px #A31212",
-          }}
-        /> */}
-      {/* SECOND underline */}
-      {/* <span
-          className="block mx-auto mt-1 h-[3px] w-[95%] sm:mt-[0.4vw] sm:h-[0.4vh] sm:w-[60%] sm:max-w-[450px] sm:min-w-[350px] bg-[#C83639]"
-          style={{
-            boxShadow: "0 4px 10px #A31212, 0 8px 20px #A31212, 0 12px 40px #A31212",
-          }}
-        /> */}
-      {/* </h1> */}
-
       {/* ===== PRIZE CARDS ===== */}
-      <div className="mt-[5vw] flex max-w-[95vw] flex-wrap items-center justify-center gap-[8vw] lg:gap-[6vw] md:gap-[5vw] sm:gap-[4vw] xs:gap-[3vw]">
+      <div className="spline-mono mt-24 grid w-full max-w-7xl grid-cols-1 gap-24 md:mt-32 md:grid-cols-3 md:gap-6 lg:gap-10">
         {prizes.map((p, index) => (
           <div
-            className={`
-           flex flex-col items-center justify-center text-center
-       
-           /* MOBILE ORDER ONLY */
-           ${index === 1 ? "order-1 md:order-none" : ""}
-           ${index === 0 ? "order-2 md:order-none" : ""}
-           ${index === 2 ? "order-3 md:order-none" : ""}
-       
-           /* DESKTOP TRANSLATIONS (unchanged) */
-           lg:${index === 0 ? "translate-x-[-2vw]" : ""}
-           lg:${index === 2 ? "translate-x-[2vw]" : ""}
-         `}
             key={index}
+            className={`
+              flex
+              ${index === 1 ? "order-1 md:order-0 md:-translate-y-10" : ""}
+              ${index === 0 ? "order-2 md:order-0 md:translate-y-20" : ""}
+              ${index === 2 ? "order-3 md:order-0 md:translate-y-20" : ""}
+            `}
           >
-            {/* ===== BORDER + INNER IMAGE ===== */}
+            {/* ===== CARD ===== */}
             <div
-              className="relative flex items-center justify-center rounded-full z-10 flex-shrink-0 overflow-visible"
+              className="relative flex w-full flex-col rounded-2xl border-2 mx-10 md:mx-0 px-10 pb-7 pt-16 transition-all duration-300 md:pt-20"
               style={{
-                width:
-                  index === 1
-                    ? "clamp(260px, 27vw, 460px)"
-                    : "clamp(220px, 23vw, 400px)",
-                height:
-                  index === 1
-                    ? "clamp(260px, 27vw, 460px)"
-                    : "clamp(220px, 23vw, 400px)",
+                borderColor: p.accent,
+                backgroundColor: "#222222",
+                boxShadow: `0 0 20px ${p.glow}, inset 0 0 20px ${p.pillBg}`,
               }}
             >
-              <img
-                src={p.border}
-                className="animate-[spin_10s_linear_infinite] absolute inset-0 h-full w-full object-contain z-[1]"
-                alt="prize-border"
-              />
+              {/* ===== BADGE (overlaps the top border) ===== */}
               <img
                 src={p.inner}
-                className="relative z-[3] object-contain"
-                alt="prize-inner"
+                alt={`${p.title} badge`}
+                className="absolute left-1/2 top-0 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full md:w-28"
+                style={{ filter: `drop-shadow(0 0 12px ${p.glow})` }}
+              />
+
+              {/* ===== TITLE ===== */}
+              <h3
+                className="text-xl font-bold uppercase leading-tight tracking-[0.12em] md:text-2xl"
                 style={{
-                  width: index === 1 ? "70%" : "65%",
-                  height: "70%",
+                  color: p.accent,
+                }}
+              >
+                {p.title}
+              </h3>
+              <span
+                className="mx-auto mt-2 block h-0.5 w-28 md:w-32 mb-5"
+                style={{
+                  backgroundColor: p.accent,
+                  boxShadow: `0 0 8px ${p.glow}`,
                 }}
               />
+
+              {/* ===== DURATION ===== */}
+              <p className="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl">
+                {p.duration}
+              </p>
+
+              {/* ===== TEXT PILL ===== */}
+              <p
+                className="mx-auto mt-5 w-full rounded-md border px-4 py-2.5 text-sm leading-snug text-[#e6e6e6] md:text-base"
+                style={{
+                  borderColor: p.accent,
+                  backgroundColor: p.pillBg,
+                }}
+              >
+                {p.text}
+              </p>
+
+              {/* ===== STATUS + PROGRESS BAR ===== */}
+              {p.status && (
+                <div className="mt-auto pt-10">
+                  <p className="text-[11px] tracking-wide text-[#9a9a9a] md:text-xs">
+                    {p.status}
+                  </p>
+                  <div
+                    className="mx-auto mt-5 h-2 w-4/5 overflow-hidden rounded-full border bg-white/10"
+                    style={{ borderColor: p.accent }}
+                  >
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${p.progress}%`,
+                        backgroundColor: p.accent,
+                        boxShadow: `0 0 10px ${p.glow}`,
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
-
-            <p className="mt-[2vw] max-w-[18rem] text-[clamp(16px,1.45vw,24px)] leading-snug text-[#d0d0d0]">
-              {p.text}
-            </p>
-
-            <h3 className="mt-[0.7vw] font-inter text-[clamp(24px,3.5vw,63px)] font-bold text-white [text-shadow:0_0_8px_#c11c1c,0_0_20px_#c11c1c]">
-              {p.title}
-            </h3>
           </div>
         ))}
       </div>

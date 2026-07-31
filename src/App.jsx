@@ -87,13 +87,13 @@ function App() {
                     <section ref={sponsorsRef}>
                         <SponsorsSection />
                     </section>
-                    
-                    <section ref={teamsRef}>
-                        <GallerySection />
-                    </section>
 
                     <section>
                         <PrizesSection />
+                    </section>
+                    
+                    <section ref={teamsRef}>
+                        <GallerySection />
                     </section>
 
                     <section>
@@ -104,12 +104,12 @@ function App() {
                         <ShadowSection/>
                     </section>
 
-                    <section>
-                        <ElevatorAnimation />
-                    </section>
-
                     <section ref={venueRef}>
                         <Venue />
+                    </section>
+
+                    <section>
+                        <ElevatorAnimation />
                     </section>
 
                     <section>
