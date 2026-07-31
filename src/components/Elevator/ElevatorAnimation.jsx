@@ -35,10 +35,10 @@ const TAIL = 100; // vh of cable hanging under the cage before scrolling
 
 const FLOATING_WORDS = [
     { text: "Hackathon", left: "20%", top: "22%", start: 0.1, size: "text-sm sm:text-base md:text-xl", tone: "text-white/80" },
-    { text: "Game Dev", left: "78%", top: "30%", start: 0.16, size: "text-[11px] sm:text-sm md:text-base", tone: "text-white/60" },
-    { text: "AI & ML", left: "24%", top: "44%", start: 0.24, size: "text-sm sm:text-base md:text-lg", tone: "text-white/70" },
-    { text: "Web App", left: "76%", top: "52%", start: 0.3, size: "text-[11px] sm:text-sm md:text-base", tone: "text-white/55" },
-    { text: "Design", left: "30%", top: "64%", start: 0.36, size: "text-sm sm:text-base md:text-lg", tone: "text-white/65" },
+    { text: "Web3", left: "78%", top: "30%", start: 0.16, size: "text-[11px] sm:text-sm md:text-base", tone: "text-white/60" },
+    { text: "AI/ML", left: "24%", top: "44%", start: 0.24, size: "text-sm sm:text-base md:text-lg", tone: "text-white/70" },
+    { text: "Hardware", left: "76%", top: "52%", start: 0.3, size: "text-[11px] sm:text-sm md:text-base", tone: "text-white/55" },
+    { text: "Cloud Infra", left: "30%", top: "64%", start: 0.36, size: "text-sm sm:text-base md:text-lg", tone: "text-white/65" },
     { text: "24 Hours", left: "70%", top: "74%", start: 0.42, size: "text-[11px] sm:text-sm md:text-base", tone: "text-white/50" },
     { text: "Build. Break. Repeat.", left: "50%", top: "86%", start: 0.5, size: "text-xs sm:text-sm md:text-lg", tone: "text-white/70" },
 ];

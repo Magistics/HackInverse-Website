@@ -25,7 +25,7 @@ const AboutSection = () => {
           alt="HackInverse Monster"
           className="w-full h-full object-cover opacity-30 md:opacity-100"
         />
-        <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-[#222222] to-transparent" />
+        <div className="absolute bottom-0 w-full h-1/3 bg-linear-to-t from-[#222222] to-transparent" />
       </div>
 
       {/* Content - Right Side */}
