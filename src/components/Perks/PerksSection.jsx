@@ -1,5 +1,4 @@
 import React from 'react';
-import { Layout as Layout2, BarChart3, Clock } from 'lucide-react';
 import SectionTitle from '../Common/SectionTitle';
 
 export default function PerksSection() {
@@ -7,28 +6,28 @@ export default function PerksSection() {
     {
       id: 1,
       number: '1',
-      icon: Layout2,
+      icon: '/icons/layout.svg',
       title: 'OFFLINE BUILD ENVIRONMENT',
       description: 'No cloud credits ? No problem, we provide local servers and cached repos to simulate an isolate env',
     },
     {
       id: 2,
       number: '2',
-      icon: BarChart3,
+      icon: '/icons/barchart.svg',
       title: 'REAL COLLABORATION',
       description: 'No cloud credits ? No problem, we provide local servers and cached repos to simulate an isolate env',
     },
     {
       id: 3,
       number: '3',
-      icon: Clock,
+      icon: '/icons/clock.svg',
       title: 'LEARNING UNDER PRESSURE',
       description: 'No cloud credits ? No problem, we provide local servers and cached repos to simulate an isolate env',
     },
   ];
 
   return (
-    <section className="w-full py-12 md:py-20 px-16 md:px-20 lg:px-32 mb-20">
+    <section className="w-full py-12 md:py-20 px-16 md:px-20 lg:px-32">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <SectionTitle
@@ -42,7 +41,6 @@ export default function PerksSection() {
         {/* Cards Grid */}
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 justify-items-center spline-mono">
           {perks.map((perk) => {
-            const IconComponent = perk.icon;
             return (
               <div
                 key={perk.id}
@@ -52,10 +50,15 @@ export default function PerksSection() {
                 <div className="p-4 md:p-6 h-full flex flex-col">
                   {/* Header: Icon and Number */}
                   <div className="flex items-start justify-between mb-6">
-                    <div className="border border-red-800 p-1 rounded">
-                      <IconComponent size={72} className="text-white" />
+                    <div className="border-2 border-red-800 p-1 rounded-xl">
+                      <img
+                        src={perk.icon}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-10 md:w-[60px] h-auto"
+                      />
                     </div>
-                    <div className="text-4xl md:text-8xl font-bold text-gray-400">
+                    <div className="text-6xl md:text-8xl font-bold text-gray-400">
                       {perk.number}
                     </div>
                   </div>
