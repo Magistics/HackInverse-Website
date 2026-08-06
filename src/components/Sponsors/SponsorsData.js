@@ -16,5 +16,10 @@ export const sponsorsData = {
       alt: "CodeCrafters",
       href: "https://codecrafters.io/",
     },
+    {
+      src: "/mercyforanimals.png",
+      alt: "Mercy for Animals",
+      href: "https://mercyforanimals.org/",
+    },
   ],
 };

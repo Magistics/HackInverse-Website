@@ -8,21 +8,21 @@ export default function PerksSection() {
       number: '1',
       icon: '/icons/layout.svg',
       title: 'OFFLINE BUILD ENVIRONMENT',
-      description: 'No cloud credits ? No problem, we provide local servers and cached repos to simulate an isolate env',
+      description: 'Build without internet dependency. Access local servers, cached repositories, and pre-configured development tools so you can focus entirely on creating innovative solutions without worrying about connectivity.',
     },
     {
       id: 2,
       number: '2',
       icon: '/icons/barchart.svg',
       title: 'REAL COLLABORATION',
-      description: 'No cloud credits ? No problem, we provide local servers and cached repos to simulate an isolate env',
+      description: 'Experience teamwork in action. Work alongside your teammates, brainstorm ideas, divide responsibilities, and solve challenges together—just like in a real software development environment.',
     },
     {
       id: 3,
       number: '3',
       icon: '/icons/clock.svg',
       title: 'LEARNING UNDER PRESSURE',
-      description: 'No cloud credits ? No problem, we provide local servers and cached repos to simulate an isolate env',
+      description: 'Turn deadlines into opportunities. Sharpen your problem-solving, decision-making, and time management skills by building functional solutions within a limited timeframe.',
     },
   ];
 
