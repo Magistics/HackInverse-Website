@@ -78,8 +78,13 @@ export default function ElevatorAnimation() {
             }}
         >
             {/* WORDS RISING FROM THE BOTTOM */}
-            {FLOATING_WORDS.map((word) => (
-                <FloatingWord key={word.text} progress={scrollYProgress} {...word} />
+            {FLOATING_WORDS.map((word, i) => (
+                <FloatingWord
+                    key={word.text}
+                    progress={scrollYProgress}
+                    index={i}
+                    {...word}
+                />
             ))}
 
             {/* ELEVATOR RIG */}
@@ -147,7 +152,7 @@ export default function ElevatorAnimation() {
     );
 }
 
-function FloatingWord({ progress, text, left, top, start, size, tone }) {
+function FloatingWord({ progress, text, left, top, start, size, tone, index }) {
     const yRaw = useTransform(progress, [start, start + 0.18, 1], [90, 0, -60]);
     const opacity = useTransform(
         progress,
@@ -161,12 +166,33 @@ function FloatingWord({ progress, text, left, top, start, size, tone }) {
         mass: 0.6,
     });
 
+    // Idle drift, on its own clock per word so the group never bobs in lockstep.
+    // It lives on an inner span because the outer one already owns the scroll y.
+    const bobY = 7 + (index % 3) * 4;
+    const bobX = 3 + (index % 2) * 3;
+    const bobDuration = 4.2 + (index % 4) * 0.9;
+
     return (
         <motion.span
             style={{ left, top, x: "-50%", y, opacity }}
             className={`absolute z-0 whitespace-nowrap spline-mono tracking-wide ${size} ${tone}`}
         >
-            {text}
+            <motion.span
+                className="inline-block"
+                animate={{
+                    y: [0, -bobY, 0, bobY * 0.6, 0],
+                    x: [0, bobX, 0, -bobX, 0],
+                    rotate: [0, -1.2, 0, 1.2, 0],
+                }}
+                transition={{
+                    duration: bobDuration,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.4,
+                }}
+            >
+                {text}
+            </motion.span>
         </motion.span>
     );
 }

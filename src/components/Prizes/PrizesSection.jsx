@@ -48,6 +48,13 @@ const PrizesSection = () => {
     },
   ];
 
+  // the badge ring and the progress-bar sweep run on one shared cadence:
+  // a full rotation takes exactly as long as one sweep + its pause
+  const SWEEP_DURATION = 1.6;
+  const SWEEP_REPEAT_DELAY = 0.7;
+  const SWEEP_START_DELAY = 1.6;
+  const CYCLE = SWEEP_DURATION + SWEEP_REPEAT_DELAY + SWEEP_START_DELAY;
+
   return (
     <section
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#222222] px-4 py-16 text-center text-white"
@@ -91,12 +98,34 @@ const PrizesSection = () => {
               }}
             >
               {/* ===== BADGE (overlaps the top border) ===== */}
-              <img
-                src={p.inner}
-                alt={`${p.title} badge`}
-                className="absolute left-1/2 top-0 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full md:w-28"
-                style={{ filter: `drop-shadow(0 0 12px ${p.glow})` }}
-              />
+              <div className="absolute left-1/2 top-0 w-24 -translate-x-1/2 -translate-y-1/2 md:w-28">
+                {/* glow arcs orbiting the badge; masked hollow so the medal stays clean */}
+                <motion.span
+                  className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[105%] rounded-full"
+                  style={{
+                    x: "-50%",
+                    y: "-50%",
+                    background: `conic-gradient(from 0deg, transparent 0deg, ${p.accent} 60deg, transparent 145deg, transparent 215deg, ${p.accent} 300deg, transparent 360deg)`,
+                    filter: "blur(8px)",
+                    WebkitMaskImage:
+                      "radial-gradient(circle, transparent 46%, #000 66%, #000 100%)",
+                    maskImage:
+                      "radial-gradient(circle, transparent 46%, #000 66%, #000 100%)",
+                  }}
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: CYCLE,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+                <img
+                  src={p.inner}
+                  alt={`${p.title} badge`}
+                  className="relative w-full rounded-full"
+                  style={{ filter: `drop-shadow(0 0 12px ${p.glow})` }}
+                />
+              </div>
 
               {/* ===== TITLE ===== */}
               <h3
@@ -169,11 +198,11 @@ const PrizesSection = () => {
                         className="absolute inset-y-0 -left-1/3 w-1/3 bg-linear-to-r from-transparent via-white/70 to-transparent"
                         animate={{ x: ["0%", "400%"] }}
                         transition={{
-                          duration: 1.6,
+                          duration: SWEEP_DURATION,
                           repeat: Infinity,
-                          repeatDelay: 0.7,
+                          repeatDelay: SWEEP_REPEAT_DELAY,
                           ease: "linear",
-                          delay: 1.6,
+                          delay: SWEEP_START_DELAY,
                         }}
                       />
                     </motion.div>
