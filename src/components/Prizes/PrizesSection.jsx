@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 import prize1Inner from "../../assets/1st-inner.png";
 import prize2Inner from "../../assets/2nd-inner.png";
@@ -133,21 +134,49 @@ const PrizesSection = () => {
               {/* ===== STATUS + PROGRESS BAR ===== */}
               {p.status && (
                 <div className="mt-auto pt-10">
-                  <p className="text-[11px] tracking-wide text-[#9a9a9a] md:text-xs">
+                  {/* still locking on = keep the label breathing, locked = steady */}
+                  <motion.p
+                    className="text-[11px] tracking-wide text-[#9a9a9a] md:text-xs"
+                    animate={
+                      p.progress < 100 ? { opacity: [0.45, 1, 0.45] } : undefined
+                    }
+                    transition={
+                      p.progress < 100
+                        ? { duration: 1.8, repeat: Infinity, ease: "easeInOut" }
+                        : undefined
+                    }
+                  >
                     {p.status}
-                  </p>
+                  </motion.p>
                   <div
                     className="mx-auto mt-5 h-2 w-4/5 overflow-hidden rounded-full border bg-white/10"
                     style={{ borderColor: p.accent }}
                   >
-                    <div
-                      className="h-full rounded-full"
+                    {/* fills from empty up to the card's progress once it scrolls in */}
+                    <motion.div
+                      className="relative h-full overflow-hidden rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${p.progress}%` }}
+                      viewport={{ once: true, amount: 0.5 }}
+                      transition={{ duration: 1.4, ease: "easeOut", delay: 0.2 }}
                       style={{
-                        width: `${p.progress}%`,
                         backgroundColor: p.accent,
                         boxShadow: `0 0 10px ${p.glow}`,
                       }}
-                    />
+                    >
+                      {/* scanning highlight so the bar keeps reading as "live" */}
+                      <motion.span
+                        className="absolute inset-y-0 -left-1/3 w-1/3 bg-linear-to-r from-transparent via-white/70 to-transparent"
+                        animate={{ x: ["0%", "400%"] }}
+                        transition={{
+                          duration: 1.6,
+                          repeat: Infinity,
+                          repeatDelay: 0.7,
+                          ease: "linear",
+                          delay: 1.6,
+                        }}
+                      />
+                    </motion.div>
                   </div>
                 </div>
               )}
