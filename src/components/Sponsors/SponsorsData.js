@@ -21,5 +21,10 @@ export const sponsorsData = {
       alt: "Mercy for Animals",
       href: "https://mercyforanimals.org/",
     },
+    {
+      src: "/osen.jpeg",
+      alt: "OSEN",
+      href: "https://osen.live/",
+    },
   ],
 };
