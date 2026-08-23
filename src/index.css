@@ -107,3 +107,54 @@ body,
   @apply w-[180px] h-[70px] bg-black text-white flex justify-center items-center text-xl font-semibold rounded-md;
 }
 
+
+/* Calender countdown: numbers overlaid on the arcade machine screens */
+.arcade-text {
+  font-family: var(--font-albert-sans);
+  font-weight: 700;
+  color: #222222;
+  line-height: 1;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 2px #FFFFFF;
+}
+
+@media (min-width: 768px) {
+  .arcade-text {
+    -webkit-text-stroke: 4.7px #FFFFFF;
+  }
+}
+
+/* One box per screen, as a % of the artwork (calendar.png, 1026x576) */
+.arcade-screen {
+  position: absolute;
+}
+
+.arcade-screen-days {
+  left: 10.04%;
+  width: 19.78%;
+  top: 25.52%;
+  height: 23.61%;
+}
+
+.arcade-screen-hours {
+  left: 39.47%;
+  width: 22.81%;
+  top: 24.48%;
+  height: 25.52%;
+}
+
+.arcade-screen-mins {
+  left: 71.54%;
+  width: 19.59%;
+  top: 25.52%;
+  height: 23.61%;
+}
+
+/* Stacked inside the box so the enter/exit pair overlap instead of reflowing */
+.arcade-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import calendarBg from "../assets/calendar.png";
-import customFont from "../assets/fonts/Stranger-Things-Outlined.ttf";
 import SectionTitle from "./Common/SectionTitle";
+
+const UNITS = [
+  { key: "days", screenClass: "arcade-screen-days" },
+  { key: "hours", screenClass: "arcade-screen-hours" },
+  { key: "mins", screenClass: "arcade-screen-mins" },
+];
 
 const Calender = () => {
   // Set your hackathon's end date and time here
-  const targetDate = new Date("2026-08-29T09:30:00");
+  const targetDate = new Date("2026-10-10T09:30:00");
 
   const calculateTimeLeft = () => {
     const difference = +targetDate - +new Date();
@@ -37,33 +42,6 @@ const Calender = () => {
 
   return (
     <div className="w-full bg-[#222222] flex flex-col items-center pb-6 px-2 sm:px-4 font-sans overflow-hidden">
-      <style>
-        {`
-          /* 2. Define the Custom Font Face */
-          @font-face {
-            font-family: 'StrangerHeader';
-            src: url(${customFont}) format('truetype');
-            font-weight: normal;
-            font-style: normal;
-          }
-
-          @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@700&display=swap');
-          
-          .arcade-text {
-            font-family: 'Albert Sans', sans-serif;
-            font-weight: 700; 
-            color: #222222; 
-            paint-order: stroke fill; 
-            line-height: 1;
-            -webkit-text-stroke: 2px #FFFFFF; 
-          }
-          @media (min-width: 768px) {
-            .arcade-text {
-              -webkit-text-stroke: 4.7px #FFFFFF;
-            }
-          }
-        `}
-      </style>
       <div className="mb-5">
         <SectionTitle
           title="Mark Your Calender"
@@ -81,53 +59,23 @@ const Calender = () => {
           className="w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(255,0,0,0.2)]"
         />
 
-        <div className="absolute inset-0 grid grid-cols-3 text-center">
-          <div className="relative w-full h-full flex justify-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={timeLeft.days || "00"}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute top-[30%] left-[48%] md:left-[47%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
-              >
-                {timeLeft.days || "00"}
-              </motion.p>
-            </AnimatePresence>
-          </div>
-
-          {/* Machine 2: HOURS */}
-          <div className="relative w-full h-full flex justify-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={timeLeft.hours || "00"}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute top-[30%] left-[38%] md:left-[36%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
-              >
-                {timeLeft.hours || "00"}
-              </motion.p>
-            </AnimatePresence>
-          </div>
-
-          {/* Machine 3: MINS */}
-          <div className="relative w-full h-full flex justify-center">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={timeLeft.mins || "00"}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute top-[30%] left-[31%] md:left-[27%] arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
-              >
-                {timeLeft.mins || "00"}
-              </motion.p>
-            </AnimatePresence>
-          </div>
+        <div className="absolute inset-0">
+          {UNITS.map(({ key, screenClass }) => (
+            <div key={key} className={`arcade-screen ${screenClass}`}>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={timeLeft[key] || "00"}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="arcade-value arcade-text text-[6vw] sm:text-[5vw] md:text-[3.5rem] lg:text-[5.7rem]"
+                >
+                  {timeLeft[key] || "00"}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </div>
     </div>

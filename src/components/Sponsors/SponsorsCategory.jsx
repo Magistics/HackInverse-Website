@@ -38,7 +38,7 @@ const SponsorsCategory = ({
               className={logoClassName}
               imgClassName={logoImageClassName}
               style={logoStyle}
-              imgStyle={logoImageStyle}
+              imgStyle={{ ...logoImageStyle, ...item.imgStyle }}
             />
           ) : (
             <BlurCard key={index} />

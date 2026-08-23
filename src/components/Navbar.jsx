@@ -186,7 +186,7 @@ export default function Navbar({ scrollToView, refs }) {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              className="md:hidden mx-4 absolute top-full left-0 right-0 mt-2 py-5 bg-black rounded-[20px] google-gradient-border overflow-hidden"
+              className="md:hidden mx-4 absolute top-full left-0 right-0 mt-2 py-5 bg-white/5 border border-white/10 rounded-[20px] google-gradient-border overflow-hidden"
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}

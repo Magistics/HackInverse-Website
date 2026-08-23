@@ -20,29 +20,29 @@ import Duration from "./components/Duration.jsx";
 import ShadowSection from "./components/ShadowSection.jsx";
 
 function App() {
-    useEffect(() => {
-        // 1. Disable right-click context menu
-        const handleContextMenu = (e) => e.preventDefault();
-        document.addEventListener('contextmenu', handleContextMenu);
+    // useEffect(() => {
+    //     // 1. Disable right-click context menu
+    //     const handleContextMenu = (e) => e.preventDefault();
+    //     document.addEventListener('contextmenu', handleContextMenu);
 
-        // 2. Disable common DevTools keyboard shortcuts
-        const handleKeyDown = (e) => {
-        if (
-            e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || 
-            (e.ctrlKey && e.key === 'U')
-        ) {
-            e.preventDefault();
-        }
-        };
-        document.addEventListener('keydown', handleKeyDown);
+    //     // 2. Disable common DevTools keyboard shortcuts
+    //     const handleKeyDown = (e) => {
+    //     if (
+    //         e.key === 'F12' || 
+    //         (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || 
+    //         (e.ctrlKey && e.key === 'U')
+    //     ) {
+    //         e.preventDefault();
+    //     }
+    //     };
+    //     document.addEventListener('keydown', handleKeyDown);
 
-        // Cleanup listeners when component unmounts
-        return () => {
-        document.removeEventListener('contextmenu', handleContextMenu);
-        document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
+    //     // Cleanup listeners when component unmounts
+    //     return () => {
+    //     document.removeEventListener('contextmenu', handleContextMenu);
+    //     document.removeEventListener('keydown', handleKeyDown);
+    //     };
+    // }, []);
 
     const homeRef = useRef(null);
     const aboutRef = useRef(null);

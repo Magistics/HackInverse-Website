@@ -26,5 +26,11 @@ export const sponsorsData = {
       alt: "OSEN",
       href: "https://osen.live/",
     },
+    {
+      src: "/hacknest-logo.png",
+      alt: "HACKNEST",
+      href: "https://hacknest.co.in/",
+      imgStyle: { height: "9rem", width: "auto", maxWidth: "100%" },
+    },
   ],
 };
