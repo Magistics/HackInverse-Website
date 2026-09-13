@@ -78,7 +78,7 @@ const Venue = () => {
               style={{ aspectRatio: '20/20' }}
             />
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.404764003142!2d88.37834250000002!3d22.675971300000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89c46c06efd83%3A0x36a29a26ce825e99!2sJIS%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1789320706334!5m2!1sen!2sin"
+              src="https://maps.google.com/maps?q=22.675971300000004,88.37834250000002&z=17&output=embed"
               title="Venue location map"
               className="absolute z-20 pointer-events-auto"
               style={{
