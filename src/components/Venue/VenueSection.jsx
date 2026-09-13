@@ -1,5 +1,4 @@
 import tvCornerImage from '../../assets/TvCorner.png';
-import tvDisplayImage from '../../assets/VenueTvDisplay.png';
 import { motion } from 'framer-motion';
 import SectionTitle from '../Common/SectionTitle';
 
@@ -32,11 +31,14 @@ const Venue = () => {
 
             {/* Venue Info */}
             <div className="flex flex-col gap-2">
+              <h2 className="text-[clamp(1.75rem,4.5vw,2.8rem)] font-bold leading-tight text-white italic">
+                JIS UNIVERSITY,
+              </h2>
               <h2 className="text-[clamp(1.75rem,5vw,3.5rem)] font-bold leading-tight text-white italic">
-                Will be Revealed soon
+                AGARPARA
               </h2>
               <address className="text-[clamp(1rem,3.3vw,1.8rem)] not-italic leading-relaxed opacity-45">
-                Map and travel information will be available soon.
+                Grab your coordinates here!
               </address>
             </div>
 
@@ -74,22 +76,27 @@ const Venue = () => {
               className="relative z-30 w-full h-auto object-contain pointer-events-none"
               style={{ aspectRatio: '20/20' }}
             />
-            <img
-              src={tvDisplayImage}
-              alt="Venue image inside TV screen"
-              className="absolute z-20 object-cover"
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.404764003142!2d88.37834250000002!3d22.675971300000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89c46c06efd83%3A0x36a29a26ce825e99!2sJIS%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1789320706334!5m2!1sen!2sin"
+              title="Venue location map"
+              className="absolute z-20 pointer-events-auto"
               style={{
                 top: '20%',
                 left: '4%',
                 width: '92%',
                 height: '58%',
+                border: 0,
+                filter: 'invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%)',
               }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
             />
           </div>
         </div>
       </div>
       {/* Coming Soon Overlay */}
-        <div className="absolute mx-5 2xl:mx-20 inset-0 z-20 flex flex-col items-center justify-center gap-1 rounded-2xl sm:rounded-3xl bg-white/10 backdrop-blur-md">
+      {/* <div className="absolute mx-5 2xl:mx-20 inset-0 z-20 flex flex-col items-center justify-center gap-1 rounded-2xl sm:rounded-3xl bg-white/10 backdrop-blur-md">
           <SectionTitle
             title="Venue"
             strokeColor="rgba(248, 243, 235, 0.95)"
@@ -100,7 +107,7 @@ const Venue = () => {
           <p className="sofia-sans-extra-condensed text-2xl sm:text-4xl md:text-5xl tracking-[0.15em] text-white drop-shadow-[0_5px_5px_rgba(0,0,0,1)]">
             Coming Soon...
           </p>
-        </div>
+        </div> */}
     </div>
   );
 };
