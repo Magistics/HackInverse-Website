@@ -13,7 +13,6 @@ const Venue = () => {
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl w-full">
         <div
-          aria-hidden="true"
           className="pointer-events-none select-none flex flex-col lg:flex-row items-center justify-start lg:justify-between gap-8 lg:gap-8 xl:gap-16"
         >
           {/* Text Section */}
@@ -57,14 +56,16 @@ const Venue = () => {
                   ease: "easeInOut",
                 }}
               />
-              <motion.button
-                tabIndex={-1}
-                className="relative cursor-pointer bg-white text-black text-xl md:text-2xl font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+              <motion.a
+                href="https://www.google.com/maps/search/?api=1&query=22.675971300000004,88.37834250000002"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative inline-block cursor-pointer pointer-events-auto bg-white text-black text-xl md:text-2xl font-semibold py-3 px-8 sm:py-4 sm:px-10 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
                 whileHover={{ scale: 1.05, boxShadow: "0px 10px 25px rgba(0,0,0,0.3)" }}
                 whileTap={{ scale: 0.95 }}
               >
-                Map & Travel Info (soon)
-              </motion.button>
+                Get Directions
+              </motion.a>
             </div>
           </div>
 
