@@ -14,6 +14,7 @@ const PrizesSection = () => {
       inner: prize2Inner,
       title: "Runner up",
       duration: "1-year",
+      amount: "$180 per person",
       text: "CodeCrafters VIP membership",
       status: "Target Locking...",
       progress: 60,
@@ -26,9 +27,10 @@ const PrizesSection = () => {
       inner: prize1Inner,
       title: "Grand Champion",
       duration: "2-years",
+      amount: "$360 per person",
       text: "CodeCrafters VIP membership",
-      status: "Target Locked",
-      progress: 100,
+      status: "Target Locking...",
+      progress: 60,
       accent: "#FF2A2A",
       glow: "rgba(255,42,42,0.6)",
       pillBg: "rgba(255,42,42,0.14)",
@@ -38,6 +40,7 @@ const PrizesSection = () => {
       inner: prize3Inner,
       title: "Second Runner up",
       duration: "6-months",
+      amount: "$90 per person",
       text: "CodeCrafters VIP membership",
       status: "Target Locking...",
       progress: 55,
@@ -149,6 +152,16 @@ const PrizesSection = () => {
                 {p.duration}
               </p>
 
+              {/* ===== AMOUNT ===== */}
+              <p
+                className="mt-2 text-lg font-semibold md:text-xl"
+                style={{
+                  color: p.accent,
+                }}
+              >
+                {p.amount}
+              </p>
+
               {/* ===== TEXT PILL ===== */}
               <p
                 className="mx-auto mt-5 w-full rounded-md border px-4 py-2.5 text-sm leading-snug text-[#e6e6e6] md:text-base"
@@ -167,7 +180,9 @@ const PrizesSection = () => {
                   <motion.p
                     className="text-[11px] tracking-wide text-[#9a9a9a] md:text-xs"
                     animate={
-                      p.progress < 100 ? { opacity: [0.45, 1, 0.45] } : undefined
+                      p.progress < 100
+                        ? { opacity: [0.45, 1, 0.45] }
+                        : undefined
                     }
                     transition={
                       p.progress < 100
@@ -187,7 +202,11 @@ const PrizesSection = () => {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${p.progress}%` }}
                       viewport={{ once: true, amount: 0.5 }}
-                      transition={{ duration: 1.4, ease: "easeOut", delay: 0.2 }}
+                      transition={{
+                        duration: 1.4,
+                        ease: "easeOut",
+                        delay: 0.2,
+                      }}
                       style={{
                         backgroundColor: p.accent,
                         boxShadow: `0 0 10px ${p.glow}`,
