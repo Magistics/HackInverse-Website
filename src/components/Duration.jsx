@@ -11,7 +11,7 @@ const Duration = () => {
         {/* <div className="w-72 h-[3px] bg-red-600 mx-auto mt-2" /> */}
 
         <p className=" text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-          Enter the Unknown. A 24-hour Offline coding saga where developers
+          Enter the Unknown. A 8-hour Offline coding saga where developers
           breach the portal to solve problems from another dimension
         </p>
 
@@ -19,7 +19,7 @@ const Duration = () => {
 
           <div className="border border-red-600 rounded-xl p-4 shadow-[0_0_20px_rgba(255,0,0,0.2)]">
             <p className="text-red-500 text-xl tracking-widest">DURATION</p>
-            <h2 className="text-4xl font-bold mt-2">24 Hours</h2>
+            <h2 className="text-4xl font-bold mt-2">8 Hours</h2>
           </div>
 
          
