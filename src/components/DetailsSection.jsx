@@ -10,7 +10,7 @@ export default function DetailsSection() {
                         <span className="text-white">Are you</span>
                         <span className="text-[#EA4335] font-bold">READY</span>
                         <span className="text-white">for the First</span>
-                        <span className="text-[#656565]">Themed Hackathon</span>
+                        <span className="text-[#656565]">Themed HackDay</span>
                         <span className="text-white">of</span>
                         <span className="text-[#EA4335] font-bold">Kolkata</span>
                     </div>
@@ -18,9 +18,9 @@ export default function DetailsSection() {
                         <MainTitle />
                     </div>
                 </div>
-                <img src={GroupImage} alt="GroupImage" className="absolute left-0 right-0 w-full bottom-3 md:-bottom-30"/>
+                <img src={GroupImage} alt="GroupImage" className="absolute left-0 right-0 w-full bottom-3 md:-bottom-30" />
                 <div className="absolute bottom-0 w-full h-24 md:h-48 bg-gradient-to-t from-[#222222] to-transparent"></div>
-            </div> 
+            </div>
         </>
     );
 }

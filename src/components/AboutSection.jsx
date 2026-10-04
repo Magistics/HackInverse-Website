@@ -59,7 +59,7 @@ const AboutSection = () => {
           viewport={{ once: true }}
           className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 mx-10 sm:mx-0 md:mb-6"
         >
-          HackInverse is the flagship hackathon by Magistics, built to bring
+          HackInverse is the flagship hackDay by Magistics, built to bring
           together students, developers, designers, and innovators from all
           walks of life. It's a community-driven space where creativity meets
           collaboration
@@ -86,7 +86,7 @@ const AboutSection = () => {
           className="flex items-center justify-center md:justify-end gap-3 sm:gap-4 mb-6 md:mb-8"
         >
           {[
-            
+
             {
               icon: () => (
                 <svg

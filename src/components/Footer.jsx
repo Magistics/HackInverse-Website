@@ -31,11 +31,11 @@ export default function Footer() {
                 width: `${scale * 2}px`,
                 height: `${scale * 2}px`,
               }}
-              initial={{ 
-                opacity: 0, 
-                scale: 0, 
-                top: `${startY}%`, 
-                left: `${startX}%` 
+              initial={{
+                opacity: 0,
+                scale: 0,
+                top: `${startY}%`,
+                left: `${startX}%`
               }}
               animate={{
                 opacity: [0.2, 1, 0.2],
@@ -64,7 +64,7 @@ export default function Footer() {
               HACKINVERSE
             </div>
             <div className="text-white text-sm md:text-xl font-mono">
-              An Offline Hackathon Experience In Kolkata,
+              An Offline HackDay Experience In Kolkata,
               <br />
               Inspired By The Unknown, Built For The Future
             </div>

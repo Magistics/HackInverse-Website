@@ -6,11 +6,11 @@ import { ChevronDown, Section } from "lucide-react";
 import SectionTitle from "./Common/SectionTitle";
 
 const faqData = [
-    {
-        id: 1,
-        question: "What is a Hackathon?",
-        answer: "Have questions about our digital conference? Our FAQs have got you covered. Discover important details on registration, session logistics, and more.",
-    },
+    // {
+    //     id: 1,
+    //     question: "What is a Hackathon?",
+    //     answer: "Have questions about our digital conference? Our FAQs have got you covered. Discover important details on registration, session logistics, and more.",
+    // },
     {
         id: 2,
         question: "Who can Participate?",
@@ -43,16 +43,15 @@ export default function FAQ() {
     return (
         <section className="py-16 px-4 background-dark flex flex-col items-center overflow-hidden">
             <div className="mb-12">
-                <SectionTitle title="FAQ'S" titleSize="text-3xl sm:text-4xl md:text-7xl"/>
+                <SectionTitle title="FAQ'S" titleSize="text-3xl sm:text-4xl md:text-7xl" />
             </div>
 
             <div className="space-y-4 min-w-3/5 w-full md:max-w-3/5">
                 {faqData.map((item) => (
                     <motion.div
                         key={item.id}
-                        className={`overflow-hidden flex flex-col items-center relative border-2 rounded-md shadow-lg ${
-                            openItems === item.id ? 'border-[#FF0000]' : 'border-[#555555]'
-                        }`}
+                        className={`overflow-hidden flex flex-col items-center relative border-2 rounded-md shadow-lg ${openItems === item.id ? 'border-[#FF0000]' : 'border-[#555555]'
+                            }`}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: item.id * 0.1 }}
