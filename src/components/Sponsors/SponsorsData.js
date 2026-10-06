@@ -8,12 +8,12 @@ export const sponsorsData = {
   gold: [
     { src: "/devfolio_logo-colored.svg", alt: "DEVFOLIO LOGO", href: "https://devfolio.co/" },
     // { src: "/miro-logo.jpg", alt: "MIRO LOGO", href: "https://miro.com/" },
-    {
-      src: "/devnode.jpg",
-      alt: "DEVNODE",
-      href: "https://devnovate.co/",
-      // imgStyle: { height: "9rem", width: "auto", maxWidth: "100%" },
-    }
+    // {
+    //   src: "/devnode.jpg",
+    //   alt: "DEVNODE",
+    //   href: "https://devnovate.co/",
+    //   // imgStyle: { height: "9rem", width: "auto", maxWidth: "100%" },
+    // }
   ],
 
   silver: [
