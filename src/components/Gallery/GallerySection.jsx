@@ -118,6 +118,16 @@ const normalizeLead = (members) => {
 };
 
 /* -------------------------------------------------------------------------- */
+/*  Move the lead (first after normalizeLead) into the middle slot of a static  */
+/*  row. With an even count the lead stays left of centre (first for 2).        */
+/* -------------------------------------------------------------------------- */
+const centerLead = (members) => {
+  const mid = Math.floor((members.length - 1) / 2);
+  const [lead, ...rest] = members;
+  return [...rest.slice(0, mid), lead, ...rest.slice(mid)];
+};
+
+/* -------------------------------------------------------------------------- */
 /*  Section sub-title (red Stranger Things text + underline)                   */
 /* -------------------------------------------------------------------------- */
 const SubTitle = ({ children }) => (
@@ -325,7 +335,7 @@ const TeamCarousel = ({ members }) => {
 /* -------------------------------------------------------------------------- */
 const StaticTeamRow = ({ members }) => (
   <div className="mt-10 flex flex-wrap items-start justify-center gap-8 px-4 md:gap-14">
-    {members.map((m, i) => (
+    {centerLead(members).map((m, i) => (
       <motion.div
         key={i}
         initial={{ opacity: 0, y: 40 }}
