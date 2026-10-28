@@ -41,6 +41,7 @@ The theme is conveyed through **cinematic art direction** rather than novelty pl
    - Member Details: All core members feature inspiring personal taglines rather than corporate job titles.
 6. **Audio Unity**: A single dedicated audio synthesizer in the top ticker tape (`EditorialTicker.jsx`) controls ambient sound; no duplicate buttons.
 7. **Hero Video Presentation**: Hero background video runs at `opacity-100` with calibrated WCAG contrast scrims and `scale-[1.18]` edge-to-edge bleed, eliminating all black pillarbox seams.
+8. **Responsive Navigation Discipline**: Navbar maintains consistent vertical geometry (`h-14 sm:h-16`) across all breakpoints without brand/walkie collisions on narrow mobile viewports (<380px), balanced 2-button action layout on tablets, and dynamically aligned surveillance drawers (`top-14 sm:top-16`).
 
 ## 7. Quality Gates & Regression Verification
 - **Automated Regression Suite**: `node --test tests/event-content.test.js` must pass 100% of tests.

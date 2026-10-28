@@ -84,39 +84,39 @@ export default function Navbar({ scrollToView, refs }) {
     <motion.nav
       animate={{ y: showNav ? 0 : -100 }}
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className="sticky top-0 w-full z-50 backdrop-blur-md bg-[#0a0b0e]/85 border-b border-white/[0.08] select-none"
+      className="sticky top-0 w-full z-50 backdrop-blur-md bg-[#0a0b0e]/90 border-b border-white/[0.08] select-none"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-2.5 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
         {/* Brand: Dual Magistics x HackInverse Logos */}
         <div 
           onClick={() => scrollToView(refs.home)}
           className="flex items-center gap-2 sm:gap-3 cursor-pointer group shrink-0"
         >
-          <div className="flex items-center gap-2 bg-black/40 px-2 py-1 border border-zinc-800/80 rounded-xs shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-black/50 px-1.5 sm:px-2 py-1 border border-zinc-800 rounded-xs shrink-0">
             <img
               src="/magistics_logo.svg"
               alt="Magistics"
-              className="h-5 sm:h-6 w-auto object-contain filter brightness-110"
+              className="h-4 sm:h-5.5 w-auto object-contain filter brightness-110"
             />
-            <span className="text-zinc-600 text-xs font-mono">✕</span>
+            <span className="text-zinc-600 text-[10px] sm:text-xs font-mono">✕</span>
             <img
               src="/logo_dark.png"
               alt="HackInverse"
-              className="h-5 sm:h-6 w-auto object-contain filter contrast-125"
+              className="h-4 sm:h-5.5 w-auto object-contain filter contrast-125"
             />
           </div>
-          <div className="hidden min-[440px]:flex flex-col text-left">
-            <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.16em] text-white group-hover:text-[#e50914] transition-colors leading-tight">
+          <div className="flex flex-col text-left">
+            <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.14em] text-white group-hover:text-[#e50914] transition-colors leading-tight">
               HACKINVERSE <span className="text-[#e50914]">1.0</span>
             </span>
-            <span className="font-space-mono text-[9px] text-zinc-400 tracking-wider">
+            <span className="hidden sm:inline font-space-mono text-[8px] sm:text-[9px] text-zinc-400 tracking-wider">
               BY MAGISTICS
             </span>
           </div>
         </div>
 
         {/* Minimalist Desktop Navigation (lg+) */}
-        <div className="hidden lg:flex items-center gap-6 font-space-mono text-xs tracking-widest">
+        <div className="hidden lg:flex items-center gap-3.5 xl:gap-6 font-space-mono text-[11px] xl:text-xs tracking-wider xl:tracking-widest">
           {navItems.map((item) => (
             <button
               key={item.label}
@@ -138,9 +138,9 @@ export default function Navbar({ scrollToView, refs }) {
         </div>
 
         {/* Right Actions: Community Outposts + Devfolio CTA + Walkie-Talkie Dial */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Outposts (hidden on mobile/tablet) */}
-          <div className="hidden md:flex items-center gap-1.5 border-r border-white/10 pr-2.5">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Outposts (only on xl+ to prevent mid-screen crowding) */}
+          <div className="hidden xl:flex items-center gap-1 border-r border-white/10 pr-2.5">
             <a
               href="https://discord.gg/svTwnYX5XT"
               target="_blank"
@@ -149,7 +149,7 @@ export default function Navbar({ scrollToView, refs }) {
               title="Join Official Discord Safety Outpost"
               aria-label="Discord Outpost"
             >
-              <FaDiscord className="w-4 h-4" />
+              <FaDiscord className="w-3.5 h-3.5" />
             </a>
             <a
               href="https://chat.whatsapp.com/IEFPkoRtlfPBtX2FGXZCHs"
@@ -159,25 +159,25 @@ export default function Navbar({ scrollToView, refs }) {
               title="Join Official WhatsApp Broadcast Outpost"
               aria-label="WhatsApp Outpost"
             >
-              <FaWhatsapp className="w-4 h-4" />
+              <FaWhatsapp className="w-3.5 h-3.5" />
             </a>
           </div>
 
-          {/* Desktop Devfolio Link Button (Visible on md+) */}
+          {/* Devfolio Link Button (Visible on sm+) */}
           <a
             href="https://hackinverse-s1.devfolio.co/"
             target="_blank"
             rel="noreferrer"
-            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#e50914] hover:bg-[#d90429] text-white font-space-mono text-xs font-bold tracking-wider uppercase rounded-xs transition-all cursor-pointer shadow-[0_0_15px_rgba(229,9,20,0.35)] active:scale-[0.98]"
+            className="hidden sm:inline-flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 bg-[#e50914] hover:bg-[#d90429] text-white font-space-mono text-[10px] sm:text-xs font-bold tracking-wider uppercase rounded-xs transition-all cursor-pointer shadow-[0_0_15px_rgba(229,9,20,0.35)] active:scale-[0.98]"
           >
             <span>DEVFOLIO DOSSIER</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </a>
 
-          {/* Custom Walkie-Talkie Surveillance Dial Button (Replaces generic hamburger) */}
+          {/* Custom Walkie-Talkie Surveillance Dial Button (lg:hidden) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden relative flex items-center gap-2 px-2.5 py-1.5 bg-[#07090f] border border-[#e50914]/50 hover:border-[#e50914] text-zinc-300 hover:text-white rounded-xs transition-all shadow-[0_0_12px_rgba(229,9,20,0.25)] active:scale-[0.96] cursor-pointer"
+            className="lg:hidden relative flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 sm:py-1.5 bg-[#07090f] border border-[#e50914]/50 hover:border-[#e50914] text-zinc-300 hover:text-white rounded-xs transition-all shadow-[0_0_12px_rgba(229,9,20,0.25)] active:scale-[0.96] cursor-pointer"
             aria-label="Walkie-Talkie Surveillance Dial"
           >
             <div className="relative flex items-center justify-center">
@@ -186,14 +186,14 @@ export default function Navbar({ scrollToView, refs }) {
             </div>
             <div className="flex flex-col text-left leading-none">
               <div className="flex items-center gap-1">
-                <span className="font-space-mono text-[9px] font-bold text-white tracking-widest uppercase">
+                <span className="font-space-mono text-[8px] sm:text-[9px] font-bold text-white tracking-widest uppercase">
                   {isMenuOpen ? "CLOSE" : "FREQ 102.5"}
                 </span>
-                <span className="text-[8px] text-[#e50914] font-mono font-extrabold">
+                <span className="text-[7px] sm:text-[8px] text-[#e50914] font-mono font-extrabold">
                   {isMenuOpen ? "✕" : "∿∿"}
                 </span>
               </div>
-              <span className="font-space-mono text-[7px] text-zinc-400 tracking-wider">
+              <span className="hidden min-[380px]:inline font-space-mono text-[6px] sm:text-[7px] text-zinc-400 tracking-wider">
                 {isMenuOpen ? "ABORT TUNER" : "WALKIE DIAL"}
               </span>
             </div>
@@ -222,7 +222,7 @@ export default function Navbar({ scrollToView, refs }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="lg:hidden fixed inset-x-0 top-[52px] h-[calc(100dvh-52px)] bg-[#06080e]/98 backdrop-blur-3xl border-t border-white/10 z-[9999] flex flex-col justify-between overflow-y-auto select-none shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
+                  className="lg:hidden fixed inset-x-0 top-14 sm:top-16 h-[calc(100dvh-3.5rem)] sm:h-[calc(100dvh-4rem)] bg-[#06080e]/98 backdrop-blur-3xl border-t border-white/10 z-[9999] flex flex-col justify-between overflow-y-auto select-none shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
                 >
                 {/* Top Telemetry & Frequency Readout */}
                 <div className="px-5 pt-4 pb-3 border-b border-white/[0.08] bg-black/40">

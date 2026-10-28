@@ -37,6 +37,7 @@ The previous website implementation fell into the "AI sci-fi trope" trap by over
   - Inspiring personal taglines under member names rather than generic corporate roles.
 - **US-12 (Venue & Logistics)**: As a traveler, I can inspect the JIS University campus coordinates and access Google Maps navigation.
 - **US-13 (FAQ & Safety Covenant)**: As a participant, I can review essential questions in clean hairline accordions and read the conduct covenant.
+- **US-14 (Responsive Navigation & Surveillance Drawer)**: As a user on any device (mobile 375px, tablet 768px, mid-desktop 1011px, or wide 1440px+), I experience a clean, uncrowded header with no element collisions, balanced action buttons, and an aligned full-height mobile surveillance drawer (`top-14 sm:top-16`).
 
 ---
 
@@ -47,6 +48,8 @@ The previous website implementation fell into the "AI sci-fi trope" trap by over
 - **SC-004**: All 37 team members rendered with real photos from `public/team/` and custom taglines.
 - **SC-005**: 14 high-resolution event photographs rendered in Framer Motion horizontal marquee.
 - **SC-006**: Mobile podium orders 1st place champion card first (`order-1 md:order-2`).
-- **SC-007**: 100% automated test suite pass rate (14 unit tests via `node --test tests/event-content.test.js`).
+- **SC-007**: 100% automated test suite pass rate (15 unit tests via `node --test tests/event-content.test.js`).
 - **SC-008**: Zero lint errors (`npm run lint`), zero build errors (`npm run build`), 60 FPS performance on desktop and mobile.
 - **SC-009**: Hero background video calibrated to 100% opacity with `scale-[1.18]` edge-to-edge bleed, eliminating all black pillarbox seams.
+- **SC-010**: Navbar maintains exact vertical geometry (`h-14 sm:h-16`) across all breakpoints without brand/walkie collision on small screens (<380px) and clean link spacing on `lg`/`xl` viewports.
+

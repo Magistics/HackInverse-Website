@@ -56,3 +56,6 @@
 - [x] **TASK-032**: Comprehensive audit and update of all documentation files (`README.md`, `spec.md`, `plan.md`, `tasks.md`, `constitution.md`).
 - [x] **TASK-033**: Hero background video vividness boost: elevated video to `opacity-100`, calibrated central text scrims, and scaled to `scale-[1.18]` with `origin-center` to eliminate right-side seam and achieve edge-to-edge bleed.
 - [x] **TASK-034**: Automated test #14 added and passing in `tests/event-content.test.js` asserting hero video full opacity and edge-to-edge scaling.
+- [x] **TASK-035**: Navbar responsive overhaul across all breakpoints: stabilized height (`h-14 sm:h-16`), compact mobile dual logo and walkie dial on `<380px`, mid-desktop spacing calibration (`gap-3.5 text-[11px]` on `lg`, `gap-6 text-xs` on `xl`), and dynamic surveillance drawer alignment (`top-14 sm:top-16`).
+- [x] **TASK-036**: Author automated test #15 in `tests/event-content.test.js` asserting navbar height stability, drawer offset alignment, and breakpoint scaling.
+

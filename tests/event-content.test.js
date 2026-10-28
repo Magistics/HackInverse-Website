@@ -172,3 +172,15 @@ test("hero background video is set to full opacity with edge-to-edge bleed scali
   assert.match(heroSource, /opacity-100/);
   assert.match(heroSource, /scale-\[1\.18\]/);
 });
+
+test("navbar enforces consistent responsive heights and aligned mobile drawer offsets", async () => {
+  const navSource = await readFile(
+    new URL("../src/components/Navbar.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(navSource, /h-14 sm:h-16 flex items-center/);
+  assert.match(navSource, /top-14 sm:top-16/);
+  assert.match(navSource, /h-\[calc\(100dvh-3\.5rem\)\] sm:h-\[calc\(100dvh-4rem\)\]/);
+  assert.match(navSource, /gap-3\.5 xl:gap-6/);
+});
+

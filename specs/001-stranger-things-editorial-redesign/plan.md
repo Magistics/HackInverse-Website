@@ -34,8 +34,14 @@
 2. **`src/components/Editorial/UpsideDownSpores.jsx`**:
    - Lightweight ambient canvas particle system for floating dust motes in void sections.
 3. **[`src/components/Navbar.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/Navbar.jsx)**:
-   - Ultra-minimalist frosted header, clean monospace typography, Devfolio CTA.
-4. **[`src/components/HeroSection.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/HeroSection.jsx)**:
+   - Ultra-minimalist frosted header with fixed vertical geometry (`h-14 sm:h-16 flex items-center`).
+   - Responsive breakpoint tiering:
+     - Mobile (375px): Compact dual logo badge, inline `HACKINVERSE 1.0`, condensed Walkie-Talkie dial with collision prevention.
+     - Tablet (768px - 1023px): Two-button balanced action group (`DEVFOLIO DOSSIER` + Walkie Dial).
+     - Desktop (1024px - 1279px, `lg`): Sized nav links (`gap-3.5 text-[11px]`) to eliminate text wrapping or edge collision.
+     - Wide Desktop (1280px+, `xl`): Full link spread (`gap-6 text-xs tracking-widest`) with Discord & WhatsApp telemetry outposts.
+     - Fullscreen Surveillance Drawer: Dynamic alignment via `top-14 sm:top-16` and `h-[calc(100dvh-3.5rem)] sm:h-[calc(100dvh-4rem)]`.
+4. **[`HeroSection.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/HeroSection.jsx)**:
    - Iconic Stranger Things serif title, glowing hairline bars, cyclists silhouette, Devfolio button.
    - High-luminance `opacity-100` background video with calibrated WCAG text scrims.
    - `scale-[1.18]` and `origin-center` scaling to eliminate the video artwork book edge and bleed seamlessly edge-to-edge.
@@ -69,6 +75,6 @@
 
 ## 3. Automated Quality Verification Plan
 
-- Run `node --test tests/event-content.test.js` validating all 13 core domain rules.
+- Run `node --test tests/event-content.test.js` validating all 15 core domain rules.
 - Run `npm run lint` for ESLint verification.
 - Run `npm run build` for production bundle compilation.
