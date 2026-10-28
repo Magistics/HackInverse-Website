@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -29,132 +25,224 @@
 html,
 body,
 #root {
-  background: #222222;
+  background: #0a0b0e;
+  color: #ededed;
+  overflow-x: hidden;
 }
 
 :root {
-  --font-merriweather: "Merriweather", sans-serif;
-  --font-alata: "Alata", sans-serif;
-  --font-spline-mono: "Spline Sans Mono", monospace;
-  --font-albert-sans: "Albert Sans", sans-serif;
-  --font-sofia-sans-extra-condensed: "Sofia Sans Extra Condensed", sans-serif;
+  --font-cinzel: "Cinzel", serif;
+  --font-cinzel-dec: "Cinzel Decorative", serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-space-mono: "Space Mono", monospace;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-courier: "Courier Prime", monospace;
+  --font-outfit: "Outfit", sans-serif;
   --font-stranger-things: "StrangerThings", sans-serif;
   --font-stranger-things-filled: "StrangerThingsFilled", sans-serif;
-  --font-altron: "Altron", sans-serif;
-  --redColor: #FF0505;
+  
+  --voidCanvas: #0a0b0e;
+  --newsprintCanvas: #f6f4ee;
+  --newsprintInk: #111317;
+  --crimsonRed: #e50914;
+  --crimsonBlood: #d90429;
+  --crimsonGlow: rgba(229, 9, 20, 0.4);
 }
 
-.merriweather {
-  font-family: var(--font-merriweather);
+/* Typography Utility Classes */
+.font-cinzel {
+  font-family: var(--font-cinzel);
 }
 
-.alata {
-  font-family: var(--font-alata);
+.font-cinzel-dec {
+  font-family: var(--font-cinzel-dec);
 }
 
-.spline-mono {
-  font-family: var(--font-spline-mono);
+.font-playfair {
+  font-family: var(--font-playfair);
 }
 
-.albert-sans {
-  font-family: var(--font-albert-sans);
+.font-space-mono {
+  font-family: var(--font-space-mono);
 }
 
-.sofia-sans-extra-condensed {
-  font-family: var(--font-sofia-sans-extra-condensed);
+.font-space-grotesk {
+  font-family: var(--font-space-grotesk);
 }
 
-.poppins {
-  font-family: "Poppins", sans-serif;
+.font-courier {
+  font-family: var(--font-courier);
+}
+
+.font-outfit {
+  font-family: var(--font-outfit);
 }
 
 .stranger-things {
-  font-family: "StrangerThings", sans-serif;
+  font-family: var(--font-stranger-things);
 }
 
 .stranger-things-filled {
-  font-family: "StrangerThingsFilled", sans-serif;
+  font-family: var(--font-stranger-things-filled);
 }
 
-.altron {
-  font-family: "Altron", sans-serif;
+/* Dual-Tone Canvas Utilities */
+.canvas-void {
+  background-color: var(--voidCanvas);
+  color: #ededed;
 }
 
-.font-red {
-  color: var(--redColor);
+.canvas-newsprint {
+  background-color: var(--newsprintCanvas);
+  color: var(--newsprintInk);
 }
 
-.background-red {
-  background-color: var(--redColor);
+/* Minimalist Hairline System */
+.hairline-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.background-dark {
-  background-color: #222222;
+.hairline-border-light {
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.text-stroke {
-  -webkit-text-stroke: 0.5px var(--redColor);
-  letter-spacing: 0.05em;
+.hairline-t {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@media (min-width: 768px) {
-  .text-stroke {
-    -webkit-text-stroke: 3px var(--redColor);
-  }
+.hairline-b {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.logo-card {
-  @apply w-[180px] h-[70px] bg-black text-white flex justify-center items-center text-xl font-semibold rounded-md;
+.hairline-t-light {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.hairline-b-light {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
 
-/* Calender countdown: numbers overlaid on the arcade machine screens */
-.arcade-text {
-  font-family: var(--font-albert-sans);
+/* Iconic Stranger Things Hairline Title Rule */
+.stranger-rule-top {
+  width: 100%;
+  height: 2px;
+  background-color: var(--crimsonRed);
+  box-shadow: 0 0 10px var(--crimsonGlow);
+}
+
+.stranger-rule-bottom {
+  width: 100%;
+  height: 2px;
+  background-color: var(--crimsonRed);
+  box-shadow: 0 0 10px var(--crimsonGlow);
+}
+
+/* Redaction & Archive Tape */
+.redacted-tape {
+  background-color: #111317;
+  color: #fff;
+  padding: 1px 6px;
+  font-family: var(--font-space-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-block;
+  user-select: none;
+}
+
+.redacted-tape-crimson {
+  background-color: var(--crimsonRed);
+  color: #fff;
+  padding: 1px 6px;
+  font-family: var(--font-space-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-block;
+  user-select: none;
+}
+
+/* Editorial Drop Cap */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-playfair);
+  font-size: 4rem;
+  line-height: 0.85;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 2px;
+  color: var(--crimsonRed);
   font-weight: 700;
-  color: #222222;
-  line-height: 1;
-  paint-order: stroke fill;
-  -webkit-text-stroke: 2px #FFFFFF;
 }
 
-@media (min-width: 768px) {
-  .arcade-text {
-    -webkit-text-stroke: 4.7px #FFFFFF;
+/* Dotted Teletype Leader */
+.teletype-leader {
+  flex-grow: 1;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+  margin: 0 12px;
+  height: 1px;
+}
+
+.teletype-leader-light {
+  flex-grow: 1;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+  margin: 0 12px;
+  height: 1px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0b0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #23252c;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--crimsonRed);
+}
+
+/* Infinite Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-/* One box per screen, as a % of the artwork (calendar.png, 1026x576) */
-.arcade-screen {
-  position: absolute;
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
-.arcade-screen-days {
-  left: 10.04%;
-  width: 19.78%;
-  top: 25.52%;
-  height: 23.61%;
-}
-
-.arcade-screen-hours {
-  left: 39.47%;
-  width: 22.81%;
-  top: 24.48%;
-  height: 25.52%;
-}
-
-.arcade-screen-mins {
-  left: 71.54%;
-  width: 19.59%;
-  top: 25.52%;
-  height: 23.61%;
-}
-
-/* Stacked inside the box so the enter/exit pair overlap instead of reflowing */
-.arcade-value {
-  position: absolute;
-  inset: 0;
+.animate-marquee {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
 }

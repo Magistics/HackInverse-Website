@@ -1,206 +1,208 @@
-import { MoveRight } from "lucide-react";
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-  FaYoutube,
-  FaTwitter,
-  FaDiscord,
-} from "react-icons/fa";
-import { motion } from "framer-motion";
-import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
-import { BsDiscord } from "react-icons/bs";
+import React from "react";
+import { ArrowUp, Shield, ExternalLink } from "lucide-react";
+import { FaLinkedinIn, FaInstagram, FaDiscord, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="relative w-full text-white py-6 alata overflow-hidden bg-linear-to-b from-[#040E3A] via-[#0A0B10] to-[#0B0B0B]">
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(40)].map((_, i) => {
-          const delay = Math.random() * 2;
-          const duration = Math.random() * 30 + 2;
-          const scale = Math.random() * 0.5 + 0.5;
-          const startX = Math.random() * 100;
-          const startY = Math.random() * 100;
-          const endX = Math.random() * 100;
-          const endY = Math.random() * 100;
-          return (
-            <motion.span
-              key={i}
-              className="absolute bg-white rounded-full"
-              style={{
-                width: `${scale * 2}px`,
-                height: `${scale * 2}px`,
-              }}
-              initial={{
-                opacity: 0,
-                scale: 0,
-                top: `${startY}%`,
-                left: `${startX}%`
-              }}
-              animate={{
-                opacity: [0.2, 1, 0.2],
-                scale: [scale * 0.8, scale * 1.5, scale * 0.8],
-                top: [`${startY}%`, `${endY}%`, `${startY}%`],
-                left: [`${startX}%`, `${endX}%`, `${startX}%`],
-              }}
-              transition={{
-                duration: duration,
-                repeat: Infinity,
-                delay: delay,
-                ease: "easeInOut",
-              }}
-            />
-          );
-        })}
-      </div>
-
-      <div className="container mx-auto px-10 md:px-16">
-        {/* Main footer content */}
-
-        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-          <div className="md:-mt-10">
-            <div className="text-2xl md:text-3xl font-extrabold  text-center md:text-left tracking-widest text-red-600 drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
-              {" "}
-              HACKINVERSE
+    <footer className="relative w-full bg-[#07090e] border-t border-zinc-800 text-zinc-300 pt-16 pb-12 select-none overflow-hidden font-space-mono">
+      <div className="container mx-auto max-w-6xl px-4 md:px-8 relative z-10">
+        {/* Top Broadsheet Header Row with Dual Branding Logos */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-10 mb-10 border-b border-zinc-800/80 gap-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            {/* Dual Logos: Magistics x HackInverse */}
+            <div className="flex items-center gap-4 p-3 bg-black/40 border border-zinc-800 shrink-0">
+              <img
+                src="/magistics_logo.svg"
+                alt="Magistics Official Logo"
+                className="h-10 w-auto object-contain filter brightness-110"
+              />
+              <span className="text-zinc-600 text-lg">✕</span>
+              <img
+                src="/logo_dark.png"
+                alt="HackInverse Logo"
+                className="h-10 w-auto object-contain filter contrast-125"
+              />
             </div>
-            <div className="text-white text-sm md:text-xl font-mono">
-              An Offline HackDay Experience In Kolkata,
-              <br />
-              Inspired By The Unknown, Built For The Future
+
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse shadow-[0_0_8px_#ff003c]" />
+                <span className="font-space-mono text-xs uppercase tracking-[0.25em] text-[#ffaa00]">
+                  HAWKINS OUTPOST // HACKINVERSE ARCHIVE
+                </span>
+              </div>
+              <h2 className="stranger-things-filled text-3xl sm:text-4xl tracking-widest text-[#ff0505] drop-shadow-[0_0_20px_rgba(255,0,0,0.6)]">
+                HACKINVERSE 1.0
+              </h2>
+              <p className="font-space-mono text-xs sm:text-sm text-zinc-300 tracking-wider mt-1">
+                An Offline HackDay Experience in Kolkata, Organized by Magistics. Built for the Future.
+              </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 font-mono md:text-xl text:sm mt-6">
-            <div>
-              <h3 className="underline">COORDINATES</h3>
-              <ul>
-                <li className="hover:text-red-500 cursor-pointer">About</li>
-                <li className="hover:text-red-500 cursor-pointer">Sponsors</li>
-                <li className="hover:text-red-500 cursor-pointer">Teams</li>
-                <li className="hover:text-red-500 cursor-pointer">FAQs</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="underline">PROTOCOLS</h3>
-              <ul>
-                <li className="hover:text-red-500 cursor-pointer">Terms</li>
-                <li className="hover:text-red-500 cursor-pointer">Rules</li>
-              </ul>
-            </div>
-          </div>
+          <button
+            onClick={scrollToTop}
+            className="group flex items-center gap-2 px-4 py-2.5 bg-[#0b0e15] border border-zinc-700 hover:border-red-500 text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white transition-colors cursor-pointer"
+          >
+            <span>RETURN TO SURFACE</span>
+            <ArrowUp className="w-4 h-4 text-red-500 group-hover:-translate-y-0.5 transition-transform" />
+          </button>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-          {/* Left side - Logo and text */}
-          <div className="flex flex-col items-baseline mb-4 md:mb-0">
-            <span className="text-white text-sm font-normal">
-              Developed by MAGISTICS
+        {/* 4-Column Directory Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-xs">
+          {/* Col 1: Facility Dossier */}
+          <div>
+            <h4 className="font-cinzel font-bold text-white text-sm tracking-wider uppercase mb-3 flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5 text-red-500" />
+              FACILITY
+            </h4>
+            <p className="font-space-mono text-zinc-400 leading-relaxed mb-3">
+              HackInverse is the flagship hackDay by Magistics, bringing together students, developers, designers, and innovators to learn, connect, and grow.
+            </p>
+            <span className="text-[10px] text-zinc-500 block">
+              VENUE: JIS UNIVERSITY, AGARPARA, KOLKATA
             </span>
           </div>
 
-          {/* Right side - Social links */}
-          <div className="flex flex-col items-center md:items-end">
-            <p className="text-white text-sm mb-3">
-              Follow us to stay updated!
-            </p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="flex items-center justify-center md:justify-end gap-3 sm:gap-4 mb-6 md:mb-8"
-            >
-              {[
-                {
-                  icon: () => (
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="w-3 h-3 sm:w-5 sm:h-5 fill-current"
-                    >
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                  ),
-                  href: "https://x.com/Magistics_main",
-                },
-                {
-                  icon: Linkedin,
-                  href: "https://www.linkedin.com/showcase/hackinverse",
-                },
-                {
-                  icon: Instagram,
-                  href: "https://www.instagram.com/hackinverse",
-                },
-                { icon: BsDiscord, href: "https://discord.gg/HBabqw2UG" },
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  className="text-white hover:text-red-500 transition-colors duration-300"
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <social.icon className="w-3 h-3 sm:w-5 sm:h-5" />
-                </motion.a>
-              ))}
-            </motion.div>
-            {/* <div className="flex space-x-3">
-              <a
-                href="https://www.facebook.com/share/1DBsk7vayo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <FaFacebookF />
-              </a>
+          {/* Col 2: Navigation Coordinates */}
+          <div>
+            <h4 className="font-cinzel font-bold text-white text-sm tracking-wider uppercase mb-3">
+              COORDINATES
+            </h4>
+            <ul className="space-y-2 text-zinc-400">
+              <li><a href="#about" className="hover:text-red-400 transition-colors">01 // About HackInverse</a></li>
+              <li><a href="#tracks" className="hover:text-red-400 transition-colors">02 // Challenge Tracks</a></li>
+              <li><a href="#prizes" className="hover:text-red-400 transition-colors">03 // Winners & Bounties</a></li>
+              <li><a href="#sponsors" className="hover:text-red-400 transition-colors">04 // Official Sponsors</a></li>
+              <li><a href="#venue" className="hover:text-red-400 transition-colors">05 // JIS University Venue</a></li>
+            </ul>
+          </div>
 
+          {/* Col 3: Directives & Legal */}
+          <div>
+            <h4 className="font-cinzel font-bold text-white text-sm tracking-wider uppercase mb-3">
+              PROTOCOLS
+            </h4>
+            <ul className="space-y-2 text-zinc-400">
+              <li>
+                <a
+                  href="https://app.notion.com/p/Magistics-Community-Code-of-Conduct-2ce4d7cdc44f8067b3e5d3d6bddb98d7"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-red-400 transition-colors flex items-center gap-1"
+                >
+                  <span>Magistics Code of Conduct</span>
+                  <ExternalLink className="w-3 h-3 text-red-500" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://app.notion.com/p/HackInverse-1-0-Hacker-s-Guide-3ed4d7cdc44f81cd945bc5620892bce8"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-red-400 transition-colors flex items-center gap-1"
+                >
+                  <span>HackInverse Hacker's Guide</span>
+                  <ExternalLink className="w-3 h-3 text-red-500" />
+                </a>
+              </li>
+              <li>
+                <a href="https://devfolio.co/code-of-conduct" target="_blank" rel="noreferrer" className="hover:text-red-400 transition-colors">
+                  Devfolio Guidelines
+                </a>
+              </li>
+              <li>
+                <a href="mailto:hackinverse.contact@gmail.com" className="hover:text-red-400 transition-colors">
+                  Emergency: hackinverse.contact@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 4: Dispatch Channels */}
+          <div>
+            <h4 className="font-cinzel font-bold text-white text-sm tracking-wider uppercase mb-3">
+              COMM CHANNELS
+            </h4>
+            <div className="flex flex-col gap-2.5">
+              <a
+                href="https://x.com/Magistics_main"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                <span>X / Twitter: @Magistics_main</span>
+              </a>
               <a
                 href="https://www.linkedin.com/showcase/hackinverse"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-gray-300 transition-colors"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
               >
-                <FaLinkedinIn />
+                <FaLinkedinIn className="w-3.5 h-3.5 text-zinc-400" />
+                <span>LinkedIn / HackInverse</span>
               </a>
-
               <a
                 href="https://www.instagram.com/hackinverse"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-gray-300 transition-colors"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
               >
-                <FaInstagram />
+                <FaInstagram className="w-3.5 h-3.5 text-zinc-400" />
+                <span>Instagram / @hackinverse</span>
               </a>
-
               <a
-                href="https://discord.gg/HBabqw2UG"
+                href="https://discord.gg/svTwnYX5XT"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-gray-300 transition-colors"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
               >
-                <FaDiscord />
+                <FaDiscord className="w-3.5 h-3.5 text-[#5865F2]" />
+                <span>Discord / Community</span>
               </a>
-            </div> */}
+              <a
+                href="https://chat.whatsapp.com/IEFPkoRtlfPBtX2FGXZCHs"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+              >
+                <FaWhatsapp className="w-3.5 h-3.5 text-[#25D366]" />
+                <span>WhatsApp / Community</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom border line */}
-        <div className="border-t border-gray-600 mb-3"></div>
-
-        {/* Bottom section */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-300">
-          <div className="mb-2 md:mb-0">
-            <p>© HackInverse. All rights reserved.</p>
+        {/* Legal Disclaimer & Telemetry Strip */}
+        <div className="pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-zinc-500 gap-3 text-center sm:text-left">
+          <div>
+            <span>© HackInverse. Powered by </span>
+            <a href="https://linktr.ee/Magistics_official" target="_blank" rel="noreferrer" className="text-red-500 hover:underline font-bold">
+              MAGISTICS
+            </a>
+            <span>. Official contact: </span>
+            <a href="mailto:hackinverse.contact@gmail.com" className="text-zinc-400 underline">
+              hackinverse.contact@gmail.com
+            </a>
           </div>
-          <div className="flex items-center">
+
+          <div className="flex items-center gap-4">
             <a
               href="https://linktr.ee/Magistics_official"
               target="_blank"
-              rel="noopener noreferrer"
-              className="mr-2"
+              rel="noreferrer"
+              className="hover:text-red-400 transition-colors"
             >
-              Explore Magistics
+              Linktree / Magistics
             </a>
-            <MoveRight />
+            <span>•</span>
+            <span className="text-emerald-500 font-bold">SEASON 01 CONCLUDED</span>
           </div>
         </div>
       </div>

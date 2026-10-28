@@ -3,6 +3,13 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      setIsTouch(true);
+    }
+  }, []);
   
   // Mouse position
   const mouseX = useMotionValue(0);
@@ -33,6 +40,8 @@ export default function CustomCursor() {
       document.body.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [mouseX, mouseY, isVisible]);
+
+  if (isTouch) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
