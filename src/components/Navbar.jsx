@@ -1,268 +1,325 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Radio, Signal, ArrowUpRight, X, ChevronRight, Activity, Terminal } from "lucide-react";
+import { FaDiscord, FaWhatsapp } from "react-icons/fa";
 
 export default function Navbar({ scrollToView, refs }) {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // States for scroll animation
   const [showNav, setShowNav] = useState(true);
   const [lastYPos, setLastYPos] = useState(0);
 
-  // Effect to handle scroll detection
   useEffect(() => {
     function handleScroll() {
       const currentYPos = window.scrollY;
       const isScrollingUp = currentYPos < lastYPos;
-
-      // Show navbar if scrolling up or at the very top of the page
-      setShowNav(isScrollingUp || currentYPos < 10);
+      setShowNav(isScrollingUp || currentYPos < 20);
       setLastYPos(currentYPos);
     }
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastYPos]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  // Lock body scroll when surveillance dial is active on mobile
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  const navItems = [
+    { label: "ABOUT", ref: refs.about },
+    { label: "EXPEDITION", ref: refs.home },
+    { label: "HIGHLIGHTS", id: "highlights" },
+    { label: "SCHEDULE", ref: refs.agenda },
+    { label: "SPONSORS", ref: refs.sponsors },
+    { label: "TEAM", id: "team" },
+    { label: "VENUE", ref: refs.venue },
+  ];
+
+  const channels = [
+    { freq: "102.5", ch: "01", label: "HAWKINS APEX", desc: "Hero & Live Reel", ref: refs.home },
+    { freq: "103.1", ch: "02", label: "THE DISPATCH", desc: "Mission & Metrics", ref: refs.about },
+    { freq: "104.2", ch: "03", label: "CHALLENGE TRACKS", desc: "Open & Hardware Vectors", id: "tracks" },
+    { freq: "105.8", ch: "04", label: "SCHEDULE", desc: "Operation Timeline", ref: refs.agenda },
+    { freq: "106.4", ch: "05", label: "BOUNTY PODIUM", desc: "Prizes & Grants", id: "prizes" },
+    { freq: "107.0", ch: "06", label: "ADVISORY COUNCIL", desc: "Judges & Mentors", id: "mentors" },
+    { freq: "107.5", ch: "07", label: "FIELD HIGHLIGHTS", desc: "35mm Event Archive", id: "highlights" },
+    { freq: "107.9", ch: "08", label: "ALLIANCES", desc: "Sponsors & Partners", ref: refs.sponsors },
+    { freq: "108.5", ch: "09", label: "SQUAD ROSTER", desc: "Field Operatives", id: "team" },
+    { freq: "109.2", ch: "10", label: "LABORATORY VENUE", desc: "JIS University", ref: refs.venue },
+    { freq: "109.9", ch: "11", label: "PROTOCOL FAQ", desc: "Declassified Intel", id: "faq" },
+  ];
+
+  const handleChannelSelect = (channel) => {
+    setIsMenuOpen(false);
+    if (channel.ref && channel.ref.current) {
+      scrollToView(channel.ref);
+    } else if (channel.id) {
+      const el = document.getElementById(channel.id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   };
 
-  // Framer Motion variants for the navbar animation
-  const navbarVariants = {
-    hidden: {
-      y: "-100%",
-      opacity: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
-    },
-    visible: {
-      y: "0%",
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
-    },
+  const handleNavItemClick = (item) => {
+    if (item.ref && item.ref.current) {
+      scrollToView(item.ref);
+    } else if (item.id) {
+      const el = document.getElementById(item.id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   };
 
   return (
     <motion.nav
-      variants={navbarVariants}
-      animate={showNav ? "visible" : "hidden"}
-      className="sticky top-0 w-full py-4 z-50 sofia-sans-extra-condensed"
+      animate={{ y: showNav ? 0 : -100 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      className="sticky top-0 w-full z-50 backdrop-blur-md bg-[#0a0b0e]/85 border-b border-white/[0.08] select-none"
     >
-      <div className="container mx-auto px-4 md:max-w-240">
-        <div className="relative flex items-center justify-between bg-white/5 border border-white/10 rounded-[61px] py-1 md:py-3 px-5 mt-5">
-      {/* Mobile: Logo and menu button */}
-      <div className="flex items-center md:hidden w-full justify-between">
-        <img src="/logo_light.png" alt="HackInverse Logo" className="h-3 w-auto rounded-full" />
-        {/* Mobile menu button with animation */}
-        <motion.button
-          onClick={toggleMenu}
-          className="text-white focus:outline-none p-2 pr-0"
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.1 }}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-2.5 flex items-center justify-between">
+        {/* Brand: Dual Magistics x HackInverse Logos */}
+        <div 
+          onClick={() => scrollToView(refs.home)}
+          className="flex items-center gap-2 sm:gap-3 cursor-pointer group shrink-0"
         >
-          <motion.div
-            animate={isMenuOpen ? "open" : "closed"}
-            variants={{
-              open: { rotate: 180 },
-              closed: { rotate: 0 },
-            }}
-            transition={{
-              duration: 0.3,
-              ease: "easeInOut",
-            }}
-          >
-            {isMenuOpen ? (
-              <motion.svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.2 }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </motion.svg>
-            ) : (
-              <motion.svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.2 }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </motion.svg>
-            )}
-          </motion.div>
-        </motion.button>
-      </div>
-
-      {/* Desktop Navigation - 3 items left, logo center, 3 items right */}
-      <div className="hidden md:flex items-center justify-between w-full" onMouseLeave={() => setHoveredItem(null)}>
-        {/* Left navigation items */}
-        <div className="flex items-center space-x-5">
-          {[
-            { name: "Home", ref: refs.home },
-            { name: "About", ref: refs.about },
-            { name: "Sponsors", ref: refs.sponsors },
-          ].map((item) => (
-            <motion.a
-              key={item.name}
-              onClick={() => scrollToView(item.ref)}
-              onMouseEnter={() => setHoveredItem(item.name)}
-              whileHover={{ scale: 1.1 }}
-              className="relative px-4 py-2 text-xl font-medium cursor-pointer"
-              animate={{ color: hoveredItem === item.name ? "#FFFFFF" : "#D1D5DB" }}
-              transition={{ duration: 0.3 }}
-            >
-              {hoveredItem === item.name && (
-                <motion.div
-                  layoutId="active-pill"
-                  className="absolute inset-0 bg-red-500/60"
-                  style={{ borderRadius: "15px" }}
-                  transition={{ type: "spring", stiffness: 150, damping: 20 }}
-                />
-              )}
-              <span className="relative z-10">{item.name}</span>
-            </motion.a>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-center">
-          <div className="relative">
-            {/* Glow effect layer */}
-            <div className="absolute -inset-1 bg-red-500/65 rounded-full blur-[10px]" />
-            {/* Logo container */}
-            <div className="relative bg-slate-900/65 rounded-full px-5 py-4  border border-slate-700/50 shadow-[0_0_30px_rgba(220,38,38,0.3)]">
-              <img src="/logo_light.png" alt="HackInverse Logo" className="h-3  w-auto" />
-            </div>
+          <div className="flex items-center gap-2 bg-black/40 px-2 py-1 border border-zinc-800/80 rounded-xs shrink-0">
+            <img
+              src="/magistics_logo.svg"
+              alt="Magistics"
+              className="h-5 sm:h-6 w-auto object-contain filter brightness-110"
+            />
+            <span className="text-zinc-600 text-xs font-mono">✕</span>
+            <img
+              src="/logo_dark.png"
+              alt="HackInverse"
+              className="h-5 sm:h-6 w-auto object-contain filter contrast-125"
+            />
+          </div>
+          <div className="hidden min-[440px]:flex flex-col text-left">
+            <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.16em] text-white group-hover:text-[#e50914] transition-colors leading-tight">
+              HACKINVERSE <span className="text-[#e50914]">1.0</span>
+            </span>
+            <span className="font-space-mono text-[9px] text-zinc-400 tracking-wider">
+              BY MAGISTICS
+            </span>
           </div>
         </div>
 
-        {/* Right navigation items */}
-        <div className="flex items-center space-x-5">
-          {[
-            { name: "Venue", ref: refs.venue },
-            { name: "Agenda", ref: refs.agenda },
-            { name: "Teams", ref: refs.teams },
-          ].map((item) => (
-            <motion.a
-              key={item.name}
-              onClick={() => scrollToView(item.ref)}
-              onMouseEnter={() => setHoveredItem(item.name)}
-              whileHover={{ scale: 1.1 }}
-              className="relative px-4 py-2 text-xl font-medium albert_sans cursor-pointer"
-              animate={{ color: hoveredItem === item.name ? "#FFFFFF" : "#D1D5DB" }}
-              transition={{ duration: 0.3 }}
+        {/* Minimalist Desktop Navigation (lg+) */}
+        <div className="hidden lg:flex items-center gap-6 font-space-mono text-xs tracking-widest">
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => handleNavItemClick(item)}
+              onMouseEnter={() => setHoveredItem(item.label)}
+              onMouseLeave={() => setHoveredItem(null)}
+              className="relative py-1 text-zinc-400 hover:text-white transition-colors cursor-pointer"
             >
-              {hoveredItem === item.name && (
-                <motion.div
-                  layoutId="active-pill"
-                  className="absolute inset-0 bg-red-500/60"
-                  style={{ borderRadius: "15px" }}
-                  transition={{ type: "spring", stiffness: 150, damping: 20 }}
+              <span className="relative z-10">{item.label}</span>
+              {hoveredItem === item.label && (
+                <motion.span
+                  layoutId="minimal-nav-underline"
+                  className="absolute bottom-0 inset-x-0 h-[1.5px] bg-[#e50914] shadow-[0_0_6px_#e50914]"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <span className="relative z-10">{item.name}</span>
-            </motion.a>
+            </button>
           ))}
         </div>
-      </div>
-    </div>
 
-        {/* Mobile menu with animation */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              className="md:hidden mx-4 absolute top-full left-0 right-0 mt-2 py-5 bg-white/5 border border-white/10 rounded-[20px] google-gradient-border overflow-hidden"
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{
-                duration: 0.3,
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-              }}
+        {/* Right Actions: Community Outposts + Devfolio CTA + Walkie-Talkie Dial */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Outposts (hidden on mobile/tablet) */}
+          <div className="hidden md:flex items-center gap-1.5 border-r border-white/10 pr-2.5">
+            <a
+              href="https://discord.gg/svTwnYX5XT"
+              target="_blank"
+              rel="noreferrer"
+              className="p-1.5 text-zinc-400 hover:text-[#5865F2] hover:bg-[#5865F2]/10 rounded transition-colors"
+              title="Join Official Discord Safety Outpost"
+              aria-label="Discord Outpost"
             >
-              <motion.div
-                className="flex flex-col items-center space-y-4"
-                initial="closed"
-                animate="open"
-                exit="closed"
-                variants={{
-                  open: {
-                    transition: {
-                      staggerChildren: 0.1,
-                      delayChildren: 0.1,
-                    },
-                  },
-                  closed: {
-                    transition: {
-                      staggerChildren: 0.05,
-                      staggerDirection: -1,
-                    },
-                  },
-                }}
-              >
-                {[
-                  { name: "Home", ref: refs.home },
-                  { name: "About", ref: refs.about },
-                  { name: "Sponsors", ref: refs.sponsors },
-                  { name: "Venue", ref: refs.venue },
-                  { name: "Agenda", ref: refs.agenda },
-                  { name: "Teams", ref: refs.teams },
-                ].map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    variants={{
-                      open: {
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                          type: "spring",
-                          stiffness: 100,
-                          damping: 15,
-                        },
-                      },
-                      closed: {
-                        opacity: 0,
-                        y: -20,
-                        transition: {
-                          duration: 0.2,
-                        },
-                      },
-                    }}
-                  >
-                    <a
-                      onClick={() => {
-                        scrollToView(item.ref);
-                        toggleMenu(); // Close menu after clicking
-                      }}
-                      className="text-white hover:text-gray-300 text-xl albert_sans cursor-pointer"
-                    >
-                      {item.name}
-                    </a>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <FaDiscord className="w-4 h-4" />
+            </a>
+            <a
+              href="https://chat.whatsapp.com/IEFPkoRtlfPBtX2FGXZCHs"
+              target="_blank"
+              rel="noreferrer"
+              className="p-1.5 text-zinc-400 hover:text-[#25D366] hover:bg-[#25D366]/10 rounded transition-colors"
+              title="Join Official WhatsApp Broadcast Outpost"
+              aria-label="WhatsApp Outpost"
+            >
+              <FaWhatsapp className="w-4 h-4" />
+            </a>
+          </div>
+
+          {/* Desktop Devfolio Link Button (Visible on md+) */}
+          <a
+            href="https://hackinverse-s1.devfolio.co/"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#e50914] hover:bg-[#d90429] text-white font-space-mono text-xs font-bold tracking-wider uppercase rounded-xs transition-all cursor-pointer shadow-[0_0_15px_rgba(229,9,20,0.35)] active:scale-[0.98]"
+          >
+            <span>DEVFOLIO DOSSIER</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+
+          {/* Custom Walkie-Talkie Surveillance Dial Button (Replaces generic hamburger) */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden relative flex items-center gap-2 px-2.5 py-1.5 bg-[#07090f] border border-[#e50914]/50 hover:border-[#e50914] text-zinc-300 hover:text-white rounded-xs transition-all shadow-[0_0_12px_rgba(229,9,20,0.25)] active:scale-[0.96] cursor-pointer"
+            aria-label="Walkie-Talkie Surveillance Dial"
+          >
+            <div className="relative flex items-center justify-center">
+              <Radio className="w-3.5 h-3.5 text-[#e50914] animate-pulse" />
+              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            </div>
+            <div className="flex flex-col text-left leading-none">
+              <div className="flex items-center gap-1">
+                <span className="font-space-mono text-[9px] font-bold text-white tracking-widest uppercase">
+                  {isMenuOpen ? "CLOSE" : "FREQ 102.5"}
+                </span>
+                <span className="text-[8px] text-[#e50914] font-mono font-extrabold">
+                  {isMenuOpen ? "✕" : "∿∿"}
+                </span>
+              </div>
+              <span className="font-space-mono text-[7px] text-zinc-400 tracking-wider">
+                {isMenuOpen ? "ABORT TUNER" : "WALKIE DIAL"}
+              </span>
+            </div>
+          </button>
+        </div>
       </div>
+
+      {/* 
+        HAWKINS LAB WALKIE-TALKIE SURVEILLANCE TERMINAL OVERLAY
+        Rendered via portal into document.body to prevent parent CSS transform clipping
+      */}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {isMenuOpen && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="lg:hidden fixed inset-0 bg-black/80 z-[9998]"
+                />
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="lg:hidden fixed inset-x-0 top-[52px] h-[calc(100dvh-52px)] bg-[#06080e]/98 backdrop-blur-3xl border-t border-white/10 z-[9999] flex flex-col justify-between overflow-y-auto select-none shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
+                >
+                {/* Top Telemetry & Frequency Readout */}
+                <div className="px-5 pt-4 pb-3 border-b border-white/[0.08] bg-black/40">
+                  <div className="flex items-center justify-between font-space-mono text-[10px]">
+                    <div className="flex items-center gap-2 text-zinc-400">
+                      <Activity className="w-3.5 h-3.5 text-[#e50914] animate-pulse" />
+                      <span className="tracking-widest uppercase text-white font-bold">
+                        HAWKINS SURVEILLANCE TUNER
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-[9px]">
+                      <span>SIGNAL:</span>
+                      <span className="tracking-tighter">▂▄▆█</span>
+                      <span className="text-zinc-400">LIVE</span>
+                    </div>
+                  </div>
+                  <p className="mt-1 text-[9px] font-space-mono text-zinc-500 tracking-wider">
+                    Select frequency channel to tune into live laboratory coordinates:
+                  </p>
+                </div>
+
+                {/* Channels Grid (2 Columns on mobile for tactile ergonomics) */}
+                <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-2 flex-1 overflow-y-auto">
+                  {channels.map((ch) => (
+                    <button
+                      key={ch.ch}
+                      onClick={() => handleChannelSelect(ch)}
+                      className="group relative text-left p-3 bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.08] hover:border-[#e50914] transition-all rounded-xs flex items-center justify-between cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 bg-black/60 border border-white/10 group-hover:border-[#e50914]/50 flex items-center justify-center font-space-mono text-[10px] text-[#e50914] font-bold">
+                          {ch.ch}
+                        </div>
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-space-mono text-[9px] text-[#e50914] font-semibold">
+                              {ch.freq} MHz
+                            </span>
+                            <span className="text-zinc-600 text-[8px]">•</span>
+                            <span className="font-cinzel text-xs font-bold text-white tracking-wider group-hover:text-red-400 transition-colors">
+                              {ch.label}
+                            </span>
+                          </div>
+                          <span className="text-[10px] text-zinc-400 font-space-mono">
+                            {ch.desc}
+                          </span>
+                        </div>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-[#e50914] group-hover:translate-x-0.5 transition-all" />
+                    </button>
+                  ))}
+                </div>
+
+                {/* Bottom Command Strip: Devfolio Action & Outpost Relays */}
+                <div className="p-4 border-t border-white/10 bg-black/60 space-y-3">
+                  <a
+                    href="https://hackinverse-s1.devfolio.co/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full py-2.5 px-4 bg-[#e50914] hover:bg-[#d90429] text-white font-space-mono text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2 rounded-xs shadow-[0_0_20px_rgba(229,9,20,0.4)] active:scale-[0.98]"
+                  >
+                    <span>APPLY WITH DEVFOLIO [DIRECT RELAY]</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <a
+                      href="https://discord.gg/svTwnYX5XT"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="py-2 px-3 bg-[#5865F2]/15 border border-[#5865F2]/30 hover:border-[#5865F2] text-[#8ea1e1] hover:text-white text-xs font-space-mono flex items-center justify-center gap-2 rounded-xs transition-colors"
+                    >
+                      <FaDiscord className="w-4 h-4 text-[#5865F2]" />
+                      <span>DISCORD</span>
+                    </a>
+                    <a
+                      href="https://chat.whatsapp.com/IEFPkoRtlfPBtX2FGXZCHs"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="py-2 px-3 bg-[#25D366]/15 border border-[#25D366]/30 hover:border-[#25D366] text-[#4ade80] hover:text-white text-xs font-space-mono flex items-center justify-center gap-2 rounded-xs transition-colors"
+                    >
+                      <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
+                      <span>WHATSAPP</span>
+                    </a>
+                  </div>
+
+                  <div className="flex items-center justify-between text-[9px] font-space-mono text-zinc-500 pt-1">
+                    <span>HAWKINS LAB RADIO FREQUENCY v1.0</span>
+                    <span className="text-zinc-400">ENCRYPTION: ACTIVE</span>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+          document.body
+        )}
     </motion.nav>
   );
 }

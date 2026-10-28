@@ -1,168 +1,130 @@
 import React from "react";
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-  FaYoutube,
-  FaTwitter,
-  FaDiscord,
-} from "react-icons/fa";
-import SectionTitle from "./Common/SectionTitle";
-import { motion } from "framer-motion";
-import { Facebook, Linkedin, Instagram, Youtube } from "lucide-react";
-import { BsDiscord } from "react-icons/bs";
+import { FaLinkedinIn, FaInstagram, FaDiscord, FaWhatsapp } from "react-icons/fa";
+import { ExternalLink, ArrowRight } from "lucide-react";
 
-const AboutSection = () => {
+export default function AboutSection() {
+  const socialLinks = [
+    {
+      label: "X (TWITTER)",
+      href: "https://x.com/Magistics_main",
+      icon: () => (
+        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      ),
+    },
+    {
+      label: "LINKEDIN",
+      href: "https://www.linkedin.com/company/magistics/",
+      icon: FaLinkedinIn,
+    },
+    {
+      label: "INSTAGRAM",
+      href: "https://www.instagram.com/hackinverse",
+      icon: FaInstagram,
+    },
+    {
+      label: "DISCORD",
+      href: "https://discord.gg/svTwnYX5XT",
+      icon: FaDiscord,
+    },
+    {
+      label: "WHATSAPP",
+      href: "https://chat.whatsapp.com/IEFPkoRtlfPBtX2FGXZCHs",
+      icon: FaWhatsapp,
+    },
+  ];
+
   return (
-    <section
-      id="about"
-      className=" relative flex justify-center items-center min-h-screen overflow-hidden"
-    >
-      {/* Monster Image - Left Side */}
-      <div className="absolute left-0 top-0 bottom-0 w-full md:w-1/2">
-        <img
-          src="/aboutUs.png"
-          alt="HackInverse Monster"
-          className="w-full h-full object-cover opacity-30 md:opacity-100"
-        />
-        <div className="absolute bottom-0 w-full h-1/3 bg-linear-to-t from-[#222222] to-transparent" />
-      </div>
-
-      {/* Content - Right Side */}
-      <div className=" md:absolute md:right-[10%] w-full md:w-[55%] lg:w-[50%] text-center md:text-right">
-        <div className=" flex flex-col md:items-end ">
-          {/* About Heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-white text-3xl sm:text-4xl md:text-5xl font-bold tracking-wider mb-2"
-          >
-            ABOUT
-          </motion.h2>
-
-          {/* HackInverse Title */}
-
-          <SectionTitle
-            title="HACKINVERSE"
-            lineHeight="h-[3px]"
-            titleSize="text-3xl md:text-4xl lg:text-6xl xl:text-7xl"
-          />
+    <section id="about" className="relative w-full py-20 bg-[#f6f4ee] text-[#111317] select-none">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
+        {/* Editorial Sub-Headline */}
+        <div className="border-b border-[#e5e0d5] pb-6 mb-12 flex flex-wrap items-center justify-between gap-4 font-space-mono text-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-[#c9182b] font-bold">CHAPTER 03</span>
+            <span className="text-[#888]">/</span>
+            <span className="text-[#444] uppercase tracking-wider font-semibold">THE HACKINVERSE ORIGIN STORY</span>
+          </div>
+          <span className="text-[#777] text-[11px]">ARCHIVE FILE: HI-83-DOE</span>
         </div>
 
-        {/* Description Paragraphs */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 mx-10 sm:mx-0 md:mb-6"
-        >
-          HackInverse is the flagship hackDay by Magistics, built to bring
-          together students, developers, designers, and innovators from all
-          walks of life. It's a community-driven space where creativity meets
-          collaboration
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 mx-10 sm:mx-0 md:mb-8"
-        >
-          From brainstorming to building, HackInverse inspires participants to
-          learn, connect, and grow while turning bold ideas into impactful
-          innovations.
-        </motion.p>
-
-        {/* Social Media Icons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="flex items-center justify-center md:justify-end gap-3 sm:gap-4 mb-6 md:mb-8"
-        >
-          {[
-
-            {
-              icon: () => (
-                <svg
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5 sm:w-6 sm:h-6 fill-current"
-                >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              ),
-              href: "https://x.com/Magistics_main",
-            },
-            {
-              icon: Linkedin,
-              href: "https://www.linkedin.com/company/magistics/",
-            },
-            { icon: Instagram, href: "https://www.instagram.com/hackinverse" },
-            { icon: BsDiscord, href: "https://discord.gg/HBabqw2UG" },
-          ].map((social, index) => (
-            <motion.a
-              key={index}
-              href={social.href}
-              className="text-white hover:text-red-500 transition-colors duration-300"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-            </motion.a>
-          ))}
-        </motion.div>
-
-        {/* Learn More Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="flex justify-center md:justify-end"
-        >
-          <motion.a
-            href="https://linktr.ee/Magistics_official"
-            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-colors duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Learn More
-            <svg
-              className="w-4 h-4 sm:w-5 sm:h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
+        {/* 2-Column Asymmetric Newspaper Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Left Column: Archival Evidence Photograph */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative p-2 bg-white border border-[#e0dad0] shadow-sm">
+              <img
+                src="/aboutUs.png"
+                alt="HackInverse Dimensional Anomaly"
+                className="w-full h-auto object-cover filter contrast-105"
               />
-            </svg>
-          </motion.a>
-        </motion.div>
+              <div className="pt-2 px-1 text-[10px] font-space-mono text-[#666] flex justify-between border-t border-[#eee] mt-2">
+                <span>FIG 01. THE DIMENSIONAL SHADOW</span>
+                <span>ORIGIN: HACKINVERSE ARCHIVE</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Editorial Copy strictly from HackInverse.tech */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-1">
+              <span className="text-[#c9182b] font-space-mono text-[11px] uppercase tracking-widest font-bold">
+                ORGANIZATIONAL PHILOSOPHY
+              </span>
+              <h3 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#111317] leading-tight">
+                Where Creativity Meets Bold Collaboration
+              </h3>
+            </div>
+
+            {/* Authentic Text from hackinverse.tech */}
+            <p className="font-playfair text-base sm:text-lg text-[#333] leading-relaxed">
+              <span className="drop-cap">H</span>ackInverse is the flagship hackDay by Magistics, built to bring together students, developers, designers, and innovators from all walks of life. It's a community-driven space where creativity meets collaboration.
+            </p>
+
+            <p className="font-playfair text-base sm:text-lg text-[#444] leading-relaxed">
+              From brainstorming to building, HackInverse inspires participants to learn, connect, and grow while turning bold ideas into impactful innovations.
+            </p>
+
+            {/* Official Social Media Outpost */}
+            <div className="pt-6 border-t border-[#e5e0d5]">
+              <span className="font-space-mono text-[10px] text-[#777] uppercase tracking-widest block mb-4">
+                OFFICIAL COMMUNITY & WIRE DISPATCHES
+              </span>
+              <div className="flex flex-wrap gap-2.5">
+                {socialLinks.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <a
+                      key={index}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-[#ded8cb] hover:border-[#111317] text-[#222] text-xs font-space-mono transition-colors"
+                    >
+                      <Icon className="w-3.5 h-3.5 text-[#c9182b]" />
+                      <span className="tracking-wider">{item.label}</span>
+                      <ExternalLink className="w-3 h-3 text-[#999]" />
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Learn More Button to Magistics Linktree */}
+              <div className="mt-6">
+                <a
+                  href="https://linktr.ee/Magistics_official"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#111317] text-white hover:bg-[#c9182b] text-xs font-space-mono uppercase tracking-widest transition-colors"
+                >
+                  <span>EXPLORE MAGISTICS ECOSYSTEM</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
-};
-
-function Link(props) {
-  return (
-    <a
-      href={props.ahref}
-      target="blank"
-      className="bg-gray-700 hover:bg-red-500 p-2 rounded-md transition hover:scale-110 
-      hover:shadow-[0_0_30px_#ff0000dd]"
-    >
-      {props.value}
-    </a>
-  );
 }
-
-export default AboutSection;

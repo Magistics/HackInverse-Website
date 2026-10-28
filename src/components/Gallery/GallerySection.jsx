@@ -1,425 +1,595 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import SectionTitle from "../Common/SectionTitle";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Users } from "lucide-react";
 
-/* -------------------------------------------------------------------------- */
-/*  TEAM DATA — replace the placeholder images/names with the real members.   */
-/* -------------------------------------------------------------------------- */
-const organizers = [
-  { name: "Abhirup Datta Khan", role: "Lead / Organizer", img: "/team/abhirup.jpg" },
-  { name: "Rupsha Das", role: "Co. / Organizer", img: "/team/rupsha.jpg" },
+const squadData = [
+  {
+    id: "command",
+    title: "COMMAND DIRECTORS",
+    badge: "DIRECTORATE // LEVEL-5 CLEARANCE",
+    members: [
+      {
+        name: "Abhirup Datta Khan",
+        role: "Lead Organizer & Founder",
+        tagline: "Igniting the vision and leading the expedition with boundless energy, relentless grit, and heart.",
+        dept: "Executive Command",
+        idCode: "DIR-01",
+        img: "/team/abhirup.jpg",
+        lead: true,
+      },
+      {
+        name: "Rupsha Das",
+        role: "Co-Organizer",
+        tagline: "Bringing clarity and calm to the chaos, keeping every moving gear perfectly aligned and inspired.",
+        dept: "Executive Command",
+        idCode: "DIR-02",
+        img: "/team/rupsha.jpg",
+        lead: false,
+      },
+    ],
+  },
+  {
+    id: "tech",
+    title: "TECH SYNDICATE",
+    badge: "SYSTEMS ARCHITECTURE & INFRA",
+    members: [
+      {
+        name: "Atrika Show",
+        role: "Tech Team Lead",
+        tagline: "Turning high-stakes architectural challenges into elegant, rock-solid realities with quiet brilliance.",
+        dept: "Core Systems",
+        idCode: "TECH-01",
+        img: "/team/atrika.jpg",
+        lead: true,
+      },
+      {
+        name: "Rahul Pal",
+        role: "Systems Architect",
+        tagline: "A calm problem solver who untangles complex logic and makes difficult challenges look effortless.",
+        dept: "Core Systems",
+        idCode: "TECH-02",
+        img: "/team/rahul.jpg",
+      },
+      {
+        name: "Hiya Sarkar",
+        role: "Full Stack Engineer",
+        tagline: "Weaving robust code, creative curiosity, and unstoppable energy into every milestone.",
+        dept: "Core Systems",
+        idCode: "TECH-03",
+        img: "/team/hiya.jpg",
+      },
+      {
+        name: "Srijani Pal Chaudhuri",
+        role: "Frontend Engineer",
+        tagline: "Building snappy, delightful interfaces that make users feel right at home.",
+        dept: "Core Systems",
+        idCode: "TECH-04",
+        img: "/team/srijani.jpg",
+        hidden: true,
+      },
+    ],
+  },
+  {
+    id: "design",
+    title: "DESIGN GUILD",
+    badge: "CREATIVE & VISUAL SYSTEMS",
+    members: [
+      {
+        name: "Tarun Binay Das",
+        role: "Creative Design Lead",
+        tagline: "Shaping the aesthetic soul and visual identity with visionary creative flair.",
+        dept: "Visual Guild",
+        idCode: "DSGN-01",
+        img: "/team/tarun.jpg",
+        lead: true,
+      },
+      {
+        name: "Adrija Karmakar",
+        role: "UI/UX & Product Design",
+        tagline: "Crafting intuitive, immersive digital journeys with deep empathy and artistic precision.",
+        dept: "Visual Guild",
+        idCode: "DSGN-02",
+        img: "/team/adrija.png",
+      },
+      {
+        name: "Aishik Mondal",
+        role: "Visual & Brand Designer",
+        tagline: "Exploring fresh perspectives to craft bold and memorable brand visuals.",
+        dept: "Visual Guild",
+        idCode: "DSGN-03",
+        img: "/team/aishik.jpg",
+        hidden: true,
+      },
+      {
+        name: "Anusree Ghosh",
+        role: "Brand Identity Specialist",
+        tagline: "Infusing vibrant life, sharp distinction, and elegance into every creative visual asset.",
+        dept: "Visual Guild",
+        idCode: "DSGN-04",
+        img: "/team/anusree.jpg",
+      },
+      {
+        name: "Debosmita Paul",
+        role: "Visual Graphics Operative",
+        tagline: "Illuminating ideas with an exceptional eye for typography, balance, and visual harmony.",
+        dept: "Visual Guild",
+        idCode: "DSGN-05",
+        img: "/team/debosmita.jpeg",
+      },
+      {
+        name: "Meraj Hussain",
+        role: "3D & Spatial Graphics",
+        tagline: "Transforming abstract 3D concepts into stunning spatial compositions.",
+        dept: "Visual Guild",
+        idCode: "DSGN-06",
+        img: "/team/meraj.jpg",
+        hidden: true,
+      },
+      {
+        name: "Riya Pathak",
+        role: "Vector & Asset Illustrator",
+        tagline: "Bringing warmth, imagination, and expressive brilliance into every custom illustration.",
+        dept: "Visual Guild",
+        idCode: "DSGN-07",
+        img: "/team/riya.jpg",
+      },
+      {
+        name: "Sagnika Sinha",
+        role: "UI & Visual Designer",
+        tagline: "Designing thoughtful, sleek user interfaces with genuine care and style.",
+        dept: "Visual Guild",
+        idCode: "DSGN-08",
+        img: "/team/sagnika.jpeg",
+        hidden: true,
+      },
+      {
+        name: "Tamajit Pal",
+        role: "Motion & Asset Design",
+        tagline: "Breathing dynamic motion, fluid rhythm, and polished magic into every frame.",
+        dept: "Visual Guild",
+        idCode: "DSGN-09",
+        img: "/team/tamajit.jpeg",
+      },
+      {
+        name: "Tamali Khan",
+        role: "Graphic Communications",
+        tagline: "Connecting people through striking graphic storytelling and purposeful visual language.",
+        dept: "Visual Guild",
+        idCode: "DSGN-10",
+        img: "/team/tamali.jpg",
+      },
+    ],
+  },
+  {
+    id: "ops",
+    title: "EVENT OPERATIONS",
+    badge: "FIELD PROTOCOL & LOGISTICS",
+    members: [
+      {
+        name: "Samyamay Bhattacharjee",
+        role: "Event Operations Lead",
+        tagline: "The steadfast anchor whose sheer grit and leadership keep the entire ship steady.",
+        dept: "Field Protocol",
+        idCode: "OPS-01",
+        img: "/team/samyamay.jpg",
+        lead: true,
+      },
+      {
+        name: "Sohamjit Roy Chowdhury",
+        role: "Logistics Coordinator",
+        tagline: "Always anticipating what comes next, turning fast-paced logistics into seamless teamwork.",
+        dept: "Field Protocol",
+        idCode: "OPS-02",
+        img: "/team/sohamjit.jpg",
+      },
+      {
+        name: "Anagh Biswas",
+        role: "On-Ground Logistics",
+        tagline: "Energetic, dependable, and always ready with a smile whenever the team needs a hand.",
+        dept: "Field Protocol",
+        idCode: "OPS-03",
+        img: "/team/anagh.jpg",
+      },
+      {
+        name: "Ratul Chatterjee",
+        role: "Venue Coordinator",
+        tagline: "Master of spatial coordination and on-ground synergy, ensuring flawless event flow.",
+        dept: "Field Protocol",
+        idCode: "OPS-04",
+        img: "/team/ratul.jpeg",
+      },
+      {
+        name: "Protim Sinha",
+        role: "Hacker Experience Lead",
+        tagline: "Championing hacker comfort, warmth, and hospitality with infectious positive spirit.",
+        dept: "Field Protocol",
+        idCode: "OPS-05",
+        img: "/team/protim.jpg",
+      },
+      {
+        name: "Ishita Bose",
+        role: "Hospitality Lead",
+        tagline: "Spreading genuine hospitality, warmth, and supportive care to every attendee and guest.",
+        dept: "Field Protocol",
+        idCode: "OPS-06",
+        img: "/team/ishita.jpg",
+      },
+      {
+        name: "Dishant Kothari",
+        role: "Security & Crowd Flow",
+        tagline: "Maintaining calm, steady vigilance and keeping everyone moving forward smoothly.",
+        dept: "Field Protocol",
+        idCode: "OPS-07",
+        img: "/team/dishant.jpeg",
+        hidden: true,
+      },
+    ],
+  },
+  {
+    id: "marketing",
+    title: "MARKETING & COMMUNICATIONS",
+    badge: "PUBLIC INTELLIGENCE & MEDIA",
+    members: [
+      {
+        name: "Nandini Pandey",
+        role: "Marketing Lead",
+        tagline: "Amplifying our message and building unstoppable momentum across student communities.",
+        dept: "Public Outreach",
+        idCode: "MKT-01",
+        img: "/team/nandini.jpg",
+        lead: true,
+      },
+      {
+        name: "Archita Mitra",
+        role: "Social Media Lead",
+        tagline: "Crafting vibrant narratives and digital excitement with authentic flair and resonance.",
+        dept: "Public Outreach",
+        idCode: "MKT-02",
+        img: "/team/archita.jpg",
+      },
+      {
+        name: "Chandan Ghosh",
+        role: "Public Relations Lead",
+        tagline: "Building meaningful bridges and sparking memorable conversations across communities.",
+        dept: "Public Outreach",
+        idCode: "MKT-03",
+        img: "/team/chandan.jpg",
+      },
+      {
+        name: "Sneha Sarkar",
+        role: "Content Strategist",
+        tagline: "Transforming complex ideas into compelling stories that truly inspire and engage.",
+        dept: "Public Outreach",
+        idCode: "MKT-04",
+        img: "/team/sneha.jpg",
+      },
+      {
+        name: "Tirthankar Das",
+        role: "Campaign Strategist",
+        tagline: "Strategizing creative outreach campaigns with sharp focus, initiative, and dedication.",
+        dept: "Public Outreach",
+        idCode: "MKT-05",
+        img: "/team/tirthankar.jpeg",
+      },
+      {
+        name: "Asmit Biswas",
+        role: "Campus Outreach Lead",
+        tagline: "Energizing campus builders with grassroots passion, great humor, and drive.",
+        dept: "Public Outreach",
+        idCode: "MKT-06",
+        img: "/team/asmit.jpg",
+      },
+      {
+        name: "Satavisa Kesh",
+        role: "Digital Growth Operative",
+        tagline: "Igniting digital growth and engagement through thoughtful and inventive campaigns.",
+        dept: "Public Outreach",
+        idCode: "MKT-07",
+        img: "/team/satavisa.jpg",
+      },
+      {
+        name: "Sania Anjum",
+        role: "Community Engagement",
+        tagline: "Cultivating a welcoming, close-knit community where every builder feels at home.",
+        dept: "Public Outreach",
+        idCode: "MKT-08",
+        img: "/team/sania.jpg",
+      },
+    ],
+  },
+  {
+    id: "media",
+    title: "MEDIA & PRODUCTION",
+    badge: "CINEMATOGRAPHY & VIDEO",
+    members: [
+      {
+        name: "Pritam Sardar",
+        role: "Media Lead",
+        tagline: "Freezing unforgettable fleeting milestones into timeless, cinematic visual memories.",
+        dept: "Media Syndicate",
+        idCode: "MED-01",
+        img: "/team/pritam.jpg",
+        lead: true,
+        leadBadge: "MEDIA LEAD",
+      },
+      {
+        name: "Karishma Gupta",
+        role: "Video Editing Lead",
+        tagline: "Stitching every candid snapshot into high-energy, memorable video retrospectives.",
+        dept: "Broadcast Ops",
+        idCode: "VID-01",
+        img: "/team/karishma.jpg",
+        lead: true,
+        leadBadge: "VIDEO LEAD",
+      },
+      {
+        name: "Sudeb Rana",
+        role: "Director of Photography",
+        tagline: "Capturing the raw emotion, passion, and electric atmosphere through a visionary lens.",
+        dept: "Cinematography",
+        idCode: "MED-02",
+        img: "/team/sudev.jpg",
+      },
+      {
+        name: "Priyanshu Ghosh",
+        role: "Motion Graphics & FX",
+        tagline: "Elevating the screen experience with dynamic motion graphics and creative flair.",
+        dept: "Broadcast Ops",
+        idCode: "VID-02",
+        img: "/team/priyanshu.jpg",
+      },
+    ],
+  },
+  {
+    id: "sponsors",
+    title: "CORPORATE ALLIANCES",
+    badge: "INSTITUTIONAL PARTNERSHIPS",
+    members: [
+      {
+        name: "Saptorsi Ghose Dastidar",
+        role: "Head of Corporate Alliances",
+        tagline: "Forging strong partnerships and opening doors to exciting opportunities for hackers.",
+        dept: "Alliances",
+        idCode: "SPN-01",
+        img: "/team/saptorsi.jpg",
+        lead: true,
+      },
+      {
+        name: "Raunak Biswas",
+        role: "Sponsor Relations Lead",
+        tagline: "Nurturing lasting relationships with trust, genuine dedication, and professionalism.",
+        dept: "Alliances",
+        idCode: "SPN-02",
+        img: "/team/raunak.jpg",
+      },
+    ],
+  },
 ];
 
-const teams = [
-  {
-    title: "Tech Team",
-    members: [
-      { name: "Atrika Show", role: "Tech Team", img: "/team/atrika.jpg" },
-      { name: "Rahul Pal", role: "Tech Team", img: "/team/rahul.jpg" },
-      { name: "Hiya Sarkar", role: "Tech Team", img: "/team/hiya.jpg" },
-      // { name: "Srijani Pal Chaudhuri", role: "Tech Team", img: "/team/srijani.jpg" },
-      // { name: "Karan rajput", role: "Tech Team", img: "" },
-    ],
-  },
-  {
-    title: "Design Team",
-    members: [
-      { name: "Tarun Binay Das", role: "Graphics Team", img: "/team/tarun.jpg" },
-      { name: "Adrija Karmakar", role: "Graphics Team", img: "/team/adrija.png" },
-      // { name: "Aishik Mondal", role: "Graphics Team", img: "/team/aishik.jpg" },
-      { name: "Anusree Ghosh", role: "Graphics Team", img: "/team/anusree.jpg" },
-      { name: "Debosmita Paul", role: "Graphics Team", img: "/team/debosmita.jpeg" },
-      { name: "Meraj Hussain", role: "Graphics Team", img: "/team/meraj.jpg" },
-      { name: "Riya Pathak", role: "Graphics Team", img: "/team/riya.jpg" },
-      // { name: "Sagnika Sinha", role: "Graphics Team", img: "/team/sagnika.jpeg" },
-      { name: "Tamajit Pal", role: "Graphics Team", img: "/team/tamajit.jpeg" },
-      { name: "Tamali Khan ", role: "Graphics Team", img: "/team/tamali.jpg" },
-    ],
-  },
-  {
-    title: "Event Team",
-    members: [
-      { name: "Samyamay Bhattacharjee", role: "Event Team", img: "/team/samyamay.jpg" },
-      { name: "Sohamjit Roy Chowdhury", role: "Event Team", img: "/team/sohamjit.jpg" },
-      { name: "Anagh Biswas", role: "Event Team", img: "/team/anagh.jpg" },
-      { name: "Ratul Chatterjee", role: "Event Team", img: "/team/ratul.jpeg" },
-      { name: "Protim Sinha", role: "Event Team", img: "/team/protim.jpg" },
-      { name: "Ishita Bose", role: "Event Team", img: "/team/ishita.jpg" },
-      // { name: "Dishant Kothari", role: "Event Team", img: "/team/dishant.jpeg" },
-    ],
-  },
-  {
-    title: "Marketing Team",
-    members: [
-      { name: "Nandini Pandey", role: "Marketing", img: "/team/nandini.jpg" },
-      // { name: "Archita Mitra", role: "Marketing", img: "/team/archita.jpg" },
-      { name: "Chandan Ghosh", role: "Marketing", img: "/team/chandan.jpg" },
-      { name: "Sneha Sarkar", role: "Marketing", img: "/team/sneha.jpg" },
-      { name: "Tirthankar Das", role: "Marketing", img: "/team/tirthankar.jpeg" },
-      { name: "Asmit Biswas", role: "Marketing", img: "/team/asmit.jpg" },
-      { name: "Satavisa Kesh", role: "Marketing", img: "/team/satavisa.jpg" },
-      { name: "Sania Anjum", role: "Marketing", img: "/team/sania.jpg" },
-    ],
-  },
-  {
-    title: "Media & Videography",
-    members: [
-      { name: "Pritam sardar", role: "Media & Videography", img: "/team/pritam.jpg" },
-      { name: "Sudeb Rana", role: "Media & Videography", img: "/team/sudev.jpg" },
-    ]
-  },
-  {
-    title: "Video Editing",
-    members: [
-      { name: "Karishma Gupta", role: "Video Editing", img: "/team/karishma.jpg" },
-      { name: "Priyanshu Ghosh", role: "Video Editing", img: "/team/priyanshu.jpg" },
-    ]
-  },
-  {
-    title: "Sponsors",
-    members: [
-      { name: "Saptorsi Ghose Dastidar", role: "Sponsors", img: "/team/saptorsi.jpg" },
-      { name: "Raunak Biswas", role: "Sponsors", img: "/team/raunak.jpg" },
-    ]
-  },
-];
+export default function GallerySection() {
+  const [activeTab, setActiveTab] = useState("all");
 
-/* -------------------------------------------------------------------------- */
-/*  Track whether we're below Tailwind's `sm` breakpoint (mobile view).         */
-/* -------------------------------------------------------------------------- */
-const useIsMobile = (breakpoint = 640) => {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth < breakpoint : false
+  const activeSquadData = squadData.map((squad) => ({
+    ...squad,
+    members: squad.members.filter((m) => !m.hidden),
+  }));
+
+  const totalMembers = activeSquadData.reduce(
+    (acc, squad) => acc + squad.members.length,
+    0
   );
 
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
-    const handler = (e) => setIsMobile(e.matches);
-    handler(mq);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [breakpoint]);
+  const displayedSquads =
+    activeTab === "all"
+      ? activeSquadData
+      : activeSquadData.filter((squad) => squad.id === activeTab);
 
-  return isMobile;
-};
+  return (
+    <section className="relative w-full py-28 px-4 sm:px-8 max-w-7xl mx-auto select-none" id="team">
+      {/* Chapter Masthead */}
+      <div className="flex flex-col items-center mb-16 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/[0.03] border border-white/10 text-[10px] font-space-mono text-[#e50914] uppercase tracking-[0.25em] mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#e50914] animate-pulse" />
+          <span>CHAPTER 11 // THE FIELD OPERATIVES</span>
+        </div>
 
-/* -------------------------------------------------------------------------- */
-/*  Ensure the team lead is flagged and sits first. If a member has            */
-/*  `lead: true` it is used (and moved to the front); otherwise the first      */
-/*  member is treated as the lead by default.                                  */
-/* -------------------------------------------------------------------------- */
-const normalizeLead = (members) => {
-  if (members.some((m) => m.lead)) {
-    return [...members.filter((m) => m.lead), ...members.filter((m) => !m.lead)];
-  }
-  return members.map((m, i) => (i === 0 ? { ...m, lead: true } : m));
-};
+        <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold tracking-[0.12em] text-white uppercase">
+          MEET THE SQUAD
+        </h2>
 
-/* -------------------------------------------------------------------------- */
-/*  Move the lead (first after normalizeLead) into the middle slot of a static  */
-/*  row. With an even count the lead stays left of centre (first for 2).        */
-/* -------------------------------------------------------------------------- */
-const centerLead = (members) => {
-  const mid = Math.floor((members.length - 1) / 2);
-  const [lead, ...rest] = members;
-  return [...rest.slice(0, mid), lead, ...rest.slice(mid)];
-};
-
-/* -------------------------------------------------------------------------- */
-/*  Section sub-title (red Stranger Things text + underline)                   */
-/* -------------------------------------------------------------------------- */
-const SubTitle = ({ children }) => (
-  <div className="flex flex-col items-center">
-    <h3 className="stranger-things-filled uppercase tracking-wide text-[clamp(20px,3.2vw,38px)] text-[#FF3B3B] [text-shadow:0_0_10px_rgba(255,0,0,0.6),0_3px_4px_rgba(0,0,0,0.9)]">
-      {children}
-    </h3>
-    <span className="mt-2 h-[3px] w-[clamp(120px,18vw,230px)] background-red drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" />
-  </div>
-);
-
-/* -------------------------------------------------------------------------- */
-/*  Polaroid-style member card                                                 */
-/* -------------------------------------------------------------------------- */
-const PolaroidCard = ({ img, name, role, className = "", colored = false, lead = false, organizer = false }) => (
-  <div
-    className={`group/card relative shrink-0 select-none transition-transform duration-300 ease-out hover:z-20 hover:scale-105 ${className}`}
-  >
-    {lead && (
-      <>
-        {/* Pulsing red neon glow behind the frame */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -inset-1.5 animate-pulse rounded-lg bg-[#ff0505]/50 blur-xl"
-        />
-      </>
-    )}
-    {organizer && (
-      <>
-        {/* Soft golden aura — richer/warmer than the lead's flat red glow */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -inset-2.5 animate-pulse rounded-2xl bg-[radial-gradient(60%_60%_at_50%_50%,rgba(255,215,0,0.6),rgba(255,120,0,0.32)_55%,transparent_75%)] blur-2xl"
-        />
-        {/* Floating crown */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-6 left-1/2 z-20 -translate-x-1/2 text-2xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] sm:-top-7 sm:text-3xl"
-        >
-          👑
-        </span>
-      </>
-    )}
-    <div
-      className={`relative rounded-[3px] bg-[#e9e6dc] p-2.5 pb-2 transition-shadow duration-300 ${
-        organizer
-          ? "shadow-[0_0_0_2px_#fbbf24,0_0_34px_10px_rgba(251,191,36,0.5)]"
-          : lead
-          ? "shadow-[0_0_28px_rgba(255,5,5,0.6)] ring-2 ring-[#ff0505]"
-          : "shadow-[0_10px_25px_rgba(0,0,0,0.55)] ring-1 ring-black/20 group-hover/card:shadow-[0_16px_38px_rgba(255,5,5,0.35)]"
-      }`}
-    >
-      <div className="overflow-hidden bg-black">
-        <img
-          src={img}
-          alt={name}
-          draggable="false"
-          className={`aspect-4/5 w-full object-cover transition-all duration-500 group-hover/card:scale-105 ${
-            colored || lead || organizer ? "grayscale-0" : "grayscale group-hover/card:grayscale-0"
-          }`}
-        />
-      </div>
-      <div className="pb-1 pt-2 text-center">
-        <p className="stranger-things-filled flex min-h-[2.5em] items-center justify-center leading-tight text-[clamp(12px,1vw,16px)] text-[#e00505] [text-shadow:0_0_6px_rgba(255,0,0,0.5)]">
-          {name}
+        <p className="mt-3 font-courier text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto">
+          The {totalMembers} organizers, engineers, and researchers responsible for constructing HackInverse 2026.
         </p>
-        {lead ? (
-          <span className="poppins mt-0.5 inline-block rounded-full bg-[#e00505] px-2 py-0.5 text-[clamp(7px,0.65vw,10px)] font-semibold uppercase tracking-wider text-white shadow-[0_0_10px_rgba(255,5,5,0.6)]">
-            ★ Team Lead
-          </span>
-        ) : organizer ? (
-          <span className="poppins mt-0.5 inline-block rounded-full bg-linear-to-r from-[#FFD700] to-[#F0A500] px-2 py-0.5 text-[clamp(7px,0.65vw,10px)] font-semibold uppercase tracking-wider text-[#3a2a00] shadow-[0_0_10px_rgba(255,215,0,0.65)]">
-            ✦ {role}
-          </span>
-        ) : (
-          <p className="poppins uppercase tracking-wide text-[clamp(8px,0.7vw,11px)] text-neutral-600">
-            {role}
-          </p>
-        )}
-      </div>
-    </div>
-  </div>
-);
 
-/* -------------------------------------------------------------------------- */
-/*  Team carousel — center-aligned, looping Embla carousel that auto-moves     */
-/*  and pauses while the mouse is over it. Center card is emphasised.          */
-/* -------------------------------------------------------------------------- */
-const TeamCarousel = ({ members }) => {
-  const autoplay = useRef(
-    Autoplay({ delay: 2500, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
+        {/* Tactical Division Filter Tabs with Framer Motion layout */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-2 max-w-4xl">
+          <motion.button
+            type="button"
+            layout
+            whileTap={{ scale: 0.96 }}
+            onClick={() => setActiveTab("all")}
+            className={`px-4 py-2 font-space-mono text-xs tracking-wider uppercase transition-all border cursor-pointer ${
+              activeTab === "all"
+                ? "bg-[#e50914] border-[#e50914] text-white shadow-[0_0_15px_rgba(229,9,20,0.4)]"
+                : "bg-white/[0.02] border-white/10 text-zinc-400 hover:text-white hover:border-white/20"
+            }`}
+          >
+            ALL OPERATIVES ({totalMembers})
+          </motion.button>
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: "center", skipSnaps: false, dragFree: false },
-    [autoplay.current]
-  );
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState([]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    setScrollSnaps(emblaApi.scrollSnapList());
-    onSelect();
-    emblaApi.on("select", onSelect).on("reInit", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-    };
-  }, [emblaApi, onSelect]);
-
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-  const scrollTo = useCallback((i) => emblaApi && emblaApi.scrollTo(i), [emblaApi]);
-
-  return (
-    <div className="relative mx-auto mt-6 w-full max-w-5xl px-4">
-      {/* Embla viewport — cards are bottom-aligned; side cards lose top height */}
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex items-end">
-          {members.map((m, index) => (
-            <div
-              key={index}
-              className="min-w-0 flex-[0_0_100%] px-2 pt-16 pb-4 sm:flex-[0_0_33.333%]"
-            >
-              <div
-                className={`flex origin-bottom justify-center transition-all duration-500 ease-out ${
-                  index === selectedIndex
-                    ? "scale-110 opacity-100"
-                    : "scale-90 opacity-50"
-                }`}
-              >
-                <PolaroidCard
-                  img={m.img}
-                  name={m.name}
-                  role={m.role}
-                  lead={m.lead}
-                  colored={index === selectedIndex}
-                  className="w-[clamp(150px,18vw,200px)]"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Controls — arrows with pagination dots between them, below the cards */}
-      <div className="mt-4 flex items-center justify-center gap-4">
-        <button
-          type="button"
-          onClick={scrollPrev}
-          aria-label="Previous"
-          className="rounded-full bg-[#D9D9D933] p-2 text-white transition-colors hover:bg-[#D9D9D950] sm:p-3"
-        >
-          <img
-            src="/left-arrow.svg"
-            alt=""
-            aria-hidden="true"
-            className="h-4 w-auto sm:h-5"
-          />
-        </button>
-
-        <div className="flex items-center gap-2">
-          {scrollSnaps.map((_, i) => (
-            <button
-              key={i}
+          {activeSquadData.map((squad) => (
+            <motion.button
+              key={squad.id}
               type="button"
-              onClick={() => scrollTo(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === selectedIndex
-                  ? "w-5 bg-[#e00505]"
-                  : "w-2 bg-white/40 hover:bg-white/70"
+              layout
+              whileTap={{ scale: 0.96 }}
+              onClick={() => setActiveTab(squad.id)}
+              className={`px-4 py-2 font-space-mono text-xs tracking-wider uppercase transition-all border cursor-pointer ${
+                activeTab === squad.id
+                  ? "bg-[#e50914] border-[#e50914] text-white shadow-[0_0_15px_rgba(229,9,20,0.4)]"
+                  : "bg-white/[0.02] border-white/10 text-zinc-400 hover:text-white hover:border-white/20"
               }`}
-            />
+            >
+              {squad.title} ({squad.members.length})
+            </motion.button>
           ))}
         </div>
-
-        <button
-          type="button"
-          onClick={scrollNext}
-          aria-label="Next"
-          className="rounded-full bg-[#D9D9D933] p-2 text-white transition-colors hover:bg-[#D9D9D950] sm:p-3"
-        >
-          <img
-            src="/right-arrow.svg"
-            alt=""
-            aria-hidden="true"
-            className="h-4 w-auto sm:h-5"
-          />
-        </button>
-      </div>
-    </div>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
-/*  Static team row — used when a team has three or fewer members (like the     */
-/*  organizers) instead of the auto-moving carousel.                            */
-/* -------------------------------------------------------------------------- */
-const StaticTeamRow = ({ members }) => (
-  <div className="mt-10 flex flex-wrap items-start justify-center gap-8 px-4 md:gap-14">
-    {centerLead(members).map((m, i) => (
-      <motion.div
-        key={i}
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5, delay: i * 0.12, ease: "easeOut" }}
-      >
-        <PolaroidCard
-          img={m.img}
-          name={m.name}
-          role={m.role}
-          lead={m.lead}
-          colored
-          className="w-[clamp(160px,20vw,230px)]"
-        />
-      </motion.div>
-    ))}
-  </div>
-);
-
-/* -------------------------------------------------------------------------- */
-/*  Main section                                                               */
-/* -------------------------------------------------------------------------- */
-const GallerySection = () => {
-  const isMobile = useIsMobile();
-  // Carousel kicks in past 1 member on mobile, past 3 on larger screens.
-  const carouselThreshold = isMobile ? 1 : 3;
-
-  return (
-    <section
-      className="relative w-full overflow-hidden bg-[#222222] py-16 text-center md:py-24"
-      style={{ fontFamily: '"Cinzel Decorative", serif' }}
-    >
-      <div className="mb-10">
-        <SectionTitle
-          title="Meet the Team"
-          strokeColor="rgba(255,0,0,0.8)"
-          lineColor="rgba(255,0,0,0.8)"
-          lineHeight="h-[3px]"
-          titleSize="text-[clamp(0.875rem,4.5vw,1.875rem)] lg:text-6xl xl:text-7xl"
-        />
       </div>
 
-      {/* ===== ORGANIZERS (static row) ===== */}
-      <div className="mb-16 md:mb-24">
-        <SubTitle>Organizers</SubTitle>
-        <div className="mt-10 flex flex-wrap items-start justify-center gap-8 px-4 md:gap-14">
-          {organizers.map((o, i) => (
+      {/* Roster Display */}
+      <motion.div layout className="space-y-16">
+        <AnimatePresence mode="popLayout">
+          {displayedSquads.map((squad) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.12, ease: "easeOut" }}
+              key={squad.id}
+              layout
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="relative text-left"
             >
-              <PolaroidCard
-                img={o.img}
-                name={o.name}
-                role={o.role}
-                colored
-                organizer
-                className="w-[clamp(160px,20vw,230px)]"
-              />
+              {/* Squad Header Bar */}
+              <div className="flex flex-wrap items-center justify-between pb-3 mb-8 border-b border-white/[0.08] gap-3">
+                <div className="flex items-center gap-3">
+                  <h3 className="font-cinzel text-xl sm:text-2xl font-bold text-white tracking-wide">
+                    {squad.title}
+                  </h3>
+                  <span className="font-space-mono text-xs text-zinc-500 hidden sm:inline">
+                    // {squad.badge}
+                  </span>
+                </div>
+                <div className="font-space-mono text-xs text-zinc-400">
+                  <span>{squad.members.length} VERIFIED OPERATIVES</span>
+                </div>
+              </div>
+
+              {/* Minimalist Polaroid Cards Grid with Fluid Layout Animation */}
+              {squad.id === "command" ? (
+                <div className="flex flex-col sm:flex-row items-center sm:items-end justify-center gap-6 sm:gap-10 max-w-3xl mx-auto pt-8 pb-4">
+                  {squad.members.map((member) => (
+                    <motion.div
+                      key={member.name}
+                      layout
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      whileHover={{
+                        y: member.lead ? -10 : -6,
+                        transition: { type: "spring", stiffness: 350, damping: 20 },
+                      }}
+                      className={`group transition-all flex flex-col justify-between w-full max-w-[285px] sm:w-[280px] p-3.5 sm:p-4 ${
+                        member.lead
+                          ? "border-2 border-[#e50914] bg-[#07090f]/95 shadow-[0_0_35px_rgba(229,9,20,0.35)] sm:-translate-y-6"
+                          : "border border-white/20 bg-[#07090f]/80 hover:border-[#e50914]/70 shadow-[0_0_20px_rgba(255,255,255,0.05)] translate-y-0"
+                      }`}
+                    >
+                      <div
+                        className={`relative aspect-[4/5] overflow-hidden bg-black mb-3 ${
+                          member.lead ? "border border-red-500/30" : ""
+                        }`}
+                      >
+                        <img
+                          src={member.img}
+                          alt={member.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                        />
+                        <div className="absolute top-2 right-2">
+                          <span
+                            className={`px-2 py-0.5 text-[9px] font-space-mono font-bold tracking-widest uppercase ${
+                              member.lead
+                                ? "bg-[#e50914] text-white shadow-[0_0_12px_#e50914]"
+                                : "bg-zinc-800/90 border border-zinc-700 text-zinc-200"
+                            }`}
+                          >
+                            {member.lead ? "FOUNDER & LEAD" : "CO-ORGANIZER"}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center justify-between text-[10px] font-space-mono text-zinc-500 mb-1">
+                          <span className={member.lead ? "text-[#e50914] font-bold" : "text-zinc-400 font-bold"}>
+                            {member.idCode}
+                          </span>
+                          <span>{member.dept}</span>
+                        </div>
+                        <h4 className="font-cinzel text-base sm:text-lg font-bold text-white tracking-wide truncate group-hover:text-[#e50914] transition-colors">
+                          {member.name}
+                        </h4>
+                        <p className="font-courier italic leading-snug mt-1.5 line-clamp-2 text-[11px] text-zinc-300/85">
+                          "{member.tagline}"
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                <motion.div
+                  layout
+                  className={`grid gap-6 ${
+                    squad.members.length === 2
+                      ? "grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto"
+                      : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
+                  }`}
+                >
+                  {squad.members.map((member, idx) => (
+                    <motion.div
+                      key={member.name}
+                      layout
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: idx * 0.04 }}
+                      whileHover={{ y: -6, transition: { type: "spring", stiffness: 350, damping: 20 } }}
+                      className="group p-3 border border-white/[0.08] bg-[#07090f]/70 hover:border-red-600/70 transition-all flex flex-col justify-between"
+                    >
+                      {/* Archival Photograph */}
+                      <div className="relative aspect-[4/5] overflow-hidden bg-black mb-3">
+                        <img
+                          src={member.img}
+                          alt={member.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover grayscale opacity-85 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                        />
+                        {member.lead && (
+                          <div className="absolute top-2 right-2">
+                            <span className="px-2 py-0.5 bg-[#e50914] text-white text-[9px] font-space-mono font-bold tracking-widest uppercase">
+                              {member.leadBadge || "LEAD"}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Member Details */}
+                      <div>
+                        <div className="flex items-center justify-between text-[10px] font-space-mono text-zinc-500 mb-1">
+                          <span>{member.idCode}</span>
+                          <span>{member.dept}</span>
+                        </div>
+                        <h4 className="font-cinzel text-base font-bold text-white tracking-wide truncate group-hover:text-[#e50914] transition-colors">
+                          {member.name}
+                        </h4>
+                        <p className="font-courier italic text-[11px] text-zinc-300/85 leading-snug mt-1.5 line-clamp-2">
+                          "{member.tagline}"
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
             </motion.div>
           ))}
-        </div>
-      </div>
+        </AnimatePresence>
+      </motion.div>
 
-      {/* ===== TEAM CAROUSELS (auto-move, pause on hover) ===== */}
-      {teams.map((team) => {
-        const members = normalizeLead(team.members);
-        return (
-          <div key={team.title} className="mb-14 md:mb-20">
-            <SubTitle>{team.title}</SubTitle>
-            {members.length <= carouselThreshold ? (
-              <StaticTeamRow members={members} />
-            ) : (
-              <TeamCarousel members={members} />
-            )}
-          </div>
-        );
-      })}
+      {/* Footer Info */}
+      <div className="mt-16 p-4 border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 font-space-mono text-xs text-zinc-400 text-center sm:text-left">
+        <div className="flex items-center gap-2">
+          <Users className="w-4 h-4 text-[#e50914] shrink-0" />
+          <span>The HackInverse Organizing Committee is comprised of dedicated student researchers and designers.</span>
+        </div>
+        <span className="text-[#e50914] font-bold shrink-0">{totalMembers} ACTIVE SQUAD MEMBERS</span>
+      </div>
     </section>
   );
-};
-
-export default GallerySection;
+}

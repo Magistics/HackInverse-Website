@@ -1,212 +1,147 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Brain, BadgeDollarSign, Bot, CloudCog, PackageOpen } from "lucide-react";
-import SectionTitle from "../Common/SectionTitle";
+import { Cpu, Code, Radio, CheckCircle, Award } from "lucide-react";
+import { transitionCurves } from "../../utils/motion";
 
-/*
- * The tracks hang off a single vertical rail. Every node sits one arm-length
- * away from that rail and reaches back to it with a double connector line, so
- * ARM_W and the ARM_GAP_* margins have to stay in sync — if they drift apart
- * the connectors stop short of the rail (or run past it).
- */
-const NODE_W = "w-16 sm:w-20 md:w-24 lg:w-28";
-const ARM_W = "w-12 md:w-30 lg:w-60";
-const ARM_GAP_LEFT = "mr-12 md:mr-30 lg:mr-60";
-const ARM_GAP_RIGHT = "ml-12 md:ml-30 lg:ml-60";
-
-/*
- * Same deal vertically: the rail is stretched past the bottom of the rows by
- * exactly the gap that sits above the closing node, so it lands on that node.
- */
-const ROW_GAP = "gap-y-14 sm:gap-y-20 md:gap-y-28 lg:gap-y-32";
-const TAIL_GAP = "mt-14 sm:mt-20 md:mt-28 lg:mt-32";
-const RAIL_TAIL = "-bottom-14 sm:-bottom-20 md:-bottom-28 lg:-bottom-32";
-
-/*
- * Entrance: the rail draws itself downward, and no branch moves until the rail
- * has reached its row — then the arm shoots out of the rail, the node pops on
- * the end of it and the label rises underneath. Delays below are all timed
- * against the rail's own travel.
- */
-const RAIL_DURATION = 0.9;
-const FIRST_ROW = 0.3; // rail reaches the top row
-const ROW_STEP = 0.32; // rail travel from one row to the next
-const ARM_TO_BOX = 0.28; // arm lands before its node pops
-
-const railVariants = {
-  hidden: { scaleY: 0 },
-  show: {
-    scaleY: 1,
-    transition: { duration: RAIL_DURATION, ease: [0.65, 0, 0.35, 1] },
+const TRACKS = [
+  {
+    id: "TRACK // 01",
+    name: "OPEN INNOVATION TRACK",
+    category: "CROSS-DISCIPLINARY SOFTWARE & CREATIVE TECH",
+    hazard: "UNRESTRICTED PROBLEM SPACE",
+    icon: Code,
+    summary: "The primary battleground for software architects, web innovators, and algorithm designers. Teams had complete freedom to architect high-impact solutions across AI, developer tools, distributed web applications, and community platforms.",
+    challenges: [
+      "Open domain exploration: Full stack, cloud, system utilities, and machine learning",
+      "End-to-end functionality built and demonstrated during the 6-hour on-site sprint",
+      "Real-world utility, user experience, and architectural elegance evaluated by expert jury",
+    ],
+    tools: ["React", "Python", "Node.js", "Rust", "Next.js", "PyTorch", "TailwindCSS"],
+    bounty: "₹13,000 Total Cash (1st, 2nd, 3rd + Judges' Special Mention)",
+    winners: "1st: tropical crush (₹5k) • 2nd: ChatMasala (₹4k) • 3rd: Draft (₹3k) • Mention: Logic Forge (₹1k)",
   },
-};
-
-const armVariants = (delay) => ({
-  hidden: { scaleX: 0, opacity: 0 },
-  show: {
-    scaleX: 1,
-    opacity: 1,
-    transition: { duration: 0.45, delay, ease: "easeOut" },
+  {
+    id: "TRACK // 02",
+    name: "HARDWARE TRACK",
+    category: "EMBEDDED IOT, MICROCONTROLLERS & ROBOTICS",
+    hazard: "PHYSICAL COMPUTING DOMAIN",
+    icon: Cpu,
+    summary: "A dedicated physical computing arena where builders wired microcontrollers, sensor arrays, radio transceivers, and embedded robotics to interact directly with the tangible physical realm.",
+    challenges: [
+      "Tactile hardware integration with Arduino, ESP32, Raspberry Pi, and sensor networks",
+      "Low-level firmware programming and reliable hardware-to-software telemetry pipelines",
+      "Functional physical prototype demonstrated live before the hardware jury",
+    ],
+    tools: ["C/C++", "ESP32", "Arduino", "Raspberry Pi", "LoRa", "Circuitry", "Sensors"],
+    bounty: "₹2,000 Cash",
+    winners: "Hardware Champion: Team Code breakerz (₹2,000)",
   },
-});
-
-const boxVariants = (delay) => ({
-  hidden: { opacity: 0, scale: 0.55 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    // the arm is a child of the box, so it rides this spring too — keep the
-    // overshoot small or the arm briefly punches through the rail
-    transition: { type: "spring", stiffness: 260, damping: 20, delay },
-  },
-});
-
-const iconVariants = (delay) => ({
-  hidden: { opacity: 0, scale: 0.5, rotate: -12 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    transition: { duration: 0.45, delay, ease: "backOut" },
-  },
-});
-
-const labelVariants = (delay) => ({
-  hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay, ease: "easeOut" },
-  },
-});
-
-const BRANCHES = [
-  { icon: BadgeDollarSign, label: "Web3", side: "left" },
-  { icon: Brain, label: "AI/ML", side: "right" },
-  { icon: CloudCog, label: "Cloud Infra", side: "left" },
-  { icon: Bot, label: "Hardware", side: "right" },
 ];
 
-const TracksSection = () => {
-  // Full height only from md up: on mobile the diagram is shorter than the
-  // viewport, and centering it inside 100vh left a phone-height-dependent gap
-  // before the About section.
+export default function TracksSection() {
   return (
-    <div className=" w-full md:min-h-screen flex items-center justify-center text-white font-mono -mt-10 md:-mt-50">
-      {/* mt-14 replaces the top half of the centering slack that min-h-screen
-          used to add on mobile, so only the gap below the diagram shrinks */}
-      <div className="mt-14 sm:mt-20 lg:mt-32 mb-16 md:mb-32 max-w-5xl w-full px-6 text-center">
-        <SectionTitle title="TRACKS" titleSize=" text-5xl md:text-7xl"/>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-2 md:mt-10  text-xl md:text-4xl"
-        >
-          Select Your Domain
-        </motion.p>
+    <section className="relative w-full py-28 px-4 sm:px-8 max-w-6xl mx-auto select-none" id="tracks">
+      {/* Chapter Masthead */}
+      <div className="flex flex-col items-center mb-16 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/[0.03] border border-white/10 text-[10px] font-space-mono text-[#e50914] uppercase tracking-[0.25em] mb-4">
+          <Radio className="w-3.5 h-3.5 text-[#e50914] animate-pulse" />
+          <span>CHAPTER 04 // CHALLENGE VECTORS</span>
+        </div>
 
-        {/* One trigger for the whole diagram — the pieces inherit "show"
-            through context and stagger themselves with their own delays. */}
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-          className="mt-16 sm:mt-20 md:mt-28"
-        >
-          {/* BRANCHES */}
-          <div className="relative">
-            <Rail className={RAIL_TAIL} />
+        <h2 className="stranger-things-filled text-4xl sm:text-6xl tracking-wider text-[#ff0505] drop-shadow-[0_0_25px_rgba(255,0,0,0.5)]">
+          THE CHALLENGE TRACKS
+        </h2>
 
-            <div className={`grid grid-cols-2 ${ROW_GAP}`}>
-              {BRANCHES.map((branch, index) => (
-                <div
-                  key={branch.label}
-                  className={`flex ${branch.side === "left" ? "justify-end" : "justify-start"}`}
-                >
-                  <TrackNode
-                    {...branch}
-                    delay={FIRST_ROW + Math.floor(index / 2) * ROW_STEP}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* END OF THE LINE */}
-          <div className={`flex justify-center ${TAIL_GAP}`}>
-            <TrackNode
-              icon={PackageOpen}
-              label="Open Innovation"
-              delay={RAIL_DURATION + 0.35}
-            />
-          </div>
-        </motion.div>
+        <p className="mt-4 font-playfair italic text-zinc-400 text-base md:text-lg max-w-xl">
+          "The two verified competitive domains of HackInverse 1.0."
+        </p>
       </div>
-    </div>
-  );
-};
 
-function Rail({ className = "" }) {
-  return (
-    <motion.div
-      aria-hidden="true"
-      variants={railVariants}
-      style={{ originY: 0 }}
-      className={`absolute left-1/2 -translate-x-1/2 -top-8 md:-top-12 flex gap-1 md:gap-1.5 ${className}`}
-    >
-      <span className="w-0.5 md:w-[3px] bg-[#FF0000]" />
-      <span className="w-0.5 md:w-[3px] bg-[#FF0000]" />
-    </motion.div>
+      {/* 2 Focused Editorial Track Cards */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        {TRACKS.map((track, idx) => {
+          const Icon = track.icon;
+          return (
+            <motion.div
+              key={track.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: idx * 0.15, ease: transitionCurves.cinematic }}
+              whileHover={{ y: -6, transition: { type: "spring", stiffness: 350, damping: 20 } }}
+              className="relative p-8 border border-white/[0.1] bg-[#0c0d12]/90 flex flex-col justify-between hover:border-red-600/70 transition-all shadow-xl group"
+            >
+              <div>
+                {/* Header Strip */}
+                <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 border border-red-500/30 bg-red-950/20 flex items-center justify-center text-red-500 group-hover:bg-red-900/40 transition-colors">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="font-space-mono text-[10px] text-zinc-400 tracking-widest uppercase block">
+                        {track.id}
+                      </span>
+                      <span className="font-cinzel text-lg font-bold text-white tracking-wide">
+                        {track.name}
+                      </span>
+                    </div>
+                  </div>
+                  <span className="font-space-mono text-[9px] px-2 py-0.5 bg-red-950/40 border border-red-500/30 text-red-400 uppercase tracking-wider">
+                    {track.hazard}
+                  </span>
+                </div>
+
+                <p className="font-space-mono text-xs text-zinc-300 leading-relaxed mb-6">
+                  {track.summary}
+                </p>
+
+                {/* Challenges */}
+                <div className="mb-6 space-y-2">
+                  <span className="font-space-mono text-[10px] text-zinc-500 uppercase tracking-widest block mb-2">
+                    EVALUATION PILLARS:
+                  </span>
+                  {track.challenges.map((c, i) => (
+                    <div key={i} className="flex items-start gap-2 text-xs font-space-mono text-zinc-400">
+                      <CheckCircle className="w-3.5 h-3.5 text-red-500 shrink-0 mt-0.5" />
+                      <span>{c}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tool Stack */}
+                <div className="mb-6">
+                  <span className="font-space-mono text-[10px] text-zinc-500 uppercase tracking-widest block mb-2">
+                    REPRESENTATIVE STACK:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {track.tools.map((t, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-0.5 bg-white/[0.04] border border-white/10 text-zinc-300 text-[10px] font-space-mono"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Winners & Bounty Band */}
+              <div className="pt-5 border-t border-white/[0.08] space-y-2">
+                <div className="flex items-center justify-between text-xs font-space-mono">
+                  <span className="text-zinc-400">ALLOCATION:</span>
+                  <span className="text-red-400 font-bold">{track.bounty}</span>
+                </div>
+                <div className="p-2.5 bg-white/[0.02] border border-white/5 font-space-mono text-[11px] text-zinc-300">
+                  <span className="text-zinc-500 block text-[9px] uppercase">OFFICIAL RESULTS:</span>
+                  <span className="text-white font-medium">{track.winners}</span>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
-
-// `side` left/right draws the arm back to the rail; leaving it off gives the
-// bare node that closes the line at the bottom.
-function TrackNode({ icon: Icon, label, side, delay }) {
-  const armGap = side === "left" ? ARM_GAP_LEFT : side === "right" ? ARM_GAP_RIGHT : "";
-  // A node sitting on the rail has no arm to wait for.
-  const boxDelay = side ? delay + ARM_TO_BOX : delay;
-
-  return (
-    <div className={`flex flex-col items-center ${NODE_W} ${armGap}`}>
-      <motion.div
-        variants={boxVariants(boxDelay)}
-        className="relative w-full aspect-square flex items-center justify-center border-2 md:border-[3px] border-[#FF0000] shadow-[0_0_18px_rgba(255,0,0,0.18)]"
-      >
-        <motion.div variants={iconVariants(boxDelay + 0.12)}>
-          <Icon
-            className="w-8 h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 text-white"
-            strokeWidth={1.75}
-          />
-        </motion.div>
-
-        {side && (
-          <motion.div
-            aria-hidden="true"
-            variants={armVariants(delay)}
-            // grow out of the rail, not out of the arm's own middle
-            style={{ originX: side === "left" ? 1 : 0 }}
-            className={`absolute top-1/2 -translate-y-1/2 flex flex-col gap-1 md:gap-1.5 ${ARM_W} ${
-              side === "left" ? "left-full" : "right-full"
-            }`}
-          >
-            <span className="h-0.5 md:h-[3px] bg-[#FF0000]" />
-            <span className="h-0.5 md:h-[3px] bg-[#FF0000]" />
-          </motion.div>
-        )}
-      </motion.div>
-
-      {/* nowrap keeps the label off the node's width so the arm still lines up */}
-      <motion.p
-        variants={labelVariants(boxDelay + 0.18)}
-        className="mt-3 md:mt-5 albert-sans font-bold tracking-wide whitespace-nowrap text-xs sm:text-sm md:text-lg lg:text-xl"
-      >
-        {label}
-      </motion.p>
-    </div>
-  );
-}
-
-export default TracksSection;

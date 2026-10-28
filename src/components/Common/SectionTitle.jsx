@@ -34,6 +34,7 @@ export default function SectionTitle({
         className={`uppercase mb-3 px-2 stranger-things-filled flex items-center whitespace-nowrap tracking-tighter drop-shadow-[0_5px_5px_rgba(0,0,0,1)] ${titleSize}`}
         style={{
           color: strokeColor,
+          WebkitTextStroke: `${strokeWidth} ${strokeColor}`,
         }}
       >
         <span className="text-[1.5em] mt-3 md:mt-5">{firstChar}</span>
