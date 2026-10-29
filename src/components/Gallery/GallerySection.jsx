@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users } from "lucide-react";
 
@@ -368,6 +368,18 @@ const squadData = [
 
 export default function GallerySection() {
   const [activeTab, setActiveTab] = useState("all");
+  const [activeMemberName, setActiveMemberName] = useState(null);
+
+  useEffect(() => {
+    if (!activeMemberName) return;
+    const handlePointerDown = (e) => {
+      if (!e.target.closest("[data-profile-card]")) {
+        setActiveMemberName(null);
+      }
+    };
+    window.addEventListener("pointerdown", handlePointerDown);
+    return () => window.removeEventListener("pointerdown", handlePointerDown);
+  }, [activeMemberName]);
 
   const activeSquadData = squadData.map((squad) => ({
     ...squad,
@@ -407,7 +419,10 @@ export default function GallerySection() {
             type="button"
             layout
             whileTap={{ scale: 0.96 }}
-            onClick={() => setActiveTab("all")}
+            onClick={() => {
+              setActiveTab("all");
+              setActiveMemberName(null);
+            }}
             className={`px-4 py-2 font-space-mono text-xs tracking-wider uppercase transition-all border cursor-pointer ${
               activeTab === "all"
                 ? "bg-[#e50914] border-[#e50914] text-white shadow-[0_0_15px_rgba(229,9,20,0.4)]"
@@ -423,7 +438,10 @@ export default function GallerySection() {
               type="button"
               layout
               whileTap={{ scale: 0.96 }}
-              onClick={() => setActiveTab(squad.id)}
+              onClick={() => {
+                setActiveTab(squad.id);
+                setActiveMemberName(null);
+              }}
               className={`px-4 py-2 font-space-mono text-xs tracking-wider uppercase transition-all border cursor-pointer ${
                 activeTab === squad.id
                   ? "bg-[#e50914] border-[#e50914] text-white shadow-[0_0_15px_rgba(229,9,20,0.4)]"
@@ -467,63 +485,95 @@ export default function GallerySection() {
               {/* Minimalist Polaroid Cards Grid with Fluid Layout Animation */}
               {squad.id === "command" ? (
                 <div className="flex flex-col sm:flex-row items-center sm:items-end justify-center gap-6 sm:gap-10 max-w-3xl mx-auto pt-8 pb-4">
-                  {squad.members.map((member) => (
-                    <motion.div
-                      key={member.name}
-                      layout
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      whileHover={{
-                        y: member.lead ? -10 : -6,
-                        transition: { type: "spring", stiffness: 350, damping: 20 },
-                      }}
-                      className={`group transition-all flex flex-col justify-between w-full max-w-[285px] sm:w-[280px] p-3.5 sm:p-4 ${
-                        member.lead
-                          ? "border-2 border-[#e50914] bg-[#07090f]/95 shadow-[0_0_35px_rgba(229,9,20,0.35)] sm:-translate-y-6"
-                          : "border border-white/20 bg-[#07090f]/80 hover:border-[#e50914]/70 shadow-[0_0_20px_rgba(255,255,255,0.05)] translate-y-0"
-                      }`}
-                    >
-                      <div
-                        className={`relative aspect-[4/5] overflow-hidden bg-black mb-3 ${
-                          member.lead ? "border border-red-500/30" : ""
+                  {squad.members.map((member) => {
+                    const isCardActive = activeMemberName === member.name;
+                    const toggleCard = () => {
+                      setActiveMemberName((prev) => (prev === member.name ? null : member.name));
+                    };
+
+                    return (
+                      <motion.div
+                        key={member.name}
+                        layout
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        whileHover={{
+                          y: member.lead ? -10 : -6,
+                          transition: { type: "spring", stiffness: 350, damping: 20 },
+                        }}
+                        data-profile-card="true"
+                        onClick={toggleCard}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            toggleCard();
+                          }
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-pressed={isCardActive}
+                        className={`group transition-all flex flex-col justify-between w-full max-w-[285px] sm:w-[280px] p-3.5 sm:p-4 cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-[#e50914] select-none ${
+                          member.lead
+                            ? `border-2 border-[#e50914] bg-[#07090f]/95 shadow-[0_0_35px_rgba(229,9,20,0.35)] sm:-translate-y-6 ${
+                                isCardActive ? "-translate-y-2 sm:-translate-y-8" : ""
+                              }`
+                            : `border bg-[#07090f]/80 ${
+                                isCardActive
+                                  ? "border-[#e50914] shadow-[0_0_25px_rgba(229,9,20,0.4)] -translate-y-2"
+                                  : "border border-white/20 hover:border-[#e50914]/70 shadow-[0_0_20px_rgba(255,255,255,0.05)] translate-y-0"
+                              }`
                         }`}
                       >
-                        <img
-                          src={member.img}
-                          alt={member.name}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                        />
-                        <div className="absolute top-2 right-2">
-                          <span
-                            className={`px-2 py-0.5 text-[9px] font-space-mono font-bold tracking-widest uppercase ${
-                              member.lead
-                                ? "bg-[#e50914] text-white shadow-[0_0_12px_#e50914]"
-                                : "bg-zinc-800/90 border border-zinc-700 text-zinc-200"
+                        <div
+                          className={`relative aspect-[4/5] overflow-hidden bg-black mb-3 ${
+                            member.lead ? "border border-red-500/30" : ""
+                          }`}
+                        >
+                          <img
+                            src={member.img}
+                            alt={member.name}
+                            loading="lazy"
+                            decoding="async"
+                            className={`w-full h-full object-cover transition-all duration-500 ${
+                              isCardActive
+                                ? "grayscale-0 opacity-100 scale-105"
+                                : "grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                            }`}
+                          />
+                          <div className="absolute top-2 right-2">
+                            <span
+                              className={`px-2 py-0.5 text-[9px] font-space-mono font-bold tracking-widest uppercase ${
+                                member.lead
+                                  ? "bg-[#e50914] text-white shadow-[0_0_12px_#e50914]"
+                                  : "bg-zinc-800/90 border border-zinc-700 text-zinc-200"
+                              }`}
+                            >
+                              {member.lead ? "FOUNDER & LEAD" : "CO-ORGANIZER"}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="flex items-center justify-between text-[10px] font-space-mono text-zinc-500 mb-1">
+                            <span className={member.lead ? "text-[#e50914] font-bold" : "text-zinc-400 font-bold"}>
+                              {member.idCode}
+                            </span>
+                            <span>{member.dept}</span>
+                          </div>
+                          <h4
+                            className={`font-cinzel text-base sm:text-lg font-bold tracking-wide truncate transition-colors ${
+                              isCardActive ? "text-[#e50914]" : "text-white group-hover:text-[#e50914]"
                             }`}
                           >
-                            {member.lead ? "FOUNDER & LEAD" : "CO-ORGANIZER"}
-                          </span>
+                            {member.name}
+                          </h4>
+                          <p className="font-courier italic leading-snug mt-1.5 line-clamp-2 text-[11px] text-zinc-300/85">
+                            "{member.tagline}"
+                          </p>
                         </div>
-                      </div>
-
-                      <div>
-                        <div className="flex items-center justify-between text-[10px] font-space-mono text-zinc-500 mb-1">
-                          <span className={member.lead ? "text-[#e50914] font-bold" : "text-zinc-400 font-bold"}>
-                            {member.idCode}
-                          </span>
-                          <span>{member.dept}</span>
-                        </div>
-                        <h4 className="font-cinzel text-base sm:text-lg font-bold text-white tracking-wide truncate group-hover:text-[#e50914] transition-colors">
-                          {member.name}
-                        </h4>
-                        <p className="font-courier italic leading-snug mt-1.5 line-clamp-2 text-[11px] text-zinc-300/85">
-                          "{member.tagline}"
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                      </motion.div>
+                    );
+                  })}
                 </div>
               ) : (
                 <motion.div
@@ -534,49 +584,79 @@ export default function GallerySection() {
                       : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
                   }`}
                 >
-                  {squad.members.map((member, idx) => (
-                    <motion.div
-                      key={member.name}
-                      layout
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: idx * 0.04 }}
-                      whileHover={{ y: -6, transition: { type: "spring", stiffness: 350, damping: 20 } }}
-                      className="group p-3 border border-white/[0.08] bg-[#07090f]/70 hover:border-red-600/70 transition-all flex flex-col justify-between"
-                    >
-                      {/* Archival Photograph */}
-                      <div className="relative aspect-[4/5] overflow-hidden bg-black mb-3">
-                        <img
-                          src={member.img}
-                          alt={member.name}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover grayscale opacity-85 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                        />
-                        {member.lead && (
-                          <div className="absolute top-2 right-2">
-                            <span className="px-2 py-0.5 bg-[#e50914] text-white text-[9px] font-space-mono font-bold tracking-widest uppercase">
-                              {member.leadBadge || "LEAD"}
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                  {squad.members.map((member, idx) => {
+                    const isCardActive = activeMemberName === member.name;
+                    const toggleCard = () => {
+                      setActiveMemberName((prev) => (prev === member.name ? null : member.name));
+                    };
 
-                      {/* Member Details */}
-                      <div>
-                        <div className="flex items-center justify-between text-[10px] font-space-mono text-zinc-500 mb-1">
-                          <span>{member.idCode}</span>
-                          <span>{member.dept}</span>
+                    return (
+                      <motion.div
+                        key={member.name}
+                        layout
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: idx * 0.04 }}
+                        whileHover={{ y: -6, transition: { type: "spring", stiffness: 350, damping: 20 } }}
+                        data-profile-card="true"
+                        onClick={toggleCard}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            toggleCard();
+                          }
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-pressed={isCardActive}
+                        className={`group p-3 border bg-[#07090f]/70 transition-all flex flex-col justify-between cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-[#e50914] select-none ${
+                          isCardActive
+                            ? "border-red-600/90 shadow-[0_0_25px_rgba(229,9,20,0.35)] -translate-y-1.5"
+                            : "border-white/[0.08] hover:border-red-600/70"
+                        }`}
+                      >
+                        {/* Archival Photograph */}
+                        <div className="relative aspect-[4/5] overflow-hidden bg-black mb-3">
+                          <img
+                            src={member.img}
+                            alt={member.name}
+                            loading="lazy"
+                            decoding="async"
+                            className={`w-full h-full object-cover transition-all duration-500 ${
+                              isCardActive
+                                ? "grayscale-0 opacity-100 scale-105"
+                                : "grayscale opacity-85 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                            }`}
+                          />
+                          {member.lead && (
+                            <div className="absolute top-2 right-2">
+                              <span className="px-2 py-0.5 bg-[#e50914] text-white text-[9px] font-space-mono font-bold tracking-widest uppercase">
+                                {member.leadBadge || "LEAD"}
+                              </span>
+                            </div>
+                          )}
                         </div>
-                        <h4 className="font-cinzel text-base font-bold text-white tracking-wide truncate group-hover:text-[#e50914] transition-colors">
-                          {member.name}
-                        </h4>
-                        <p className="font-courier italic text-[11px] text-zinc-300/85 leading-snug mt-1.5 line-clamp-2">
-                          "{member.tagline}"
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+
+                        {/* Member Details */}
+                        <div>
+                          <div className="flex items-center justify-between text-[10px] font-space-mono text-zinc-500 mb-1">
+                            <span>{member.idCode}</span>
+                            <span>{member.dept}</span>
+                          </div>
+                          <h4
+                            className={`font-cinzel text-base font-bold tracking-wide truncate transition-colors ${
+                              isCardActive ? "text-[#e50914]" : "text-white group-hover:text-[#e50914]"
+                            }`}
+                          >
+                            {member.name}
+                          </h4>
+                          <p className="font-courier italic text-[11px] text-zinc-300/85 leading-snug mt-1.5 line-clamp-2">
+                            "{member.tagline}"
+                          </p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </motion.div>
               )}
             </motion.div>

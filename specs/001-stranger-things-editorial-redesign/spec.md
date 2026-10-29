@@ -48,12 +48,13 @@ The previous website implementation fell into the "AI sci-fi trope" trap by over
 - **SC-004**: All 37 team members rendered with real photos from `public/team/` and custom taglines.
 - **SC-005**: 14 high-resolution event photographs rendered in Framer Motion horizontal marquee.
 - **SC-006**: Mobile podium orders 1st place champion card first (`order-1 md:order-2`).
-- **SC-007**: 100% automated test suite pass rate (17 unit tests via `node --test tests/event-content.test.js`).
+- **SC-007**: 100% automated test suite pass rate (18 unit tests via `node --test tests/event-content.test.js`).
 - **SC-008**: Zero lint errors (`npm run lint`), zero build errors (`npm run build`), 60 FPS performance on desktop and mobile.
 - **SC-009**: Hero background video calibrated to 100% opacity with `scale-[1.18]` edge-to-edge bleed, eliminating all black pillarbox seams.
 - **SC-010**: Navbar maintains exact vertical geometry (`h-14 sm:h-16`) across all breakpoints without brand/walkie collision on small screens (<380px) and clean link spacing on `lg`/`xl` viewports.
 - **SC-011**: All below-the-fold images enforce native `loading="lazy"` and `decoding="async"`, maintaining under 250KB per asset with marquee GPU layer compositing (`will-change-transform`).
 - **SC-012**: Hero title uses fluid clamp typography `clamp(1.75rem, 6.8vw, 6.85rem)` inside `max-w-6xl xl:max-w-7xl` preventing text clipping (`CKINVER` or `ACKINVERS`) across all viewports (320px to 4K), and the navbar hides the dial on < 360px per user rule.
+- **SC-013**: Profile cards across `GallerySection.jsx` and `MentorsSection.jsx` replicate desktop hover states (photo color restoration, scale-105, crimson glow, and highlighted name) via mobile tap toggling with outside-click dismissal.
 
 
 

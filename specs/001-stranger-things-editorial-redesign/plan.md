@@ -69,6 +69,7 @@
     - Leadership hierarchy: Abhirup Datta Khan (Founder & Lead, elevated offset `sm:-translate-y-6`) and Rupsha Das (Co-Organizer) sharing identical card geometry (`280px`).
     - Media leads: Pritam Sardar (`MEDIA LEAD`), Karishma Gupta (`VIDEO LEAD`).
     - Inspiring personal taglines under member names instead of corporate titles.
+    - Touch-activated tap toggle with outside-click dismissal for mobile and tablet screens.
 11. **[`FAQ.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/FAQ.jsx) & [`CodeOfConductSection.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/Guidelines/CodeOfConductSection.jsx)**:
     - Stripe Press style hairline accordions with smooth `+` / `−` micro-interactions.
 12. **[`Footer.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/Footer.jsx)**:
@@ -77,12 +78,16 @@
     - 94.7% total image payload reduction across 51 assets in `public/team/` and `public/highlights/` (86MB to 4.6MB) maintaining 2.2x retina density.
     - Native `loading="lazy"` and off-thread `decoding="async"` across all below-the-fold components (About, Gallery, Highlights, Mentors, Prizes, Sponsors, Venue, Footer).
     - `will-change-transform` GPU compositor layer promotion for the Highlights marquee.
+14. **Touch Interaction & Profile Card State Architecture**:
+    - Tap-to-activate and tap-to-toggle profile cards across Gallery and Mentors sections on touch devices.
+    - Replicates desktop hover state: color restoration (`grayscale-0`), subtle zoom (`scale-105`), crimson text (`#e50914`), and glowing border highlights.
+    - Single active card focus with click-outside dismissal.
 
 
 ---
 
 ## 3. Automated Quality Verification Plan
 
-- Run `node --test tests/event-content.test.js` validating all 17 core domain rules.
+- Run `node --test tests/event-content.test.js` validating all 18 core domain rules.
 - Run `npm run lint` for ESLint verification.
 - Run `npm run build` for production bundle compilation.

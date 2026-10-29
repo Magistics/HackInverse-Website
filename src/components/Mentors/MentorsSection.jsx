@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Radio, Shield, Gavel, Compass, Building2, Briefcase, CheckCircle2 } from "lucide-react";
 
@@ -118,6 +118,18 @@ const judgesAndMentors = [
 
 export default function MentorsSection() {
   const [activeTab, setActiveTab] = useState("all");
+  const [activeMentorId, setActiveMentorId] = useState(null);
+
+  useEffect(() => {
+    if (!activeMentorId) return;
+    const handlePointerDown = (e) => {
+      if (!e.target.closest("[data-profile-card]")) {
+        setActiveMentorId(null);
+      }
+    };
+    window.addEventListener("pointerdown", handlePointerDown);
+    return () => window.removeEventListener("pointerdown", handlePointerDown);
+  }, [activeMentorId]);
 
   const filteredRoster = judgesAndMentors.filter((person) => {
     if (activeTab === "all") return true;
@@ -144,7 +156,10 @@ export default function MentorsSection() {
         {/* Interactive Segmented Filter */}
         <div className="mt-8 flex items-center p-1 bg-[#090b12] border border-white/10 rounded-sm font-space-mono text-xs">
           <button
-            onClick={() => setActiveTab("all")}
+            onClick={() => {
+              setActiveTab("all");
+              setActiveMentorId(null);
+            }}
             className={`px-4 py-2 transition-all cursor-pointer relative uppercase tracking-wider ${
               activeTab === "all" ? "text-white font-bold bg-[#e50914]" : "text-zinc-400 hover:text-white"
             }`}
@@ -152,7 +167,10 @@ export default function MentorsSection() {
             ALL OPERATIVES ({judgesAndMentors.length})
           </button>
           <button
-            onClick={() => setActiveTab("judges")}
+            onClick={() => {
+              setActiveTab("judges");
+              setActiveMentorId(null);
+            }}
             className={`px-4 py-2 transition-all cursor-pointer relative uppercase tracking-wider ${
               activeTab === "judges" ? "text-white font-bold bg-[#e50914]" : "text-zinc-400 hover:text-white"
             }`}
@@ -160,7 +178,10 @@ export default function MentorsSection() {
             JUDGES PANEL (6)
           </button>
           <button
-            onClick={() => setActiveTab("mentors")}
+            onClick={() => {
+              setActiveTab("mentors");
+              setActiveMentorId(null);
+            }}
             className={`px-4 py-2 transition-all cursor-pointer relative uppercase tracking-wider ${
               activeTab === "mentors" ? "text-white font-bold bg-[#e50914]" : "text-zinc-400 hover:text-white"
             }`}
@@ -175,16 +196,35 @@ export default function MentorsSection() {
         <AnimatePresence>
           {filteredRoster.map((person) => {
             const isJudge = person.role === "Judge";
+            const isCardActive = activeMentorId === person.id;
+            const toggleCard = () => {
+              setActiveMentorId((prev) => (prev === person.id ? null : person.id));
+            };
 
             return (
               <motion.div
                 layout
                 key={person.id}
+                data-profile-card="true"
+                onClick={toggleCard}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggleCard();
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-pressed={isCardActive}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35 }}
-                className="group relative flex flex-col justify-between border border-white/[0.08] hover:border-white/20 bg-[#090b12]/90 backdrop-blur-md p-5 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.8)] hover:shadow-[0_15px_40px_rgba(229,9,20,0.15)]"
+                className={`group relative flex flex-col justify-between border bg-[#090b12]/90 backdrop-blur-md p-5 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.8)] cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-[#e50914] select-none ${
+                  isCardActive
+                    ? "border-[#e50914]/80 shadow-[0_15px_40px_rgba(229,9,20,0.3)] -translate-y-2"
+                    : "border-white/[0.08] hover:border-white/20 hover:shadow-[0_15px_40px_rgba(229,9,20,0.15)]"
+                }`}
               >
                 {/* Stranger Things Corner Crosshairs */}
                 <span className="absolute top-1.5 left-1.5 text-zinc-600 font-mono text-[9px] pointer-events-none">+</span>
@@ -216,7 +256,11 @@ export default function MentorsSection() {
                         alt={person.name}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-full object-cover object-top filter grayscale contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                        className={`w-full h-full object-cover object-top filter contrast-110 transition-all duration-500 ${
+                          isCardActive
+                            ? "grayscale-0 scale-105"
+                            : "grayscale group-hover:grayscale-0 group-hover:scale-105"
+                        }`}
                       />
                     ) : (
                       /* Stylized Monogram Fallback for Shounak Ghosh */
@@ -229,7 +273,13 @@ export default function MentorsSection() {
                             backgroundSize: "14px 14px",
                           }}
                         />
-                        <div className="w-16 h-16 rounded-full border border-white/20 bg-white/[0.03] flex items-center justify-center font-cinzel text-2xl font-bold text-zinc-300 mb-2 group-hover:border-[#e50914] group-hover:text-[#e50914] transition-colors shadow-lg">
+                        <div
+                          className={`w-16 h-16 rounded-full border bg-white/[0.03] flex items-center justify-center font-cinzel text-2xl font-bold mb-2 transition-colors shadow-lg ${
+                            isCardActive
+                              ? "border-[#e50914] text-[#e50914]"
+                              : "border-white/20 text-zinc-300 group-hover:border-[#e50914] group-hover:text-[#e50914]"
+                          }`}
+                        >
                           SG
                         </div>
                         <span className="font-space-mono text-[9px] tracking-widest text-[#e50914] uppercase">
@@ -247,7 +297,11 @@ export default function MentorsSection() {
 
                   {/* Operative Identity */}
                   <div className="text-left">
-                    <h3 className="font-cinzel text-lg sm:text-xl font-bold text-white group-hover:text-[#e50914] transition-colors leading-snug">
+                    <h3
+                      className={`font-cinzel text-lg sm:text-xl font-bold transition-colors leading-snug ${
+                        isCardActive ? "text-[#e50914]" : "text-white group-hover:text-[#e50914]"
+                      }`}
+                    >
                       {person.name}
                     </h3>
 

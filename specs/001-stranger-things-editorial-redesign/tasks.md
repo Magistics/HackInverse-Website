@@ -63,6 +63,8 @@
 - [x] **TASK-039**: Full-spectrum breakpoint hardening: implemented fluid clamp sizing `clamp(1.75rem, 6.8vw, 6.85rem)` in `HeroSection.jsx` eliminating `CKINVER` text truncation, adjusted mobile telemetry padding, and set `hidden min-[360px]:flex lg:hidden` on the Walkie Dial button to protect narrow viewports from collision.
 - [x] **TASK-040**: Author automated test #17 in `tests/event-content.test.js` asserting fluid typography clamp and ultra-narrow navbar visibility rules.
 - [x] **TASK-041**: Desktop viewport title architecture overhaul: expanded title container from `max-w-5xl` (1024px) to `max-w-6xl xl:max-w-7xl` (1152px–1280px), removed `overflow-hidden` container clipping, and recalibrated fluid font clamp to `clamp(1.75rem, 6.8vw, 6.85rem)` to eradicate `ACKINVERS` letter clipping on desktop/laptop displays (1024px–1440px) while preserving full visibility across 320px–4K.
+- [x] **TASK-042**: Touch-activated profile card state architecture: implemented tap-to-toggle, single-active-card focus, and outside-click dismissal across Command Directors & Squad Members in `GallerySection.jsx` and Jury & Mentors in `MentorsSection.jsx`, replicating full desktop hover effects (color restoration, scaling, crimson border/text illumination) on mobile & touch viewports.
+- [x] **TASK-043**: Author automated test #18 in `tests/event-content.test.js` asserting touch interaction attributes, state management hooks, and outside click listeners across profile card components.
 
 
 

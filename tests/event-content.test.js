@@ -224,3 +224,21 @@ test("hero title uses fluid clamp typography and navbar hides menu dial on ultra
   );
   assert.match(navSource, /hidden\s+min-\[360px\]:flex\s+lg:hidden/);
 });
+
+test("profile cards in gallery and mentors sections support tap-to-activate and outside click dismissal", async () => {
+  const gallerySource = await readFile(
+    new URL("../src/components/Gallery/GallerySection.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(gallerySource, /data-profile-card="true"/);
+  assert.match(gallerySource, /activeMemberName/);
+  assert.match(gallerySource, /handlePointerDown/);
+
+  const mentorsSource = await readFile(
+    new URL("../src/components/Mentors/MentorsSection.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(mentorsSource, /data-profile-card="true"/);
+  assert.match(mentorsSource, /activeMentorId/);
+  assert.match(mentorsSource, /handlePointerDown/);
+});
