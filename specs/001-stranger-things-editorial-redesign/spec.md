@@ -53,7 +53,7 @@ The previous website implementation fell into the "AI sci-fi trope" trap by over
 - **SC-009**: Hero background video calibrated to 100% opacity with `scale-[1.18]` edge-to-edge bleed, eliminating all black pillarbox seams.
 - **SC-010**: Navbar maintains exact vertical geometry (`h-14 sm:h-16`) across all breakpoints without brand/walkie collision on small screens (<380px) and clean link spacing on `lg`/`xl` viewports.
 - **SC-011**: All below-the-fold images enforce native `loading="lazy"` and `decoding="async"`, maintaining under 250KB per asset with marquee GPU layer compositing (`will-change-transform`).
-- **SC-012**: Hero title uses fluid clamp typography `clamp(1.75rem, 8.2vw, 8.5rem)` preventing text clipping (`CKINVER`) across all mobile screens, and the navbar hides the dial on < 360px per user rule.
+- **SC-012**: Hero title uses fluid clamp typography `clamp(1.75rem, 6.8vw, 6.85rem)` inside `max-w-6xl xl:max-w-7xl` preventing text clipping (`CKINVER` or `ACKINVERS`) across all viewports (320px to 4K), and the navbar hides the dial on < 360px per user rule.
 
 
 

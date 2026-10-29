@@ -144,7 +144,7 @@ export default function HeroSection() {
           STRANGER THINGS TITLE ARCHITECTURE
           Fluid clamp typography ensures "HACKINVERSE" never clips on screens from 320px to 4K
         */}
-        <div className="relative w-full max-w-5xl my-2 px-2 sm:px-4 overflow-hidden">
+        <div className="relative w-full max-w-6xl xl:max-w-7xl my-2 px-3 sm:px-6">
           {/* Top Crimson Hairline Rule with smooth scaleX draw */}
           <motion.div
             variants={hairlineDraw}
@@ -154,14 +154,14 @@ export default function HeroSection() {
             className="stranger-rule-top mb-2 sm:mb-4 opacity-95 origin-center w-full"
           />
 
-          {/* Fully Visible Title without clipping */}
-          <div className="overflow-x-clip py-1 sm:py-3 px-1 sm:px-2 flex justify-center items-center max-w-full">
+          {/* Fully Visible Title without clipping on any viewport */}
+          <div className="py-1 sm:py-3 px-2 sm:px-4 flex justify-center items-center w-full">
             <motion.h1
               variants={textMaskReveal}
               initial="hidden"
               animate="visible"
               custom={0.35}
-              className="stranger-things-filled text-[clamp(1.75rem,8.2vw,8.5rem)] tracking-[0.02em] sm:tracking-[0.04em] md:tracking-[0.06em] leading-[0.95] text-transparent bg-clip-text bg-gradient-to-b from-[#ff334b] via-[#e50914] to-[#7a040b] uppercase filter drop-shadow-[0_0_35px_rgba(229,9,20,0.65)] whitespace-nowrap"
+              className="stranger-things-filled text-[clamp(1.75rem,6.8vw,6.85rem)] tracking-[0.02em] sm:tracking-[0.04em] md:tracking-[0.05em] leading-[0.95] text-transparent bg-clip-text bg-gradient-to-b from-[#ff334b] via-[#e50914] to-[#7a040b] uppercase filter drop-shadow-[0_0_35px_rgba(229,9,20,0.65)] whitespace-nowrap select-none"
             >
               HACKINVERSE
             </motion.h1>

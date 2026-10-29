@@ -216,7 +216,7 @@ test("hero title uses fluid clamp typography and navbar hides menu dial on ultra
     new URL("../src/components/HeroSection.jsx", import.meta.url),
     "utf8"
   );
-  assert.match(heroSource, /clamp\(1\.75rem,\s*8\.2vw,\s*8\.5rem\)/);
+  assert.match(heroSource, /clamp\(1\.75rem,\s*6\.8vw,\s*6\.85rem\)/);
 
   const navSource = await readFile(
     new URL("../src/components/Navbar.jsx", import.meta.url),
