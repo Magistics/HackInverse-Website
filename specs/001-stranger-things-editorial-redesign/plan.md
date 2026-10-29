@@ -43,7 +43,7 @@
      - Wide Desktop (1280px+, `xl`): Full link spread (`gap-6 text-xs tracking-widest`) with Discord & WhatsApp telemetry outposts.
      - Fullscreen Surveillance Drawer: Dynamic alignment via `top-14 sm:top-16` and `h-[calc(100dvh-3.5rem)] sm:h-[calc(100dvh-4rem)]`.
 4. **[`HeroSection.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/HeroSection.jsx)**:
-   - Fluid typography Stranger Things title using `clamp(1.75rem, 8.2vw, 8.5rem)`, eliminating text clipping (`CKINVER`) across 320px–4K screens.
+   - Fluid typography Stranger Things title using `clamp(1.75rem, 6.8vw, 6.85rem)` inside `max-w-6xl xl:max-w-7xl`, eliminating text clipping (`CKINVER` or `ACKINVERS`) across 320px–4K screens.
    - Glowing hairline bars, cyclists silhouette, Devfolio button.
    - High-luminance `opacity-100` background video with calibrated WCAG text scrims.
    - `scale-[1.18]` and `origin-center` scaling to eliminate the video artwork book edge and bleed seamlessly edge-to-edge.

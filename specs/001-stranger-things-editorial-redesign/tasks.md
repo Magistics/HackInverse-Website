@@ -60,8 +60,9 @@
 - [x] **TASK-036**: Author automated test #15 in `tests/event-content.test.js` asserting navbar height stability, drawer offset alignment, and breakpoint scaling.
 - [x] **TASK-037**: Image performance optimization & payload compression: compressed 51 photos across `public/team/` and `public/highlights/` from 86MB down to 4.6MB (94.7% bandwidth reduction) without loss of clarity; added `loading="lazy"` and `decoding="async"` across all below-the-fold components; enabled `will-change-transform` for the marquee container.
 - [x] **TASK-038**: Author automated test #16 in `tests/event-content.test.js` asserting native lazy loading, async decoding, and GPU compositing rules across all sections.
-- [x] **TASK-039**: Full-spectrum breakpoint hardening: implemented fluid clamp sizing `clamp(1.75rem, 8.2vw, 8.5rem)` in `HeroSection.jsx` eliminating `CKINVER` text truncation, adjusted mobile telemetry padding, and set `hidden min-[360px]:flex lg:hidden` on the Walkie Dial button to protect narrow viewports from collision.
+- [x] **TASK-039**: Full-spectrum breakpoint hardening: implemented fluid clamp sizing `clamp(1.75rem, 6.8vw, 6.85rem)` in `HeroSection.jsx` eliminating `CKINVER` text truncation, adjusted mobile telemetry padding, and set `hidden min-[360px]:flex lg:hidden` on the Walkie Dial button to protect narrow viewports from collision.
 - [x] **TASK-040**: Author automated test #17 in `tests/event-content.test.js` asserting fluid typography clamp and ultra-narrow navbar visibility rules.
+- [x] **TASK-041**: Desktop viewport title architecture overhaul: expanded title container from `max-w-5xl` (1024px) to `max-w-6xl xl:max-w-7xl` (1152px–1280px), removed `overflow-hidden` container clipping, and recalibrated fluid font clamp to `clamp(1.75rem, 6.8vw, 6.85rem)` to eradicate `ACKINVERS` letter clipping on desktop/laptop displays (1024px–1440px) while preserving full visibility across 320px–4K.
 
 
 

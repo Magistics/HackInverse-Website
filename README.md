@@ -28,7 +28,7 @@
   - **3rd Place (Second Runner-Up)**: *Team Draft* — ₹3,000 Direct Cash + CodeCrafters 1-Year VIP Memberships
   - **Judges' Special Mention**: ₹1,000 Direct Cash Bounty
 - **Responsive Podium UX**: Automatically reorders to `1st Place → 2nd Place → 3rd Place` on mobile devices, while providing an elevated center-podium layout on desktop screens.
-- **Full-Spectrum Breakpoint Architecture**: Fluid clamp typography `clamp(1.75rem, 8.2vw, 8.5rem)` in the hero header prevents letter truncation across all mobile viewports (320px–414px) up to 4K desktop screens, paired with `overflow-x: clip` to strictly prevent horizontal overflow.
+- **Full-Spectrum Breakpoint Architecture**: Fluid clamp typography `clamp(1.75rem, 6.8vw, 6.85rem)` in an expanded `max-w-6xl xl:max-w-7xl` container eliminates letter truncation across all mobile viewports (320px–414px) and desktop screens (1024px–4K), paired with `overflow-x: clip` to strictly prevent horizontal overflow.
 - **Asset Performance & Lazy Loading**: 94.7% total image payload reduction (86MB down to 4.6MB) across all 51 team portraits and event photos, enforcing native `loading="lazy"`, off-thread `decoding="async"`, and `will-change-transform` GPU layer compositing for the infinite marquee.
 
 ---
