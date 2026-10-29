@@ -41,10 +41,12 @@ The theme is conveyed through **cinematic art direction** rather than novelty pl
    - Member Details: All core members feature inspiring personal taglines rather than corporate job titles.
 6. **Audio Unity**: A single dedicated audio synthesizer in the top ticker tape (`EditorialTicker.jsx`) controls ambient sound; no duplicate buttons.
 7. **Hero Video Presentation**: Hero background video runs at `opacity-100` with calibrated WCAG contrast scrims and `scale-[1.18]` edge-to-edge bleed, eliminating all black pillarbox seams.
-8. **Responsive Navigation Discipline**: Navbar maintains consistent vertical geometry (`h-14 sm:h-16`) across all breakpoints without brand/walkie collisions on narrow mobile viewports (<380px), balanced 2-button action layout on tablets, and dynamically aligned surveillance drawers (`top-14 sm:top-16`).
+8. **Responsive Navigation Discipline**: Navbar maintains consistent vertical geometry (`h-14 sm:h-16`) across all breakpoints without brand/walkie collisions on narrow mobile viewports (<380px), balanced 2-button action layout on tablets, dynamically aligned surveillance drawers (`top-14 sm:top-16`), and hides the dial on `< 360px` per responsive rules.
+9. **Asset Performance & Lazy Loading**: All below-the-fold imagery must enforce native `loading="lazy"` and `decoding="async"`, maintaining optimized payloads (< 250KB per portrait/photo) with `will-change-transform` GPU compositing for continuous marquee animations.
+10. **Fluid Typography & Boundary Discipline**: Display titles must utilize fluid `clamp()` sizing (e.g., `clamp(1.75rem, 8.2vw, 8.5rem)`) ensuring zero text clipping or hyphenation on viewports from 320px to 4K, paired with `overflow-x: clip` to strictly prevent horizontal scrolling.
 
 ## 7. Quality Gates & Regression Verification
-- **Automated Regression Suite**: `node --test tests/event-content.test.js` must pass 100% of tests.
+- **Automated Regression Suite**: `node --test tests/event-content.test.js` must pass 100% of tests (17 verified assertions).
 - **Zero Lint Errors**: `npm run lint` must pass cleanly.
 - **Zero Build Warnings**: `npm run build` must produce an optimized production bundle.
-- **Responsive Layout**: Tested across mobile (375px), tablet (768px), and desktop (1440px+).
+- **Responsive Layout**: Tested across mobile (320px, 375px), tablet (768px), and desktop (1024px, 1440px+).

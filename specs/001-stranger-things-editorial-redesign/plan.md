@@ -36,16 +36,19 @@
 3. **[`src/components/Navbar.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/Navbar.jsx)**:
    - Ultra-minimalist frosted header with fixed vertical geometry (`h-14 sm:h-16 flex items-center`).
    - Responsive breakpoint tiering:
-     - Mobile (375px): Compact dual logo badge, inline `HACKINVERSE 1.0`, condensed Walkie-Talkie dial with collision prevention.
+     - Ultra-Narrow Mobile (< 360px): Compact dual logo badge and inline brand text; Walkie-Talkie dial hidden (`hidden min-[360px]:flex lg:hidden`) to prevent collision.
+     - Mobile (360px - 767px): Balanced brand logo badge, inline `HACKINVERSE 1.0`, and condensed Walkie-Talkie dial button.
      - Tablet (768px - 1023px): Two-button balanced action group (`DEVFOLIO DOSSIER` + Walkie Dial).
      - Desktop (1024px - 1279px, `lg`): Sized nav links (`gap-3.5 text-[11px]`) to eliminate text wrapping or edge collision.
      - Wide Desktop (1280px+, `xl`): Full link spread (`gap-6 text-xs tracking-widest`) with Discord & WhatsApp telemetry outposts.
      - Fullscreen Surveillance Drawer: Dynamic alignment via `top-14 sm:top-16` and `h-[calc(100dvh-3.5rem)] sm:h-[calc(100dvh-4rem)]`.
 4. **[`HeroSection.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/HeroSection.jsx)**:
-   - Iconic Stranger Things serif title, glowing hairline bars, cyclists silhouette, Devfolio button.
+   - Fluid typography Stranger Things title using `clamp(1.75rem, 8.2vw, 8.5rem)`, eliminating text clipping (`CKINVER`) across 320px–4K screens.
+   - Glowing hairline bars, cyclists silhouette, Devfolio button.
    - High-luminance `opacity-100` background video with calibrated WCAG text scrims.
    - `scale-[1.18]` and `origin-center` scaling to eliminate the video artwork book edge and bleed seamlessly edge-to-edge.
    - Single muted video loop without duplicate sound controls.
+   - Zero horizontal overflow via `overflow-x-clip` and `max-w-[calc(100vw-2rem)]` on the sub-badge.
 5. **[`src/components/Editorial/EditorialTicker.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/Editorial/EditorialTicker.jsx)**:
    - Single unified audio synthesizer and ambient sound toggle for the entire application.
 6. **[`src/components/Duration.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/Duration.jsx)**:
@@ -70,6 +73,11 @@
     - Stripe Press style hairline accordions with smooth `+` / `−` micro-interactions.
 12. **[`Footer.jsx`](file:///d:/Magistics/Hackinverse/hackinverse%20website/src/components/Footer.jsx)**:
     - Minimalist broadsheet masthead and directory with `HAWKINS OUTPOST // HACKINVERSE ARCHIVE` and `01 // About HackInverse`.
+13. **Asset Performance & Compression Pipeline**:
+    - 94.7% total image payload reduction across 51 assets in `public/team/` and `public/highlights/` (86MB to 4.6MB) maintaining 2.2x retina density.
+    - Native `loading="lazy"` and off-thread `decoding="async"` across all below-the-fold components (About, Gallery, Highlights, Mentors, Prizes, Sponsors, Venue, Footer).
+    - `will-change-transform` GPU compositor layer promotion for the Highlights marquee.
+
 
 ---
 
