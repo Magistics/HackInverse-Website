@@ -56,6 +56,8 @@ export default function AboutSection() {
               <img
                 src="/aboutUs.png"
                 alt="HackInverse Dimensional Anomaly"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-cover filter contrast-105"
               />
               <div className="pt-2 px-1 text-[10px] font-space-mono text-[#666] flex justify-between border-t border-[#eee] mt-2">

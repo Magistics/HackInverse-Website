@@ -184,3 +184,43 @@ test("navbar enforces consistent responsive heights and aligned mobile drawer of
   assert.match(navSource, /gap-3\.5 xl:gap-6/);
 });
 
+
+
+test("below-the-fold images enforce native lazy loading and async decoding", async () => {
+  const sectionsToCheck = [
+    { file: "../src/components/AboutSection.jsx", regex: /loading="lazy"[\s\S]*decoding="async"/ },
+    { file: "../src/components/Gallery/GallerySection.jsx", regex: /loading="lazy"[\s\S]*decoding="async"/ },
+    { file: "../src/components/Highlights/HighlightsSection.jsx", regex: /loading="lazy"[\s\S]*decoding="async"/ },
+    { file: "../src/components/Mentors/MentorsSection.jsx", regex: /loading="lazy"[\s\S]*decoding="async"/ },
+    { file: "../src/components/Prizes/PrizesSection.jsx", regex: /loading="lazy"[\s\S]*decoding="async"/ },
+    { file: "../src/components/Sponsors/SponsorsSection.jsx", regex: /loading="lazy"[\s\S]*decoding="async"/ },
+    { file: "../src/components/Venue/VenueSection.jsx", regex: /loading="lazy"[\s\S]*decoding="async"/ },
+    { file: "../src/components/Footer.jsx", regex: /loading="lazy"[\s\S]*decoding="async"/ },
+  ];
+
+  for (const { file, regex } of sectionsToCheck) {
+    const source = await readFile(new URL(file, import.meta.url), "utf8");
+    assert.match(source, regex, `${file} must enforce lazy loading and async decoding`);
+  }
+
+  const highlightsSource = await readFile(
+    new URL("../src/components/Highlights/HighlightsSection.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(highlightsSource, /will-change-transform/);
+});
+
+
+test("hero title uses fluid clamp typography and navbar hides menu dial on ultra-narrow screens", async () => {
+  const heroSource = await readFile(
+    new URL("../src/components/HeroSection.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(heroSource, /clamp\(1\.75rem,\s*8\.2vw,\s*8\.5rem\)/);
+
+  const navSource = await readFile(
+    new URL("../src/components/Navbar.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(navSource, /hidden\s+min-\[360px\]:flex\s+lg:hidden/);
+});

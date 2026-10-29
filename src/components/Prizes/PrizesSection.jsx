@@ -140,6 +140,8 @@ export default function PrizesSection() {
                 <img
                   src={prize.inner}
                   alt={prize.title}
+                  loading="lazy"
+                  decoding="async"
                   className="max-h-full max-w-full object-contain filter drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]"
                 />
               </div>

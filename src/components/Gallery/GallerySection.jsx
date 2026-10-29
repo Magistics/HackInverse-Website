@@ -492,6 +492,7 @@ export default function GallerySection() {
                           src={member.img}
                           alt={member.name}
                           loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                         />
                         <div className="absolute top-2 right-2">
@@ -549,6 +550,7 @@ export default function GallerySection() {
                           src={member.img}
                           alt={member.name}
                           loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover grayscale opacity-85 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                         />
                         {member.lead && (

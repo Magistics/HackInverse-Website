@@ -28,12 +28,12 @@ export default function Duration() {
             { label: "ONLINE BUILD", val: "24", unit: "HOURS", id: "03", sub: "12 AM 10 Oct – 12 AM 11 Oct" },
             { label: "PRIZE POOL", val: "15", unit: "THOUSAND ₹", id: "04", sub: "Distributed to 5 winning teams" },
           ].map((item) => (
-            <div key={item.id} className="p-6 sm:p-8 flex flex-col items-center justify-center">
-              <span className="font-space-mono text-[10px] tracking-widest text-zinc-500 mb-1">
+            <div key={item.id} className="p-3.5 sm:p-6 md:p-8 flex flex-col items-center justify-center">
+              <span className="font-space-mono text-[9px] sm:text-[10px] tracking-widest text-zinc-500 mb-1">
                 INDEX // {item.id}
               </span>
               <div className="flex items-baseline gap-1">
-                <span className="font-space-mono text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white">
+                <span className="font-space-mono text-3xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white">
                   {item.val}
                 </span>
                 <span className="font-space-mono text-xs sm:text-sm text-red-500 font-bold">

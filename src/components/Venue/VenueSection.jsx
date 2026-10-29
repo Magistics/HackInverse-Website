@@ -97,6 +97,8 @@ export default function Venue() {
             <img
               src={tvCornerImage}
               alt="Retro Television Display"
+              loading="lazy"
+              decoding="async"
               className="relative z-30 w-full h-auto object-contain pointer-events-none drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
             />
             <iframe

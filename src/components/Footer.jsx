@@ -18,12 +18,16 @@ export default function Footer() {
               <img
                 src="/magistics_logo.svg"
                 alt="Magistics Official Logo"
+                loading="lazy"
+                decoding="async"
                 className="h-10 w-auto object-contain filter brightness-110"
               />
               <span className="text-zinc-600 text-lg">✕</span>
               <img
                 src="/logo_dark.png"
                 alt="HackInverse Logo"
+                loading="lazy"
+                decoding="async"
                 className="h-10 w-auto object-contain filter contrast-125"
               />
             </div>

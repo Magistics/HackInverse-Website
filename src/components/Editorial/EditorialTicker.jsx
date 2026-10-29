@@ -49,23 +49,23 @@ export default function EditorialTicker() {
 
   return (
     <div className="w-full bg-[#0a0508] border-b border-[#ff003c]/30 text-[#ede8df] text-xs font-space-mono select-none overflow-hidden relative z-40">
-      <div className="flex items-center justify-between px-3 md:px-6 py-1.5 border-b border-white/5 bg-[#12070c]">
-        <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1.5 px-2 py-0.5 bg-[#ff003c]/20 border border-[#ff003c] text-[#ff003c] text-[10px] font-bold tracking-widest uppercase animate-pulse">
-            <Radio className="w-3 h-3" /> OFFICIAL BULLETIN
+      <div className="flex items-center justify-between px-2 sm:px-3 md:px-6 py-1 sm:py-1.5 border-b border-white/5 bg-[#12070c]">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 bg-[#ff003c]/20 border border-[#ff003c] text-[#ff003c] text-[9px] sm:text-[10px] font-bold tracking-wider sm:tracking-widest uppercase animate-pulse">
+            <Radio className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> OFFICIAL BULLETIN
           </span>
           <span className="hidden sm:inline text-zinc-400 text-[11px] tracking-wider">
             MAGISTICS ARCHIVE // HACKINVERSE 1.0 DECLASSIFIED
           </span>
         </div>
 
-        <div className="flex items-center gap-4 text-[11px]">
+        <div className="flex items-center gap-2 sm:gap-4 text-[11px]">
           <span className="hidden md:inline text-zinc-400">
             EVENT STATUS: <span className="text-emerald-400 font-bold">CONCLUDED (11 OCT 2026)</span>
           </span>
           <button
             onClick={toggleSound}
-            className={`flex items-center gap-1.5 px-2 py-0.5 border rounded-xs transition-all cursor-pointer ${
+            className={`flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 border rounded-xs transition-all cursor-pointer ${
               soundEnabled
                 ? "border-[#ff003c] bg-[#ff003c]/15 text-[#ff003c] shadow-[0_0_10px_rgba(255,0,60,0.4)]"
                 : "border-zinc-700 bg-zinc-900/60 text-zinc-400 hover:text-white"
@@ -74,13 +74,13 @@ export default function EditorialTicker() {
           >
             {soundEnabled ? (
               <>
-                <Volume2 className="w-3.5 h-3.5 text-[#ff003c] animate-pulse" />
-                <span className="font-bold text-[10px] tracking-wider text-[#ff003c]">SYNTH: ACTIVE</span>
+                <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#ff003c] animate-pulse" />
+                <span className="font-bold text-[9px] sm:text-[10px] tracking-wider text-[#ff003c]">SYNTH: ACTIVE</span>
               </>
             ) : (
               <>
-                <VolumeX className="w-3.5 h-3.5" />
-                <span className="text-[10px] tracking-wider">SYNTH: MUTED</span>
+                <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                <span className="text-[9px] sm:text-[10px] tracking-wider">SYNTH: MUTED</span>
               </>
             )}
           </button>

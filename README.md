@@ -5,7 +5,7 @@
 [![React](https://img.shields.io/badge/React-19.x-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.x-black?style=flat&logo=framer&logoColor=white)](https://motion.dev/)
-[![Tests](https://img.shields.io/badge/Tests-15%2F15_Passing-brightgreen?style=flat)](file:///d:/Magistics/Hackinverse/hackinverse%20website/tests/event-content.test.js)
+[![Tests](https://img.shields.io/badge/Tests-17%2F17_Passing-brightgreen?style=flat)](file:///d:/Magistics/Hackinverse/hackinverse%20website/tests/event-content.test.js)
 
 
 **HackInverse** is Eastern India's premier collegiate engineering convergence and hackday, organized at JIS University, Agarpara, Kolkata. The website is crafted with an ultra-clean **Minimalist Editorial & Stranger Things Dual-Tone** aesthetic—pairing 1980s Hawkins Gazette archival investigative broadsheet aesthetics with the atmospheric, inky obsidian void of the Upside Down.
@@ -28,6 +28,8 @@
   - **3rd Place (Second Runner-Up)**: *Team Draft* — ₹3,000 Direct Cash + CodeCrafters 1-Year VIP Memberships
   - **Judges' Special Mention**: ₹1,000 Direct Cash Bounty
 - **Responsive Podium UX**: Automatically reorders to `1st Place → 2nd Place → 3rd Place` on mobile devices, while providing an elevated center-podium layout on desktop screens.
+- **Full-Spectrum Breakpoint Architecture**: Fluid clamp typography `clamp(1.75rem, 8.2vw, 8.5rem)` in the hero header prevents letter truncation across all mobile viewports (320px–414px) up to 4K desktop screens, paired with `overflow-x: clip` to strictly prevent horizontal overflow.
+- **Asset Performance & Lazy Loading**: 94.7% total image payload reduction (86MB down to 4.6MB) across all 51 team portraits and event photos, enforcing native `loading="lazy"`, off-thread `decoding="async"`, and `will-change-transform` GPU layer compositing for the infinite marquee.
 
 ---
 
@@ -96,7 +98,7 @@ The application will launch at `http://localhost:5173/`.
 
 ### 3. Verification & Quality Gates
 ```bash
-# Run automated event content & regression test suite (15 passing tests)
+# Run automated event content & regression test suite (17 passing tests)
 node --test tests/event-content.test.js
 
 # Run ESLint code quality checks

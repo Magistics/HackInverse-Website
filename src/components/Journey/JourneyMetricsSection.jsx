@@ -147,7 +147,7 @@ export default function JourneyMetricsSection() {
                 ease: transitionCurves.cinematic,
               }}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className="p-6 text-left flex flex-col justify-between bg-white/[0.2] hover:bg-white transition-colors"
+              className="p-3.5 sm:p-6 text-left flex flex-col justify-between bg-white/[0.2] hover:bg-white transition-colors"
             >
               <div>
                 <span className="font-space-mono text-[10px] text-[#888] block mb-2">
