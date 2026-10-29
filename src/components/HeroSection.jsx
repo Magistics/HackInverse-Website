@@ -128,40 +128,40 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: -14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: transitionCurves.cinematic }}
-          className="inline-flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-1.5 mb-6 border border-white/10 bg-black/50 backdrop-blur-md rounded-xs font-space-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-zinc-300 shadow-lg"
+          className="inline-flex items-center gap-1.5 sm:gap-3 px-2.5 sm:px-4 py-1 sm:py-1.5 mb-4 sm:mb-6 border border-white/10 bg-black/50 backdrop-blur-md rounded-xs font-space-mono text-[9px] sm:text-[11px] uppercase tracking-wider sm:tracking-[0.22em] text-zinc-300 shadow-lg max-w-[calc(100vw-2rem)]"
         >
-          <div className="flex items-center gap-1.5 sm:gap-2 pr-2 border-r border-white/10">
-            <img src="/magistics_logo.svg" alt="Magistics Logo" className="h-4 sm:h-4.5 w-auto object-contain brightness-110" />
-            <span className="text-zinc-600 text-[9px]">✕</span>
-            <img src="/logo_dark.png" alt="HackInverse Logo" className="h-4 sm:h-4.5 w-auto object-contain contrast-125" />
+          <div className="flex items-center gap-1 sm:gap-2 pr-1.5 sm:pr-2 border-r border-white/10 shrink-0">
+            <img src="/magistics_logo.svg" alt="Magistics Logo" className="h-3.5 sm:h-4.5 w-auto object-contain brightness-110" />
+            <span className="text-zinc-600 text-[8px] sm:text-[9px]">✕</span>
+            <img src="/logo_dark.png" alt="HackInverse Logo" className="h-3.5 sm:h-4.5 w-auto object-contain contrast-125" />
           </div>
-          <span className="text-zinc-400">MAGISTICS PRESENTS</span>
-          <span className="text-zinc-600">|</span>
+          <span className="hidden min-[380px]:inline text-zinc-400">MAGISTICS PRESENTS</span>
+          <span className="hidden min-[380px]:inline text-zinc-600">|</span>
           <span className="text-[#e50914] font-bold">HACKINVERSE 1.0</span>
         </motion.div>
 
         {/* 
           STRANGER THINGS TITLE ARCHITECTURE
-          Fixed: Generous container + responsive typography + padding prevents cut-off
+          Fluid clamp typography ensures "HACKINVERSE" never clips on screens from 320px to 4K
         */}
-        <div className="relative w-full max-w-5xl my-2 px-2 sm:px-4">
+        <div className="relative w-full max-w-5xl my-2 px-2 sm:px-4 overflow-hidden">
           {/* Top Crimson Hairline Rule with smooth scaleX draw */}
           <motion.div
             variants={hairlineDraw}
             initial="hidden"
             animate="visible"
             custom={0.25}
-            className="stranger-rule-top mb-3 sm:mb-4 opacity-95 origin-center w-full"
+            className="stranger-rule-top mb-2 sm:mb-4 opacity-95 origin-center w-full"
           />
 
           {/* Fully Visible Title without clipping */}
-          <div className="overflow-visible py-2 sm:py-3 px-1 sm:px-2 flex justify-center items-center">
+          <div className="overflow-x-clip py-1 sm:py-3 px-1 sm:px-2 flex justify-center items-center max-w-full">
             <motion.h1
               variants={textMaskReveal}
               initial="hidden"
               animate="visible"
               custom={0.35}
-              className="stranger-things-filled text-5xl sm:text-7xl md:text-8xl lg:text-[7.2rem] xl:text-[8.5rem] tracking-[0.03em] sm:tracking-[0.05em] md:tracking-[0.06em] leading-[0.95] text-transparent bg-clip-text bg-gradient-to-b from-[#ff334b] via-[#e50914] to-[#7a040b] uppercase filter drop-shadow-[0_0_35px_rgba(229,9,20,0.65)] whitespace-nowrap"
+              className="stranger-things-filled text-[clamp(1.75rem,8.2vw,8.5rem)] tracking-[0.02em] sm:tracking-[0.04em] md:tracking-[0.06em] leading-[0.95] text-transparent bg-clip-text bg-gradient-to-b from-[#ff334b] via-[#e50914] to-[#7a040b] uppercase filter drop-shadow-[0_0_35px_rgba(229,9,20,0.65)] whitespace-nowrap"
             >
               HACKINVERSE
             </motion.h1>
@@ -173,18 +173,18 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={0.45}
-            className="stranger-rule-bottom mt-3 sm:mb-4 opacity-95 origin-center w-full"
+            className="stranger-rule-bottom mt-2 sm:mb-4 opacity-95 origin-center w-full"
           />
         </div>
 
         {/* Editorial Subtitle with Masked Entrance */}
-        <div className="overflow-hidden mt-3 mb-2">
+        <div className="overflow-hidden mt-2 sm:mt-3 mb-2 px-2">
           <motion.p
             variants={textMaskReveal}
             initial="hidden"
             animate="visible"
             custom={0.55}
-            className="font-cinzel text-base sm:text-xl md:text-2xl text-zinc-100 tracking-[0.25em] uppercase font-semibold"
+            className="font-cinzel text-xs sm:text-lg md:text-2xl text-zinc-100 tracking-[0.14em] sm:tracking-[0.22em] uppercase font-semibold"
           >
             THE UPSIDE DOWN HACKDAY // SEASON 01
           </motion.p>
@@ -195,7 +195,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.65, ease: transitionCurves.cinematic }}
-          className="font-space-mono text-xs sm:text-sm text-zinc-300 max-w-2xl mx-auto leading-relaxed mt-2 mb-8 tracking-wide"
+          className="font-space-mono text-xs sm:text-sm text-zinc-300 max-w-2xl mx-auto leading-relaxed mt-2 mb-6 sm:mb-8 tracking-wide px-3"
         >
           An offline single-day hackday organized by Magistics. 6 hours of high-intensity on-site building at JIS University, Agarpara, Kolkata.
         </motion.p>
@@ -205,23 +205,23 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.75, ease: transitionCurves.cinematic }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-0 w-full max-w-3xl mb-10 border border-white/[0.08] divide-x divide-y md:divide-y-0 divide-white/[0.08] bg-[#07090f]/75 backdrop-blur-md font-space-mono text-left shadow-xl"
+          className="grid grid-cols-2 md:grid-cols-4 gap-0 w-full max-w-3xl mb-8 sm:mb-10 border border-white/[0.08] divide-x divide-y md:divide-y-0 divide-white/[0.08] bg-[#07090f]/75 backdrop-blur-md font-space-mono text-left shadow-xl"
         >
-          <div className="p-4 hover:bg-white/[0.02] transition-colors">
-            <span className="text-zinc-500 block text-[9px] sm:text-[10px] tracking-widest uppercase">FORMAT</span>
-            <span className="text-white font-bold text-xs sm:text-sm tracking-wider">OFFLINE HACKDAY</span>
+          <div className="p-2.5 sm:p-4 hover:bg-white/[0.02] transition-colors">
+            <span className="text-zinc-500 block text-[8px] sm:text-[10px] tracking-widest uppercase">FORMAT</span>
+            <span className="text-white font-bold text-[11px] sm:text-sm tracking-wider">OFFLINE HACKDAY</span>
           </div>
-          <div className="p-4 hover:bg-white/[0.02] transition-colors">
-            <span className="text-zinc-500 block text-[9px] sm:text-[10px] tracking-widest uppercase">DATE</span>
-            <span className="text-white font-bold text-xs sm:text-sm tracking-wider">11 OCTOBER 2026</span>
+          <div className="p-2.5 sm:p-4 hover:bg-white/[0.02] transition-colors">
+            <span className="text-zinc-500 block text-[8px] sm:text-[10px] tracking-widest uppercase">DATE</span>
+            <span className="text-white font-bold text-[11px] sm:text-sm tracking-wider">11 OCTOBER 2026</span>
           </div>
-          <div className="p-4 hover:bg-white/[0.02] transition-colors">
-            <span className="text-zinc-500 block text-[9px] sm:text-[10px] tracking-widest uppercase">PRIZE POOL</span>
-            <span className="text-[#e50914] font-bold text-xs sm:text-sm tracking-wider">₹15,000 CASH</span>
+          <div className="p-2.5 sm:p-4 hover:bg-white/[0.02] transition-colors">
+            <span className="text-zinc-500 block text-[8px] sm:text-[10px] tracking-widest uppercase">PRIZE POOL</span>
+            <span className="text-[#e50914] font-bold text-[11px] sm:text-sm tracking-wider">₹15,000 CASH</span>
           </div>
-          <div className="p-4 hover:bg-white/[0.02] transition-colors">
-            <span className="text-zinc-500 block text-[9px] sm:text-[10px] tracking-widest uppercase">VENUE</span>
-            <span className="text-white font-bold text-xs sm:text-sm tracking-wider">JIS UNIVERSITY</span>
+          <div className="p-2.5 sm:p-4 hover:bg-white/[0.02] transition-colors">
+            <span className="text-zinc-500 block text-[8px] sm:text-[10px] tracking-widest uppercase">VENUE</span>
+            <span className="text-white font-bold text-[11px] sm:text-sm tracking-wider">JIS UNIVERSITY</span>
           </div>
         </motion.div>
 

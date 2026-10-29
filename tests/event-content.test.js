@@ -209,3 +209,18 @@ test("below-the-fold images enforce native lazy loading and async decoding", asy
   );
   assert.match(highlightsSource, /will-change-transform/);
 });
+
+
+test("hero title uses fluid clamp typography and navbar hides menu dial on ultra-narrow screens", async () => {
+  const heroSource = await readFile(
+    new URL("../src/components/HeroSection.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(heroSource, /clamp\(1\.75rem,\s*8\.2vw,\s*8\.5rem\)/);
+
+  const navSource = await readFile(
+    new URL("../src/components/Navbar.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(navSource, /hidden\s+min-\[360px\]:flex\s+lg:hidden/);
+});

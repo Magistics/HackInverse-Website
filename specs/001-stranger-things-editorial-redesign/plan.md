@@ -75,6 +75,6 @@
 
 ## 3. Automated Quality Verification Plan
 
-- Run `node --test tests/event-content.test.js` validating all 16 core domain rules.
+- Run `node --test tests/event-content.test.js` validating all 17 core domain rules.
 - Run `npm run lint` for ESLint verification.
 - Run `npm run build` for production bundle compilation.

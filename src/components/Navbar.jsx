@@ -90,23 +90,23 @@ export default function Navbar({ scrollToView, refs }) {
         {/* Brand: Dual Magistics x HackInverse Logos */}
         <div 
           onClick={() => scrollToView(refs.home)}
-          className="flex items-center gap-2 sm:gap-3 cursor-pointer group shrink-0"
+          className="flex items-center gap-1.5 sm:gap-3 cursor-pointer group shrink-0 min-w-0"
         >
-          <div className="flex items-center gap-1.5 sm:gap-2 bg-black/50 px-1.5 sm:px-2 py-1 border border-zinc-800 rounded-xs shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2 bg-black/50 px-1 sm:px-2 py-0.5 sm:py-1 border border-zinc-800 rounded-xs shrink-0">
             <img
               src="/magistics_logo.svg"
               alt="Magistics"
-              className="h-4 sm:h-5.5 w-auto object-contain filter brightness-110"
+              className="h-3.5 sm:h-5.5 w-auto object-contain filter brightness-110"
             />
-            <span className="text-zinc-600 text-[10px] sm:text-xs font-mono">✕</span>
+            <span className="text-zinc-600 text-[9px] sm:text-xs font-mono">✕</span>
             <img
               src="/logo_dark.png"
               alt="HackInverse"
-              className="h-4 sm:h-5.5 w-auto object-contain filter contrast-125"
+              className="h-3.5 sm:h-5.5 w-auto object-contain filter contrast-125"
             />
           </div>
-          <div className="flex flex-col text-left">
-            <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.14em] text-white group-hover:text-[#e50914] transition-colors leading-tight">
+          <div className="flex flex-col text-left min-w-0">
+            <span className="font-cinzel text-[11px] sm:text-sm font-bold tracking-[0.12em] sm:tracking-[0.14em] text-white group-hover:text-[#e50914] transition-colors leading-tight truncate">
               HACKINVERSE <span className="text-[#e50914]">1.0</span>
             </span>
             <span className="hidden sm:inline font-space-mono text-[8px] sm:text-[9px] text-zinc-400 tracking-wider">
@@ -174,10 +174,10 @@ export default function Navbar({ scrollToView, refs }) {
             <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </a>
 
-          {/* Custom Walkie-Talkie Surveillance Dial Button (lg:hidden) */}
+          {/* Custom Walkie-Talkie Surveillance Dial Button (hidden on <360px, lg:hidden) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden relative flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 sm:py-1.5 bg-[#07090f] border border-[#e50914]/50 hover:border-[#e50914] text-zinc-300 hover:text-white rounded-xs transition-all shadow-[0_0_12px_rgba(229,9,20,0.25)] active:scale-[0.96] cursor-pointer"
+            className="hidden min-[360px]:flex lg:hidden relative items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 sm:py-1.5 bg-[#07090f] border border-[#e50914]/50 hover:border-[#e50914] text-zinc-300 hover:text-white rounded-xs transition-all shadow-[0_0_12px_rgba(229,9,20,0.25)] active:scale-[0.96] cursor-pointer"
             aria-label="Walkie-Talkie Surveillance Dial"
           >
             <div className="relative flex items-center justify-center">

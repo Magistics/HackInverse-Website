@@ -5,7 +5,7 @@
 [![React](https://img.shields.io/badge/React-19.x-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.x-black?style=flat&logo=framer&logoColor=white)](https://motion.dev/)
-[![Tests](https://img.shields.io/badge/Tests-16%2F16_Passing-brightgreen?style=flat)](file:///d:/Magistics/Hackinverse/hackinverse%20website/tests/event-content.test.js)
+[![Tests](https://img.shields.io/badge/Tests-17%2F17_Passing-brightgreen?style=flat)](file:///d:/Magistics/Hackinverse/hackinverse%20website/tests/event-content.test.js)
 
 
 **HackInverse** is Eastern India's premier collegiate engineering convergence and hackday, organized at JIS University, Agarpara, Kolkata. The website is crafted with an ultra-clean **Minimalist Editorial & Stranger Things Dual-Tone** aesthetic—pairing 1980s Hawkins Gazette archival investigative broadsheet aesthetics with the atmospheric, inky obsidian void of the Upside Down.
@@ -96,7 +96,7 @@ The application will launch at `http://localhost:5173/`.
 
 ### 3. Verification & Quality Gates
 ```bash
-# Run automated event content & regression test suite (16 passing tests)
+# Run automated event content & regression test suite (17 passing tests)
 node --test tests/event-content.test.js
 
 # Run ESLint code quality checks
