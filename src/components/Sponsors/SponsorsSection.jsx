@@ -107,6 +107,8 @@ export default function SponsorsSection() {
                         <img
                           src={sponsor.src}
                           alt={sponsor.alt}
+                          loading="lazy"
+                          decoding="async"
                           className="max-h-10 max-w-[160px] object-contain"
                         />
                       </div>
@@ -114,6 +116,8 @@ export default function SponsorsSection() {
                       <img
                         src={sponsor.src}
                         alt={sponsor.alt}
+                        loading="lazy"
+                        decoding="async"
                         className={`max-h-14 max-w-[85%] object-contain filter brightness-110 group-hover:scale-105 transition-transform duration-300 ${
                           sponsor.name === "CodeCrafters" ? "contrast-125" : ""
                         }`}

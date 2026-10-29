@@ -19,6 +19,8 @@ const SponsorsLogo = ({
       <img
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className={`h-18 object-contain ${imgClassName}`}
         style={imgStyle}
       />

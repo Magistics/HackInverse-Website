@@ -180,7 +180,7 @@ export default function HighlightsSection() {
               ease: "linear",
             },
           }}
-          className="flex gap-6 w-max cursor-pointer"
+          className="flex gap-6 w-max cursor-pointer will-change-transform"
         >
           {marqueeItems.map((item, idx) => (
             <div
@@ -200,6 +200,7 @@ export default function HighlightsSection() {
                   src={item.src}
                   alt={item.title}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
 
@@ -275,6 +276,7 @@ export default function HighlightsSection() {
                 <img
                   src={selectedPhoto.src}
                   alt={selectedPhoto.title}
+                  decoding="async"
                   className="w-full h-full object-contain"
                 />
               </div>

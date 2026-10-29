@@ -214,6 +214,8 @@ export default function MentorsSection() {
                       <img
                         src={person.image}
                         alt={person.name}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-top filter grayscale contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                       />
                     ) : (

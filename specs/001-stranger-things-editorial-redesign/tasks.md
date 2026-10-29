@@ -58,4 +58,7 @@
 - [x] **TASK-034**: Automated test #14 added and passing in `tests/event-content.test.js` asserting hero video full opacity and edge-to-edge scaling.
 - [x] **TASK-035**: Navbar responsive overhaul across all breakpoints: stabilized height (`h-14 sm:h-16`), compact mobile dual logo and walkie dial on `<380px`, mid-desktop spacing calibration (`gap-3.5 text-[11px]` on `lg`, `gap-6 text-xs` on `xl`), and dynamic surveillance drawer alignment (`top-14 sm:top-16`).
 - [x] **TASK-036**: Author automated test #15 in `tests/event-content.test.js` asserting navbar height stability, drawer offset alignment, and breakpoint scaling.
+- [x] **TASK-037**: Image performance optimization & payload compression: compressed 51 photos across `public/team/` and `public/highlights/` from 86MB down to 4.6MB (94.7% bandwidth reduction) without loss of clarity; added `loading="lazy"` and `decoding="async"` across all below-the-fold components; enabled `will-change-transform` for the marquee container.
+- [x] **TASK-038**: Author automated test #16 in `tests/event-content.test.js` asserting native lazy loading, async decoding, and GPU compositing rules across all sections.
+
 
